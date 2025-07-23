@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 
 :root {
@@ -37,8 +37,8 @@
   --sidebar-accent-foreground: oklch(1.0000 0 0);
   --sidebar-border: oklch(0.8866 0.0404 89.6994);
   --sidebar-ring: oklch(0.5553 0.1455 48.9975);
-  --font-sans: Oxanium, sans-serif;
-  --font-serif: Merriweather, serif;
+  --font-sans: var(--font-panchang), sans-serif;
+  --font-serif: var(--font-supreme), serif;
   --font-mono: Space Mono, monospace;
   --radius: 0.3rem;
   --shadow-2xs: 0px 2px 3px 0px hsl(28 18% 25% / 0.09);
@@ -86,8 +86,8 @@
   --sidebar-accent-foreground: oklch(0.2839 0.0734 254.5378);
   --sidebar-border: oklch(0.3741 0.0087 67.5582);
   --sidebar-ring: oklch(0.7049 0.1867 47.6044);
-  --font-sans: Oxanium, sans-serif;
-  --font-serif: Merriweather, serif;
+  --font-sans: var(--font-panchang), sans-serif;
+  --font-serif: var(--font-supreme), serif;
   --font-mono: Space Mono, monospace;
   --radius: 0.3rem;
   --shadow-2xs: 0px 2px 3px 0px hsl(0 0% 5% / 0.09);
@@ -159,5 +159,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-supreme), ui-sans-serif, system-ui, sans-serif;
   }
+  .font-panchang {
+    font-family: var(--font-panchang), ui-sans-serif, system-ui, sans-serif;
+  }
+  .font-supreme {
+    font-family: var(--font-supreme), ui-serif, Georgia, serif;
+  }
+
 }

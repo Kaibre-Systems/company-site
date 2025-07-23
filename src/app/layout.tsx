@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { MainNavbar } from "./components/main-navbar";
+import { ThemeProvider } from "@/components/theme-provider"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+
+const panchang = localFont({
+    src: "../../public/fonts/Panchang-Regular.woff2",
+    variable: "--font-panchang",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const supreme = localFont({
+  src: "../../public/fonts/Supreme-Regular.woff2",
+  variable: "--font-supreme",
 });
 
 export const metadata: Metadata = {
@@ -24,12 +26,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${panchang.variable} ${supreme.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
-      <MainNavbar />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <MainNavbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
