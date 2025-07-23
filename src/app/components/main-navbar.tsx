@@ -23,24 +23,28 @@ export function MainNavbar() {
       link: "#services",
     },
     {
-      name: "Products",
-      link: "#products",
+      name: "Success Stories",
+      link: "#success-stories",
     },
     {
-      name: "About Us",
-      link: "#about",
+      name: "Our Team",
+      link: "#our-team",
+    },
+    {
+      name: "Careers",
+      link: "#careers",
     },
   ];
  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 return (
-<Navbar>
+<Navbar className="font-sans">
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4 mr-4">
-            <NavbarButton variant="primary">Contact Us</NavbarButton>
+            <NavbarButton variant="primary">Innovation Hub</NavbarButton>
           </div>
         </NavBody>
  
