@@ -2,7 +2,7 @@
 export default function HeroSection() {
     return (
         <section className="relative flex items-center justify-start flex-grow mt-32">
-            <div className="container mx-auto px-6 lg:px-12">
+            <div className="container mx-auto ">
                 <div className="text-left">
                     <h1 className="text-5xl lg:text-7xl font-bold font-panchang text-white leading-tight">
                         From Great Code<br />

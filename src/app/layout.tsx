@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { MainNavbar } from "./components/main-navbar";
 import { ThemeProvider } from "@/components/theme-provider"
+import Footer from "./components/footer";
 
 
 const panchang = localFont({
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${panchang.variable} ${supreme.variable} font-sans antialiased`}
+        className={`${panchang.variable} ${supreme.variable} font-sans antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -38,8 +39,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <MainNavbar />
-          {children}
+          <div className="flex-1 flex flex-col">
+            {children}
+          </div>
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

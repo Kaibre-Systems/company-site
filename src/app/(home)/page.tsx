@@ -1,3 +1,4 @@
+import Footer from "../components/footer";
 import HeroSection from "./components/hero-section";
 import BackgroundImage from "@/components/background-image";
 
@@ -9,9 +10,9 @@ export default function Home() {
             priority={true}
             overlay={true}
             overlayOpacity={50}
-            className="min-h-screen w-full"
+            className="w-full"
         >
-            <main className="flex min-h-screen flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full">
+            <main className="flex flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full mt-20">
                 {/* Hero Section with CTA */}
                 <HeroSection />
                 <section className="text-xl pt-20 flex justify-center w-full">

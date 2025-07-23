@@ -22,32 +22,28 @@ export default function BackgroundImage({
   overlayOpacity = 40,
 }: BackgroundImageProps) {
   return (
-    <>
-      {/* Fixed Background Image */}
-      <div className="fixed inset-0 z-0">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          quality={quality}
-          className="object-cover"
-          sizes="100vw"
+    <div className={`relative ${className}`}>
+      {/* Background Image */}
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        priority={priority}
+        quality={quality}
+        className="object-cover"
+        sizes="100vw"
+      />
+      {/* Optional Overlay */}
+      {overlay && (
+        <div
+          className="absolute inset-0 bg-black"
+          style={{ opacity: overlayOpacity / 100, zIndex: 1 }}
         />
-        
-        {/* Optional Overlay */}
-        {overlay && (
-          <div 
-            className="absolute inset-0 bg-black"
-            style={{ opacity: overlayOpacity / 100 }}
-          />
-        )}
-      </div>
-      
+      )}
       {/* Content */}
-      <div className={`relative z-10 ${className}`}>
+      <div className="relative z-10">
         {children}
       </div>
-    </>
+    </div>
   );
 }
