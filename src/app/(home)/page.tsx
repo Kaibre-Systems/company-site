@@ -15,19 +15,6 @@ export default function Home() {
             <main className="flex flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full mt-20">
                 {/* Hero Section with CTA */}
                 <HeroSection />
-                <section className="text-xl pt-20 flex justify-center w-full">
-                    <div className="backdrop-blur-lg bg-black/20 rounded-2xl shadow-lg px-4 lg:px-8 py-6 max-w-7xl w-full mx-auto">
-                        <p className="text-gray-100">
-                            Businesses of every size deserve world-class technology. We're the precision team that delivers it. Our international team combines rigorous engineering standards with cutting-edge innovation to transform your business from the inside out. Whether you need flawless software, strategic guidance, or want to build a high-performance tech team, we're your technology force multiplier.
-                        </p>
-                    </div>
-                </section>
-
-                <section className="flex flex-col items-center justify-center text-center py-12">
-                    <button className="mt-8 px-8 py-4 rounded-full bg-blue-600 text-white font-bold text-xl shadow-lg hover:bg-blue-700 transition">
-                        See the Transformation
-                    </button>
-                </section>
 
                 {/* Trust Signals */}
                 <section className="flex flex-col items-center py-8 gap-6">
