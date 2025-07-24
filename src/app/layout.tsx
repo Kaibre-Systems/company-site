@@ -7,7 +7,7 @@ import Footer from "./components/footer";
 
 
 const panchang = localFont({
-    src: "../../public/fonts/Panchang-Regular.woff2",
+    src: "../../public/fonts/Panchang-Bold.woff2",
     variable: "--font-panchang",
 });
 
