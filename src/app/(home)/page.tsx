@@ -2,6 +2,7 @@ import Footer from "../components/footer";
 import Description from "./components/description";
 import HeroSection from "./components/hero-section";
 import BackgroundImage from "@/components/background-image";
+import Services from "./components/services";
 
 export default function Home() {
     return (
@@ -17,6 +18,7 @@ export default function Home() {
                 {/* Hero Section with CTA */}
                 <HeroSection />
                 <Description />
+                <Services />
                 {/* Trust Signals */}
                 <section className="flex flex-col items-center py-8 gap-6">
                     <div className="flex flex-wrap justify-center gap-8">
