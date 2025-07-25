@@ -1,8 +1,8 @@
 
-import Description from "./components/description";
-import HeroSection from "./components/hero-section";
+import Description from "./sections/description";
+import HeroSection from "./sections/hero-section";
 import BackgroundImage from "@/components/background-image";
-import Services from "./components/services";
+import Services from "./sections/services";
 import CallToAction from "@/components/call-to-action";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
             alt="Hero background"
             priority={true}
             overlay={true}
-            overlayOpacity={50}
+            overlayOpacity={40}
             className="w-full"
         >
             <main className="flex flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full mt-20">

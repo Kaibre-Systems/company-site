@@ -78,7 +78,7 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
 
 const Services = () => {
     return (
-        <section className="py-20">
+        <section className="py-10">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-2 font-panchang">Our Services</h2>
                 <p className="text-lg text-foreground max-w-2xl mx-auto">From custom software to embedded talent, we deliver the full spectrum of modern technology solutions.</p>

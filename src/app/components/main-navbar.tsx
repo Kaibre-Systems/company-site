@@ -16,19 +16,19 @@ export function MainNavbar() {
   const navItems = [
     {
       name: "Services",
-      link: "#services",
+      link: "/services",
     },
     {
       name: "Success Stories",
-      link: "#success-stories",
+      link: "/projects",
     },
     {
       name: "Our Team",
-      link: "#our-team",
+      link: "/team",
     },
     {
       name: "Careers",
-      link: "#careers",
+      link: "/careers",
     },
   ];
 
@@ -37,7 +37,7 @@ export function MainNavbar() {
     <Navbar>
       {/* Desktop Navigation */}
       <NavBody>
-        <NavbarLogo />
+        <NavbarLogo href="/" />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4 mr-4">
           <NavbarButton variant="primary">Innovation Hub</NavbarButton>
@@ -47,7 +47,7 @@ export function MainNavbar() {
       {/* Mobile Navigation */}
       <MobileNav>
         <MobileNavHeader>
-          <NavbarLogo />
+          <NavbarLogo href="/" />
           <MobileNavToggle
             isOpen={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
