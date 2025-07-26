@@ -36,6 +36,7 @@ export default function CustomSoftwareSection(): React.ReactElement {
       iconColor="#ce4710"
       title="CUSTOM SOFTWARE"
       description="Tailored solutions for your unique business needs, from web apps to automation."
+      id="custom-software"
     >
       <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/20">
         {subservices.map((subservice) => (

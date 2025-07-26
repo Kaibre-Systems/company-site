@@ -41,6 +41,7 @@ export default function SecurityComplianceSection() {
       iconColor="#ce4710"
       title="SECURITY & COMPLIANCE"
       description="Protect your business with best-in-class security practices and compliance support."
+      id="security-compliance"
     >
       <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/20">
         {subservices.map((subservice) => (

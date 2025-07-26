@@ -4,6 +4,7 @@ import CloudDevOpsSection from "./sections/cloud-devops";
 import CustomSoftwareSection from "./sections/custom-software";
 import SecurityComplianceSection from "./sections/security-compliance";
 import TeamAugmentationSection from "./sections/team-augmentation";
+import ServiceHero from "./sections/service-hero";
 
 export default function ServicesPage() {
     return (
@@ -15,7 +16,8 @@ export default function ServicesPage() {
                     overlayOpacity={40}
                     className="w-full"
                 >
-        <main className="container mx-auto px-4 py-16">
+        <main className="container mx-auto px-4 py-16 max-w-7xl">
+            <ServiceHero/>
             <AIDataSection/>
             <CloudDevOpsSection/>
             <CustomSoftwareSection/>

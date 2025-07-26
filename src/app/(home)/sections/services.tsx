@@ -1,6 +1,7 @@
 
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { Code, Users, Server, Rocket, Shield } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const services = [
@@ -9,30 +10,35 @@ const services = [
         icon: <Shield className="h-6 w-6 text-black dark:text-neutral-400" />,
         title: "Security & Compliance",
         description: "Protect your business with best-in-class security practices and compliance support.",
+        href: "/services#security-compliance",
     },
     {
         area: "md:[grid-area:2/7/3/13] xl:[grid-area:2/6/3/10]",
         icon: <Users className="h-6 w-6 text-black dark:text-neutral-400" />,
         title: "Team Augmentation",
         description: "Embed elite engineers into your teams to accelerate delivery and scale.",
+        href: "/services#team-augmentation",
     },
     {
         area: "md:[grid-area:1/1/2/5] xl:[grid-area:1/1/2/5]",
         icon: <Code className="h-6 w-6 text-black dark:text-neutral-400" />,
         title: "Custom Software",
         description: "Tailored solutions for your unique business needs, from web apps to automation.",
+        href: "/services#custom-software",
     },
     {
         area: "md:[grid-area:3/1/4/13] xl:[grid-area:1/10/3/13]",
         icon: <Rocket className="h-6 w-6 text-black dark:text-neutral-400" />,
         title: "AI & Data",
         description: "Unlock insights and automation with advanced data engineering and AI/ML solutions.",
+        href: "/services#ai-data",
     },
     {
         area: "md:[grid-area:1/5/2/13] xl:[grid-area:1/5/2/10]",
         icon: <Server className="h-6 w-6 text-black dark:text-neutral-400" />,
         title: "Cloud & DevOps",
         description: "Modern infrastructure, CI/CD, and cloud-native deployments for reliability and speed.",
+        href: "/services#cloud-devops",
     },
 ];
 
@@ -41,11 +47,13 @@ interface GridItemProps {
     icon: React.ReactNode;
     title: string;
     description: React.ReactNode;
+    href: string;
 }
 
-const GridItem = ({ area, icon, title, description }: GridItemProps) => {
+const GridItem = ({ area, icon, title, description, href }: GridItemProps) => {
     return (
         <li className={`min-h-[10rem] md:min-h-[14rem] list-none ${area}`}>
+            <Link href={href} >
             <div className="relative h-full rounded-2xl border p-2 md:rounded-3xl md:p-3 bg-black/90">
                 <GlowingEffect
                     blur={1}
@@ -72,6 +80,7 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
                     </div>
                 </div>
             </div>
+            </Link>
         </li>
     );
 };

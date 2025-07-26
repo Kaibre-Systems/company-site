@@ -8,6 +8,7 @@ interface ServiceSectionProps {
   description: string;
   children?: React.ReactNode;
   className?: string;
+  id?: string;
 }
 
 export default function ServiceSection({
@@ -17,9 +18,10 @@ export default function ServiceSection({
   description,
   children,
   className = '',
+  id = '',
 }: ServiceSectionProps) {
   return (
-    <div className={cn('relative z-20 py-10 lg:py-20 max-w-7xl mx-auto', className)}>
+    <div className={cn('relative z-20 pt-20 lg:pt-40 max-w-7xl mx-auto ', className)} id={id}>
       <div className="px-8">
         <div className="flex items-center justify-center gap-4 mb-6">
           <div className={cn('p-3 rounded-full border', `bg-[${iconColor}]/20 border-[${iconColor}]/40`)}>

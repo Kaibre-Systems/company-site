@@ -37,6 +37,7 @@ export default function CloudDevOpsSection() {
       iconColor="#ce4710"
       title="CLOUD & DEVOPS"
       description="Optimize your cloud infrastructure and DevOps practices for agility and reliability."
+      id="cloud-devops"
     >
         <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/20">
           {subservices.map((subservice) => (

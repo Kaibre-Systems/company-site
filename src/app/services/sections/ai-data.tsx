@@ -31,11 +31,13 @@ export default function AIDataSection() {
   ];
 
   return (
+    <div className="snap-start">
     <ServiceSection
       icon={<Brain className="h-8 w-8 text-[#ce4710]" />}
       iconColor="#ce4710"
       title="AI & DATA"
       description="Unlock insights and automation with advanced data engineering and AI/ML solutions."
+      id="ai-data"
     >
       <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/20">
         {subservices.map((subservice) => (
@@ -47,6 +49,7 @@ export default function AIDataSection() {
         ))}
       </div>
     </ServiceSection>
+    </div>
   );
 }
 
