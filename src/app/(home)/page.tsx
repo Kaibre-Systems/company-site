@@ -15,7 +15,7 @@ export default function Home() {
             overlayOpacity={40}
             className="w-full"
         >
-            <main className="flex flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full mt-20">
+            <main className="flex flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full">
                 {/* Hero Section with CTA */}
                 <HeroSection />
                 <Description />

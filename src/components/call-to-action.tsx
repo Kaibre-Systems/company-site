@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { AuroraBackground } from './ui/aurora-background';
 import BackgroundImage from './background-image';
 
 interface CallToActionProps {
