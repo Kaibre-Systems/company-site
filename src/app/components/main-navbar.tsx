@@ -23,13 +23,13 @@ export function MainNavbar() {
       link: "/projects",
     },
     {
-      name: "Our Team",
+      name: "Who We Are",
       link: "/team",
     },
-    {
-      name: "Careers",
-      link: "/careers",
-    },
+    // {
+    //   name: "Careers",
+    //   link: "/careers",
+    // },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +40,7 @@ export function MainNavbar() {
         <NavbarLogo href="/" />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4 mr-4">
-          <NavbarButton variant="primary">Innovation Hub</NavbarButton>
+          <NavbarButton variant="primary" href="/contact">Innovation Hub</NavbarButton>
         </div>
       </NavBody>
 
@@ -73,15 +73,9 @@ export function MainNavbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               variant="primary"
               className="w-full"
+              href="/contact"
             >
-              Login
-            </NavbarButton>
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="primary"
-              className="w-full"
-            >
-              Book a call
+              Innovate with us
             </NavbarButton>
           </div>
         </MobileNavMenu>

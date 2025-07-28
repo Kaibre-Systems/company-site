@@ -150,11 +150,11 @@ const GlowingEffect = memo(
                 radial-gradient(circle at 40% 60%, #ff5917 10%, #4c789400 20%),
                 repeating-conic-gradient(
                   from 236.84deg at 50% 50%,
-                  #ff5917 0%,
-                  #C7E8F3 calc(25% / var(--repeating-conic-gradient-times)),
-                  #C7E8F3 calc(50% / var(--repeating-conic-gradient-times)),
-                  #ff5917 calc(75% / var(--repeating-conic-gradient-times)),
-                  #ff5917 calc(100% / var(--repeating-conic-gradient-times))
+                  #C7E8F3 0%,
+                  #fd682dff calc(25% / var(--repeating-conic-gradient-times)),
+                  #fd682dff calc(50% / var(--repeating-conic-gradient-times)),
+                  #fd682dff calc(75% / var(--repeating-conic-gradient-times)),
+                  #C7E8F3 calc(100% / var(--repeating-conic-gradient-times))
                 )`,
             } as React.CSSProperties
           }

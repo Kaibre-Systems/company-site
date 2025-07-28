@@ -8,7 +8,7 @@ export default function ServiceHero() {
                 <p className="mt-6 text-xl lg:text-2xl font-supreme text-gray-300 leading-relaxed">
                     Whether you need flawless software, strategic guidance, or want to build a high-performance tech team, we're your technology force multiplier.
                 </p>
-                
+
             </div>
 
 
