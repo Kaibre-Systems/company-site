@@ -3,7 +3,7 @@ import BackgroundImage from "@/components/background-image";
 export default function TeamPage() {
     return (
         <BackgroundImage
-            src="/gradient_background2.jpg"
+            src="/gradient_background1.jpg"
             alt="Hero background"
             priority={true}
             overlay={true}
