@@ -18,10 +18,10 @@ export function MainNavbar() {
       name: "Services",
       link: "/services",
     },
-    {
-      name: "Success Stories",
-      link: "/projects",
-    },
+    // {
+    //   name: "Success Stories",
+    //   link: "/projects",
+    // },
     {
       name: "Who We Are",
       link: "/team",
@@ -71,7 +71,7 @@ export function MainNavbar() {
           <div className="flex w-full flex-col gap-4">
             <NavbarButton
               onClick={() => setIsMobileMenuOpen(false)}
-              variant="primary"
+              variant="gradient"
               className="w-full"
               href="/contact"
             >

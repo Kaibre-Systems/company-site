@@ -10,12 +10,15 @@ interface BackgroundImageProps {
     children?: React.ReactNode;
     overlay?: boolean;
     overlayOpacity?: number;
+    loading?: 'lazy' | 'eager';
+    placeholder?: 'blur' | 'empty';
+    blurDataURL?: string;
 }
 
 export default function BackgroundImage({
     src,
     alt,
-    priority = false,
+    priority = true,
     quality = 75,
     className = '',
     imgClassName = '',
