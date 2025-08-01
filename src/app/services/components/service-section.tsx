@@ -13,7 +13,7 @@ interface ServiceSectionProps {
 
 export default function ServiceSection({
   icon,
-  iconColor = '#B85C38',
+  iconColor = '#CD4813',
   title,
   description,
   children,

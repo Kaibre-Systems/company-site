@@ -7,31 +7,31 @@ export default function SecurityComplianceSection() {
       title: "Security Assessments",
       description: "Evaluate systems to uncover vulnerabilities and improve overall protection.",
       skeleton: <SecurityAssessmentSkeleton />,
-      className: "col-span-1 lg:col-span-3 border-b lg:border-r border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-3 border-b lg:border-r border-[#ce4710]/30",
     },
     {
       title: "Regulatory Compliance Support",
       description: "Ensure your operations meet industry and government compliance standards.",
       skeleton: <ComplianceSkeleton />,
-      className: "border-b col-span-1 lg:col-span-3 border-[#ce4710]/20",
+      className: "border-b col-span-1 lg:col-span-3 border-[#ce4710]/30",
     },
     {
       title: "Access Control & Identity Management",
       description: "Define and enforce who can access what, and under what conditions.",
       skeleton: <AccessControlSkeleton />,
-      className: "col-span-1 lg:col-span-2 lg:border-r border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-2 lg:border-r border-[#ce4710]/30",
     },
     {
       title: "Data Protection",
       description: "Safeguard sensitive data through secure handling, storage, and transmission practices.",
       skeleton: <DataProtectionSkeleton />,
-      className: "col-span-1 lg:col-span-2 lg:border-r border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-2 lg:border-r border-[#ce4710]/30",
     },
     {
       title: "Incident Preparedness",
       description: "Develop response plans to quickly detect, contain, and recover from security threats.",
       skeleton: <IncidentSkeleton />,
-      className: "col-span-1 lg:col-span-2 border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-2 border-[#ce4710]/30",
     },
   ];
 
@@ -43,7 +43,7 @@ export default function SecurityComplianceSection() {
       description="Protect your business with best-in-class security practices and compliance support."
       id="security-compliance"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/20">
+      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">
         {subservices.map((subservice) => (
           <SubserviceCard key={subservice.title} className={subservice.className}>
             <SubserviceTitle>{subservice.title}</SubserviceTitle>
@@ -59,7 +59,7 @@ export default function SecurityComplianceSection() {
 
 const SecurityAssessmentSkeleton = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative">
         <Shield className="h-12 w-12 text-[#ce4710] mb-4" />
         <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
@@ -75,7 +75,7 @@ const SecurityAssessmentSkeleton = () => {
 
 const ComplianceSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="grid grid-cols-2 gap-4 w-full p-4">
         <div className="flex items-center gap-2 p-2 rounded bg-green-500/20 border border-green-500/40">
           <CheckCircle className="h-4 w-4 text-green-400" />
@@ -100,7 +100,7 @@ const ComplianceSkeleton = () => {
 
 const AccessControlSkeleton = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <Lock className="h-10 w-10 text-[#ce4710] mb-4" />
       <div className="flex items-center gap-2">
         <UserCheck className="h-5 w-5 text-green-400" />
@@ -112,7 +112,7 @@ const AccessControlSkeleton = () => {
 
 const DataProtectionSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative">
         <Database className="h-12 w-12 text-[#ce4710]" />
         <div className="absolute inset-0 border-2 border-[#ce4710] rounded-full animate-ping"></div>
@@ -123,7 +123,7 @@ const DataProtectionSkeleton = () => {
 
 const IncidentSkeleton = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <AlertTriangle className="h-10 w-10 text-yellow-500 mb-2" />
       <div className="text-center">
         <p className="text-white text-sm font-medium">Response Ready</p>

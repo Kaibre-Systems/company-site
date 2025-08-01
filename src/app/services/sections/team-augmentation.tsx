@@ -1,5 +1,4 @@
 import type React from "react"
-import { cn } from "@/lib/utils"
 import { Users, TrendingUp } from "lucide-react"
 import ServiceSection, { SubserviceCard, SubserviceTitle, SubserviceDescription } from "../components/service-section"
 
@@ -9,25 +8,25 @@ export default function TeamAugmentationSection() {
       title: "Specialized Talent Placement",
       description: "Access skilled professionals who integrate seamlessly with your teams and goals.",
       skeleton: <TalentSkeleton />,
-      className: "col-span-1 lg:col-span-3 border-b lg:border-r border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-3 border-b lg:border-r border-[#ce4710]/30",
     },
     {
       title: "Project-Based Teams",
       description: "Form dedicated groups to take ownership of initiatives from start to finish.",
       skeleton: <ProjectTeamsSkeleton />,
-      className: "border-b col-span-1 lg:col-span-3 border-[#ce4710]/20",
+      className: "border-b col-span-1 lg:col-span-3 border-[#ce4710]/30",
     },
     {
       title: "Scalable Resourcing",
       description: "Adjust team size and skillsets as your project evolves.",
       skeleton: <ScalableSkeleton />,
-      className: "col-span-1 lg:col-span-3 lg:border-r border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-3 lg:border-r border-[#ce4710]/30",
     },
     {
       title: "Mentorship & Technical Guidance",
       description: "Bring in senior contributors to elevate your team's capabilities.",
       skeleton: <MentorshipSkeleton />,
-      className: "col-span-1 lg:col-span-3 border-[#ce4710]/20",
+      className: "col-span-1 lg:col-span-3 border-[#ce4710]/30",
     },
   ]
 
@@ -38,7 +37,7 @@ export default function TeamAugmentationSection() {
       description="Embed elite engineers into your teams to accelerate delivery and scale."
       id="team-augmentation"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/20">
+      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">
         {subservices.map((subservice) => (
           <SubserviceCard key={subservice.title} className={subservice.className}>
             <SubserviceTitle>{subservice.title}</SubserviceTitle>
@@ -55,7 +54,7 @@ export default function TeamAugmentationSection() {
 const TalentSkeleton = () => {
   const skills = ["React", "Node.js", "Python", "AWS", "Docker"]
   return (
-    <div className="relative flex flex-col p-4 h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex flex-col p-4 h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <Users className="h-8 w-8 text-[#ce4710] mb-4" />
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, idx) => (
@@ -70,7 +69,7 @@ const TalentSkeleton = () => {
 
 const ProjectTeamsSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex -space-x-2">
         {[1, 2, 3, 4].map((i) => (
           <div
@@ -87,7 +86,7 @@ const ProjectTeamsSkeleton = () => {
 
 const ScalableSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex items-center gap-2">
         <div className="w-4 h-8 bg-[#ce4710]/40 rounded"></div>
         <div className="w-4 h-12 bg-[#ce4710]/60 rounded"></div>
@@ -101,7 +100,7 @@ const ScalableSkeleton = () => {
 
 const MentorshipSkeleton = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/20">
+    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative mb-4">
         <div className="w-12 h-12 bg-[#ce4710] rounded-full flex items-center justify-center">
           <span className="text-white font-bold">Sr</span>
