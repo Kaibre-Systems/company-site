@@ -16,7 +16,7 @@ export default function ServicesPage() {
                     overlayOpacity={40}
                     className="w-full"
                 >
-        <main className="container mx-auto px-4 py-16 max-w-7xl">
+        <main className="flex flex-col gap-12 max-w-7xl mx-auto px-4 lg:px-8 w-full">
             <ServiceHero/>
             <AIDataSection/>
             <CloudDevOpsSection/>

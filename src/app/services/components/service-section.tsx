@@ -21,7 +21,7 @@ export default function ServiceSection({
   id = '',
 }: ServiceSectionProps) {
   return (
-    <div className={cn('relative z-20 pt-20 lg:pt-40 max-w-7xl mx-auto ', className)} id={id}>
+    <div className={cn('relative z-20 pt-20 lg:pt-40 max-w-7xl mx-auto snap-center h-240 shrink-0', className)} id={id}>
       <div className="px-8">
         <div className="flex items-center justify-center gap-4 mb-6">
           <div className={cn('p-3 rounded-full border', `bg-[${iconColor}]/20 border-[${iconColor}]/40`)}>
