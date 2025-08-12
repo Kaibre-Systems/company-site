@@ -21,21 +21,21 @@ export default function ServiceSection({
   id = '',
 }: ServiceSectionProps) {
   return (
-    <div className={cn('relative z-20 pt-20 lg:pt-40 max-w-7xl mx-auto snap-center h-240 shrink-0', className)} id={id}>
-      <div className="px-8">
-        <div className="flex items-center justify-center gap-4 mb-6">
+    <div className={cn('z-20 min-w-4xl max-w-7xl mx-auto shrink-0', className)} id={id}>
+      <div className="">
+        <div className="flex items-center justify-left gap-6 mb-6">
           <div className={cn('p-3 rounded-full border', `bg-[${iconColor}]/20 border-[${iconColor}]/40`)}>
             {icon}
           </div>
+          <h4 className="text-3xl lg:text-4xl lg:leading-tight max-w-5xl  text-bottom tracking-tight font-medium text-white  font-panchang">
+            {title}
+          </h4>
         </div>
-        <h4 className="text-3xl lg:text-4xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-white mb-4 font-panchang">
-          {title}
-        </h4>
-        <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-300 text-center font-supreme mb-8">
+        {/* <p className="text-sm lg:text-base max-w-2xl my-4 mx-auto text-neutral-300 text-center font-supreme mb-8">
           {description}
-        </p>
+        </p> */}
       </div>
-      <div className="relative px-8 font-supreme ">
+      <div className="relative font-supreme ">
         {children}
       </div>
     </div>

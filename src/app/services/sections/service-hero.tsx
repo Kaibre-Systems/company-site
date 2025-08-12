@@ -44,9 +44,9 @@ export default function ServiceHero() {
     };
 
     return (
-        <section className="relative flex flex-col items-center justify-center flex-grow">
+        <section className="relative flex flex-col items-center justify-center flex-grow snap-start">
             <AuroraBackground className="w-screen h-full py-40 items-center">
-            <div className="text-center gap-6 w-full max-w-4xl mb-12 mt-20 z-20">
+            <div className="text-left gap-6 w-full max-w-6xl mt-20 z-20">
                 <h1 className="text-3xl lg:text-4xl font-bold font-panchang text-white leading-tight">
                     EVERY STEP OF THE WAY
                 </h1>
@@ -56,7 +56,7 @@ export default function ServiceHero() {
             </div>
 
             {/* Horizontal TOC */}
-            <div className="w-full max-w-6xl">
+            {/* <div className="w-full max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {services.map((service) => {
                         const IconComponent = service.icon;
@@ -75,13 +75,12 @@ export default function ServiceHero() {
                                     </h3>
                                 </div>
                                 
-                                {/* Hover effect overlay */}
                                 <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#CD4813]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </button>
                         );
                     })}
                 </div>
-            </div>
+            </div> */}
         </AuroraBackground>
         </section>
     );
