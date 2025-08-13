@@ -14,7 +14,7 @@ export default function HeroSection() {
                         Whether you need flawless software, strategic guidance, or want to build a high-performance tech team, we're your technology force multiplier.
                     </p>
                     <div className="mt-12">
-                        <CTAButton buttonText="Let's Innovate" buttonLink="/contact" />
+                        <CTAButton buttonText="Let's Innovate" buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/" />
                     </div>
                 </div>
 

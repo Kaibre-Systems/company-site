@@ -22,9 +22,9 @@ export default function Home() {
                 <Services />
                 <CallToAction
                     title="ARE YOU READY?"
-                    subtitle="Join us today and unlock your potential."
+                    subtitle="Get in touch with us and unlock your potential"
                     buttonText="Get Started"
-                    buttonLink="/contact"
+                    buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/"
                 />
             </main>
         </BackgroundImage>

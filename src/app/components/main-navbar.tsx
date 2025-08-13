@@ -40,7 +40,7 @@ export function MainNavbar() {
         <NavbarLogo href="/" />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4 mr-4">
-          <NavbarButton variant="primary" href="/contact">Innovation Hub</NavbarButton>
+          <NavbarButton variant="primary" href="https://www.linkedin.com/company/kaibre-systems-limited/">Contact Us</NavbarButton>
         </div>
       </NavBody>
 

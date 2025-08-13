@@ -1,4 +1,5 @@
 import BackgroundImage from "@/components/background-image";
+import CallToAction from "@/components/call-to-action";
 
 export default function TeamPage() {
     return (
@@ -26,7 +27,7 @@ export default function TeamPage() {
                 </section>
 
                 {/* Team Background Section */}
-                <section className="py-20 bg-black">
+                <section className="py-20">
                     <div className="container mx-auto px-4">
                         <div className="max-w-3xl mx-auto">
                             <h2 className="text-3xl font-panchang font-bold mb-8">Who We Are</h2>
@@ -44,7 +45,7 @@ export default function TeamPage() {
                 </section>
 
                 {/* Team Values Section */}
-                <section className="py-20 bg-black/40">
+                <section className="py-20 bg-black">
                     <div className="container mx-auto px-4">
                         <h2 className="text-3xl font-panchang font-bold mb-12 text-center">Our Values</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
@@ -71,6 +72,15 @@ export default function TeamPage() {
                             </div>
                         </div>
                     </div>
+                </section>
+                <section className="py-10 flex justify-center max-w-7xl mx-auto">
+
+                    <CallToAction
+                        title="WANT TO LEARN MORE?"
+                        subtitle="Get in touch with us and unlock your potential"
+                        buttonText="Get Started"
+                        buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/"
+                    />
                 </section>
             </main>
         </BackgroundImage>
