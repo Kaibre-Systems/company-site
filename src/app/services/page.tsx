@@ -6,8 +6,10 @@ import CustomSoftwareSection from "./sections/custom-software";
 import SecurityComplianceSection from "./sections/security-compliance";
 import TeamAugmentationSection from "./sections/team-augmentation";
 import ServiceHero from "./sections/service-hero";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import CallToAction from "@/components/call-to-action";
+import { useSearchParams } from "next/navigation";
 
 interface ServiceCategory {
     id: string
@@ -17,12 +19,8 @@ interface ServiceCategory {
 }
 
 export default function ServicesPage() {
-    const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | null>({
-        id: "software",
-        title: "Custom Software",
-        description: "Tailored solutions for your unique business needs, from web apps to automation.",
-        component: CustomSoftwareSection,
-    })
+    const searchParams = useSearchParams()
+    const sectionParam = searchParams.get("section")
 
     const categories: ServiceCategory[] = [
         {
@@ -63,6 +61,25 @@ export default function ServicesPage() {
         },
     ]
 
+    const initialCategory = categories.find((c) => c.id === sectionParam) ?? categories[0]
+    const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | null>(() => initialCategory)
+
+    // Use useEffect to scroll to the services list when section param is present
+    useEffect(() => {
+        if (sectionParam) {
+            const listElement = document.getElementById("list");
+            if (listElement) {
+                // Add a small delay to ensure DOM is fully loaded
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: listElement.offsetTop - 200,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
+    }, [sectionParam]);
+
     const SelectedComponent = selectedCategory?.component
 
     return (
@@ -76,7 +93,7 @@ export default function ServicesPage() {
         >
             <main className="flex flex-col gap-6 max-w-7xl mx-auto px-4 lg:px-8 w-full">
                 <ServiceHero />
-                <div className="flex gap-6 pb-12">
+                <div className="flex gap-6 pb-12" id="list">
                     {/* Left Sidebar - Service Categories */}
                     <div className="w-80">
                         <div className="p-4 space-y-2">
@@ -115,6 +132,12 @@ export default function ServicesPage() {
                         )}
                     </div>
                 </div>
+                <CallToAction
+                    title="READY TO BUILD?"
+                    subtitle="Get in touch with us and unlock your potential"
+                    buttonText="Get Started"
+                    buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/"
+                />
             </main>
         </BackgroundImage>
     );
