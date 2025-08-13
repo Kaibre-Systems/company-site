@@ -128,7 +128,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
       {items.map((item, idx) => (
         <Link
           onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
+          onClick={() => setHovered(null)}
           className="relative px-4 py-2 text-neutral-600 dark:text-white"
           key={`link-${idx}`}
           href={item.link}
