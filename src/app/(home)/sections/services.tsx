@@ -67,7 +67,7 @@ interface GridItemProps {
 
 interface URLObject {
     pathname: string;
-    query?: Record<string, any>;
+    query?: Record<string, string>;
 }
 
 const GridItem = ({ area, icon, title, description, href }: GridItemProps) => {

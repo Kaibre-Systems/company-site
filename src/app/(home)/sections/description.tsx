@@ -22,7 +22,7 @@ const Description = () => {
             <div className="text-center mb-10">
                 <h2 className="text-xl md:text-2xl font-bold mb-4 font-panchang ">BRINGING <span className="text-[#ce4710]">EVERYONE</span> TO THE FOREFRONT</h2>
                 <p className="text-foreground leading-relaxed text-center text-xl max-w-2xl mx-auto">
-                    Businesses of every size deserve world-class technology.<br /> We're the precision team that delivers it.
+                    Businesses of every size deserve world-class technology.<br /> We&apos;re the precision team that delivers it.
                 </p>
             </div>
 

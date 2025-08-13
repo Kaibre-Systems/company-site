@@ -1,5 +1,4 @@
 import type React from "react"
-import { cn } from "@/lib/utils"
 import { Cloud, Server, Settings, GitBranch, Monitor, Eye } from "lucide-react"
 import ServiceSection, { SubserviceCard, SubserviceTitle, SubserviceDescription } from "../components/service-section"
 
@@ -36,7 +35,6 @@ export default function CloudDevOpsSection() {
       icon={<Cloud className="h-8 w-8 text-[#ce4710]" />}
       iconColor="#ce4710"
       title="CLOUD & DEVOPS"
-      description="Optimize your cloud infrastructure and DevOps practices for agility and reliability."
       id="cloud-devops"
     >
         <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">

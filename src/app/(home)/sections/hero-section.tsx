@@ -11,7 +11,7 @@ export default function HeroSection() {
                         TO GREAT COMPANIES
                     </h1>
                     <p className="mt-6 text-xl lg:text-2xl max-w-2xl font-supreme text-gray-300 leading-relaxed">
-                        Whether you need flawless software, strategic guidance, or want to build a high-performance tech team, we're your technology force multiplier.
+                        Whether you need flawless software, strategic guidance, or want to build a high-performance tech team, we&apos;re your technology force multiplier.
                     </p>
                     <div className="mt-12">
                         <CTAButton buttonText="Let's Innovate" buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/" />

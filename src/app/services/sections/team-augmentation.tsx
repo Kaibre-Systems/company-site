@@ -34,7 +34,6 @@ export default function TeamAugmentationSection() {
     <ServiceSection
       icon={<Users className="h-8 w-8 text-[#ce4710]" />}
       title="TEAM AUGMENTATION"
-      description="Embed elite engineers into your teams to accelerate delivery and scale."
       id="team-augmentation"
     >
       <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">

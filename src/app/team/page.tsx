@@ -19,7 +19,7 @@ export default function TeamPage() {
                     <div className="flex flex-col max-w-4xl mx-auto pt-40 z-20">
                         <h1 className="text-3xl lg:text-4xl font-panchang font-bold text-center mb-6 text-white">INNOVATING FOR THE FUTURE</h1>
                         <p className="text-xl text-gray-200 text-center">
-                            Meet the experts behind Kaibre's innovative solutions
+                            Meet the experts behind Kaibre&apos;s innovative solutions
                         </p>
                     </div>
                     </AuroraBackground>
@@ -60,7 +60,7 @@ export default function TeamPage() {
                                     <span className="text-2xl text-[#CD4813]">2</span>
                                 </div>
                                 <h3 className="text-xl font-bold mb-3">Client Synergy</h3>
-                                <p className="text-gray-300">We work as an extension of our clients' teams, prioritizing transparent communication and shared success.</p>
+                                <p className="text-gray-300">We work as an extension of our clients&apos; teams, prioritizing transparent communication and shared success.</p>
                             </div>
                             <div className="text-center">
                                 <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#ce4710]/20 border border-[#ce4710]/40 mx-auto mb-6">

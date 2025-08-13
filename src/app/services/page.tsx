@@ -5,8 +5,8 @@ import CloudDevOpsSection from "./sections/cloud-devops";
 import CustomSoftwareSection from "./sections/custom-software";
 import SecurityComplianceSection from "./sections/security-compliance";
 import TeamAugmentationSection from "./sections/team-augmentation";
-import ServiceHero from "./sections/service-hero";
-import { useEffect, useState } from "react";
+import ServiceHero from "./components/service-hero";
+import { Suspense, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import CallToAction from "@/components/call-to-action";
 import { useSearchParams } from "next/navigation";
@@ -18,7 +18,7 @@ interface ServiceCategory {
     component: React.ComponentType
 }
 
-export default function ServicesPage() {
+function ServicesContent() {
     const searchParams = useSearchParams()
     const sectionParam = searchParams.get("section")
 
@@ -140,5 +140,13 @@ export default function ServicesPage() {
                 />
             </main>
         </BackgroundImage>
+    );
+}
+
+export default function ServicesPage() {
+    return (
+        <Suspense fallback={<div />}> 
+            <ServicesContent />
+        </Suspense>
     );
 }
