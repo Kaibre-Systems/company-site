@@ -5,7 +5,7 @@ export default function HeroSection() {
     return (
         <section className="relative flex items-center justify-start flex-grow max-w-7xl mx-auto px-4 lg:px-8">
             <AuroraBackground className="w-screen h-full py-40">
-                <div className="text-left gap-6 w-full max-w-2xl md:max-w-3xl lg:max-w-2/3 mt-20">
+                <div className="text-left gap-6 w-full max-w-2xl md:max-w-3xl lg:max-w-2/3 mt-20 z-20">
                     <h1 className="text-3xl lg:text-4xl font-bold font-panchang text-white leading-tight">
                         FROM GREAT CODE<br />
                         TO GREAT COMPANIES

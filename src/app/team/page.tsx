@@ -1,5 +1,6 @@
 import BackgroundImage from "@/components/background-image";
 import CallToAction from "@/components/call-to-action";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 export default function TeamPage() {
     return (
@@ -13,17 +14,15 @@ export default function TeamPage() {
         >
             <main className="min-h-screen text-white">
                 {/* Hero Section */}
-                <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 z-0">
-                        <div className="absolute inset-0  z-10"></div>
-                        <div className="absolute inset-0 bg-cover bg-center opacity-60"></div>
-                    </div>
-                    <div className="container mx-auto px-4 relative z-10">
-                        <h1 className="text-4xl md:text-4xl lg:text-5xl font-panchang font-bold text-center mb-6">INNOVATING FOR THE FUTURE</h1>
-                        <p className="text-xl text-gray-200 text-center max-w-3xl mx-auto">
+                <section className="relative flex items-center justify-center overflow-hidden">
+                    <AuroraBackground className="w-screen h-full py-40 items-center">
+                    <div className="flex flex-col max-w-4xl mx-auto pt-40 z-20">
+                        <h1 className="text-3xl lg:text-4xl font-panchang font-bold text-center mb-6 text-white">INNOVATING FOR THE FUTURE</h1>
+                        <p className="text-xl text-gray-200 text-center">
                             Meet the experts behind Kaibre's innovative solutions
                         </p>
                     </div>
+                    </AuroraBackground>
                 </section>
 
                 {/* Team Background Section */}
@@ -74,7 +73,6 @@ export default function TeamPage() {
                     </div>
                 </section>
                 <section className="py-10 flex justify-center max-w-7xl mx-auto">
-
                     <CallToAction
                         title="WANT TO LEARN MORE?"
                         subtitle="Get in touch with us and unlock your potential"
