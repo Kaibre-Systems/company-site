@@ -4,6 +4,7 @@ import "./globals.css";
 import { MainNavbar } from "./components/main-navbar";
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "./components/footer";
+import { Analytics } from "@vercel/analytics/next"
 
 
 const panchang = localFont({
@@ -44,6 +45,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
