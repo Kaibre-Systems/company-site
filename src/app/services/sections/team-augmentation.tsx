@@ -33,6 +33,7 @@ export default function TeamAugmentationSection() {
   return (
     <ServiceSection
       icon={<Users className="h-8 w-8 text-[#ce4710]" />}
+      iconColor="#ce4710"
       title="TEAM AUGMENTATION"
       id="team-augmentation"
     >
