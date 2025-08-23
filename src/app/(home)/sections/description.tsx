@@ -19,20 +19,20 @@ const Description = () => {
     ];
     return (
         <section className="py-16 bg-black w-screen relative left-1/2 right-1/2 -mx-[50vw] px-4 ">
-            <div className="text-center mb-10">
-                <h2 className="text-xl md:text-2xl font-bold mb-4 font-panchang ">BRINGING <span className="text-[#ce4710]">EVERYONE</span> TO THE FOREFRONT</h2>
-                <p className="text-foreground leading-relaxed text-center text-xl max-w-2xl mx-auto">
-                    Businesses of every size deserve world-class technology.<br /> We&apos;re the precision team that delivers it.
+            <div className="mb-10">
+                <h2 className="text-xl md:text-2xl font-bold mb-4 font-panchang text-center">BRINGING <span className="text-[#ce4710]">EVERYONE</span> TO THE FOREFRONT</h2>
+                <p className="text-foreground font-supreme leading-relaxed md:text-center text-xl md:text-2xl max-w-2xl mx-auto">
+                    Businesses of every size deserve world-class technology. We&apos;re the precision team that delivers it.
                 </p>
             </div>
 
             <Separator className="my-8 w-1/2 mx-auto bg-[#ff5713] h-[1px] shadow-[0_0_8px_2px_#ce4710] relative " />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 max-w-4xl mx-auto gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:max-w-4xl md:mx-auto gap-10 font-supreme">
                 {features.map((feature, idx) => (
-                    <div className="text-center" key={idx}>
+                    <div className="md:text-center" key={idx}>
                         <h3 className="text-xl font-bold mb-2 text-primary">{feature.title}</h3>
-                        <p className="text-foreground leading-relaxed text-center text-lg">
+                        <p className="text-foreground leading-relaxed text-lg">
                             {feature.description}
                         </p>
                     </div>

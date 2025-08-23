@@ -17,6 +17,7 @@ export default function Home() {
         subtitle="Get in touch with us and unlock your potential"
         buttonText="Get Started"
         buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/"
+        className="mx-auto"
       />
     </main>
   );

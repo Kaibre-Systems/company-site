@@ -24,7 +24,7 @@ export default function HeroSection({
             <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold font-panchang text-white leading-snug md:leading-tight tracking-tight">
               {title}
             </h1>
-            <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl font-supreme text-gray-300 leading-relaxed">
+            <p className="mt-4 md:mt-6 text-lg sm:text-lg md:text-xl lg:text-2xl max-w-2xl font-supreme text-white leading-relaxed">
               {subtitle}
             </p>
             {cta && (
