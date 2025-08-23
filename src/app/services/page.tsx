@@ -1,15 +1,14 @@
 'use client'
-import BackgroundImage from "@/components/background-image";
 import CustomSoftwareSection from "./sections/custom-software";
 import AIDataSection from "./sections/ai-data";
 import TeamAugmentationSection from "./sections/team-augmentation";
 import SecurityComplianceSection from "./sections/security-compliance";
 import CloudDevOpsSection from "./sections/cloud-devops";
-import ServiceHero from "./components/service-hero";
 import { Suspense, useEffect, useMemo, useState, useTransition } from "react";
 import { cn } from "@/lib/utils";
 import CallToAction from "@/components/call-to-action";
 import { useSearchParams } from "next/navigation";
+import HeroSection from "@/components/hero-section";
 
 interface ServiceCategoryMeta {
     id: string
@@ -79,16 +78,9 @@ function ServicesContent() {
     const SelectedComponent = componentsById[selectedId]
 
     return (
-        <BackgroundImage
-            src="/gradient_background2.jpg"
-            alt="Hero background"
-            priority={true}
-            overlay={true}
-            overlayOpacity={40}
-            className="w-full"
-        >
+        
             <main className="flex flex-col gap-6 max-w-7xl mx-auto px-4 lg:px-8 w-full">
-                <ServiceHero />
+                <HeroSection title="EVERY STEP OF THE WAY" subtitle="Whether you need flawless software, strategic guidance, or want to build a high-performance tech team, we&apos;re your technology force multiplier." />
                 <div className="flex gap-6 pb-12" id="list" aria-live="polite">
                     {/* Left Sidebar - Service Categories */}
                     <div className="w-80">
@@ -137,7 +129,7 @@ function ServicesContent() {
                     buttonLink="https://www.linkedin.com/company/kaibre-systems-limited/"
                 />
             </main>
-        </BackgroundImage>
+       
     );
 }
 

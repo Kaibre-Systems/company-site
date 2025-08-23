@@ -5,6 +5,7 @@ import { MainNavbar } from "./components/main-navbar";
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "./components/footer";
 import { Analytics } from "@vercel/analytics/next"
+import BackgroundImage from "@/components/background-image";
 
 
 const panchang = localFont({
@@ -41,7 +42,16 @@ export default function RootLayout({
         >
           <MainNavbar />
           <div className="flex-1 flex flex-col">
+            <BackgroundImage
+                        src="/gradient_background1.jpg"
+                        alt="Hero background"
+                        priority={true}
+                        overlay={true}
+                        overlayOpacity={40}
+                        className="w-full"
+                    >
             {children}
+            </BackgroundImage>
           </div>
         </ThemeProvider>
         <Footer />
