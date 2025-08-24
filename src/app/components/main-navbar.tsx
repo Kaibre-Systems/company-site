@@ -63,20 +63,13 @@ export function MainNavbar() {
               key={`mobile-link-${idx}`}
               href={item.link}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="relative text-neutral-600 dark:text-neutral-300"
+              className="relative text-neutral-600 dark:text-white font-supreme"
             >
               <span className="block">{item.name}</span>
             </a>
           ))}
           <div className="flex w-full flex-col gap-4">
-            <NavbarButton
-              onClick={() => setIsMobileMenuOpen(false)}
-              variant="gradient"
-              className="w-full"
-              href="/contact"
-            >
-              Innovate with us
-            </NavbarButton>
+            <NavbarButton variant="primary" href="https://www.linkedin.com/company/kaibre-systems-limited/">Contact Us</NavbarButton>
           </div>
         </MobileNavMenu>
       </MobileNav>
