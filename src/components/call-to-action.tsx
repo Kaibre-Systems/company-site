@@ -18,7 +18,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
     className = '',
 }) => {
     return (
-        <section className={`text-white mb-8 max-w-7xl ${className} rounded-2xl`}>
+        <section className={`text-white mb-8 max-w-7xl mx-auto ${className} rounded-2xl`}>
             <BackgroundImage className="rounded-2xl mx-4" imgClassName="rounded-2xl" src="/nova.jpeg" alt='nova background' overlay={false}>
                 <div className="relative flex flex-col md:flex-row items-center justify-between mx-auto max-w-7xl text-left rounded-2xl py-8 px-8 gap-8 overflow-hidden transition duration-200 bg-black/50 hover:bg-black/30">
                     <div className="flex-1 relative z-10">
