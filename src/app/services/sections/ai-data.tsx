@@ -37,7 +37,7 @@ export default function AIDataSection() {
       title="AI & DATA"
       id="ai-data"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">
+      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border gap-2 rounded-md border-[#ce4710]/30">
         {subservices.map((subservice) => (
           <SubserviceCard key={subservice.title} className={subservice.className}>
             <SubserviceTitle>{subservice.title}</SubserviceTitle>
@@ -53,7 +53,7 @@ export default function AIDataSection() {
 
 const PredictiveSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative">
         <TrendingUp className="h-12 w-12 text-[#ce4710]" />
         <div className="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full animate-ping"></div>
@@ -66,7 +66,7 @@ const PredictiveSkeleton = () => {
 
 const DataInfraSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="grid grid-cols-3 gap-2 w-full p-4">
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div
@@ -82,7 +82,7 @@ const DataInfraSkeleton = () => {
 
 const IntelligentAutoSkeleton = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex flex-col items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <Brain className="h-10 w-10 text-[#ce4710] mb-2" />
       <div className="flex items-center gap-1">
         <Cpu className="h-4 w-4 text-[#ce4710]" />
@@ -94,7 +94,7 @@ const IntelligentAutoSkeleton = () => {
 
 const DataVizSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex items-end gap-2">
         <div className="w-4 h-8 bg-blue-500 rounded-t"></div>
         <div className="w-4 h-12 bg-green-500 rounded-t"></div>

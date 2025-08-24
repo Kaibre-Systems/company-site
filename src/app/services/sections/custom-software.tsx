@@ -37,7 +37,7 @@ export default function CustomSoftwareSection(): React.ReactElement {
       title="CUSTOM SOFTWARE"
       id="custom-software"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">
+      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border gap-2 rounded-md border-[#ce4710]/30">
         {subservices.map((subservice) => (
           <SubserviceCard key={subservice.title} className={subservice.className}>
             <SubserviceTitle>{subservice.title}</SubserviceTitle>
@@ -53,7 +53,7 @@ export default function CustomSoftwareSection(): React.ReactElement {
 
 const AppDevSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="grid grid-cols-2 gap-4 w-full p-4">
         <div className="flex flex-col items-center p-3 bg-blue-500/20 rounded border border-blue-500/40">
           <Globe className="h-6 w-6 text-blue-400 mb-1" />
@@ -70,7 +70,7 @@ const AppDevSkeleton = () => {
 
 const AutomationSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex items-center gap-2">
         <Workflow className="h-8 w-8 text-[#ce4710]" />
         <div className="flex flex-col gap-1">
@@ -85,7 +85,7 @@ const AutomationSkeleton = () => {
 
 const IntegrationSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative">
         <div className="flex items-center gap-4">
           <div className="w-8 h-8 bg-blue-500 rounded"></div>
@@ -101,7 +101,7 @@ const IntegrationSkeleton = () => {
 
 const ModernizationSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex items-center gap-4">
         <div className="text-center">
           <div className="w-12 h-12 bg-gray-600 rounded mb-2"></div>

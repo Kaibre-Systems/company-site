@@ -37,7 +37,7 @@ export default function CloudDevOpsSection() {
       title="CLOUD & DEVOPS"
       id="cloud-devops"
     >
-        <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">
+        <div className="grid grid-cols-1 lg:grid-cols-6 xl:border gap-2 rounded-md border-[#ce4710]/30">
           {subservices.map((subservice) => (
             <SubserviceCard key={subservice.title} className={subservice.className}>
               <SubserviceTitle>{subservice.title}</SubserviceTitle>
@@ -52,7 +52,7 @@ export default function CloudDevOpsSection() {
 
 const CloudEnablementSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative">
         <Cloud className="h-12 w-12 text-[#ce4710]" />
         <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"></div>
@@ -64,7 +64,7 @@ const CloudEnablementSkeleton = () => {
 
 const ContinuousDeliverySkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex items-center gap-2">
         <GitBranch className="h-8 w-8 text-[#ce4710]" />
         <div className="flex flex-col gap-1">
@@ -79,7 +79,7 @@ const ContinuousDeliverySkeleton = () => {
 
 const InfraManagementSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="grid grid-cols-2 gap-2">
         <div className="flex items-center gap-1 p-2 bg-green-500/20 rounded">
           <Server className="h-4 w-4 text-green-400" />
@@ -96,7 +96,7 @@ const InfraManagementSkeleton = () => {
 
 const MonitoringSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative">
         <Monitor className="h-12 w-12 text-[#ce4710]" />
         <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>

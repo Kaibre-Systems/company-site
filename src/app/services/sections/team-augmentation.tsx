@@ -37,7 +37,7 @@ export default function TeamAugmentationSection() {
       title="TEAM AUGMENTATION"
       id="team-augmentation"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md border-[#ce4710]/30">
+      <div className="grid grid-cols-1 lg:grid-cols-6 xl:border rounded-md gap-2 border-[#ce4710]/30">
         {subservices.map((subservice) => (
           <SubserviceCard key={subservice.title} className={subservice.className}>
             <SubserviceTitle>{subservice.title}</SubserviceTitle>
@@ -54,7 +54,7 @@ export default function TeamAugmentationSection() {
 const TalentSkeleton = () => {
   const skills = ["React", "Node.js", "Python", "AWS", "Docker"]
   return (
-    <div className="relative flex flex-col p-4 h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex flex-col p-4 md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <Users className="h-8 w-8 text-[#ce4710] mb-4" />
       <div className="flex flex-wrap gap-2">
         {skills.map((skill, idx) => (
@@ -69,7 +69,7 @@ const TalentSkeleton = () => {
 
 const ProjectTeamsSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex -space-x-2">
         {[1, 2, 3, 4].map((i) => (
           <div
@@ -86,7 +86,7 @@ const ProjectTeamsSkeleton = () => {
 
 const ScalableSkeleton = () => {
   return (
-    <div className="relative flex items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="flex items-center gap-2">
         <div className="w-4 h-8 bg-[#ce4710]/40 rounded"></div>
         <div className="w-4 h-12 bg-[#ce4710]/60 rounded"></div>
@@ -100,7 +100,7 @@ const ScalableSkeleton = () => {
 
 const MentorshipSkeleton = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center h-40 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
+    <div className="relative flex flex-col items-center justify-center md:h-40 py-4 bg-gray-900/30 rounded-lg border border-[#ce4710]/30">
       <div className="relative mb-4">
         <div className="w-12 h-12 bg-[#ce4710] rounded-full flex items-center justify-center">
           <span className="text-white font-bold">Sr</span>
