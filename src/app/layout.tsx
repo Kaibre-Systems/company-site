@@ -4,8 +4,9 @@ import "./globals.css";
 import { MainNavbar } from "./components/main-navbar";
 import { ThemeProvider } from "@/components/theme-provider"
 import Footer from "./components/footer";
-import { Analytics } from "@vercel/analytics/next"
 import BackgroundImage from "@/components/background-image";
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 
 const panchang = localFont({
@@ -56,6 +57,7 @@ export default function RootLayout({
         </ThemeProvider>
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
