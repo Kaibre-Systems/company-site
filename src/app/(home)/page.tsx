@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <HeroSection
-        title="THE AI PHONE AGENT THAT QUALIFIES YOUR LEADS."
+        title="The AI phone agent that qualifies your leads."
         subtitle={
           <>
             kAI calls your leads on your number, follows your script, scores
@@ -71,7 +71,7 @@ export default function Home() {
       <DualCallToAction
         left={{
           eyebrow: "kAI",
-          title: "BOOK A kAI DEMO",
+          title: "Book a kAI demo.",
           body:
             "See how kAI would qualify leads for your workflow before anything goes live.",
           buttonText: "Book a kAI demo",
@@ -79,7 +79,7 @@ export default function Home() {
         }}
         right={{
           eyebrow: "Custom builds",
-          title: "NEED A CUSTOM BUILD?",
+          title: "Need a custom build?",
           body:
             "Talk to our engineering team about a workflow, internal tool, or AI system that does not fit an off-the-shelf product.",
           buttonText: "Book a discovery call",
