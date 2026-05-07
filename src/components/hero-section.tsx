@@ -5,6 +5,9 @@ interface HeroSectionProps {
   title: React.ReactNode;
   subtitle: React.ReactNode;
   cta?: React.ReactNode;
+  secondaryCta?: React.ReactNode;
+  microLink?: React.ReactNode;
+  chips?: React.ReactNode;
   className?: string;
   innerClassName?: string;
 }
@@ -13,9 +16,13 @@ export default function HeroSection({
   title,
   subtitle,
   cta,
+  secondaryCta,
+  microLink,
+  chips,
   className = "",
   innerClassName = "",
 }: HeroSectionProps) {
+  const hasActions = Boolean(cta || secondaryCta);
   return (
     <section className={`relative w-full overflow-hidden ${className}`}>
       <AuroraBackground className="w-full h-auto min-h-screen md:h-[100vh] w-[100vw] py-24 md:py-40">
@@ -27,9 +34,20 @@ export default function HeroSection({
             <p className="mt-4 md:mt-6 text-lg sm:text-lg md:text-xl lg:text-2xl max-w-2xl font-supreme text-white leading-relaxed">
               {subtitle}
             </p>
-            {cta && (
-              <div className="mt-8 md:mt-12">
+            {hasActions && (
+              <div className="mt-8 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 {cta}
+                {secondaryCta}
+              </div>
+            )}
+            {microLink && (
+              <div className="mt-4 font-supreme text-sm text-white/80">
+                {microLink}
+              </div>
+            )}
+            {chips && (
+              <div className="mt-8 md:mt-10">
+                {chips}
               </div>
             )}
           </div>
