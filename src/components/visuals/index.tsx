@@ -78,11 +78,17 @@ export function ResolutionField({ className }: { className?: string }) {
           width={i === PEAK ? 5 : 3}
           height={SPAN * v}
           rx={i === PEAK ? 2.5 : 1.5}
-          style={{ animationDelay: `${i * 26}ms` }}
+          style={{
+            // Entrance sweeps once; the scan then loops on the same axis, so
+            // the two never fight each other.
+            animationDelay: `${i * 26}ms, ${1400 + i * 70}ms`,
+            animationDuration: "620ms, 7000ms",
+          }}
           className={cn(
             "[transform-box:fill-box] [transform-origin:bottom]",
-            "motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both]",
-            i === PEAK ? "fill-accent" : "fill-fg-subtle/55",
+            i === PEAK
+              ? "fill-accent motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both,scanPeak_7s_ease-in-out_infinite]"
+              : "fill-fg-subtle/55 motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both,scan_7s_ease-in-out_infinite]",
           )}
         />
       ))}
@@ -99,7 +105,8 @@ export function ResolutionField({ className }: { className?: string }) {
           r="11"
           fill="none"
           strokeWidth="1"
-          className="stroke-accent/40"
+          style={{ animationDelay: `${1400 + PEAK * 70}ms`, transformOrigin: `${peakX}px ${peakY}px` }}
+          className="stroke-accent/40 motion-safe:animate-[markPulse_7s_ease-in-out_infinite]"
         />
       </g>
     </svg>
@@ -273,7 +280,7 @@ export function StatusList({
       </ul>
 
       {footnote ? (
-        <p className="mt-6 border-t border-border pt-4 text-small text-fg-subtle">
+        <p className="mt-6 border-t border-border pt-4 text-fine text-fg-subtle">
           {footnote}
         </p>
       ) : null}

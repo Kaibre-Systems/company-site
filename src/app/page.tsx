@@ -87,7 +87,7 @@ export default function HomePage() {
 
           {/* Grounded in three real shapes of that work — one line, not a
               second three-column block competing with the diagram above. */}
-          <p className="mt-10 max-w-[70ch] text-small text-fg-subtle">
+          <p className="mt-10 max-w-[70ch] text-fine text-fg-subtle">
             {THESIS.examples.map((e) => e.note).join(" ")}
           </p>
         </Container>
@@ -118,9 +118,7 @@ export default function HomePage() {
           </dl>
 
           <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <Text size="small" tone="subtle" className="max-w-[52ch]">
-              {PROOF.confidentiality}
-            </Text>
+            <p className="max-w-[52ch] text-fine text-fg-subtle">{PROOF.confidentiality}</p>
             <ArrowLink href={PROOF.link.href} className="shrink-0">
               {PROOF.link.label}
             </ArrowLink>
@@ -163,9 +161,7 @@ export default function HomePage() {
           </div>
 
           {/* One caption for both panels rather than the same line twice. */}
-          <p className="mt-5 text-small text-fg-subtle">
-            Interface illustrations. Structure is real; the content is placeholder.
-          </p>
+          <p className="mt-5 text-fine text-fg-subtle">Interface illustrations.</p>
         </Container>
       </Section>
 
@@ -246,20 +242,38 @@ export default function HomePage() {
       {/* 8 — Company --------------------------------------------------------- */}
       <Section surface="ink" id={COMPANY.id}>
         <Container>
-          <>
-            <SectionHeader
-              heading={COMPANY.heading}
-              body={COMPANY.body}
-            />
+          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.1fr_1fr]">
+            <SectionHeader heading={COMPANY.heading} body={COMPANY.body} />
 
-            {/* Founder background — never a customer or endorsement claim. */}
-            <div className="mt-12 max-w-prose border-t border-border-strong pt-8">
-              <h3 className="text-small font-medium text-fg-subtle">
-                {COMPANY.credibility.label}
-              </h3>
-              <Text className="mt-4">{COMPANY.credibility.body}</Text>
-            </div>
-          </>
+            {/* Facts, not a third paragraph. */}
+            <dl className="grid content-start gap-y-5 self-center">
+              {COMPANY.facts.map((f) => (
+                <div
+                  key={f.label}
+                  className="grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-border pb-4"
+                >
+                  <dt className="text-small text-fg-subtle">{f.label}</dt>
+                  <dd className="text-body text-fg">{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          {/* Founder background — where the standards come from. */}
+          <div className="mt-14 border-t border-border pt-10">
+            <h3 className="text-small font-medium text-fg-subtle">
+              {COMPANY.credibility.label}
+            </h3>
+            <Text className="mt-4 max-w-prose">{COMPANY.credibility.body}</Text>
+            <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+              {COMPANY.credibility.domains.map((d) => (
+                <li key={d} className="flex items-center gap-2.5 text-body text-fg">
+                  <span aria-hidden className="size-1.5 rounded-full bg-accent" />
+                  {d}
+                </li>
+              ))}
+            </ul>
+          </div>
         </Container>
       </Section>
 

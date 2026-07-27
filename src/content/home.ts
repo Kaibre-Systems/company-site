@@ -21,8 +21,7 @@ export const HERO = {
 export const THESIS = {
   heading: "Expert judgment, spent on volume.",
   body: [
-    "The work we take on has a shape. Something valuable depends on a person's judgment — an assessor's, an operator's, a closer's — and most of their day goes to the volume around that judgment rather than the judgment itself.",
-    "We build the system that carries the volume. The judgment stays with the person.",
+    "Something valuable depends on a person's judgment — an assessor's, an operator's, a closer's — and most of their day goes to the volume around it. We build the system that carries the volume.",
   ],
   flow: [
     {
@@ -154,9 +153,13 @@ export const COMPANY = {
   id: "company",
   heading: "Small, founder-led, and deliberate about what we take on.",
   body: [
-    "Kaibre is a founder-led software company registered in Abu Dhabi, working with organisations across the UAE, Canada, and the United States.",
-    "We are deliberately small. That is why we take on a limited number of commissioned builds, and why the person you talk to first is the person responsible for the work.",
-    "Alongside the products, we work on the problems underneath them: agentic systems that hold up in production, document and image understanding with traceable sources, and giving software durable memory of how an operation actually runs.",
+    "We are deliberately small. That is why we take on a limited number of builds, and why the person you talk to first is the person responsible for the work.",
+  ],
+  /** Scannable facts rather than a third paragraph. */
+  facts: [
+    { label: "Registered", value: "Abu Dhabi, UAE" },
+    { label: "Working across", value: "UAE, Canada, United States" },
+    { label: "Commissioned builds", value: "A few a year" },
   ],
   /**
    * Founder background only. This describes where the founders have worked —
@@ -165,7 +168,12 @@ export const COMPANY = {
    */
   credibility: {
     label: "Where this comes from",
-    body: "Kaibre's founders have worked inside Fortune 500 companies, government environments, and healthcare and prescription-insurance systems — designing the data schemas behind them and running the migrations that moved live patient and claims data. That is where the standards on this page come from: what these systems have to survive, and what it costs when they do not.",
+    body: "Our founders have built and run systems where being wrong is expensive — designing the data schemas behind them, and running the migrations that moved live patient and claims data.",
+    domains: [
+      "Fortune 500 companies",
+      "Government environments",
+      "Healthcare and prescription insurance",
+    ],
   },
 } as const;
 

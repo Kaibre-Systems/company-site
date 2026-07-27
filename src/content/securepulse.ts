@@ -128,6 +128,6 @@ export const SP_REPORT = {
 
 export const SP_STATUS = {
   heading: "Where SecurePulse is today",
-  body: "SecurePulse is in active development and demonstration with organisations in the UAE and the wider Gulf. We are not claiming certification, regulatory endorsement, or completed institutional adoption. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",
+  body: "SecurePulse is in active development and demonstration with organisations in the UAE and the wider Gulf. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
 } as const;

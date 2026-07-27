@@ -83,6 +83,9 @@
   --text-small: 0.9375rem;
   --text-small--line-height: 1.55;
 
+  --text-fine: 0.8125rem;
+  --text-fine--line-height: 1.5;
+
   --text-label: 0.75rem;
   --text-label--line-height: 1.3;
   --text-label--letter-spacing: 0.085em;
@@ -235,7 +238,10 @@
   }
 }
 
-/* Hero field: each tick rises once from the baseline, then rests. */
+/* Hero field.
+   Ticks rise once on load, then a slow scan travels left to right forever,
+   lifting each reading as it passes. The cycle is long and the lift small, so
+   it reads as a live instrument rather than something demanding attention. */
 @keyframes tick {
   from {
     transform: scaleY(0);
@@ -247,7 +253,43 @@
   }
 }
 
-/* The reading that clears the bar, marked after its tick lands. */
+@keyframes scan {
+  0%,
+  70%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.55;
+  }
+  6% {
+    transform: scaleY(1.16);
+    opacity: 1;
+  }
+}
+
+@keyframes scanPeak {
+  0%,
+  70%,
+  100% {
+    transform: scaleY(1);
+  }
+  6% {
+    transform: scaleY(1.06);
+  }
+}
+
+@keyframes markPulse {
+  0%,
+  70%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  8% {
+    transform: scale(1.35);
+    opacity: 0.85;
+  }
+}
+
 @keyframes markIn {
   from {
     opacity: 0;

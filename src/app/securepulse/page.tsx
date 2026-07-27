@@ -63,9 +63,7 @@ export default function SecurePulsePage() {
               <VisualFrame label="Draft assessment findings, each carrying the confidence behind it, awaiting sign-off.">
                 <AssessmentPanel />
               </VisualFrame>
-              <p className="mt-3 text-small text-fg-subtle">
-                Interface illustration. Structure is real; the content is placeholder.
-              </p>
+<p className="mt-3 text-fine text-fg-subtle">Interface illustration.</p>
             </div>
           </div>
         </Container>
@@ -79,9 +77,7 @@ export default function SecurePulsePage() {
               heading={SP_JURISDICTION.heading}
               body={SP_JURISDICTION.body}
             />
-            <Text size="small" tone="subtle" className="mt-8 max-w-[56ch]">
-              {SP_JURISDICTION.note}
-            </Text>
+            <p className="mt-8 max-w-[56ch] text-fine text-fg-subtle">{SP_JURISDICTION.note}</p>
           </>
         </Container>
       </Section>

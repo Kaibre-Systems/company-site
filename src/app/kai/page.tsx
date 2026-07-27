@@ -60,9 +60,7 @@ export default function KaiPage() {
               <VisualFrame label="Call outcomes, each tagged with a qualification classification.">
                 <CallOutcomeList />
               </VisualFrame>
-              <p className="mt-3 text-small text-fg-subtle">
-                Interface illustration. Structure is real; the content is placeholder.
-              </p>
+<p className="mt-3 text-fine text-fg-subtle">Interface illustration.</p>
             </div>
           </div>
         </Container>
@@ -84,18 +82,6 @@ export default function KaiPage() {
             outcomes={KAI_VALUE.outcomes}
           />
 
-          <ul className="mt-12 grid gap-8 border-t border-border pt-10 sm:grid-cols-3">
-            {KAI_VALUE.columns.map((col) => (
-              <li key={col.title}>
-                <Heading level={3} size="heading-2">
-                  {col.title}
-                </Heading>
-                <Text size="small" className="mt-3">
-                  {col.body}
-                </Text>
-              </li>
-            ))}
-          </ul>
         </Container>
       </Section>
 

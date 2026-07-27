@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Check, Minus } from "lucide-react";
-import { Card, Heading, Text } from "@/components/primitives";
+import { Heading, Text } from "@/components/primitives";
 import { cn } from "@/lib/utils";
 
 /* ==========================================================================
@@ -88,28 +88,31 @@ export function ProductCard({
 }) {
   return (
     <Link href={href} className={cn("group block", className)}>
-      <Card
-        interactive
-        className="flex h-full flex-col overflow-hidden p-7 sm:p-9"
-      >
+      {/* No outer card. The visual inside carries the only border on the item,
+          so the eye counts one edge instead of two. */}
+      <div className="flex h-full flex-col">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-heading-2 font-medium text-fg">{name}</p>
+            {/* The product name is the thing being introduced, so it is the
+                largest type here — the tagline supports it, not the reverse. */}
+            <h3 className="text-heading-1 font-medium text-fg transition-colors duration-150 group-hover:text-accent">
+              {name}
+            </h3>
             <p className="mt-1 text-small text-fg-subtle">{category}</p>
           </div>
           <ArrowUpRight
             aria-hidden
-            className="size-5 shrink-0 text-fg-subtle transition-[color,transform] duration-150 group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
+            className="mt-1 size-5 shrink-0 text-fg-subtle transition-[color,transform] duration-150 group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
           />
         </div>
 
-        <Heading level={3} size="heading-1" className="mt-7">
-          {headline}
-        </Heading>
-        <Text className="mt-4">{body}</Text>
+        <p className="mt-6 text-lead font-medium text-fg">{headline}</p>
+        <Text size="small" className="mt-3 max-w-prose">
+          {body}
+        </Text>
 
         {visual ? <div className="mt-8 grow">{visual}</div> : null}
-      </Card>
+      </div>
     </Link>
   );
 }

@@ -78,15 +78,13 @@ export default function WorkPage() {
             <Flow className="mt-7" stages={WORK_LUXURY.lifecycle} />
           </div>
 
-          <ul className="mt-16 grid gap-x-12 gap-y-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-14 grid gap-x-12 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {WORK_LUXURY.scope.map((item) => (
-              <li key={item.title}>
-                <Heading level={3} size="heading-2">
-                  {item.title}
-                </Heading>
-                <Text size="small" className="mt-3 max-w-[38ch]">
-                  {item.body}
-                </Text>
+              <li
+                key={item.title}
+                className="border-b border-border py-3.5 text-body text-fg-muted"
+              >
+                {item.title}
               </li>
             ))}
           </ul>
@@ -105,7 +103,7 @@ export default function WorkPage() {
               size="body"
               className="mt-5"
             />
-            <p className="mt-10 border-l-2 border-border-strong pl-5 text-small text-fg-subtle">
+            <p className="mt-10 border-l-2 border-border-strong pl-5 text-fine text-fg-subtle">
               {WORK_LUXURY.confidentiality}
             </p>
           </>
