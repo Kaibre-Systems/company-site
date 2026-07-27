@@ -210,6 +210,22 @@ export function SecurePulseName({
   );
 }
 
+/**
+ * Renders any copy with "SecurePulse" carrying its accent.
+ *
+ * Body mentions take the colour but stay still — a page of breathing words
+ * would be unreadable. Only the display instances animate.
+ *
+ * Deliberately not applied inside filled buttons: accent-on-accent is
+ * invisible, so CTA labels keep the plain name.
+ */
+export function withBrand(text: string) {
+  if (!text.includes("SecurePulse")) return text;
+  return text.split("SecurePulse").flatMap((part, i) =>
+    i === 0 ? [part] : [<SecurePulseName key={i} />, part],
+  );
+}
+
 /* ==========================================================================
    Flow — a labelled sequence, optionally splitting at the end
    --------------------------------------------------------------------------

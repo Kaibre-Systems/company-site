@@ -19,20 +19,20 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Section surface="paper" space="flush" className="pb-24 pt-32 sm:pt-40">
+    <Section surface="paper" space="flush" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1fr] lg:items-start lg:gap-20">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr] lg:items-start lg:gap-16">
           <div>
-            <Heading level={1} size="display-1" className="max-w-[14ch]">
+            <Heading level={1} size="display-2" className="max-w-[14ch]">
               Tell us about the work.
             </Heading>
-            <Text size="lead" className="mt-6 max-w-[46ch]">
+            <Text className="mt-5 max-w-[46ch]">
               Kaibre is small enough that this reaches the person who would be
               responsible for building it. Whatever detail you have is enough to
               start.
             </Text>
 
-            <dl className="mt-12 space-y-8">
+            <dl className="mt-10 space-y-6">
               <div>
                 <dt className="text-small font-medium text-fg-subtle">
                   Prefer email
@@ -51,7 +51,7 @@ export default function ContactPage() {
                   Registered office
                 </dt>
                 <dd className="mt-2">
-                  <address className="max-w-[32ch] not-italic text-small text-fg-muted">
+                  <address className="max-w-[32ch] not-italic text-fine text-fg-muted">
                     {SITE.address.line}
                     <br />
                     {SITE.address.city}, {SITE.address.country}
@@ -64,7 +64,7 @@ export default function ContactPage() {
           {/* The form is a client island behind Suspense (it reads ?topic).
               Reserving its measured height keeps the fallback-to-form swap
               from shifting the page on hydration. */}
-          <div className="min-h-[782px] max-w-xl">
+          <div className="min-h-[651px] max-w-xl">
             <Suspense
               fallback={
                 <p className="text-body text-fg-muted">

@@ -179,7 +179,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="min-h-12 self-start rounded-control border border-border-strong px-5 text-body text-fg transition-colors duration-150 hover:border-accent"
+          className="min-h-12 cursor-pointer self-start rounded-control border border-border-strong px-5 text-body text-fg transition-colors duration-150 hover:border-accent"
         >
           Back to the form
         </button>
@@ -192,7 +192,7 @@ export function ContactForm() {
     TOPICS.find((t) => t.value === topic)?.placeholder ?? TOPICS[4].placeholder;
 
   return (
-    <form noValidate onSubmit={onSubmit} className="space-y-6">
+    <form noValidate onSubmit={onSubmit} className="space-y-4">
       <Field id="name" label="Name" error={errors.name}>
         <input id="name" name="name" type="text" autoComplete="name" className={FIELD} />
       </Field>
@@ -236,7 +236,7 @@ export function ContactForm() {
         <textarea
           id="work"
           name="work"
-          rows={6}
+          rows={4}
           className={cn(FIELD, "resize-y")}
           placeholder={placeholder}
         />
@@ -263,7 +263,7 @@ export function ContactForm() {
           type="submit"
           disabled={sending}
           aria-busy={sending}
-          className="relative min-h-12 w-full rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+          className="relative min-h-12 w-full cursor-pointer rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
         >
           {sending ? "Sending…" : "Send it"}
         </button>
@@ -306,12 +306,12 @@ function Field({
         {label}
       </label>
       {hint ? (
-        <p id={hintId} className="mt-1.5 text-small text-fg-subtle">
+        <p id={hintId} className="mt-1 text-fine text-fg-subtle">
           {hint}
         </p>
       ) : null}
       <div
-        className="mt-2.5"
+        className="mt-2"
         // Wiring aria on the wrapper keeps the field markup above readable.
         ref={(node) => {
           const control = node?.querySelector("input, select, textarea");

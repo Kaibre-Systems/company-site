@@ -14,10 +14,10 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
             <KaibreWordmark className="h-9 w-auto text-fg" />
-            <p className="mt-5 max-w-[34ch] text-small text-fg-muted">
+            <p className="mt-5 max-w-[34ch] text-fine text-fg-muted">
               {SITE.positioning}
             </p>
-            <address className="mt-6 not-italic text-small text-fg-subtle">
+            <address className="mt-6 not-italic text-fine text-fg-subtle">
               {SITE.address.line}
               <br />
               {SITE.address.city}, {SITE.address.country}
@@ -37,7 +37,7 @@ export function SiteFooter() {
                       className="inline-flex min-h-6 min-w-6 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
                     >
                       {link.label === "SecurePulse" ? (
-                        <SecurePulseName />
+                        <SecurePulseName animate />
                       ) : (
                         link.label
                       )}

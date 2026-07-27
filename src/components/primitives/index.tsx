@@ -1,5 +1,6 @@
 import type { ElementType, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { withBrand } from "@/components/visuals";
 
 /* ==========================================================================
    Layout primitives
@@ -110,7 +111,7 @@ export function Heading({
         className,
       )}
     >
-      {children}
+      {typeof children === "string" ? withBrand(children) : children}
     </Tag>
   );
 }
@@ -138,7 +139,7 @@ export function Text({
         className,
       )}
     >
-      {children}
+      {typeof children === "string" ? withBrand(children) : children}
     </p>
   );
 }
@@ -213,7 +214,7 @@ export function Note({
         className,
       )}
     >
-      {children}
+      {typeof children === "string" ? withBrand(children) : children}
     </p>
   );
 }

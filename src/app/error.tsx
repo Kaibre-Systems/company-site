@@ -36,7 +36,7 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="min-h-12 rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover"
+            className="min-h-12 cursor-pointer rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover"
           >
             Try again
           </button>
