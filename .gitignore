@@ -1,7 +1,19 @@
 node_modules/
 .next/
 .swc/
-.*.env
 .DS_Store
+
+# Environment — never commit real values. `.env.example` is intentionally tracked.
+.env
+.env.*
+!.env.example
+
+# Build / tooling artifacts
+*.tsbuildinfo
+
 # Logs
 logs/
+*.log
+
+# Local QA output
+qa-screenshots/

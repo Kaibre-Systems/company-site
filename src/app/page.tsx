@@ -1,0 +1,280 @@
+import type { Metadata } from "next";
+import {
+  Container,
+  Eyebrow,
+  Heading,
+  Prose,
+  Section,
+  SectionHeader,
+  Text,
+} from "@/components/primitives";
+import { ArrowLink, Button } from "@/components/primitives/button";
+import {
+  Callout,
+  FitList,
+  IllustrationFrame,
+  ProductCard,
+} from "@/components/modules";
+import {
+  AssessmentPanel,
+  CallOutcomeList,
+  DatumLine,
+} from "@/components/visuals";
+import {
+  COMMISSIONED,
+  COMPANY,
+  FINAL_CTA,
+  HERO,
+  HOW_WE_WORK,
+  PARTNERSHIPS,
+  PRODUCTS,
+  PROOF,
+  THESIS,
+} from "@/content/home";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+export default function HomePage() {
+  return (
+    <>
+      {/* 1 — Hero -------------------------------------------------------- */}
+      <Section surface="ink" space="flush" className="pb-16 pt-28 sm:pb-20 sm:pt-36">
+        <Container>
+          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end">
+            <div>
+              <Heading level={1} size="display-1" className="max-w-[46rem]">
+                {HERO.headline}
+              </Heading>
+              <Text size="lead" className="mt-7 max-w-[52ch]">
+                {HERO.body}
+              </Text>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Button href={HERO.primary.href}>{HERO.primary.label}</Button>
+                <Button href={HERO.secondary.href} variant="secondary">
+                  {HERO.secondary.label}
+                </Button>
+              </div>
+            </div>
+
+            {/* Three modes of work, previewed before the visitor scrolls. */}
+            <DatumLine
+              modes={HERO.modes}
+              className="lg:grid-cols-1 lg:gap-y-6 lg:pb-2"
+            />
+          </div>
+        </Container>
+      </Section>
+
+      {/* 2 — Operating thesis --------------------------------------------- */}
+      <Section surface="ink" className="border-t border-border">
+        <Container>
+          <>
+            <SectionHeader
+              eyebrow={THESIS.eyebrow}
+              heading={THESIS.heading}
+              body={THESIS.body}
+            />
+          </>
+
+          <ul className="mt-14 grid gap-8 border-t border-border pt-10 sm:grid-cols-3">
+            {THESIS.examples.map((item) => (
+              <li key={item.label}>
+                <h3 className="font-mono text-label uppercase tracking-[0.085em] text-fg">
+                  {item.label}
+                </h3>
+                <Text size="small" className="mt-3">
+                  {item.note}
+                </Text>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      {/* 3 — Production proof (light surface) ------------------------------ */}
+      <Section surface="paper">
+        <Container>
+          <SectionHeader
+            eyebrow={PROOF.eyebrow}
+            heading={PROOF.heading}
+            body={PROOF.body}
+          />
+
+          {/* The figures are the proof. They carry the section on their own —
+              no illustration is needed, and an abstract one would only read
+              as a placeholder. */}
+          <dl className="mt-14 grid gap-x-10 gap-y-8 border-t border-border-strong pt-10 sm:grid-cols-3">
+            {PROOF.figures.map((f) => (
+              <div key={f.label}>
+                <dt className="text-small text-fg-subtle">{f.label}</dt>
+                <dd className="mt-2 font-mono text-heading-1 text-fg">{f.value}</dd>
+              </div>
+            ))}
+            <div>
+              <dt className="text-small text-fg-subtle">Status</dt>
+              <dd className="mt-2 font-mono text-heading-1 text-fg">Live</dd>
+            </div>
+          </dl>
+
+          <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <Text size="small" tone="subtle" className="max-w-[52ch]">
+              {PROOF.confidentiality}
+            </Text>
+            <ArrowLink href={PROOF.link.href} className="shrink-0">
+              {PROOF.link.label}
+            </ArrowLink>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 4 — Products ------------------------------------------------------ */}
+      <Section surface="ink" id="products">
+        <Container>
+          <>
+            <SectionHeader
+              eyebrow={PRODUCTS.eyebrow}
+              heading={PRODUCTS.heading}
+              body={PRODUCTS.body}
+            />
+          </>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-5">
+            <div className="lg:col-span-3">
+              <ProductCard
+                {...PRODUCTS.items[0]}
+                visual={
+                  <IllustrationFrame
+                    label="A list of draft assessment findings, each with a reference, a severity grade and an evidence label, awaiting reviewer sign-off."
+                    className="[&_figcaption]:text-fg-subtle"
+                  >
+                    <AssessmentPanel />
+                  </IllustrationFrame>
+                }
+              />
+            </div>
+
+            <div className="lg:col-span-2">
+              <ProductCard
+                {...PRODUCTS.items[1]}
+                visual={
+                  <IllustrationFrame label="A list of call outcomes, each tagged with a qualification classification.">
+                    <CallOutcomeList />
+                  </IllustrationFrame>
+                }
+              />
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 5 — Commissioned systems ------------------------------------------ */}
+      <Section surface="ink" id={COMMISSIONED.id} className="border-t border-border">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+            <div>
+              <SectionHeader
+                eyebrow={COMMISSIONED.eyebrow}
+                heading={COMMISSIONED.heading}
+                body={COMMISSIONED.body}
+              />
+              <div className="mt-8">
+                <ArrowLink href={COMMISSIONED.cta.href}>
+                  {COMMISSIONED.cta.label}
+                </ArrowLink>
+              </div>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
+              <FitList
+                title={COMMISSIONED.fit.title}
+                items={COMMISSIONED.fit.items}
+                tone="yes"
+              />
+              <FitList
+                title={COMMISSIONED.notFit.title}
+                items={COMMISSIONED.notFit.items}
+                tone="no"
+              />
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* 6 — Partnerships --------------------------------------------------- */}
+      <Section surface="ink" space="tight" className="border-t border-border">
+        <Container size="prose">
+          <>
+            <Eyebrow className="mb-4">{PARTNERSHIPS.eyebrow}</Eyebrow>
+            <Heading level={2} size="heading-1">
+              {PARTNERSHIPS.heading}
+            </Heading>
+            <Prose paragraphs={PARTNERSHIPS.body} size="body" className="mt-5" />
+            <div className="mt-7">
+              <ArrowLink href={PARTNERSHIPS.cta.href}>
+                {PARTNERSHIPS.cta.label}
+              </ArrowLink>
+            </div>
+          </>
+        </Container>
+      </Section>
+
+      {/* 7 — How we work (light surface) ------------------------------------ */}
+      <Section surface="paper" id={HOW_WE_WORK.id}>
+        <Container>
+          <>
+            <SectionHeader
+              eyebrow={HOW_WE_WORK.eyebrow}
+              heading={HOW_WE_WORK.heading}
+            />
+          </>
+
+          <ol className="mt-12 grid gap-x-16 gap-y-10 sm:grid-cols-2">
+            {HOW_WE_WORK.steps.map((step, i) => (
+              <li key={step.title}>
+                <p className="font-mono text-label text-fg-subtle">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <Heading level={3} size="heading-1" className="mt-3">
+                  {step.title}
+                </Heading>
+                <Text className="mt-3 max-w-[46ch]">{step.body}</Text>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Section>
+
+      {/* 8 — Company --------------------------------------------------------- */}
+      <Section surface="ink" id={COMPANY.id}>
+        <Container>
+          <>
+            <SectionHeader
+              eyebrow={COMPANY.eyebrow}
+              heading={COMPANY.heading}
+              body={COMPANY.body}
+            />
+          </>
+        </Container>
+      </Section>
+
+      {/* 9 — Conversion ------------------------------------------------------ */}
+      <Section surface="ink" className="border-t border-border">
+        <Container>
+          <Callout className="text-center">
+            <Heading level={2} size="display-2" className="mx-auto max-w-[18ch]">
+              {FINAL_CTA.heading}
+            </Heading>
+            <Text size="lead" className="mx-auto max-w-[52ch]">
+              {FINAL_CTA.body}
+            </Text>
+            <div className="flex justify-center pt-2">
+              <Button href={FINAL_CTA.cta.href}>{FINAL_CTA.cta.label}</Button>
+            </div>
+          </Callout>
+        </Container>
+      </Section>
+    </>
+  );
+}
