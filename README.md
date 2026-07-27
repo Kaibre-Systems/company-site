@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kaibre — company site
 
-## Getting Started
+Marketing site for Kaibre Systems Ltd. Next.js 16 (App Router) + Tailwind CSS v4, statically rendered.
 
-First, run the development server:
+**Positioning:** Kaibre builds and operates software for work that has to be right.
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`pnpm` is the package manager for this repository — `pnpm-lock.yaml` is authoritative and `package.json` pins the version via `packageManager`. Do not add a `package-lock.json`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Purpose |
+|---|---|
+| `pnpm dev` | Dev server (Turbopack) on :3000 |
+| `pnpm build` | Production build |
+| `pnpm start` | Serve the production build |
+| `pnpm lint` | ESLint (flat config) |
+| `pnpm typecheck` | `tsc --noEmit` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+src/
+├─ app/                    routes — all static
+│  ├─ page.tsx             home
+│  ├─ securepulse/         product page
+│  ├─ kai/                 product page
+│  ├─ work/                selected work + commissioned systems
+│  ├─ contact/             contact form
+│  ├─ robots.ts · sitemap.ts · opengraph-image.tsx
+│  └─ globals.css          the design system (tokens only)
+├─ content/                ALL copy lives here, as typed objects
+├─ components/
+│  ├─ primitives/          Section · Container · Heading · Text · Button · Card
+│  ├─ modules/             WorkflowSteps · ProductCard · FitList · Callout
+│  ├─ visuals/             constructed interface illustrations
+│  ├─ layout/              header · footer
+│  ├─ forms/               contact form
+│  └─ brand/               wordmark
+└─ lib/                    utils · raw-colors
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Copy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Every user-facing string lives in `src/content/*.ts`. Components never contain copy. Review the words without reading JSX, and add a product without touching layout.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Design system
 
-## Deploy on Vercel
+Two surfaces, one token vocabulary. Each section declares `data-surface="ink" | "paper"`, and the semantic tokens (`--surface`, `--fg`, `--border`, `--accent`, …) resolve per surface — so `bg-surface text-fg` is correct on both without conditional classes.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Components must not contain raw hex.** ESLint enforces this. The single exception is `src/lib/raw-colors.ts`, for the two contexts that cannot read CSS variables: the `themeColor` meta tag and `next/og` image generation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`cn()` in `src/lib/utils.ts` extends `tailwind-merge` with the custom scale. Without that, `text-display-1` and `text-fg` are treated as the same class group and the type scale is silently dropped.
+
+### Labels
+
+There are no eyebrow labels. Small uppercase kickers above every heading added
+reading load without adding information — headings carry their own meaning, and
+supporting labels are sentence case at body weight.
+
+### Typography
+
+Three Google variable families via `next/font/google`, self-hosted at build time
+(no runtime request to Google): **Space Grotesk** display, **Inter** text,
+**JetBrains Mono** for labels, references and figures. `adjustFontFallback`
+keeps CLS at zero. There are no local font files.
+
+### Motion
+
+Deliberately minimal. No scroll-triggered section entrances — content is present the moment the page paints. The only motion is the hero datum rule drawing once, plus hover/focus/expand transitions. All of it is suppressed under `prefers-reduced-motion`.
+
+## Claim discipline
+
+This site is written for regulated and high-value buyers. The following must never appear:
+
+- Customer names, logos, testimonials, or case-study outcomes without written approval
+- Certifications, accreditations, or regulatory endorsement (Kaibre holds none)
+- Former employers as customers. The founder-background line in `COMPANY.credibility`
+  refers to where the founders have worked and must never imply that those
+  organisations are Kaibre clients, partners, or endorsers. No logos, ever.
+- Headcount, offices, revenue, customer counts, or performance metrics
+- Fabricated interface data — product illustrations show structure, never numbers
+- The luxury-commerce client's identity, product category beyond "luxury goods", stack, or commercial terms
+
+The two dollar figures on the home and work pages (US$10,000–US$500,000 per item; tens of millions catalogue) are founder-approved for publication. Interface illustrations are captioned as illustrations, structurally, via `IllustrationFrame`.
+
+## Contact delivery
+
+Three layers, each catching the one before it:
+
+1. **`POST /api/contact`** sends via Resend when `RESEND_API_KEY` is set.
+2. If that fails for any reason — no key, network, Resend error — the client
+   hands a pre-filled message to the visitor's mail app.
+3. The address is shown in plain text regardless, because a mail app that does
+   not open is silent. The visitor is never left with nothing.
+
+Copy `.env.example` to `.env.local` and set the same values in Vercel. Without a
+key nothing breaks; the form simply falls through to layers 2 and 3.
+
+Spam handling: honeypot field, minimum time-on-form, server-side validation, and
+an in-memory per-IP rate limit (5/hour). No CAPTCHA.
+
+## Redirects
+
+`/services` and `/projects` → `/work`; `/team` → `/`; `/careers` → `/contact`. Configured in `next.config.ts`. These pages existed before the redesign and may still be linked externally.
+
+## Deployment
+
+Vercel. Analytics and Speed Insights are mounted in the root layout; their scripts 404 in local development because Vercel injects them at the edge — that is expected and not a bug.
