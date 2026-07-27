@@ -50,7 +50,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: `${SITE.name} — Software for work that has to be right`,
+    default: `${SITE.name}: Software for work that has to be right`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.shortDescription,
@@ -61,12 +61,12 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     locale: "en_GB",
     url: SITE.domain,
-    title: `${SITE.name} — Software for work that has to be right`,
+    title: `${SITE.name}: Software for work that has to be right`,
     description: SITE.shortDescription,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — Software for work that has to be right`,
+    title: `${SITE.name}: Software for work that has to be right`,
     description: SITE.shortDescription,
   },
   alternates: { canonical: "/" },
