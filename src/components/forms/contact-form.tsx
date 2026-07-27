@@ -253,7 +253,11 @@ export function ContactForm() {
       <div className="relative inline-flex w-full sm:w-auto">
         <span
           aria-hidden
-          className="pointer-events-none absolute -inset-2 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_5s_ease-in-out_infinite]"
+          className="pointer-events-none absolute -inset-2 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_4.5s_ease-in-out_infinite]"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 rounded-control motion-safe:animate-[auraRing_4.5s_cubic-bezier(0.16,1,0.3,1)_infinite]"
         />
         <button
           type="submit"

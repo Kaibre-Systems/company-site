@@ -298,21 +298,39 @@
     transform: scale(0.86);
   }
   50% {
-    opacity: 0.13;
+    opacity: 0.3;
     transform: scale(1.14);
   }
 }
 
-/* Behind a primary action. */
+/* Behind a primary action: a soft bed of light that breathes. */
 @keyframes glowButton {
   0%,
   100% {
-    opacity: 0.06;
-    transform: scale(0.97);
+    opacity: 0.14;
+    transform: scale(0.98);
   }
   50% {
-    opacity: 0.26;
-    transform: scale(1.03);
+    opacity: 0.5;
+    transform: scale(1.06);
+  }
+}
+
+/* And a ring radiating off the button edge. Spread grows while the whole
+   thing fades, so it reads as light leaving the button rather than a border
+   getting thicker. The button's own colour is untouched. */
+@keyframes auraRing {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent);
+    opacity: 0.55;
+  }
+  70% {
+    box-shadow: 0 0 0 16px var(--accent);
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 0 var(--accent);
+    opacity: 0;
   }
 }
 
@@ -320,10 +338,14 @@
 @keyframes textBreathe {
   0%,
   100% {
-    opacity: 0.55;
+    opacity: 0.5;
+    text-shadow: 0 0 0 transparent;
   }
   50% {
     opacity: 1;
+    text-shadow:
+      0 0 14px var(--accent),
+      0 0 28px var(--accent);
   }
 }
 

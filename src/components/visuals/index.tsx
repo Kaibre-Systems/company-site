@@ -138,6 +138,8 @@ const DOT_TONE = {
   attention: "bg-accent",
   neutral: "bg-fg-subtle",
   accent: "bg-accent",
+  /** Reserved for something genuinely running right now. */
+  live: "bg-success",
 } as const;
 
 export function PulseDot({

@@ -38,44 +38,53 @@ export function Button({
   const classes = cn(
     BASE,
     VARIANTS[variant],
-    variant === "primary" && "relative",
+    "relative",
     fullWidth && "w-full",
     className,
   );
   const external = href.startsWith("http") || href.startsWith("mailto:");
 
-  const inner = (
-    <>
-      {/* Primary actions carry a slow halo — visible once, never blinking.
-          The navbar action deliberately opts out via `halo={false}`. */}
-      {variant === "primary" && halo ? (
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -inset-2 -z-10 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_5s_ease-in-out_infinite]"
-        />
-      ) : null}
+  const action = external ? (
+    <a
+      href={href}
+      className={classes}
+      {...(href.startsWith("http")
+        ? { target: "_blank", rel: "noreferrer noopener" }
+        : {})}
+    >
       {children}
-    </>
+    </a>
+  ) : (
+    <Link href={href} className={classes}>
+      {children}
+    </Link>
   );
 
-  if (external) {
-    return (
-      <a
-        href={href}
-        className={classes}
-        {...(href.startsWith("http")
-          ? { target: "_blank", rel: "noreferrer noopener" }
-          : {})}
-      >
-        {inner}
-      </a>
-    );
-  }
+  if (variant !== "primary" || !halo) return action;
 
+  /**
+   * The aura sits in a wrapper rather than inside the button.
+   *
+   * A negatively-stacked child of an un-stacked positioned element escapes
+   * past its parent and paints behind the section background, where it is
+   * invisible. Painting order does the job instead: the aura is emitted
+   * first, the button after, so light shows around the edge and never over
+   * the face. The button's own colour is untouched.
+   */
   return (
-    <Link href={href} className={classes}>
-      {inner}
-    </Link>
+    <span
+      className={cn("relative inline-flex isolate", fullWidth && "w-full")}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -inset-2 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_4.5s_ease-in-out_infinite]"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-control motion-safe:animate-[auraRing_4.5s_cubic-bezier(0.16,1,0.3,1)_infinite]"
+      />
+      {action}
+    </span>
   );
 }
 

@@ -115,7 +115,11 @@ export default function HomePage() {
             ))}
             <div>
               <dt className="text-small text-fg-subtle">Status</dt>
-              <dd className="mt-2 font-mono text-heading-1 text-fg">Live</dd>
+              {/* The one figure describing something running right now. */}
+              <dd className="mt-2 flex items-center gap-2.5 font-mono text-heading-1 text-fg">
+                <PulseDot tone="live" size="md" halo />
+                Live
+              </dd>
             </div>
           </dl>
 

@@ -10,7 +10,7 @@ import {
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
 import { FitList } from "@/components/modules";
-import { Flow } from "@/components/visuals";
+import { Flow, PulseDot } from "@/components/visuals";
 import { WORK_COMMISSIONED, WORK_HERO, WORK_LUXURY } from "@/content/work";
 
 export const metadata: Metadata = {
@@ -53,7 +53,10 @@ export default function WorkPage() {
             {WORK_LUXURY.figures.map((f) => (
               <div key={f.label}>
                 <dt className="text-small text-fg-subtle">{f.label}</dt>
-                <dd className="mt-2 font-mono text-heading-1 text-fg">{f.value}</dd>
+                <dd className="mt-2 flex items-center gap-2.5 font-mono text-heading-1 text-fg">
+                  {f.value === "Live" ? <PulseDot tone="live" size="md" halo /> : null}
+                  {f.value}
+                </dd>
               </div>
             ))}
           </dl>
