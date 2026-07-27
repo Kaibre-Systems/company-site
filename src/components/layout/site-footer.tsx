@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Linkedin } from "lucide-react";
 import { FOOTER_GROUPS, SITE } from "@/content/site";
 import { KaibreWordmark } from "@/components/brand/wordmark";
+import { SecurePulseName } from "@/components/visuals";
 
 export function SiteFooter() {
   return (
@@ -35,7 +36,11 @@ export function SiteFooter() {
                       href={link.href}
                       className="inline-flex min-h-6 min-w-6 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
                     >
-                      {link.label}
+                      {link.label === "SecurePulse" ? (
+                        <SecurePulseName />
+                      ) : (
+                        link.label
+                      )}
                     </Link>
                   </li>
                 ))}

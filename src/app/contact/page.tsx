@@ -27,9 +27,9 @@ export default function ContactPage() {
               Tell us about the work.
             </Heading>
             <Text size="lead" className="mt-6 max-w-[46ch]">
-              The more specific you are, the more useful the reply. Kaibre is small
-              enough that this reaches the person who would be responsible for
-              building it.
+              Kaibre is small enough that this reaches the person who would be
+              responsible for building it. Whatever detail you have is enough to
+              start.
             </Text>
 
             <dl className="mt-12 space-y-8">

@@ -49,6 +49,9 @@
   --color-signal-400: oklch(0.712 0.062 218);
   --color-signal-600: oklch(0.512 0.062 218);
 
+  --color-success-400: oklch(0.762 0.135 152);
+  --color-success-600: oklch(0.582 0.126 152);
+
   --color-danger-500: oklch(0.585 0.196 27);
   --color-danger-700: oklch(0.462 0.164 27);
 
@@ -125,6 +128,7 @@
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-300);
   --focus: var(--color-brand-400);
+  --success: var(--color-success-400);
   --shadow-card: none;
 }
 
@@ -144,6 +148,7 @@
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-700);
   --focus: var(--color-brand-700);
+  --success: var(--color-success-600);
   --shadow-card: 0 1px 2px oklch(0.145 0.005 62 / 0.05), 0 8px 24px -12px oklch(0.145 0.005 62 / 0.12);
 }
 
@@ -163,6 +168,7 @@
   --color-accent-contrast: var(--accent-contrast);
   --color-accent-quiet: var(--accent-quiet);
   --color-focus: var(--focus);
+  --color-success: var(--success);
 }
 
 /* ==========================================================================
@@ -254,39 +260,101 @@
 }
 
 @keyframes scan {
-  0%,
-  70%,
+  0% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  7% {
+    transform: scaleY(1.42);
+    opacity: 1;
+  }
+  /* Long, eased release — the lift falls away over most of the cycle, so a
+     wave is always somewhere in the field. */
+  55%,
   100% {
     transform: scaleY(1);
-    opacity: 0.55;
-  }
-  6% {
-    transform: scaleY(1.16);
-    opacity: 1;
+    opacity: 0.5;
   }
 }
 
 @keyframes scanPeak {
-  0%,
-  70%,
-  100% {
+  0% {
     transform: scaleY(1);
   }
-  6% {
-    transform: scaleY(1.06);
+  7% {
+    transform: scaleY(1.1);
+  }
+  55%,
+  100% {
+    transform: scaleY(1);
   }
 }
 
 @keyframes markPulse {
-  0%,
-  70%,
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  9% {
+    transform: scale(1.55);
+    opacity: 0.95;
+  }
+  60%,
   100% {
     transform: scale(1);
     opacity: 0.4;
   }
-  8% {
+}
+
+/* Status dots breathe, so a panel reads as something live rather than a
+   screenshot. Small amplitude, long cycle, staggered per row. */
+@keyframes dotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
     transform: scale(1.35);
-    opacity: 0.85;
+    opacity: 1;
+  }
+}
+
+/* A soft halo on the one node that carries the meaning. */
+@keyframes haloPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+/* Diffuse warmth behind the product cards. Very low opacity by design — it
+   should register as atmosphere, not as a light show. */
+@keyframes glowBreathe {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* "Pulse" in SecurePulse, breathing. */
+@keyframes textBreathe {
+  0%,
+  100% {
+    opacity: 0.86;
+  }
+  50% {
+    opacity: 1;
   }
 }
 

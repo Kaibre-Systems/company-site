@@ -3,6 +3,7 @@ import {
   Container,
   Heading,
   Prose,
+  Note,
   Section,
   SectionHeader,
   Text,
@@ -103,9 +104,7 @@ export default function WorkPage() {
               size="body"
               className="mt-5"
             />
-            <p className="mt-10 border-l-2 border-border-strong pl-5 text-fine text-fg-subtle">
-              {WORK_LUXURY.confidentiality}
-            </p>
+            <Note className="mt-10">{WORK_LUXURY.confidentiality}</Note>
           </>
         </Container>
       </Section>

@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/content/site";
 import { KaibreWordmark } from "@/components/brand/wordmark";
+import { SecurePulseName } from "@/components/visuals";
 import { cn } from "@/lib/utils";
 
 const ALL_LINKS = [...NAV.products, ...NAV.primary];
@@ -139,7 +140,11 @@ export function SiteHeader() {
                           : "text-fg-muted hover:text-fg",
                       )}
                     >
-                      {item.label}
+                      {item.label === "SecurePulse" ? (
+                        <SecurePulseName />
+                      ) : (
+                        item.label
+                      )}
                     </Link>
                   </li>
                 );
@@ -191,7 +196,13 @@ export function SiteHeader() {
                     onClick={dismiss}
                     className="flex min-h-12 flex-col justify-center rounded-control py-2 text-fg"
                   >
-                    <span className="text-heading-2">{item.label}</span>
+                    <span className="text-heading-2">
+                      {item.label === "SecurePulse" ? (
+                        <SecurePulseName />
+                      ) : (
+                        item.label
+                      )}
+                    </span>
                     <span className="text-small text-fg-subtle">{item.note}</span>
                   </Link>
                 </li>

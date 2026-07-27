@@ -221,14 +221,22 @@ export function ContactForm() {
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <button
-        type="submit"
-        disabled={sending}
-        aria-busy={sending}
-        className="min-h-12 w-full rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
-      >
-        {sending ? "Sending…" : "Send it"}
-      </button>
+      {/* A slow halo behind the submit — it draws the eye once without
+          blinking at the visitor while they are still typing. */}
+      <div className="relative inline-flex w-full sm:w-auto">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -inset-2 rounded-control bg-accent opacity-[0.14] blur-lg motion-safe:animate-[glowBreathe_4.5s_ease-in-out_infinite]"
+        />
+        <button
+          type="submit"
+          disabled={sending}
+          aria-busy={sending}
+          className="relative min-h-12 w-full rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
+        >
+          {sending ? "Sending…" : "Send it"}
+        </button>
+      </div>
     </form>
   );
 }

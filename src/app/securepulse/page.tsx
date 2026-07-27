@@ -3,13 +3,19 @@ import {
   Container,
   Heading,
   Prose,
+  Note,
   Section,
   SectionHeader,
   Text,
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
 import { Callout, WorkflowSteps } from "@/components/modules";
-import { AssessmentPanel, EvidenceLink, VisualFrame } from "@/components/visuals";
+import {
+  AssessmentPanel,
+  EvidenceLink,
+  SecurePulseName,
+  VisualFrame,
+} from "@/components/visuals";
 import {
   SP_DOMAINS,
   SP_EVIDENCE,
@@ -43,7 +49,7 @@ export default function SecurePulsePage() {
           <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
-                SecurePulse
+                <SecurePulseName animate />
                 <span className="ml-3 text-body font-normal text-fg-subtle">
                   {SP_HERO.category}
                 </span>
@@ -77,7 +83,7 @@ export default function SecurePulsePage() {
               heading={SP_JURISDICTION.heading}
               body={SP_JURISDICTION.body}
             />
-            <p className="mt-8 max-w-[56ch] text-fine text-fg-subtle">{SP_JURISDICTION.note}</p>
+            <Note className="mt-8">{SP_JURISDICTION.note}</Note>
           </>
         </Container>
       </Section>

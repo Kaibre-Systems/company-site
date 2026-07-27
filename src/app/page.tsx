@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   Container,
   Heading,
+  Note,
   Prose,
   Section,
   SectionHeader,
@@ -17,6 +18,7 @@ import {
   AssessmentPanel,
   CallOutcomeList,
   Flow,
+  PulseDot,
   ResolutionField,
   VisualFrame,
 } from "@/components/visuals";
@@ -87,9 +89,9 @@ export default function HomePage() {
 
           {/* Grounded in three real shapes of that work — one line, not a
               second three-column block competing with the diagram above. */}
-          <p className="mt-10 max-w-[70ch] text-fine text-fg-subtle">
+          <Note className="mt-10 max-w-[70ch]">
             {THESIS.examples.map((e) => e.note).join(" ")}
-          </p>
+          </Note>
         </Container>
       </Section>
 
@@ -118,7 +120,7 @@ export default function HomePage() {
           </dl>
 
           <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-[52ch] text-fine text-fg-subtle">{PROOF.confidentiality}</p>
+            <Note className="max-w-[52ch]">{PROOF.confidentiality}</Note>
             <ArrowLink href={PROOF.link.href} className="shrink-0">
               {PROOF.link.label}
             </ArrowLink>
@@ -127,8 +129,8 @@ export default function HomePage() {
       </Section>
 
       {/* 4 — Products ------------------------------------------------------ */}
-      <Section surface="ink" id="products">
-        <Container>
+      <Section surface="ink" id="products" className="relative overflow-hidden">
+        <Container className="relative">
           <>
             <SectionHeader
               heading={PRODUCTS.heading}
@@ -136,7 +138,15 @@ export default function HomePage() {
             />
           </>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-5">
+          <div className="relative mt-12">
+            {/* Warmth radiating from behind the pair. Centred low, on the
+                panels rather than the copy, and faint by design — it should
+                register as atmosphere, never as a tint over text. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute bottom-0 left-1/2 h-[22rem] w-[52rem] max-w-[110%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,var(--color-brand-500),transparent)] opacity-[0.055] blur-2xl motion-safe:animate-[glowBreathe_9s_ease-in-out_infinite]"
+            />
+            <div className="relative grid gap-6 lg:grid-cols-5">
             <div className="lg:col-span-3">
               <ProductCard
                 {...PRODUCTS.items[0]}
@@ -157,6 +167,7 @@ export default function HomePage() {
                   </VisualFrame>
                 }
               />
+            </div>
             </div>
           </div>
 
@@ -266,9 +277,9 @@ export default function HomePage() {
             </h3>
             <Text className="mt-4 max-w-prose">{COMPANY.credibility.body}</Text>
             <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-              {COMPANY.credibility.domains.map((d) => (
+              {COMPANY.credibility.domains.map((d, i) => (
                 <li key={d} className="flex items-center gap-2.5 text-body text-fg">
-                  <span aria-hidden className="size-1.5 rounded-full bg-accent" />
+                  <PulseDot delay={i * 400} />
                   {d}
                 </li>
               ))}

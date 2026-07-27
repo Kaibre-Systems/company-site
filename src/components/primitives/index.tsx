@@ -194,6 +194,30 @@ export function SectionHeader({
   );
 }
 
+/**
+ * A qualifying aside — scope limits, confidentiality notes, the small print
+ * that narrows a claim. One treatment everywhere: a left rule, fine type,
+ * indented off the main column so the eye can skip it or find it deliberately.
+ */
+export function Note({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p
+      className={cn(
+        "max-w-[62ch] border-l-2 border-border-strong pl-5 text-fine text-fg-subtle",
+        className,
+      )}
+    >
+      {children}
+    </p>
+  );
+}
+
 /** Hairline divider. Decorative by default. */
 export function Rule({ className }: { className?: string }) {
   return <hr aria-hidden className={cn("border-0 h-px bg-border", className)} />;

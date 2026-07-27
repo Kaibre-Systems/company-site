@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Check, Minus } from "lucide-react";
 import { Heading, Text } from "@/components/primitives";
+import { SecurePulseName } from "@/components/visuals";
 import { cn } from "@/lib/utils";
 
 /* ==========================================================================
@@ -54,7 +55,7 @@ export function FitList({
               aria-hidden
               className={cn(
                 "mt-1 size-4 shrink-0",
-                tone === "yes" ? "text-accent" : "text-fg-subtle",
+                tone === "yes" ? "text-success" : "text-fg-subtle",
               )}
             />
             <span className="text-body text-fg-muted">{item}</span>
@@ -95,8 +96,8 @@ export function ProductCard({
           <div>
             {/* The product name is the thing being introduced, so it is the
                 largest type here — the tagline supports it, not the reverse. */}
-            <h3 className="text-heading-1 font-medium text-fg transition-colors duration-150 group-hover:text-accent">
-              {name}
+            <h3 className="text-heading-1 font-medium text-fg">
+              {name === "SecurePulse" ? <SecurePulseName animate /> : name}
             </h3>
             <p className="mt-1 text-small text-fg-subtle">{category}</p>
           </div>

@@ -81,14 +81,14 @@ export function ResolutionField({ className }: { className?: string }) {
           style={{
             // Entrance sweeps once; the scan then loops on the same axis, so
             // the two never fight each other.
-            animationDelay: `${i * 26}ms, ${1400 + i * 70}ms`,
-            animationDuration: "620ms, 7000ms",
+            animationDelay: `${i * 26}ms, ${1400 + i * 105}ms`,
+            animationDuration: "620ms, 9000ms",
           }}
           className={cn(
             "[transform-box:fill-box] [transform-origin:bottom]",
             i === PEAK
-              ? "fill-accent motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both,scanPeak_7s_ease-in-out_infinite]"
-              : "fill-fg-subtle/55 motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both,scan_7s_ease-in-out_infinite]",
+              ? "fill-accent motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both,scanPeak_9s_ease-in-out_infinite]"
+              : "fill-fg-subtle/55 motion-safe:animate-[tick_620ms_cubic-bezier(0.16,1,0.3,1)_both,scan_9s_ease-in-out_infinite]",
           )}
         />
       ))}
@@ -105,11 +105,93 @@ export function ResolutionField({ className }: { className?: string }) {
           r="11"
           fill="none"
           strokeWidth="1"
-          style={{ animationDelay: `${1400 + PEAK * 70}ms`, transformOrigin: `${peakX}px ${peakY}px` }}
-          className="stroke-accent/40 motion-safe:animate-[markPulse_7s_ease-in-out_infinite]"
+          style={{ animationDelay: `${1400 + PEAK * 105}ms`, transformOrigin: `${peakX}px ${peakY}px` }}
+          className="stroke-accent/40 motion-safe:animate-[markPulse_9s_ease-in-out_infinite]"
         />
       </g>
     </svg>
+  );
+}
+
+/* ==========================================================================
+   PulseDot — the site's one "this is live" signal
+   --------------------------------------------------------------------------
+   Used only where a dot stands for state that is genuinely in motion: a
+   system's readings, a decision point, a domain we work in. Not for bullets.
+   ========================================================================== */
+
+const DOT_TONE = {
+  positive: "bg-signal-400",
+  attention: "bg-accent",
+  neutral: "bg-fg-subtle",
+  accent: "bg-accent",
+} as const;
+
+export function PulseDot({
+  tone = "accent",
+  halo = false,
+  delay = 0,
+  size = "sm",
+  className,
+}: {
+  tone?: keyof typeof DOT_TONE;
+  /** Adds an expanding ring. Reserve it for the single node that matters. */
+  halo?: boolean;
+  delay?: number;
+  size?: "sm" | "md";
+  className?: string;
+}) {
+  const px = size === "md" ? "size-2" : "size-1.5";
+  return (
+    <span className={cn("relative inline-flex shrink-0", px, className)} aria-hidden>
+      {halo ? (
+        <span
+          style={{ animationDelay: `${delay}ms` }}
+          className={cn(
+            "absolute inset-0 rounded-full motion-safe:animate-[haloPulse_3.6s_ease-out_infinite]",
+            DOT_TONE[tone],
+          )}
+        />
+      ) : null}
+      <span
+        style={{ animationDelay: `${delay}ms` }}
+        className={cn(
+          "relative inline-flex rounded-full motion-safe:animate-[dotPulse_3.6s_ease-in-out_infinite]",
+          px,
+          DOT_TONE[tone],
+        )}
+      />
+    </span>
+  );
+}
+
+/* ==========================================================================
+   SecurePulseName — the product name, with its pulse
+   --------------------------------------------------------------------------
+   "Pulse" carries the accent and breathes. Only the large instances animate;
+   in nav and footer the colour alone does the work, so the chrome stays
+   still. The text remains one continuous string for screen readers.
+   ========================================================================== */
+
+export function SecurePulseName({
+  animate = false,
+  className,
+}: {
+  animate?: boolean;
+  className?: string;
+}) {
+  return (
+    <span className={className}>
+      Secure
+      <span
+        className={cn(
+          "text-accent",
+          animate && "motion-safe:animate-[textBreathe_3.6s_ease-in-out_infinite]",
+        )}
+      >
+        Pulse
+      </span>
+    </span>
   );
 }
 
@@ -146,12 +228,11 @@ export function Flow({
         {stages.map((s, i) => (
           <li key={s.label} className="col-span-full sm:col-span-1">
             <div aria-hidden className="flex items-center">
-              <span
-                className={cn(
-                  "size-2 shrink-0 rounded-full",
-                  s.accent ? "bg-accent" : "bg-border-strong",
-                )}
-              />
+              {s.accent ? (
+                <PulseDot tone="accent" size="md" halo />
+              ) : (
+                <span className="size-2 shrink-0 rounded-full bg-border-strong" />
+              )}
               <span
                 className={cn(
                   "h-px flex-1",
@@ -173,13 +254,7 @@ export function Flow({
         <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-2 border-t border-border pt-5">
           {outcomes.map((o, i) => (
             <li key={o} className="flex items-center gap-2 text-small text-fg-muted">
-              <span
-                aria-hidden
-                className={cn(
-                  "size-1.5 rounded-full",
-                  i === 0 ? "bg-signal-400" : "bg-fg-subtle",
-                )}
-              />
+              <PulseDot tone={i === 0 ? "positive" : "neutral"} delay={i * 260} />
               {o}
             </li>
           ))}
@@ -236,16 +311,11 @@ export function EvidenceLink({ className }: { className?: string }) {
    the state and the word names it, so meaning never rests on colour alone.
    ========================================================================== */
 
-const TONE = {
-  positive: "bg-signal-400",
-  attention: "bg-accent",
-  neutral: "bg-fg-subtle",
-} as const;
-
 export interface StatusRow {
   label: string;
   status: string;
-  tone: keyof typeof TONE;
+  /** Reuses PulseDot's tones so the two never drift apart. */
+  tone: "positive" | "attention" | "neutral";
 }
 
 export function StatusList({
@@ -262,17 +332,14 @@ export function StatusList({
       <p className="text-small text-fg-subtle">{caption}</p>
 
       <ul className="mt-5 space-y-4">
-        {rows.map((row) => (
+        {rows.map((row, i) => (
           <li
             key={row.label}
             className="grid grid-cols-[1fr_auto] items-baseline gap-4"
           >
             <span className="text-body text-fg">{row.label}</span>
             <span className="flex w-[7.5rem] items-center gap-2 text-small text-fg-muted">
-              <span
-                aria-hidden
-                className={cn("size-1.5 shrink-0 rounded-full", TONE[row.tone])}
-              />
+              <PulseDot tone={row.tone} delay={i * 320} />
               {row.status}
             </span>
           </li>
