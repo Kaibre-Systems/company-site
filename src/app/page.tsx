@@ -19,7 +19,7 @@ import {
   CallOutcomeList,
   Flow,
   PulseDot,
-  ResolutionField,
+  MonitoredSignal,
   VisualFrame,
 } from "@/components/visuals";
 import {
@@ -60,7 +60,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <ResolutionField className="mx-auto max-w-[26rem] lg:max-w-none" />
+            <MonitoredSignal className="mx-auto max-w-[26rem] lg:max-w-none" />
           </div>
 
           {/* The three modes, stated plainly under the fold line. */}
@@ -144,7 +144,7 @@ export default function HomePage() {
                 register as atmosphere, never as a tint over text. */}
             <div
               aria-hidden
-              className="pointer-events-none absolute bottom-0 left-1/2 h-[22rem] w-[52rem] max-w-[110%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,var(--color-brand-500),transparent)] opacity-[0.055] blur-2xl motion-safe:animate-[glowBreathe_9s_ease-in-out_infinite]"
+              className="pointer-events-none absolute bottom-[-4rem] left-1/2 h-[34rem] w-[70rem] max-w-[130%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,var(--color-brand-500),transparent)] blur-2xl motion-safe:animate-[glowSection_7s_ease-in-out_infinite]"
             />
             <div className="relative grid gap-6 lg:grid-cols-5">
             <div className="lg:col-span-3">

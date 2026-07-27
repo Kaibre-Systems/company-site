@@ -244,106 +244,75 @@
   }
 }
 
-/* Hero field.
-   Ticks rise once on load, then a slow scan travels left to right forever,
-   lifting each reading as it passes. The cycle is long and the lift small, so
-   it reads as a live instrument rather than something demanding attention. */
-@keyframes tick {
+/* Hero trace: travels exactly one period, so the loop has no seam. */
+@keyframes trace {
   from {
-    transform: scaleY(0);
-    opacity: 0;
+    transform: translateX(0);
   }
   to {
-    transform: scaleY(1);
-    opacity: 1;
+    transform: translateX(-560px);
   }
 }
 
-@keyframes scan {
-  0% {
-    transform: scaleY(1);
-    opacity: 0.5;
-  }
-  7% {
-    transform: scaleY(1.42);
-    opacity: 1;
-  }
-  /* Long, eased release — the lift falls away over most of the cycle, so a
-     wave is always somewhere in the field. */
-  55%,
-  100% {
-    transform: scaleY(1);
-    opacity: 0.5;
-  }
-}
 
-@keyframes scanPeak {
-  0% {
-    transform: scaleY(1);
-  }
-  7% {
-    transform: scaleY(1.1);
-  }
-  55%,
-  100% {
-    transform: scaleY(1);
-  }
-}
 
-@keyframes markPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-  9% {
-    transform: scale(1.55);
-    opacity: 0.95;
-  }
-  60%,
-  100% {
-    transform: scale(1);
-    opacity: 0.4;
-  }
-}
+
 
 /* Status dots breathe, so a panel reads as something live rather than a
    screenshot. Small amplitude, long cycle, staggered per row. */
 @keyframes dotPulse {
   0%,
   100% {
-    transform: scale(1);
-    opacity: 0.9;
+    transform: scale(0.35);
+    opacity: 0.45;
   }
   50% {
-    transform: scale(1.35);
+    transform: scale(1.25);
     opacity: 1;
   }
 }
 
 /* A soft halo on the one node that carries the meaning. */
 @keyframes haloPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.35;
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
   }
-  50% {
-    transform: scale(2.1);
+  70%,
+  100% {
+    transform: scale(3.4);
     opacity: 0;
   }
 }
 
-/* Diffuse warmth behind the product cards. Very low opacity by design — it
-   should register as atmosphere, not as a light show. */
-@keyframes glowBreathe {
+/* Glow ranges are declared in full here, not in a utility class: a keyframe
+   that animates `opacity` overrides any `opacity-*` set alongside it, so the
+   peak has to live in the keyframe or it silently runs far too bright.
+   Two ranges, because a section halo and a button halo want different ceilings. */
+
+/* Behind the product pair. Near-silent at the trough so the swell registers. */
+@keyframes glowSection {
   0%,
   100% {
-    opacity: 0.5;
-    transform: scale(1);
+    opacity: 0.015;
+    transform: scale(0.86);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.08);
+    opacity: 0.13;
+    transform: scale(1.14);
+  }
+}
+
+/* Behind a primary action. */
+@keyframes glowButton {
+  0%,
+  100% {
+    opacity: 0.06;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 0.26;
+    transform: scale(1.03);
   }
 }
 
@@ -351,20 +320,10 @@
 @keyframes textBreathe {
   0%,
   100% {
-    opacity: 0.86;
+    opacity: 0.55;
   }
   50% {
     opacity: 1;
   }
 }
 
-@keyframes markIn {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}

@@ -25,15 +25,38 @@ export function Button({
   variant = "primary",
   className,
   fullWidth = false,
+  halo = true,
 }: {
   href: string;
   children: ReactNode;
   variant?: Variant;
   className?: string;
   fullWidth?: boolean;
+  /** Primary actions glow by default; chrome (the navbar) does not. */
+  halo?: boolean;
 }) {
-  const classes = cn(BASE, VARIANTS[variant], fullWidth && "w-full", className);
+  const classes = cn(
+    BASE,
+    VARIANTS[variant],
+    variant === "primary" && "relative",
+    fullWidth && "w-full",
+    className,
+  );
   const external = href.startsWith("http") || href.startsWith("mailto:");
+
+  const inner = (
+    <>
+      {/* Primary actions carry a slow halo — visible once, never blinking.
+          The navbar action deliberately opts out via `halo={false}`. */}
+      {variant === "primary" && halo ? (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -inset-2 -z-10 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_5s_ease-in-out_infinite]"
+        />
+      ) : null}
+      {children}
+    </>
+  );
 
   if (external) {
     return (
@@ -44,14 +67,14 @@ export function Button({
           ? { target: "_blank", rel: "noreferrer noopener" }
           : {})}
       >
-        {children}
+        {inner}
       </a>
     );
   }
 
   return (
     <Link href={href} className={classes}>
-      {children}
+      {inner}
     </Link>
   );
 }

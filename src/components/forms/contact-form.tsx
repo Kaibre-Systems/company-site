@@ -17,11 +17,36 @@ import { cn } from "@/lib/utils";
  */
 
 const TOPICS = [
-  { value: "securepulse", label: "SecurePulse" },
-  { value: "kai", label: "kAI" },
-  { value: "partnership", label: "A partnership" },
-  { value: "commissioned", label: "A system you would build for us" },
-  { value: "other", label: "Something else" },
+  {
+    value: "securepulse",
+    label: "SecurePulse",
+    placeholder:
+      "e.g. We assess physical security across a dozen sites in Abu Dhabi and Dubai. Two senior assessors spend about three weeks per site walking it, writing findings, and producing the report — so each site gets covered once a year at best.",
+  },
+  {
+    value: "kai",
+    label: "kAI",
+    placeholder:
+      "e.g. We get around 400 inbound enquiries a month and two people to work them. The first forty get called back the same day; the rest go cold before anyone reaches them.",
+  },
+  {
+    value: "partnership",
+    label: "A partnership",
+    placeholder:
+      "e.g. We have deep domain expertise and a route to market in a regulated sector, and a product we think should exist. We are looking for the engineering side of that rather than an agency.",
+  },
+  {
+    value: "commissioned",
+    label: "A system you would build for us",
+    placeholder:
+      "e.g. Our whole operation runs through one workflow that three people hold in their heads and a spreadsheet. It decides what we buy and at what price, and nothing on the market fits how we actually work.",
+  },
+  {
+    value: "other",
+    label: "Something else",
+    placeholder:
+      "e.g. Describe the work — what it does, who does it today, and what it costs when it goes wrong. Whatever detail you have is enough to start.",
+  },
 ] as const;
 
 type Topic = (typeof TOPICS)[number]["value"];
@@ -163,6 +188,8 @@ export function ContactForm() {
   }
 
   const sending = status === "sending";
+  const placeholder =
+    TOPICS.find((t) => t.value === topic)?.placeholder ?? TOPICS[4].placeholder;
 
   return (
     <form noValidate onSubmit={onSubmit} className="space-y-6">
@@ -211,7 +238,7 @@ export function ContactForm() {
           name="work"
           rows={6}
           className={cn(FIELD, "resize-y")}
-          placeholder="e.g. Our team runs physical security assessments across a dozen sites. Two senior assessors spend about three weeks per site walking it, writing findings, and producing the report — so we can only cover each site once a year."
+          placeholder={placeholder}
         />
       </Field>
 
@@ -226,7 +253,7 @@ export function ContactForm() {
       <div className="relative inline-flex w-full sm:w-auto">
         <span
           aria-hidden
-          className="pointer-events-none absolute -inset-2 rounded-control bg-accent opacity-[0.14] blur-lg motion-safe:animate-[glowBreathe_4.5s_ease-in-out_infinite]"
+          className="pointer-events-none absolute -inset-2 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_5s_ease-in-out_infinite]"
         />
         <button
           type="submit"
