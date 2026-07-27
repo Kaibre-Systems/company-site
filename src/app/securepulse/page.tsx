@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   Container,
-  Eyebrow,
   Heading,
   Prose,
   Section,
@@ -43,9 +42,11 @@ export default function SecurePulsePage() {
         <Container>
           <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <div>
-              <Eyebrow>{SP_HERO.eyebrow}</Eyebrow>
-              <p className="mt-4 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-                {SP_HERO.category}
+              <p className="text-heading-1 font-medium text-fg">
+                SecurePulse
+                <span className="ml-3 text-body font-normal text-fg-subtle">
+                  {SP_HERO.category}
+                </span>
               </p>
               <Heading level={1} size="display-1" className="mt-5 max-w-[18ch]">
                 {SP_HERO.headline}
@@ -70,7 +71,6 @@ export default function SecurePulsePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={SP_JURISDICTION.eyebrow}
               heading={SP_JURISDICTION.heading}
               body={SP_JURISDICTION.body}
             />
@@ -86,7 +86,6 @@ export default function SecurePulsePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={SP_WORKFLOW.eyebrow}
               heading={SP_WORKFLOW.heading}
             />
           </>
@@ -100,7 +99,6 @@ export default function SecurePulsePage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
             <div>
               <SectionHeader
-                eyebrow={SP_DOMAINS.eyebrow}
                 heading={SP_DOMAINS.heading}
                 body={SP_DOMAINS.body}
               />
@@ -129,7 +127,6 @@ export default function SecurePulsePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={SP_EVIDENCE.eyebrow}
               heading={SP_EVIDENCE.heading}
               body={SP_EVIDENCE.body}
             />
@@ -155,7 +152,7 @@ export default function SecurePulsePage() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <Callout eyebrow={SP_HUMAN.eyebrow} heading={SP_HUMAN.heading}>
+              <Callout heading={SP_HUMAN.heading}>
                 {SP_HUMAN.body.map((p) => (
                   <Text key={p}>{p}</Text>
                 ))}
@@ -163,7 +160,6 @@ export default function SecurePulsePage() {
             </div>
 
             <div>
-              <Eyebrow>{SP_REPORT.eyebrow}</Eyebrow>
               <Heading level={2} size="heading-1" className="mt-4">
                 {SP_REPORT.heading}
               </Heading>

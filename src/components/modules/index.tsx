@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Check, Minus } from "lucide-react";
-import { Card, Eyebrow, Heading, Text } from "@/components/primitives";
+import { Card, Heading, Text } from "@/components/primitives";
 import { cn } from "@/lib/utils";
 
 /* ==========================================================================
@@ -19,7 +19,7 @@ export function WorkflowSteps({ steps }: { steps: readonly Step[] }) {
     <ol className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {steps.map((step) => (
         <li key={step.n}>
-          <p className="font-mono text-label text-accent-quiet">{step.n}</p>
+          <p className="text-small font-medium text-accent">{step.n}</p>
           <Heading level={3} size="heading-1" className="mt-3">
             {step.title}
           </Heading>
@@ -46,9 +46,7 @@ export function FitList({
   const Icon = tone === "yes" ? Check : Minus;
   return (
     <div>
-      <h3 className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-        {title}
-      </h3>
+      <h3 className="text-small font-medium text-fg-subtle">{title}</h3>
       <ul className="mt-4 space-y-3">
         {items.map((item) => (
           <li key={item} className="flex gap-3">
@@ -97,9 +95,7 @@ export function ProductCard({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-heading-2 font-medium text-fg">{name}</p>
-            <p className="mt-1 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-              {category}
-            </p>
+            <p className="mt-1 text-small text-fg-subtle">{category}</p>
           </div>
           <ArrowUpRight
             aria-hidden
@@ -156,12 +152,10 @@ export function IllustrationFrame({
    ========================================================================== */
 
 export function Callout({
-  eyebrow,
   heading,
   children,
   className,
 }: {
-  eyebrow?: string;
   heading?: string;
   children: ReactNode;
   className?: string;
@@ -173,7 +167,6 @@ export function Callout({
         className,
       )}
     >
-      {eyebrow ? <Eyebrow className="mb-3">{eyebrow}</Eyebrow> : null}
       {heading ? (
         <Heading level={2} size="heading-1">
           {heading}

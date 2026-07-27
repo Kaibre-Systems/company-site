@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   Container,
-  Eyebrow,
   Heading,
   Prose,
   Section,
@@ -18,7 +17,7 @@ import {
 import {
   AssessmentPanel,
   CallOutcomeList,
-  DatumLine,
+  HeroMark,
 } from "@/components/visuals";
 import {
   COMMISSIONED,
@@ -40,9 +39,9 @@ export default function HomePage() {
   return (
     <>
       {/* 1 — Hero -------------------------------------------------------- */}
-      <Section surface="ink" space="flush" className="pb-16 pt-28 sm:pb-20 sm:pt-36">
+      <Section surface="ink" space="flush" className="pb-20 pt-28 sm:pb-24 sm:pt-32">
         <Container>
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end">
+          <div className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-y-14">
             <div>
               <Heading level={1} size="display-1" className="max-w-[46rem]">
                 {HERO.headline}
@@ -58,12 +57,18 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Three modes of work, previewed before the visitor scrolls. */}
-            <DatumLine
-              modes={HERO.modes}
-              className="lg:grid-cols-1 lg:gap-y-6 lg:pb-2"
-            />
+            <HeroMark className="mx-auto -my-6 max-w-[15rem] sm:max-w-[18rem] lg:my-0 lg:max-w-none" />
           </div>
+
+          {/* The three modes, stated plainly under the fold line. */}
+          <dl className="mt-16 grid gap-x-10 gap-y-8 border-t border-border pt-10 sm:grid-cols-3">
+            {HERO.modes.map((m) => (
+              <div key={m.label}>
+                <dt className="text-heading-2 font-medium text-fg">{m.label}</dt>
+                <dd className="mt-2 text-small text-fg-muted">{m.note}</dd>
+              </div>
+            ))}
+          </dl>
         </Container>
       </Section>
 
@@ -72,7 +77,6 @@ export default function HomePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={THESIS.eyebrow}
               heading={THESIS.heading}
               body={THESIS.body}
             />
@@ -81,9 +85,7 @@ export default function HomePage() {
           <ul className="mt-14 grid gap-8 border-t border-border pt-10 sm:grid-cols-3">
             {THESIS.examples.map((item) => (
               <li key={item.label}>
-                <h3 className="font-mono text-label uppercase tracking-[0.085em] text-fg">
-                  {item.label}
-                </h3>
+                <h3 className="text-heading-2 font-medium text-fg">{item.label}</h3>
                 <Text size="small" className="mt-3">
                   {item.note}
                 </Text>
@@ -97,7 +99,6 @@ export default function HomePage() {
       <Section surface="paper">
         <Container>
           <SectionHeader
-            eyebrow={PROOF.eyebrow}
             heading={PROOF.heading}
             body={PROOF.body}
           />
@@ -134,7 +135,6 @@ export default function HomePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={PRODUCTS.eyebrow}
               heading={PRODUCTS.heading}
               body={PRODUCTS.body}
             />
@@ -175,7 +175,6 @@ export default function HomePage() {
           <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
             <div>
               <SectionHeader
-                eyebrow={COMMISSIONED.eyebrow}
                 heading={COMMISSIONED.heading}
                 body={COMMISSIONED.body}
               />
@@ -206,7 +205,6 @@ export default function HomePage() {
       <Section surface="ink" space="tight" className="border-t border-border">
         <Container size="prose">
           <>
-            <Eyebrow className="mb-4">{PARTNERSHIPS.eyebrow}</Eyebrow>
             <Heading level={2} size="heading-1">
               {PARTNERSHIPS.heading}
             </Heading>
@@ -225,7 +223,6 @@ export default function HomePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={HOW_WE_WORK.eyebrow}
               heading={HOW_WE_WORK.heading}
             />
           </>
@@ -251,14 +248,13 @@ export default function HomePage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={COMPANY.eyebrow}
               heading={COMPANY.heading}
               body={COMPANY.body}
             />
 
             {/* Founder background — never a customer or endorsement claim. */}
             <div className="mt-12 max-w-prose border-t border-border-strong pt-8">
-              <h3 className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+              <h3 className="text-small font-medium text-fg-subtle">
                 {COMPANY.credibility.label}
               </h3>
               <Text className="mt-4">{COMPANY.credibility.body}</Text>

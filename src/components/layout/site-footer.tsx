@@ -25,7 +25,7 @@ export function SiteFooter() {
 
           {FOOTER_GROUPS.map((group) => (
             <nav key={group.title} aria-label={group.title}>
-              <h2 className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+              <h2 className="text-small font-medium text-fg-subtle">
                 {group.title}
               </h2>
               <ul className="mt-4 space-y-2">

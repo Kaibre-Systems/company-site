@@ -56,6 +56,12 @@ Two surfaces, one token vocabulary. Each section declares `data-surface="ink" | 
 
 `cn()` in `src/lib/utils.ts` extends `tailwind-merge` with the custom scale. Without that, `text-display-1` and `text-fg` are treated as the same class group and the type scale is silently dropped.
 
+### Labels
+
+There are no eyebrow labels. Small uppercase kickers above every heading added
+reading load without adding information — headings carry their own meaning, and
+supporting labels are sentence case at body weight.
+
 ### Typography
 
 Three Google variable families via `next/font/google`, self-hosted at build time
@@ -84,9 +90,19 @@ The two dollar figures on the home and work pages (US$10,000–US$500,000 per it
 
 ## Contact delivery
 
-No mail provider is configured. The form validates client-side and then hands a pre-filled message to the visitor's mail client via `mailto:`; the address is also shown in plain text and repeated in the confirmation state.
+Three layers, each catching the one before it:
 
-To move to server-side delivery: post the same fields to a route handler and replace `buildMailto` in `src/components/forms/contact-form.tsx`. The markup does not need to change.
+1. **`POST /api/contact`** sends via Resend when `RESEND_API_KEY` is set.
+2. If that fails for any reason — no key, network, Resend error — the client
+   hands a pre-filled message to the visitor's mail app.
+3. The address is shown in plain text regardless, because a mail app that does
+   not open is silent. The visitor is never left with nothing.
+
+Copy `.env.example` to `.env.local` and set the same values in Vercel. Without a
+key nothing breaks; the form simply falls through to layers 2 and 3.
+
+Spam handling: honeypot field, minimum time-on-form, server-side validation, and
+an in-memory per-IP rate limit (5/hour). No CAPTCHA.
 
 ## Redirects
 

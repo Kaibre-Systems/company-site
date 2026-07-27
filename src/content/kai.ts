@@ -7,7 +7,6 @@
  */
 
 export const KAI_HERO = {
-  eyebrow: "kAI — a Kaibre product",
   category: "Outbound voice agent",
   headline: "Calls the list. Flags the ones worth your time.",
   body: "kAI places outbound qualification calls on your own number, holds a natural conversation from the script your team agreed, collects the answers that decide whether a lead is real, and classifies each call so your people spend their hours on the opportunities that justify them.",
@@ -16,7 +15,6 @@ export const KAI_HERO = {
 } as const;
 
 export const KAI_WORKFLOW = {
-  eyebrow: "How it runs",
   heading: "Your process, before a single call goes out.",
   steps: [
     {
@@ -43,7 +41,6 @@ export const KAI_WORKFLOW = {
 } as const;
 
 export const KAI_VALUE = {
-  eyebrow: "What it changes",
   heading: "The expensive part of outbound is the calls before the good one.",
   body: "A qualification call is cheap to hold and expensive to skip. kAI carries the volume of the list so that the conversations reaching your team have already answered the questions that decide whether they are worth having.",
   columns: [
@@ -63,7 +60,6 @@ export const KAI_VALUE = {
 } as const;
 
 export const KAI_FAQ = {
-  eyebrow: "Questions",
   heading: "Common questions.",
   items: [
     {

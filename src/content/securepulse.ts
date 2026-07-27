@@ -13,7 +13,6 @@
  */
 
 export const SP_HERO = {
-  eyebrow: "SecurePulse — a Kaibre product",
   category: "Physical security assessment",
   headline: "Site assessments that show their working.",
   body: "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment. It builds the checklist for the site's emirate and sector, captures photo evidence on the walk, grades findings by severity, and produces a consulting-standard report that a named assessor signs off.",
@@ -21,7 +20,6 @@ export const SP_HERO = {
 } as const;
 
 export const SP_JURISDICTION = {
-  eyebrow: "Why it is built this way",
   heading: "In the UAE, location decides the rulebook.",
   body: [
     "Physical security requirements in the UAE are set per emirate, not federally. A site in Dubai answers to a different authority stack than the same operator's site in Abu Dhabi or Sharjah, and critical infrastructure adds another layer again.",
@@ -31,7 +29,6 @@ export const SP_JURISDICTION = {
 } as const;
 
 export const SP_WORKFLOW = {
-  eyebrow: "The workflow",
   heading: "From site walk to signed report.",
   steps: [
     {
@@ -63,7 +60,6 @@ export const SP_WORKFLOW = {
 } as const;
 
 export const SP_DOMAINS = {
-  eyebrow: "Coverage",
   heading: "Ten domains, assessed consistently.",
   body: "Every assessment is organised across the same domains, so findings can be compared between sites and across time.",
   items: [
@@ -81,7 +77,6 @@ export const SP_DOMAINS = {
 } as const;
 
 export const SP_EVIDENCE = {
-  eyebrow: "Evidence discipline",
   heading: "Every regulatory claim carries its confidence.",
   body: [
     "UAE physical security guidance is unevenly published. Some requirements are set out in enacted law; some are only visible through approved installers and industry sources; some are genuinely unresolved.",
@@ -108,7 +103,6 @@ export const SP_EVIDENCE = {
 } as const;
 
 export const SP_HUMAN = {
-  eyebrow: "Responsibility",
   heading: "SecurePulse drafts. People decide.",
   body: [
     "SecurePulse is professional advisory tooling. It is not a regulatory audit, a legal opinion, or a certification, and it does not replace a qualified security assessor.",
@@ -117,7 +111,6 @@ export const SP_HUMAN = {
 } as const;
 
 export const SP_REPORT = {
-  eyebrow: "The deliverable",
   heading: "A report a consultant would recognise.",
   body: "SecurePulse produces the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
   sections: [

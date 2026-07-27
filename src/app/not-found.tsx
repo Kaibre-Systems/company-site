@@ -5,9 +5,6 @@ export default function NotFound() {
   return (
     <Section surface="ink" space="flush" className="pb-32 pt-40">
       <Container size="prose">
-        <p className="font-mono text-label uppercase tracking-[0.085em] text-accent-quiet">
-          404
-        </p>
         <Heading level={1} size="display-2" className="mt-4">
           That page isn&apos;t here.
         </Heading>

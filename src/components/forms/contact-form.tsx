@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import { SITE } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -8,13 +8,12 @@ import { cn } from "@/lib/utils";
 /**
  * Contact form.
  *
- * No mail provider is configured for this repository, so submission composes a
- * pre-filled message and hands off to the visitor's mail client. The address is
- * also shown in plain text and repeated in the confirmation state, so there is
- * always a working path even if no mail client is registered.
- *
- * To move to server-side delivery later: post these same fields to a route
- * handler and swap `buildMailto` for the fetch. The markup does not need to change.
+ * Three layers, each catching the one before it:
+ *   1. POST to /api/contact — sends via Resend when RESEND_API_KEY is set.
+ *   2. If that fails for any reason, hand the message to the visitor's mail app.
+ *   3. Show the address in plain text either way, because a mail app that does
+ *      not open is silent — the visitor must always be left with something
+ *      they can copy.
  */
 
 const TOPICS = [
@@ -27,6 +26,15 @@ const TOPICS = [
 
 type Topic = (typeof TOPICS)[number]["value"];
 type Errors = Partial<Record<"name" | "email" | "company" | "work", string>>;
+type Status = "idle" | "sending" | "sent" | "fallback";
+
+interface Fields {
+  name: string;
+  email: string;
+  company: string;
+  topic: Topic;
+  work: string;
+}
 
 const FIELD =
   "w-full rounded-control border border-border bg-surface-raised px-4 py-3 text-body text-fg " +
@@ -36,60 +44,56 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
 }
 
-function buildMailto(fields: {
-  name: string;
-  email: string;
-  company: string;
-  topic: Topic;
-  work: string;
-}) {
-  const topicLabel =
-    TOPICS.find((t) => t.value === fields.topic)?.label ?? "Enquiry";
-  const subject = `${topicLabel} — ${fields.company}`;
+function buildMailto(f: Fields) {
+  const topic = TOPICS.find((t) => t.value === f.topic)?.label ?? "Enquiry";
   const body = [
-    `Name: ${fields.name}`,
-    `Email: ${fields.email}`,
-    `Company: ${fields.company}`,
-    `About: ${topicLabel}`,
+    `Name: ${f.name}`,
+    `Email: ${f.email}`,
+    `Company: ${f.company}`,
+    `About: ${topic}`,
     "",
-    fields.work,
+    f.work,
   ].join("\n");
-
   return `mailto:${SITE.email}?subject=${encodeURIComponent(
-    subject,
+    `${topic} — ${f.company}`,
   )}&body=${encodeURIComponent(body)}`;
 }
 
 export function ContactForm() {
   const params = useSearchParams();
-  const initialTopic = (params.get("topic") ?? "") as Topic;
-  const validInitial = TOPICS.some((t) => t.value === initialTopic);
+  const initial = (params.get("topic") ?? "") as Topic;
 
-  const [topic, setTopic] = useState<Topic>(validInitial ? initialTopic : "other");
+  const [topic, setTopic] = useState<Topic>(
+    TOPICS.some((t) => t.value === initial) ? initial : "other",
+  );
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
   const [startedAt] = useState(() => Date.now());
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
 
     /* Honeypot + minimum time on form. Bots fill everything instantly. */
-    if (String(data.get("website") ?? "") !== "") return;
-    if (Date.now() - startedAt < 2500) return;
+    const website = String(data.get("website") ?? "");
+    if (website !== "" || Date.now() - startedAt < 2500) return;
 
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const company = String(data.get("company") ?? "").trim();
-    const work = String(data.get("work") ?? "").trim();
+    const fields: Fields = {
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      company: String(data.get("company") ?? "").trim(),
+      topic,
+      work: String(data.get("work") ?? "").trim(),
+    };
 
     const next: Errors = {};
-    if (!name) next.name = "Please add your name.";
-    if (!email) next.email = "Please add an email address.";
-    else if (!isEmail(email)) next.email = "That does not look like an email address.";
-    if (!company) next.company = "Please add your company.";
-    if (work.length < 40)
+    if (!fields.name) next.name = "Please add your name.";
+    if (!fields.email) next.email = "Please add an email address.";
+    else if (!isEmail(fields.email))
+      next.email = "That does not look like an email address.";
+    if (!fields.company) next.company = "Please add your company.";
+    if (fields.work.length < 40)
       next.work = "A sentence or two more, so we can give you a useful reply.";
 
     setErrors(next);
@@ -98,39 +102,67 @@ export function ContactForm() {
       return;
     }
 
-    window.location.href = buildMailto({ name, email, company, topic, work });
-    setSent(true);
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, website }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        return;
+      }
+    } catch {
+      /* Network failure falls through to the mail-app handoff below. */
+    }
+
+    setStatus("fallback");
+    window.location.href = buildMailto(fields);
   }
 
-  if (sent) {
+  if (status === "sent") {
     return (
-      <div role="status" className="rounded-card border border-border bg-surface-raised p-8">
-        <h2 className="text-heading-1 text-fg">Your message is ready to send.</h2>
-        <p className="mt-4 text-body text-fg-muted">
-          We have handed a pre-filled message to your email app. Press send there and
-          it reaches us.
+      <Result heading="Thanks — that reached us.">
+        <p className="text-body text-fg-muted">
+          Your message is in our inbox. You will hear back from the person who
+          would be responsible for the work.
         </p>
-        <p className="mt-4 text-body text-fg-muted">
-          If nothing opened, your browser may not have an email app registered. Write
-          to{" "}
+      </Result>
+    );
+  }
+
+  if (status === "fallback") {
+    return (
+      <Result heading="One more step.">
+        <p className="text-body text-fg-muted">
+          We tried to send that for you and could not, so we have handed a
+          pre-filled message to your email app. Press send there and it reaches
+          us.
+        </p>
+        <p className="text-body text-fg-muted">
+          If nothing opened, your browser may not have an email app registered.
+          Write to{" "}
           <a
             href={`mailto:${SITE.email}`}
             className="text-accent underline underline-offset-4"
           >
             {SITE.email}
           </a>{" "}
-          directly — the same details are all we need.
+          — the same details are all we need.
         </p>
         <button
           type="button"
-          onClick={() => setSent(false)}
-          className="mt-6 min-h-12 rounded-control border border-border-strong px-5 text-body text-fg transition-colors duration-150 hover:border-accent"
+          onClick={() => setStatus("idle")}
+          className="min-h-12 self-start rounded-control border border-border-strong px-5 text-body text-fg transition-colors duration-150 hover:border-accent"
         >
           Back to the form
         </button>
-      </div>
+      </Result>
     );
   }
+
+  const sending = status === "sending";
 
   return (
     <form noValidate onSubmit={onSubmit} className="space-y-6">
@@ -139,13 +171,7 @@ export function ContactForm() {
       </Field>
 
       <Field id="email" label="Work email" error={errors.email}>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          autoComplete="email"
-          className={FIELD}
-        />
+        <input id="email" name="email" type="email" autoComplete="email" className={FIELD} />
       </Field>
 
       <Field id="company" label="Company" error={errors.company}>
@@ -197,11 +223,25 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="min-h-12 w-full rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px sm:w-auto"
+        disabled={sending}
+        aria-busy={sending}
+        className="min-h-12 w-full rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 sm:w-auto"
       >
-        Send it
+        {sending ? "Sending…" : "Send it"}
       </button>
     </form>
+  );
+}
+
+function Result({ heading, children }: { heading: string; children: ReactNode }) {
+  return (
+    <div
+      role="status"
+      className="flex flex-col gap-4 rounded-card border border-border bg-surface-raised p-8"
+    >
+      <h2 className="text-heading-1 text-fg">{heading}</h2>
+      {children}
+    </div>
   );
 }
 
@@ -216,7 +256,7 @@ function Field({
   label: string;
   hint?: string;
   error?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const hintId = hint ? `${id}-hint` : undefined;
   const errorId = error ? `${id}-error` : undefined;

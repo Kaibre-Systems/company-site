@@ -80,26 +80,6 @@ export function Container({
    Typography primitives
    ========================================================================== */
 
-/** Small mono label above a heading. Renders as plain text, not a heading. */
-export function Eyebrow({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <p
-      className={cn(
-        "font-mono text-label uppercase tracking-[0.085em] text-accent-quiet",
-        className,
-      )}
-    >
-      {children}
-    </p>
-  );
-}
-
 /**
  * Heading with semantic level and visual size decoupled, so heading order is
  * always correct regardless of how large the text needs to look.
@@ -184,9 +164,9 @@ export function Prose({
   );
 }
 
-/** Section header: eyebrow + heading + optional lead copy. */
+/** Section header: heading + optional lead copy. No kicker labels — the
+ *  heading carries the meaning on its own. */
 export function SectionHeader({
-  eyebrow,
   heading,
   headingLevel = 2,
   headingSize = "display-2",
@@ -194,7 +174,6 @@ export function SectionHeader({
   className,
   id,
 }: {
-  eyebrow?: string;
   heading: string;
   headingLevel?: 1 | 2 | 3;
   headingSize?: "display-1" | "display-2" | "heading-1";
@@ -205,7 +184,6 @@ export function SectionHeader({
   const paragraphs = typeof body === "string" ? [body] : body;
   return (
     <div className={cn("max-w-[46rem]", className)}>
-      {eyebrow ? <Eyebrow className="mb-4">{eyebrow}</Eyebrow> : null}
       <Heading level={headingLevel} size={headingSize} id={id}>
         {heading}
       </Heading>

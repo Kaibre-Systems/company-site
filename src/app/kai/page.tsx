@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   Container,
-  Eyebrow,
   Heading,
   Section,
   SectionHeader,
@@ -37,9 +36,11 @@ export default function KaiPage() {
         <Container>
           <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <div>
-              <Eyebrow>{KAI_HERO.eyebrow}</Eyebrow>
-              <p className="mt-4 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-                {KAI_HERO.category}
+              <p className="text-heading-1 font-medium text-fg">
+                kAI
+                <span className="ml-3 text-body font-normal text-fg-subtle">
+                  {KAI_HERO.category}
+                </span>
               </p>
               <Heading level={1} size="display-1" className="mt-5 max-w-[16ch]">
                 {KAI_HERO.headline}
@@ -67,7 +68,6 @@ export default function KaiPage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={KAI_VALUE.eyebrow}
               heading={KAI_VALUE.heading}
               body={KAI_VALUE.body}
             />
@@ -93,7 +93,6 @@ export default function KaiPage() {
         <Container>
           <>
             <SectionHeader
-              eyebrow={KAI_WORKFLOW.eyebrow}
               heading={KAI_WORKFLOW.heading}
             />
           </>
@@ -104,7 +103,6 @@ export default function KaiPage() {
       {/* FAQ */}
       <Section surface="ink" className="border-t border-border">
         <Container size="prose">
-          <Eyebrow>{KAI_FAQ.eyebrow}</Eyebrow>
           <Heading level={2} size="display-2" className="mt-4">
             {KAI_FAQ.heading}
           </Heading>

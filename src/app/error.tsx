@@ -19,9 +19,6 @@ export default function Error({
   return (
     <Section surface="ink" space="flush" className="pb-32 pt-40">
       <Container size="prose">
-        <p className="font-mono text-label uppercase tracking-[0.085em] text-accent-quiet">
-          Error
-        </p>
         <Heading level={1} size="display-2" className="mt-4">
           Something went wrong on our side.
         </Heading>

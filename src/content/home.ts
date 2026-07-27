@@ -19,7 +19,6 @@ export const HERO = {
 } as const;
 
 export const THESIS = {
-  eyebrow: "What we look for",
   heading: "Expert judgment, spent on volume.",
   body: [
     "The work we take on has a shape. Something valuable depends on a person's judgment — an assessor's, an operator's, a closer's — and most of their day goes to the volume around that judgment rather than the judgment itself.",
@@ -42,7 +41,6 @@ export const THESIS = {
 } as const;
 
 export const PROOF = {
-  eyebrow: "Selected work — luxury commerce",
   heading: "A catalogue where a single record is worth five or six figures.",
   body: [
     "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
@@ -57,7 +55,6 @@ export const PROOF = {
 } as const;
 
 export const PRODUCTS = {
-  eyebrow: "Products",
   heading: "Software we own and operate.",
   body: "Two products in market, built on the same discipline. Both keep a person in the decision.",
   items: [
@@ -82,10 +79,9 @@ export const PRODUCTS = {
 
 export const COMMISSIONED = {
   id: "commissioned",
-  eyebrow: "Commissioned systems",
-  heading: "A small number of builds a year, chosen carefully.",
+  heading: "We take on a few commissioned builds a year.",
   body: [
-    "Some organisations have one workflow that matters more than the rest of the business combined, and nothing on the market fits it. We take on a small number of those a year.",
+    "Some organisations have one workflow that matters more than the rest of the business combined, and nothing on the market fits it. Those are the ones we take on.",
     "We build the system, put it into production, and keep operating it. The people who designed it are the ones running it a year later.",
   ],
   fit: {
@@ -108,7 +104,6 @@ export const COMMISSIONED = {
 } as const;
 
 export const PARTNERSHIPS = {
-  eyebrow: "Partnerships",
   heading: "Some products need a partner who knows the room.",
   body: [
     "We build software. We do not pretend to have thirty years inside a regulator, an audit practice, or a trading floor.",
@@ -119,7 +114,6 @@ export const PARTNERSHIPS = {
 
 export const HOW_WE_WORK = {
   id: "how-we-work",
-  eyebrow: "How we work",
   heading: "We stay responsible for what we build.",
   steps: [
     {
@@ -143,7 +137,6 @@ export const HOW_WE_WORK = {
 
 export const COMPANY = {
   id: "company",
-  eyebrow: "Company",
   heading: "Small, founder-led, and deliberate about what we take on.",
   body: [
     "Kaibre is a founder-led software company registered in Abu Dhabi, working with organisations across the UAE, Canada, and the United States.",
@@ -156,8 +149,8 @@ export const COMPANY = {
    * customers, partners, or endorsers. No logos, ever.
    */
   credibility: {
-    label: "Background",
-    body: "Kaibre's founders have worked inside Fortune 500 companies, government environments, and production software teams. That experience is where the standards in this page come from — what these systems have to survive, and what it costs when they do not.",
+    label: "Where this comes from",
+    body: "Kaibre's founders have worked inside Fortune 500 companies, government environments, and healthcare and prescription-insurance systems — designing the data schemas behind them and running the migrations that moved live patient and claims data. That is where the standards on this page come from: what these systems have to survive, and what it costs when they do not.",
   },
 } as const;
 

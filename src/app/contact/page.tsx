@@ -34,7 +34,7 @@ export default function ContactPage() {
 
             <dl className="mt-12 space-y-8">
               <div>
-                <dt className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+                <dt className="text-small font-medium text-fg-subtle">
                   Prefer email
                 </dt>
                 <dd className="mt-2">
@@ -47,7 +47,7 @@ export default function ContactPage() {
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+                <dt className="text-small font-medium text-fg-subtle">
                   Registered office
                 </dt>
                 <dd className="mt-2">

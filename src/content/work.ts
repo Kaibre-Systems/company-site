@@ -11,13 +11,11 @@
  */
 
 export const WORK_HERO = {
-  eyebrow: "Selected work",
   headline: "Systems that were expensive to get wrong.",
   body: "Most of what Kaibre builds is covered by confidentiality. What we can describe is the shape of the problem, the responsibility that came with it, and the fact that we are still running it.",
 } as const;
 
 export const WORK_LUXURY = {
-  eyebrow: "Luxury commerce",
   heading: "A catalogue where a single record is worth five or six figures.",
   intro: [
     "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
@@ -67,7 +65,6 @@ export const WORK_LUXURY = {
 } as const;
 
 export const WORK_COMMISSIONED = {
-  eyebrow: "Commissioned systems",
   heading: "What we take on.",
   body: [
     "We take on a small number of commissioned builds a year. They tend to look alike: the work is central to how the business makes money, it is expensive because it depends on people who are hard to replace, and the off-the-shelf options solve an adjacent problem rather than this one.",

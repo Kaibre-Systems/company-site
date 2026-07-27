@@ -180,7 +180,7 @@ export function SiteHeader() {
           className="border-t border-border bg-surface lg:hidden"
         >
           <nav aria-label="Main" className="mx-auto max-w-shell px-5 py-6 sm:px-6">
-            <p className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+            <p className="text-small font-medium text-fg-subtle">
               Products
             </p>
             <ul className="mt-3 space-y-1">

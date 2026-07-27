@@ -31,7 +31,6 @@ export default function WorkPage() {
       <Section surface="ink" space="flush" className="pb-16 pt-32 sm:pb-20 sm:pt-40">
         <Container>
           <SectionHeader
-            eyebrow={WORK_HERO.eyebrow}
             heading={WORK_HERO.headline}
             headingLevel={1}
             headingSize="display-1"
@@ -44,7 +43,6 @@ export default function WorkPage() {
       <Section surface="paper">
         <Container>
           <SectionHeader
-            eyebrow={WORK_LUXURY.eyebrow}
             heading={WORK_LUXURY.heading}
             body={WORK_LUXURY.intro}
           />
@@ -112,7 +110,6 @@ export default function WorkPage() {
           <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
             <div>
               <SectionHeader
-                eyebrow={WORK_COMMISSIONED.eyebrow}
                 heading={WORK_COMMISSIONED.heading}
                 body={WORK_COMMISSIONED.body}
               />
