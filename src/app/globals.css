@@ -338,14 +338,15 @@
 @keyframes textBreathe {
   0%,
   100% {
-    opacity: 0.5;
+    opacity: 0.32;
     text-shadow: 0 0 0 transparent;
   }
   50% {
     opacity: 1;
     text-shadow:
-      0 0 14px var(--accent),
-      0 0 28px var(--accent);
+      0 0 6px var(--accent),
+      0 0 20px var(--accent),
+      0 0 40px var(--accent);
   }
 }
 

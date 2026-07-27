@@ -62,25 +62,27 @@ export function MonitoredSignal({ className }: { className?: string }) {
           y={BAND_TOP}
           width="560"
           height={BAND_BOTTOM - BAND_TOP}
-          className="fill-fg-subtle/[0.05]"
+          className="fill-fg-subtle/[0.22]"
         />
         <line
           x1="0"
           y1={BAND_TOP}
           x2="560"
           y2={BAND_TOP}
-          strokeWidth="1"
-          strokeDasharray="3 6"
-          className="stroke-border-strong"
+          strokeWidth="1.75"
+          strokeDasharray="6 7"
+          strokeLinecap="round"
+          className="stroke-fg-subtle"
         />
         <line
           x1="0"
           y1={BAND_BOTTOM}
           x2="560"
           y2={BAND_BOTTOM}
-          strokeWidth="1"
-          strokeDasharray="3 6"
-          className="stroke-border-strong"
+          strokeWidth="1.75"
+          strokeDasharray="6 7"
+          strokeLinecap="round"
+          className="stroke-fg-subtle"
         />
       </g>
 
@@ -189,16 +191,20 @@ export function PulseDot({
    ========================================================================== */
 
 export function SecurePulseName({
-  animate = false,
+  animate = true,
+  delay = 0,
   className,
 }: {
   animate?: boolean;
+  /** Offsets the cycle, so several on one page do not beat in lockstep. */
+  delay?: number;
   className?: string;
 }) {
   return (
     <span className={className}>
       Secure
       <span
+        style={animate && delay ? { animationDelay: `${delay}ms` } : undefined}
         className={cn(
           "text-accent",
           animate && "motion-safe:animate-[textBreathe_3.6s_ease-in-out_infinite]",
@@ -222,7 +228,7 @@ export function SecurePulseName({
 export function withBrand(text: string) {
   if (!text.includes("SecurePulse")) return text;
   return text.split("SecurePulse").flatMap((part, i) =>
-    i === 0 ? [part] : [<SecurePulseName key={i} />, part],
+    i === 0 ? [part] : [<SecurePulseName key={i} delay={i * 420} />, part],
   );
 }
 
