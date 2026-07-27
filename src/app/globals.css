@@ -53,25 +53,26 @@
   --color-danger-700: oklch(0.462 0.164 27);
 
   /* --- Typography ------------------------------------------------------- */
-  --font-display: var(--font-panchang), "Segoe UI", system-ui, sans-serif;
-  --font-sans: var(--font-supreme), "Segoe UI", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  /* next/font supplies the --font-* custom properties on <html>. */
+  --font-display: var(--font-display-family), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-sans-family), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-mono-family), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --text-display-1: clamp(2.25rem, 1.35rem + 3.9vw, 4rem);
   --text-display-1--line-height: 1.04;
-  --text-display-1--letter-spacing: -0.022em;
+  --text-display-1--letter-spacing: -0.03em;
 
   --text-display-2: clamp(1.875rem, 1.35rem + 2.3vw, 3rem);
   --text-display-2--line-height: 1.08;
-  --text-display-2--letter-spacing: -0.02em;
+  --text-display-2--letter-spacing: -0.025em;
 
   --text-heading-1: clamp(1.375rem, 1.18rem + 0.85vw, 1.75rem);
   --text-heading-1--line-height: 1.2;
-  --text-heading-1--letter-spacing: -0.014em;
+  --text-heading-1--letter-spacing: -0.018em;
 
   --text-heading-2: 1.125rem;
   --text-heading-2--line-height: 1.35;
-  --text-heading-2--letter-spacing: -0.008em;
+  --text-heading-2--letter-spacing: -0.012em;
 
   --text-lead: clamp(1.0625rem, 0.98rem + 0.36vw, 1.25rem);
   --text-lead--line-height: 1.58;
@@ -113,8 +114,12 @@
   --border-strong: var(--color-ink-700);
   --accent: var(--color-brand-500);
   --accent-hover: var(--color-brand-400);
-  /* Dark type on the orange: 5.2:1 versus 4.2:1 for white, and more distinctive. */
-  --accent-contrast: var(--color-ink-950);
+  /* Solid fills are a step darker than accent text so white type clears 4.5:1
+     on them. Keeping the two separate means accent TEXT stays bright enough to
+     read on ink, instead of both being dragged toward one compromise value. */
+  --accent-solid: var(--color-brand-700);
+  --accent-solid-hover: var(--color-brand-600);
+  --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-300);
   --focus: var(--color-brand-400);
   --shadow-card: none;
@@ -131,6 +136,8 @@
   --border-strong: var(--color-paper-300);
   --accent: var(--color-brand-700);
   --accent-hover: var(--color-brand-800);
+  --accent-solid: var(--color-brand-700);
+  --accent-solid-hover: var(--color-brand-800);
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-700);
   --focus: var(--color-brand-700);
@@ -148,6 +155,8 @@
   --color-border-strong: var(--border-strong);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-solid-hover: var(--accent-solid-hover);
   --color-accent-contrast: var(--accent-contrast);
   --color-accent-quiet: var(--accent-quiet);
   --color-focus: var(--focus);

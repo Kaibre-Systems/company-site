@@ -255,6 +255,14 @@ export default function HomePage() {
               heading={COMPANY.heading}
               body={COMPANY.body}
             />
+
+            {/* Founder background — never a customer or endorsement claim. */}
+            <div className="mt-12 max-w-prose border-t border-border-strong pt-8">
+              <h3 className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+                {COMPANY.credibility.label}
+              </h3>
+              <Text className="mt-4">{COMPANY.credibility.body}</Text>
+            </div>
           </>
         </Container>
       </Section>

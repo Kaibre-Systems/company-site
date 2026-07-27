@@ -12,7 +12,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
           <div>
-            <KaibreWordmark className="h-6 w-auto text-fg" />
+            <KaibreWordmark className="h-9 w-auto text-fg" />
             <p className="mt-5 max-w-[34ch] text-small text-fg-muted">
               {SITE.positioning}
             </p>

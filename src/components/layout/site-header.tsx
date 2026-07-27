@@ -116,7 +116,7 @@ export function SiteHeader() {
             className="shrink-0 rounded-control py-2"
             aria-label={`${SITE.name} — home`}
           >
-            <KaibreWordmark className="h-6 w-auto text-fg" />
+            <KaibreWordmark className="h-8 w-auto text-fg sm:h-9" />
           </Link>
 
           {/* Desktop navigation */}
@@ -149,7 +149,7 @@ export function SiteHeader() {
 
           <Link
             href={NAV.cta.href}
-            className="ml-auto hidden shrink-0 items-center rounded-control border border-border-strong px-4 py-2 text-small text-fg transition-colors duration-150 hover:border-accent lg:ml-0 lg:inline-flex"
+            className="ml-auto hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:ml-0 lg:inline-flex"
           >
             {NAV.cta.label}
           </Link>
@@ -217,7 +217,7 @@ export function SiteHeader() {
             <Link
               href={NAV.cta.href}
               onClick={dismiss}
-              className="mt-6 flex min-h-12 w-full items-center justify-center rounded-control bg-accent px-6 text-body font-medium text-accent-contrast"
+              className="mt-6 flex min-h-12 w-full items-center justify-center rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast"
             >
               {NAV.cta.label}
             </Link>

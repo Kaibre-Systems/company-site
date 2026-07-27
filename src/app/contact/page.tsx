@@ -61,7 +61,10 @@ export default function ContactPage() {
             </dl>
           </div>
 
-          <div className="max-w-xl">
+          {/* The form is a client island behind Suspense (it reads ?topic).
+              Reserving its measured height keeps the fallback-to-form swap
+              from shifting the page on hydration. */}
+          <div className="min-h-[782px] max-w-xl">
             <Suspense
               fallback={
                 <p className="text-body text-fg-muted">

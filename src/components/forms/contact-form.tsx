@@ -197,7 +197,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="min-h-12 w-full rounded-control bg-accent px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-hover motion-safe:hover:-translate-y-px sm:w-auto"
+        className="min-h-12 w-full rounded-control bg-accent-solid px-6 text-body font-medium text-accent-contrast transition-[background-color,transform] duration-150 hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px sm:w-auto"
       >
         Send it
       </button>

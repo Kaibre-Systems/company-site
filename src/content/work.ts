@@ -20,11 +20,11 @@ export const WORK_LUXURY = {
   eyebrow: "Luxury commerce",
   heading: "A catalogue where a single record is worth five or six figures.",
   intro: [
-    "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$300,000, across a catalogue worth tens of millions of dollars.",
+    "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
     "At those values, accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event — not a support ticket. The system is live in commercial use, and Kaibre continues to support and operate it.",
   ],
   figures: [
-    { value: "$10k – $300k", label: "Individual product value" },
+    { value: "$10k – $500k", label: "Individual product value" },
     { value: "Tens of millions", label: "Catalogue value" },
     { value: "Live", label: "In commercial use" },
   ],

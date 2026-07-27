@@ -45,11 +45,11 @@ export const PROOF = {
   eyebrow: "Selected work — luxury commerce",
   heading: "A catalogue where a single record is worth five or six figures.",
   body: [
-    "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$300,000, across a catalogue worth tens of millions of dollars.",
+    "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
     "At those values accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event. The system is live in commercial use, and Kaibre continues to support and operate it.",
   ],
   figures: [
-    { value: "$10k – $300k", label: "Individual product value" },
+    { value: "$10k – $500k", label: "Individual product value" },
     { value: "Tens of millions", label: "Catalogue value" },
   ],
   confidentiality: "Client and implementation details are withheld under confidentiality.",
@@ -150,6 +150,15 @@ export const COMPANY = {
     "We are deliberately small. That is why we take on a limited number of commissioned builds, and why the person you talk to first is the person responsible for the work.",
     "Alongside the products, we work on the problems underneath them: agentic systems that hold up in production, document and image understanding with traceable sources, and giving software durable memory of how an operation actually runs.",
   ],
+  /**
+   * Founder background only. This describes where the founders have worked —
+   * it must never be phrased so that those organisations read as Kaibre
+   * customers, partners, or endorsers. No logos, ever.
+   */
+  credibility: {
+    label: "Background",
+    body: "Kaibre's founders have worked inside Fortune 500 companies, government environments, and production software teams. That experience is where the standards in this page come from — what these systems have to survive, and what it costs when they do not.",
+  },
 } as const;
 
 export const FINAL_CTA = {

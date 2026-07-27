@@ -12,7 +12,7 @@ const BASE =
 
 const VARIANTS: Record<Variant, string> = {
   primary:
-    "bg-accent text-accent-contrast hover:bg-accent-hover motion-safe:hover:-translate-y-px active:translate-y-0",
+    "bg-accent-solid text-accent-contrast hover:bg-accent-solid-hover motion-safe:hover:-translate-y-px active:translate-y-0",
   secondary:
     "border border-border-strong text-fg hover:border-accent hover:text-fg motion-safe:hover:-translate-y-px active:translate-y-0",
   quiet: "text-fg-muted hover:text-fg px-0 min-h-0",

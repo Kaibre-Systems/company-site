@@ -56,6 +56,13 @@ Two surfaces, one token vocabulary. Each section declares `data-surface="ink" | 
 
 `cn()` in `src/lib/utils.ts` extends `tailwind-merge` with the custom scale. Without that, `text-display-1` and `text-fg` are treated as the same class group and the type scale is silently dropped.
 
+### Typography
+
+Three Google variable families via `next/font/google`, self-hosted at build time
+(no runtime request to Google): **Space Grotesk** display, **Inter** text,
+**JetBrains Mono** for labels, references and figures. `adjustFontFallback`
+keeps CLS at zero. There are no local font files.
+
 ### Motion
 
 Deliberately minimal. No scroll-triggered section entrances — content is present the moment the page paints. The only motion is the hero datum rule drawing once, plus hover/focus/expand transitions. All of it is suppressed under `prefers-reduced-motion`.
@@ -66,11 +73,14 @@ This site is written for regulated and high-value buyers. The following must nev
 
 - Customer names, logos, testimonials, or case-study outcomes without written approval
 - Certifications, accreditations, or regulatory endorsement (Kaibre holds none)
+- Former employers as customers. The founder-background line in `COMPANY.credibility`
+  refers to where the founders have worked and must never imply that those
+  organisations are Kaibre clients, partners, or endorsers. No logos, ever.
 - Headcount, offices, revenue, customer counts, or performance metrics
 - Fabricated interface data — product illustrations show structure, never numbers
 - The luxury-commerce client's identity, product category beyond "luxury goods", stack, or commercial terms
 
-The two dollar figures on the home and work pages are founder-approved for publication. Interface illustrations are captioned as illustrations, structurally, via `IllustrationFrame`.
+The two dollar figures on the home and work pages (US$10,000–US$500,000 per item; tens of millions catalogue) are founder-approved for publication. Interface illustrations are captioned as illustrations, structurally, via `IllustrationFrame`.
 
 ## Contact delivery
 
