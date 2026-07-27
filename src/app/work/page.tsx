@@ -9,6 +9,7 @@ import {
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
 import { FitList } from "@/components/modules";
+import { Flow } from "@/components/visuals";
 import { WORK_COMMISSIONED, WORK_HERO, WORK_LUXURY } from "@/content/work";
 
 export const metadata: Metadata = {
@@ -70,7 +71,14 @@ export default function WorkPage() {
             </Text>
           </>
 
-          <ul className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12">
+            <h3 className="text-heading-2 font-medium text-fg">
+              {WORK_LUXURY.lifecycleTitle}
+            </h3>
+            <Flow className="mt-7" stages={WORK_LUXURY.lifecycle} />
+          </div>
+
+          <ul className="mt-16 grid gap-x-12 gap-y-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-3">
             {WORK_LUXURY.scope.map((item) => (
               <li key={item.title}>
                 <Heading level={3} size="heading-2">

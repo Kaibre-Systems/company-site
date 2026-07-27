@@ -8,8 +8,8 @@ import {
   Text,
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
-import { Callout, IllustrationFrame, WorkflowSteps } from "@/components/modules";
-import { AssessmentPanel } from "@/components/visuals";
+import { Callout, WorkflowSteps } from "@/components/modules";
+import { AssessmentPanel, EvidenceLink, VisualFrame } from "@/components/visuals";
 import {
   SP_DOMAINS,
   SP_EVIDENCE,
@@ -59,9 +59,14 @@ export default function SecurePulsePage() {
               </div>
             </div>
 
-            <IllustrationFrame label="A list of draft assessment findings, each with a reference, a severity grade and an evidence label, awaiting reviewer sign-off.">
-              <AssessmentPanel />
-            </IllustrationFrame>
+            <div>
+              <VisualFrame label="Draft assessment findings, each carrying the confidence behind it, awaiting sign-off.">
+                <AssessmentPanel />
+              </VisualFrame>
+              <p className="mt-3 text-small text-fg-subtle">
+                Interface illustration. Structure is real; the content is placeholder.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
@@ -132,8 +137,10 @@ export default function SecurePulsePage() {
             />
           </>
 
+          <EvidenceLink className="mt-12" />
+
           <>
-            <dl className="mt-12 grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
+            <dl className="mt-10 grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
               {SP_EVIDENCE.labels.map((label) => (
                 <div key={label.code} className="bg-surface-raised p-6">
                   <dt className="font-mono text-label uppercase tracking-[0.085em] text-accent">

@@ -43,6 +43,12 @@ export const KAI_WORKFLOW = {
 export const KAI_VALUE = {
   heading: "The expensive part of outbound is the calls before the good one.",
   body: "A qualification call is cheap to hold and expensive to skip. kAI carries the volume of the list so that the conversations reaching your team have already answered the questions that decide whether they are worth having.",
+  flow: [
+    { label: "Your list" },
+    { label: "kAI calls, on your number" },
+    { label: "Classified against your rules", accent: true },
+  ],
+  outcomes: ["Qualified", "Callback", "Not qualified", "No answer"],
   columns: [
     {
       title: "Engages every lead",

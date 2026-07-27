@@ -11,13 +11,14 @@ import { ArrowLink, Button } from "@/components/primitives/button";
 import {
   Callout,
   FitList,
-  IllustrationFrame,
   ProductCard,
 } from "@/components/modules";
 import {
   AssessmentPanel,
   CallOutcomeList,
-  HeroMark,
+  Flow,
+  ResolutionField,
+  VisualFrame,
 } from "@/components/visuals";
 import {
   COMMISSIONED,
@@ -57,7 +58,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <HeroMark className="mx-auto -my-6 max-w-[15rem] sm:max-w-[18rem] lg:my-0 lg:max-w-none" />
+            <ResolutionField className="mx-auto max-w-[26rem] lg:max-w-none" />
           </div>
 
           {/* The three modes, stated plainly under the fold line. */}
@@ -82,16 +83,13 @@ export default function HomePage() {
             />
           </>
 
-          <ul className="mt-14 grid gap-8 border-t border-border pt-10 sm:grid-cols-3">
-            {THESIS.examples.map((item) => (
-              <li key={item.label}>
-                <h3 className="text-heading-2 font-medium text-fg">{item.label}</h3>
-                <Text size="small" className="mt-3">
-                  {item.note}
-                </Text>
-              </li>
-            ))}
-          </ul>
+          <Flow className="mt-14 border-t border-border pt-10" stages={THESIS.flow} />
+
+          {/* Grounded in three real shapes of that work — one line, not a
+              second three-column block competing with the diagram above. */}
+          <p className="mt-10 max-w-[70ch] text-small text-fg-subtle">
+            {THESIS.examples.map((e) => e.note).join(" ")}
+          </p>
         </Container>
       </Section>
 
@@ -145,12 +143,9 @@ export default function HomePage() {
               <ProductCard
                 {...PRODUCTS.items[0]}
                 visual={
-                  <IllustrationFrame
-                    label="A list of draft assessment findings, each with a reference, a severity grade and an evidence label, awaiting reviewer sign-off."
-                    className="[&_figcaption]:text-fg-subtle"
-                  >
+                  <VisualFrame label="Draft assessment findings, each carrying the confidence behind it, awaiting sign-off.">
                     <AssessmentPanel />
-                  </IllustrationFrame>
+                  </VisualFrame>
                 }
               />
             </div>
@@ -159,13 +154,18 @@ export default function HomePage() {
               <ProductCard
                 {...PRODUCTS.items[1]}
                 visual={
-                  <IllustrationFrame label="A list of call outcomes, each tagged with a qualification classification.">
+                  <VisualFrame label="Call outcomes, each tagged with a qualification classification.">
                     <CallOutcomeList />
-                  </IllustrationFrame>
+                  </VisualFrame>
                 }
               />
             </div>
           </div>
+
+          {/* One caption for both panels rather than the same line twice. */}
+          <p className="mt-5 text-small text-fg-subtle">
+            Interface illustrations. Structure is real; the content is placeholder.
+          </p>
         </Container>
       </Section>
 

@@ -115,39 +115,6 @@ export function ProductCard({
 }
 
 /* ==========================================================================
-   Illustration frame
-   --------------------------------------------------------------------------
-   Every constructed product visual is wrapped here so the "illustration"
-   caption is structural and cannot be forgotten.
-   ========================================================================== */
-
-export function IllustrationFrame({
-  children,
-  label,
-  caption = "Interface illustration.",
-  className,
-}: {
-  children: ReactNode;
-  /** Description of the structure for assistive technology. */
-  label: string;
-  caption?: string;
-  className?: string;
-}) {
-  return (
-    <figure className={cn("m-0", className)}>
-      <div
-        role="img"
-        aria-label={label}
-        className="overflow-hidden rounded-card border border-border bg-surface-inset"
-      >
-        {children}
-      </div>
-      <figcaption className="mt-3 text-small text-fg-subtle">{caption}</figcaption>
-    </figure>
-  );
-}
-
-/* ==========================================================================
    Callout — used for the human-review posture and confidentiality notes
    ========================================================================== */
 

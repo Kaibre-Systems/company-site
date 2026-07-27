@@ -26,6 +26,14 @@ export const WORK_LUXURY = {
     { value: "Tens of millions", label: "Catalogue value" },
     { value: "Live", label: "In commercial use" },
   ],
+  lifecycleTitle: "How a trade moves through it",
+  lifecycle: [
+    { label: "Listed", note: "A unique item, priced on its own merits." },
+    { label: "Bid or offered", note: "A timed auction, or a private negotiation." },
+    { label: "Parties verified", note: "Identity and trade licence checked before money moves." },
+    { label: "Paid", note: "Recorded against a ledger rather than inferred." },
+    { label: "Fulfilled", note: "Tracked to delivery, and after-sale service.", accent: true },
+  ],
   scopeTitle: "What the system does",
   scopeIntro:
     "Described at the level of capability rather than implementation, the platform covers:",

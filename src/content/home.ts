@@ -24,6 +24,21 @@ export const THESIS = {
     "The work we take on has a shape. Something valuable depends on a person's judgment — an assessor's, an operator's, a closer's — and most of their day goes to the volume around that judgment rather than the judgment itself.",
     "We build the system that carries the volume. The judgment stays with the person.",
   ],
+  flow: [
+    {
+      label: "Volume arrives",
+      note: "Hundreds of documents, calls, or records — all of it needing attention.",
+    },
+    {
+      label: "The system carries it",
+      note: "Reads, checks, classifies, and prepares, consistently and at pace.",
+    },
+    {
+      label: "A person decides",
+      note: "The judgment that carries consequence stays with the person.",
+      accent: true,
+    },
+  ],
   examples: [
     {
       label: "Inspecting",

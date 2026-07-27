@@ -235,12 +235,26 @@
   }
 }
 
-/* Hero datum line — draws once on load, then stops. */
-@keyframes datum {
+/* Hero field: each tick rises once from the baseline, then rests. */
+@keyframes tick {
   from {
-    transform: scaleX(0);
+    transform: scaleY(0);
+    opacity: 0;
   }
   to {
-    transform: scaleX(1);
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* The reading that clears the bar, marked after its tick lands. */
+@keyframes markIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

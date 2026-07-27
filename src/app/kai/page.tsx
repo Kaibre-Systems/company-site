@@ -7,8 +7,8 @@ import {
   Text,
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
-import { IllustrationFrame, WorkflowSteps } from "@/components/modules";
-import { CallOutcomeList } from "@/components/visuals";
+import { WorkflowSteps } from "@/components/modules";
+import { CallOutcomeList, Flow, VisualFrame } from "@/components/visuals";
 import { KAI_FAQ, KAI_HERO, KAI_VALUE, KAI_WORKFLOW } from "@/content/kai";
 import { CALENDLY_URL } from "@/content/site";
 
@@ -56,9 +56,14 @@ export default function KaiPage() {
               </div>
             </div>
 
-            <IllustrationFrame label="A list of call outcomes, each tagged with a qualification classification.">
-              <CallOutcomeList />
-            </IllustrationFrame>
+            <div>
+              <VisualFrame label="Call outcomes, each tagged with a qualification classification.">
+                <CallOutcomeList />
+              </VisualFrame>
+              <p className="mt-3 text-small text-fg-subtle">
+                Interface illustration. Structure is real; the content is placeholder.
+              </p>
+            </div>
           </div>
         </Container>
       </Section>
@@ -72,6 +77,12 @@ export default function KaiPage() {
               body={KAI_VALUE.body}
             />
           </>
+
+          <Flow
+            className="mt-12 border-t border-border pt-10"
+            stages={KAI_VALUE.flow}
+            outcomes={KAI_VALUE.outcomes}
+          />
 
           <ul className="mt-12 grid gap-8 border-t border-border pt-10 sm:grid-cols-3">
             {KAI_VALUE.columns.map((col) => (
