@@ -161,7 +161,7 @@ export function SiteHeader() {
             onClick={() => (open ? close() : setOpen(true))}
             aria-expanded={open}
             aria-controls={menuId}
-            className="-mr-2 ml-auto inline-flex size-11 items-center justify-center rounded-control text-fg lg:hidden"
+            className="-mr-2 ml-auto inline-flex size-11 cursor-pointer items-center justify-center rounded-control text-fg lg:hidden"
           >
             <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
             {open ? (

@@ -19,52 +19,29 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Section surface="paper" space="flush" className="pb-24 pt-32 sm:pt-40">
+    <Section surface="paper" space="flush" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1fr] lg:items-start lg:gap-20">
+        {/* Two columns from `md`, not `lg`: a half-width tab on a 1080p
+            monitor is around 960px, which stacked the form below the fold. */}
+        <div className="grid gap-8 md:grid-cols-[0.8fr_1fr] md:items-start md:gap-12 lg:gap-16">
           <div>
-            <Heading level={1} size="display-1" className="max-w-[14ch]">
+            <Heading level={1} size="display-2" className="max-w-[14ch]">
               Tell us about the work.
             </Heading>
-            <Text size="lead" className="mt-6 max-w-[46ch]">
+            <Text className="mt-5 max-w-[42ch]">
               Kaibre is small enough that this reaches the person who would be
               responsible for building it. Whatever detail you have is enough to
               start.
             </Text>
-
-            <dl className="mt-12 space-y-8">
-              <div>
-                <dt className="text-small font-medium text-fg-subtle">
-                  Prefer email
-                </dt>
-                <dd className="mt-2">
-                  <a
-                    href={`mailto:${SITE.email}`}
-                    className="inline-flex min-h-6 items-center text-body text-accent underline underline-offset-4"
-                  >
-                    {SITE.email}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="text-small font-medium text-fg-subtle">
-                  Registered office
-                </dt>
-                <dd className="mt-2">
-                  <address className="max-w-[32ch] not-italic text-small text-fg-muted">
-                    {SITE.address.line}
-                    <br />
-                    {SITE.address.city}, {SITE.address.country}
-                  </address>
-                </dd>
-              </div>
-            </dl>
+            {/* The address and email are in the footer of every page, and the
+                email is repeated in the form's fallback state. Repeating them
+                here only pushed the form off the screen. */}
           </div>
 
           {/* The form is a client island behind Suspense (it reads ?topic).
               Reserving its measured height keeps the fallback-to-form swap
               from shifting the page on hydration. */}
-          <div className="min-h-[782px] max-w-xl">
+          <div className="min-h-[651px] max-w-xl">
             <Suspense
               fallback={
                 <p className="text-body text-fg-muted">

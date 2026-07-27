@@ -338,14 +338,17 @@
 @keyframes textBreathe {
   0%,
   100% {
+    /* The trough has to stay legible — below ~0.45 the name reads as
+       disappearing rather than breathing. */
     opacity: 0.5;
     text-shadow: 0 0 0 transparent;
   }
   50% {
     opacity: 1;
     text-shadow:
-      0 0 14px var(--accent),
-      0 0 28px var(--accent);
+      0 0 6px var(--accent),
+      0 0 20px var(--accent),
+      0 0 40px var(--accent);
   }
 }
 
