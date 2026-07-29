@@ -97,6 +97,24 @@ Three Google variable families via `next/font/google`, self-hosted at build time
 **JetBrains Mono** for labels, references and figures. `adjustFontFallback`
 keeps CLS at zero. There are no local font files.
 
+### Imagery
+
+There is none, and that is a decision rather than an omission. Every visual on
+the site is CSS or hand-authored SVG: a few kilobytes, crisp at any density,
+themed by the same tokens as the text, and readable by a screen reader.
+
+The alternative was tested rather than assumed. Three candidates were generated
+at 2K on the Gemini image line — two physical-security site plans and one
+catalogue abstraction — in the site's own palette and register. All three were
+rejected: under inspection each had malformed geometry, each was ~85% empty in
+a way that would have made the sparsest pages sparser, and each restated a
+sentence the copy already carries with more force. A 4MB abstract render next
+to a confidential client's section also risks reading as that client's system.
+
+If imagery is revisited, the bar is the one those candidates failed: it must
+add comprehension or specificity that the vector language cannot, not
+atmosphere.
+
 ### Motion
 
 Deliberately minimal. No scroll-triggered section entrances — content is present the moment the page paints. The only motion is the hero datum rule drawing once, plus hover/focus/expand transitions. All of it is suppressed under `prefers-reduced-motion`.
