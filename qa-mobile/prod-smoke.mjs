@@ -85,9 +85,9 @@ async function run(engineName, browserType, viewport, isMobile) {
       bad(`${route}: hamburger under 44px ${JSON.stringify(m.toggle)}`);
 
     /* Metadata */
-    if (!m.canonical?.startsWith("https://kaibresystems.com"))
+    if (!m.canonical?.startsWith("https://www.kaibresystems.com"))
       bad(`${route}: canonical is ${m.canonical}`);
-    if (!m.ogUrl?.startsWith("https://kaibresystems.com")) bad(`${route}: og:url is ${m.ogUrl}`);
+    if (!m.ogUrl?.startsWith("https://www.kaibresystems.com")) bad(`${route}: og:url is ${m.ogUrl}`);
     if (!m.title?.includes("Kaibre")) bad(`${route}: title "${m.title}"`);
 
     /* Contact fallback: the address must be reachable in plain text. */
@@ -106,7 +106,7 @@ async function run(engineName, browserType, viewport, isMobile) {
     if (realBroken.length) bad(`${route}: broken requests ${JSON.stringify(realBroken.slice(0, 3))}`);
 
     ok(
-      `${route.padEnd(13)} h1="${m.h1}" canonical=${m.canonical?.replace("https://kaibresystems.com", "")||"/"} ` +
+      `${route.padEnd(13)} h1="${m.h1}" canonical=${m.canonical?.replace("https://www.kaibresystems.com", "")||"/"} ` +
         `logo=${m.logo?.w}x${m.logo?.h} imgs=${m.images} ctas=${m.mainCta.length} doc=${m.docW}`,
     );
     await page.close();
@@ -156,8 +156,44 @@ async function run(engineName, browserType, viewport, isMobile) {
   await browser.close();
 }
 
+/**
+ * The apex must keep redirecting to the host the canonicals name, and the
+ * legacy URLs must keep landing where the redesign sent them — both are edge
+ * configuration rather than application code, so only a live request proves it.
+ */
+async function routing() {
+  console.log("\n===== routing =====");
+  const canonicalHost = new URL(BASE).host;
+
+  const apex = await fetch("https://kaibresystems.com/", { redirect: "manual" });
+  const to = apex.headers.get("location") ?? "";
+  if (![301, 302, 307, 308].includes(apex.status) || !to.includes(canonicalHost))
+    bad(`apex did not redirect to ${canonicalHost}: ${apex.status} -> ${to}`);
+  else ok(`apex redirects ${apex.status} -> ${to}`);
+
+  for (const [from, expect] of [
+    ["/services", "/work"],
+    ["/services/deep/path", "/work"],
+    ["/projects", "/work"],
+    ["/team", "/"],
+    ["/careers", "/contact"],
+  ]) {
+    const r = await fetch(BASE + from, { redirect: "manual" });
+    const loc = r.headers.get("location") ?? "";
+    const landed = new URL(loc, BASE).pathname;
+    if (![301, 308].includes(r.status) || landed !== expect)
+      bad(`${from}: ${r.status} -> ${landed} (expected 308 -> ${expect})`);
+    else ok(`${from.padEnd(20)} ${r.status} -> ${landed}`);
+  }
+
+  const missing = await fetch(BASE + "/this-route-does-not-exist");
+  if (missing.status !== 404) bad(`unknown route returned ${missing.status}, expected 404`);
+  else ok("unknown route returns 404");
+}
+
 await run("webkit", webkit, { width: 390, height: 844 }, true);
 await run("chromium", chromium, { width: 1440, height: 900 }, false);
+await routing();
 
 console.log(`\n===== ${fail.length ? fail.length + " FAILURES" : "ALL PRODUCTION CHECKS PASSED"} =====`);
 if (fail.length) process.exitCode = 1;

@@ -22,6 +22,7 @@ pnpm dev
 | `pnpm typecheck` | `tsc --noEmit` |
 | `pnpm test:e2e` | Mobile E2E, WebKit + Chromium (needs `pnpm build` first) |
 | `pnpm test:e2e:safari` | The same suite, WebKit only |
+| `pnpm smoke:prod` | Read-only checks against the live site |
 
 ## Mobile
 
@@ -46,8 +47,39 @@ Two things the assertions encode, because both have been real bugs:
 
 `qa-mobile/` holds the review tooling — `audit.mjs` sweeps the matrix and writes
 screenshots plus every measurement, `behaviour.mjs` covers the menu, anchors,
-software keyboard and toolbar collapse, `crops.mjs` frames the parts a full-page
-capture makes too small to judge. Their output is gitignored.
+software keyboard and toolbar collapse, `resize.mjs` walks the text-resize
+matrix, `crops.mjs` and `desktop.mjs` frame the parts a full-page capture makes
+too small to judge. Their output is gitignored.
+
+## Production smoke test
+
+```bash
+pnpm smoke:prod                              # the live site
+pnpm smoke:prod https://some-preview.vercel.app
+```
+
+Read-only, and deliberately so: it never submits the contact form, because a
+submission reaches a real inbox. It checks what only a live deployment can
+prove — routes, the apex redirect, the legacy redirects, canonical and `og:url`
+on the serving host, the wordmark and hamburger at their real sizes, no
+horizontal overflow, the mobile menu opening with its CTA reachable, the footer
+address as the contact fallback, and no console errors or broken assets.
+
+It also holds the claim discipline below: named certifications, endorsement
+language, percentages, multiplier claims and customer counts must not appear in
+visible copy. The pre-redesign site carried a panel ticking SOC2, HIPAA and
+GDPR, and a kAI panel with invented plan-minute figures. This is what stops
+either returning unnoticed.
+
+## Domain
+
+`SITE.domain` in `src/content/site.ts` is the single source for every absolute
+URL — canonical tags, `og:url`, the sitemap, `robots.txt` host, and the
+structured-data URL. It names **`https://www.kaibresystems.com`**, the host that
+actually serves; the apex redirects to it. Two mentions of the bare domain are
+deliberate and not URLs: the `utm_source` on the kAI demo link, which is an
+analytics identifier whose history should not fragment, and the sign-off line in
+the contact email.
 
 ## Structure
 

@@ -438,6 +438,60 @@ test.describe("navigation", () => {
    4 — Runtime health
    ========================================================================== */
 
+/* ==========================================================================
+   Absolute URLs
+   --------------------------------------------------------------------------
+   Everything absolute derives from `SITE.domain`, which names the host that
+   actually serves. It named the apex once, which answers 307 rather than 200,
+   so every canonical pointed at a redirect.
+   ========================================================================== */
+
+const CANONICAL_ORIGIN = "https://www.kaibresystems.com";
+
+test.describe("metadata", () => {
+  for (const route of ROUTES) {
+    test(`${route} declares absolute URLs on the serving host`, async ({ page }) => {
+      await page.goto(route);
+      const m = await page.evaluate(() => ({
+        canonical: document.querySelector("link[rel=canonical]")?.getAttribute("href") ?? null,
+        ogUrl: document.querySelector('meta[property="og:url"]')?.getAttribute("content") ?? null,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.getAttribute("content") ?? null,
+        ld: document.querySelector('script[type="application/ld+json"]')?.textContent ?? null,
+      }));
+
+      expect(m.canonical, `${route} canonical`).toBe(
+        route === "/" ? CANONICAL_ORIGIN : CANONICAL_ORIGIN + route,
+      );
+      expect(m.ogUrl, `${route} og:url`).toContain(CANONICAL_ORIGIN);
+      // The bare apex must not survive anywhere in an absolute URL.
+      expect(m.canonical).not.toMatch(/https:\/\/kaibresystems\.com/);
+      expect(m.ogUrl).not.toMatch(/https:\/\/kaibresystems\.com/);
+      expect(m.title).toContain("Kaibre");
+      expect(m.description?.length ?? 0).toBeGreaterThan(40);
+      if (m.ld) expect(JSON.parse(m.ld).url).toBe(CANONICAL_ORIGIN);
+    });
+  }
+
+  test("sitemap and robots use the serving host", async ({ request }) => {
+    const sitemap = await request.get("/sitemap.xml");
+    expect(sitemap.status()).toBe(200);
+    const xml = await sitemap.text();
+    for (const route of ROUTES) {
+      const expected = route === "/" ? CANONICAL_ORIGIN : CANONICAL_ORIGIN + route;
+      expect(xml, `sitemap missing ${route}`).toContain(`<loc>${expected}</loc>`);
+    }
+    expect(xml).not.toMatch(/<loc>https:\/\/kaibresystems\.com/);
+
+    const robots = await request.get("/robots.txt");
+    expect(robots.status()).toBe(200);
+    const txt = await robots.text();
+    expect(txt).toContain(`${CANONICAL_ORIGIN}/sitemap.xml`);
+    expect(txt).toContain(`Host: ${CANONICAL_ORIGIN}`);
+    expect(txt).not.toMatch(/https:\/\/kaibresystems\.com\/sitemap/);
+  });
+});
+
 test.describe("runtime", () => {
   for (const route of ROUTES) {
     test(`${route} loads with no errors and no broken local assets`, async ({ page, baseURL }) => {
