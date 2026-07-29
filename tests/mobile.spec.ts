@@ -123,6 +123,18 @@ async function cssBox(page: Page, selector: string, text?: string) {
   );
 }
 
+/**
+ * Waits for the display webfont to swap in and for two frames to pass.
+ *
+ * Every measurement below is of where text lands, and until the font has
+ * loaded, lines are laid out in the fallback — measuring before that is
+ * measuring a page that no longer exists a frame later.
+ */
+async function settle(page: Page) {
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+}
+
 async function heroTransition(page: Page) {
   return page.evaluate(`(() => {
     ${INK_FNS}
@@ -160,6 +172,7 @@ test.describe("home: hero visualisation to the block beneath it", () => {
     test(`no viewport-sized void at ${vp.name}`, async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height });
       await page.goto("/");
+      await settle(page);
       const m = await heroTransition(page);
 
       // The bug, stated directly: the empty band between the last pixel the
@@ -203,6 +216,7 @@ test.describe("layout", () => {
       }) => {
         await page.setViewportSize({ width: vp.width, height: vp.height });
         await page.goto(route);
+        await settle(page);
 
         const m = await page.evaluate(`(() => {
           const de = document.documentElement;
@@ -265,6 +279,7 @@ test.describe("layout", () => {
   test("consecutive homepage sections do not drift apart", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
+    await settle(page);
     const gaps = await page.evaluate(`(() => {
       ${INK_FNS}
       const sections = [...document.querySelectorAll("main > section")];
