@@ -44,7 +44,7 @@ export default function HomePage() {
       {/* 1 — Hero -------------------------------------------------------- */}
       <Section surface="ink" space="flush" className="pb-16 pt-24 sm:pb-24 sm:pt-32">
         <Container>
-          <div className="grid items-center gap-x-16 gap-y-6 sm:gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-y-14">
+          <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-x-16 gap-y-6 sm:gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-y-14">
             <div>
               <Heading level={1} size="display-1" className="max-w-[46rem]">
                 {HERO.headline}

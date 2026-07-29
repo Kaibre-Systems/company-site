@@ -14,6 +14,22 @@
    ========================================================================== */
 
 @theme {
+  /* --- Geometry -----------------------------------------------------------
+     Tailwind's spacing scale is the base for every padding, margin, gap, gutter
+     and icon box on the site, and it is `rem` by default — so a visitor who
+     raises their browser's default font size to 200% does not just get bigger
+     words, they get a 40px page gutter, a 240px wordmark, an 88px hamburger and
+     96px of padding inside every button. On a 320px screen that consumed the
+     viewport before a single line of text had reflowed.
+
+     Text must scale with that setting. Interface *geometry* must not: a gutter,
+     a hit target and a logo are structural and graphical, not textual. Pinning
+     the scale to pixels separates the two. At the default 16px root this is
+     identical to `0.25rem` and changes nothing — the type scale below is still
+     rem-based, so text resizes exactly as before.
+     -------------------------------------------------------------------- */
+  --spacing: 4px;
+
   /* --- Brand ramp. One orange. Anchored on brand-600 (#CE4710). --------- */
   --color-brand-50: oklch(0.962 0.019 42);
   --color-brand-100: oklch(0.921 0.042 42);
@@ -98,8 +114,11 @@
   --radius-card: 6px;
   --radius-pill: 999px;
 
-  /* --- Layout ----------------------------------------------------------- */
-  --container-shell: 76rem;
+  /* --- Layout -------------------------------------------------------------
+     The shell is structural, so it is pixels for the same reason as the
+     spacing scale. The two reading measures stay in `ch` on purpose: a measure
+     is a property of the text, and it should widen when the text does. */
+  --container-shell: 1216px;
   --container-prose: 68ch;
   --container-narrow: 60ch;
 }
@@ -225,6 +244,19 @@
     font-synthesis-weight: none;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /**
+     * Only ever engages on a word that cannot fit its line on its own. At the
+     * sizes this design uses, nothing does — but at a 200% default font size on
+     * a 320px screen, "Software" in the display face is wider than the column,
+     * and so is the contact address. Breaking those is reflow; letting them
+     * push the page sideways is a horizontal scrollbar on every route.
+     *
+     * `break-word` rather than `anywhere` deliberately: `anywhere` also shrinks
+     * the min-content contribution, which would silently re-size intrinsic
+     * grid and flex tracks across the whole site. The tracks that needed a
+     * floor were given one explicitly instead.
+     */
+    overflow-wrap: break-word;
   }
 
   /* One visible focus treatment, correct on both surfaces. */
@@ -246,6 +278,20 @@
     font-family: var(--font-display);
     font-weight: 700;
     text-wrap: balance;
+    /**
+     * `anywhere` rather than the `break-word` on `body`. The two are identical
+     * in how they *render* — both break a word only when it cannot fit a line
+     * on its own — and differ in one respect: `anywhere` also lowers the
+     * element's min-content contribution, while `break-word` does not.
+     *
+     * That difference is the whole point here. A single-column grid track is
+     * `auto`, whose floor is min-content, so at a 200% default font size the
+     * word "commissioned" in the display face measured ~396px and set the
+     * width of a 280px column — dragging every paragraph beside it out with
+     * it. Headings are the only text large enough for this to happen, so they
+     * are the only place it is applied.
+     */
+    overflow-wrap: anywhere;
   }
 
   p {

@@ -65,17 +65,25 @@ export function SiteFooter() {
           </p>
 
           <div className="flex items-center gap-5">
+            {/* The address is a single 23-character run with no break
+                opportunity, and a flex item's automatic minimum size is its
+                min-content width — so at a raised default font size this one
+                link refused to shrink below ~380px and pushed every page on
+                the site sideways. The floor has to be zeroed twice: on the
+                link, which is an item of the row, and on the text inside it,
+                which is an anonymous item of the link's own flex line. The
+                icon beside it keeps its 44px target by not shrinking at all. */}
             <a
               href={`mailto:${SITE.email}`}
-              className="inline-flex min-h-11 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
+              className="inline-flex min-h-11 min-w-0 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
             >
-              {SITE.email}
+              <span className="min-w-0">{SITE.email}</span>
             </a>
             <a
               href={SITE.linkedin}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex size-11 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:text-fg"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:text-fg"
             >
               <span className="sr-only">Kaibre on LinkedIn (opens in a new tab)</span>
               <Linkedin aria-hidden className="size-5" />

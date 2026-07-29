@@ -46,7 +46,7 @@ export default function SecurePulsePage() {
       {/* Hero */}
       <Section surface="ink" space="flush" className="pb-20 pt-32 sm:pb-24 sm:pt-40">
         <Container>
-          <div className="grid items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="grid grid-cols-[minmax(0,1fr)] items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
                 <SecurePulseName animate />
