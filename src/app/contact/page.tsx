@@ -22,8 +22,16 @@ export default function ContactPage() {
     <Section surface="paper" space="flush" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
       <Container>
         {/* Two columns from `md`, not `lg`: a half-width tab on a 1080p
-            monitor is around 960px, which stacked the form below the fold. */}
-        <div className="grid gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:items-start md:gap-12 lg:gap-16">
+            monitor is around 960px, which stacked the form below the fold.
+
+            The mobile track needs its floor pinned to zero like the `md` ones.
+            An `auto` track's minimum is min-content, and the Suspense fallback
+            below carries the contact address — a single unbreakable run — so at
+            a raised default font size that one string set the width of the
+            column and pushed the page sideways. It is the state every visitor
+            sees before the form hydrates, and the only state a visitor with
+            JavaScript off ever sees. */}
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:items-start md:gap-12 lg:gap-16">
           <div>
             <Heading level={1} size="display-2" className="max-w-[14ch]">
               Tell us about the work.

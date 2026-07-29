@@ -27,11 +27,25 @@ const CASES = [
   { w: 430, h: 932, zoom: 200 },
 ] as const;
 
-async function setZoom(page: Page, zoom: number) {
-  if (zoom === 100) return;
-  await page.addStyleTag({ content: `html { font-size: ${zoom}% }` });
-  await page.waitForTimeout(200);
+/**
+ * Applies the zoom and waits for the layout to settle.
+ *
+ * `document.fonts.ready` is the load-bearing part. These assertions measure
+ * where text lands, and the display face is a webfont — until it has swapped in,
+ * lines are laid out in the fallback and every measurement is of a page that no
+ * longer exists a frame later. Under a loaded machine that window is wide enough
+ * to have produced a false failure once, at 320px and 150%, on a run that had
+ * passed minutes earlier. The wait removes the race rather than papering over it
+ * with a longer timeout.
+ */
+async function settle(page: Page, zoom: number) {
+  if (zoom !== 100) await page.addStyleTag({ content: `html { font-size: ${zoom}% }` });
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
 }
+
+/** Kept for call sites that read better as "set the zoom". */
+const setZoom = settle;
 
 test.describe("text resizing", () => {
   for (const c of CASES) {
@@ -178,6 +192,44 @@ test.describe("text resizing", () => {
       vw: document.documentElement.clientWidth,
     }));
     expect(after.docW).toBeLessThanOrEqual(after.vw + 1);
+  });
+
+  /**
+   * The contact form is a client island behind Suspense, so the server ships
+   * only its fallback — the state every visitor sees before hydration, and the
+   * only state a visitor with JavaScript off ever sees. That fallback carries
+   * the contact address, one unbreakable run, and it sat in a grid track whose
+   * `auto` minimum is min-content: at a raised font size the address set the
+   * width of the column and pushed the page sideways. The hydrated form does
+   * not reproduce it, so it has to be measured in this state deliberately.
+   */
+  test("the un-hydrated contact fallback does not widen the page", async ({ page }) => {
+    // Application chunks blocked, so React never hydrates and the fallback
+    // stays. JavaScript itself is left on so the harness can measure.
+    await page.route("**/_next/static/chunks/**.js", (r) => r.abort());
+
+    for (const [w, zoom] of [[320, 100], [320, 150], [320, 200], [390, 200]] as const) {
+      await page.setViewportSize({ width: w, height: 568 });
+      await page.goto("/contact");
+      await setZoom(page, zoom);
+
+      const m = await page.evaluate(() => {
+        const de = document.documentElement;
+        return {
+          docW: de.scrollWidth,
+          vw: de.clientWidth,
+          hydrated: !!document.querySelector("form"),
+          fallbackVisible: /Loading the form/.test(document.body.innerText),
+          address: !!document.querySelector('a[href^="mailto:"]'),
+        };
+      });
+
+      expect(m.hydrated, "the form hydrated; this test needs the fallback").toBe(false);
+      expect(m.fallbackVisible, "fallback copy missing").toBe(true);
+      // The address must stay reachable — it is the whole point of the fallback.
+      expect(m.address, "no mailto in the fallback").toBe(true);
+      expect(m.docW, `fallback overflows at ${w}px and ${zoom}%`).toBeLessThanOrEqual(m.vw + 1);
+    }
   });
 
   test("focus outlines are not clipped at 200%", async ({ page }) => {
