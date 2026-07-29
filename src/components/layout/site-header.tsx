@@ -55,7 +55,14 @@ export function SiteHeader() {
   useEffect(() => {
     if (!open) return;
 
-    const { overflow } = document.body.style;
+    /**
+     * Both elements, not just `body`: iOS Safari propagates scrolling to the
+     * document when only `body` is locked, so the page moved under an open
+     * panel. Locking the root as well is the one form that holds everywhere.
+     */
+    const root = document.documentElement;
+    const previous = { root: root.style.overflow, body: document.body.style.overflow };
+    root.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
 
     function onKeyDown(event: KeyboardEvent) {
@@ -87,7 +94,8 @@ export function SiteHeader() {
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = overflow;
+      root.style.overflow = previous.root;
+      document.body.style.overflow = previous.body;
     };
   }, [open, close]);
 
@@ -104,9 +112,16 @@ export function SiteHeader() {
           // The header always carries its own ink surface. Pages that open on
           // the light surface (/contact) would otherwise render light nav text
           // on light paper — the bar has to be opaque to stay legible.
+          //
+          // Opaque in both scroll states, for the same reason. A frosted bar
+          // reads as intended over ink, where what shows through is the same
+          // near-black; over paper it let dark body text ghost up beside the
+          // wordmark, which is the one page the note above is about. A blur
+          // behind an opaque fill would only cost a compositing layer, so the
+          // scrolled state is now carried by its border alone.
           "fixed inset-x-0 top-0 z-50 border-b border-transparent bg-surface",
-          "transition-[border-color,backdrop-filter] duration-200",
-          "data-[scrolled=true]:border-border data-[scrolled=true]:bg-surface/90 data-[scrolled=true]:backdrop-blur-md",
+          "transition-[border-color] duration-200",
+          "data-[scrolled=true]:border-border",
           "data-[open=true]:border-border",
         )}
       >
@@ -172,14 +187,24 @@ export function SiteHeader() {
           </button>
         </div>
 
-        {/* Mobile panel */}
+        {/* Mobile panel.
+            The panel lives inside a fixed header and page scrolling is locked
+            while it is open, so anything past the viewport edge is not merely
+            below the fold — it is unreachable. On a 320x568 phone, and in
+            landscape on any phone, the final CTA fell past that edge. The
+            panel takes whatever height is left under the bar and scrolls
+            inside it, and `dvh` is correct here specifically because it should
+            track Safari's toolbars as they expand and collapse. */}
         <div
           id={menuId}
           ref={panelRef}
           hidden={!open}
-          className="border-t border-border bg-surface lg:hidden"
+          className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-border bg-surface lg:hidden"
         >
-          <nav aria-label="Main" className="mx-auto max-w-shell px-5 py-6 sm:px-6">
+          <nav
+            aria-label="Main"
+            className="mx-auto max-w-shell px-5 pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:px-6"
+          >
             <p className="text-small font-medium text-fg-subtle">
               Products
             </p>

@@ -42,9 +42,9 @@ export default function HomePage() {
   return (
     <>
       {/* 1 — Hero -------------------------------------------------------- */}
-      <Section surface="ink" space="flush" className="pb-20 pt-28 sm:pb-24 sm:pt-32">
+      <Section surface="ink" space="flush" className="pb-16 pt-24 sm:pb-24 sm:pt-32">
         <Container>
-          <div className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-y-14">
+          <div className="grid items-center gap-x-16 gap-y-6 sm:gap-y-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-y-14">
             <div>
               <Heading level={1} size="display-1" className="max-w-[46rem]">
                 {HERO.headline}
@@ -63,8 +63,14 @@ export default function HomePage() {
             <MonitoredSignal className="mx-auto max-w-[26rem] lg:max-w-none" />
           </div>
 
-          {/* The three modes, stated plainly under the fold line. */}
-          <dl className="mt-16 grid gap-x-10 gap-y-8 border-t border-border pt-10 sm:grid-cols-3">
+          {/* The three modes, stated plainly under the fold line.
+              The rule separates a wide two-column composition on a desktop and
+              a ~90px chart on a phone, so it cannot carry one spacing value:
+              at desktop width it is a section break, at phone width the same
+              gap is larger than the graphic above it. Symmetric on a phone,
+              so the rule reads as a divider between two blocks rather than as
+              a lid on the one above it. */}
+          <dl className="mt-6 grid gap-x-10 gap-y-8 border-t border-border pt-6 sm:mt-16 sm:grid-cols-3 sm:pt-10">
             {HERO.modes.map((m) => (
               <div key={m.label}>
                 <dt className="text-heading-2 font-medium text-fg">{m.label}</dt>
@@ -183,7 +189,7 @@ export default function HomePage() {
       {/* 5 — Commissioned systems ------------------------------------------ */}
       <Section surface="ink" id={COMMISSIONED.id} className="border-t border-border">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-20">
             <div>
               <SectionHeader
                 heading={COMMISSIONED.heading}
@@ -257,7 +263,7 @@ export default function HomePage() {
       {/* 8 — Company --------------------------------------------------------- */}
       <Section surface="ink" id={COMPANY.id}>
         <Container>
-          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[1.1fr_1fr]">
+          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
             <SectionHeader heading={COMPANY.heading} body={COMPANY.body} />
 
             {/* Facts, not a third paragraph. */}

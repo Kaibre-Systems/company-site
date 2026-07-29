@@ -10,8 +10,12 @@ export function SiteFooter() {
       data-surface="ink"
       className="border-t border-border bg-surface text-fg"
     >
-      <div className="mx-auto max-w-shell px-5 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
+      {/* The last row on the site sits against the bottom edge of the screen,
+          which on a notched phone is where the home indicator lives. The inset
+          resolves to 0 unless the viewport is ever taken edge to edge, so this
+          costs nothing today and cannot be forgotten later. */}
+      <div className="mx-auto max-w-shell px-5 pt-14 pb-[calc(3.5rem+env(safe-area-inset-bottom))] sm:px-6 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)_minmax(0,1fr)]">
           <div>
             <KaibreWordmark className="h-9 w-auto text-fg" />
             <p className="mt-5 max-w-[34ch] text-fine text-fg-muted">
@@ -29,12 +33,16 @@ export function SiteFooter() {
               <h2 className="text-small font-medium text-fg-subtle">
                 {group.title}
               </h2>
-              <ul className="mt-4 space-y-2">
+              {/* 44px rows with no gap rather than 24px rows with one: the
+                  list occupies about the same height either way, and every
+                  link becomes a real touch target instead of a 24px line in a
+                  32px pitch. */}
+              <ul className="mt-2">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="inline-flex min-h-6 min-w-6 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
+                      className="inline-flex min-h-11 min-w-11 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
                     >
                       {link.label === "SecurePulse" ? (
                         <SecurePulseName animate />
@@ -59,7 +67,7 @@ export function SiteFooter() {
           <div className="flex items-center gap-5">
             <a
               href={`mailto:${SITE.email}`}
-              className="inline-flex min-h-6 min-w-6 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
+              className="inline-flex min-h-11 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
             >
               {SITE.email}
             </a>

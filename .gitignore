@@ -15,5 +15,9 @@ node_modules/
 logs/
 *.log
 
-# Local QA output
+# Local QA output. The scripts under qa-mobile/ are tracked; the runs they
+# write beside themselves are not — they are hundreds of screenshots per sweep.
 qa-screenshots/
+qa-mobile/*/
+playwright-report/
+test-results/

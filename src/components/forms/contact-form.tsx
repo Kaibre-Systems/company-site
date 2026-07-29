@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import { SITE } from "@/content/site";
 import { cn } from "@/lib/utils";
 
@@ -212,19 +213,30 @@ export function ContactForm() {
       </Field>
 
       <Field id="topic" label="What brings you here?">
-        <select
-          id="topic"
-          name="topic"
-          value={topic}
-          onChange={(e) => setTopic(e.target.value as Topic)}
-          className={cn(FIELD, "appearance-none pr-10")}
-        >
-          {TOPICS.map((t) => (
-            <option key={t.value} value={t.value}>
-              {t.label}
-            </option>
-          ))}
-        </select>
+        {/* `appearance-none` takes the platform control away, so the affordance
+            has to be drawn back: without it the field reads as a text input
+            that will not accept typing, which on touch is worse than on a
+            desktop — there is no cursor to contradict it. The chevron is
+            decorative and lets taps through to the control underneath. */}
+        <div className="relative">
+          <select
+            id="topic"
+            name="topic"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value as Topic)}
+            className={cn(FIELD, "cursor-pointer appearance-none pr-10")}
+          >
+            {TOPICS.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+          <ChevronDown
+            aria-hidden
+            className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-fg-subtle"
+          />
+        </div>
       </Field>
 
       <Field
