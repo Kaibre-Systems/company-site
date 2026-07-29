@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "test:e2e:safari": "playwright test --project=mobile-safari"
+    "test:e2e:safari": "playwright test --project=mobile-safari",
+    "smoke:prod": "node qa-mobile/prod-smoke.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",

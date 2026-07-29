@@ -9,7 +9,14 @@
 export const SITE = {
   name: "Kaibre",
   legalName: "Kaibre Systems Ltd.",
-  domain: "https://kaibresystems.com",
+  /**
+   * The host that actually serves. The apex redirects to `www`, so naming the
+   * apex here pointed every canonical, `og:url`, sitemap entry and the
+   * structured-data URL at a URL that answers 307 rather than 200. Search
+   * engines follow it, but a canonical should name the page it is the
+   * canonical of. Everything absolute on the site derives from this one value.
+   */
+  domain: "https://www.kaibresystems.com",
   positioning: "Kaibre builds and operates software for work that has to be right.",
   shortDescription:
     "Kaibre is a software company. We build and operate our own products, build products with partners, and take on a small number of commissioned production systems.",
