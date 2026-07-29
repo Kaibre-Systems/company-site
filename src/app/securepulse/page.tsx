@@ -46,7 +46,12 @@ export default function SecurePulsePage() {
       {/* Hero */}
       <Section surface="ink" space="flush" className="pb-20 pt-32 sm:pb-24 sm:pt-40">
         <Container>
-          <div className="grid items-end gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+          {/* Centred, not bottom-aligned. The panel is about half the height of
+                the column beside it, so pinning it to the baseline banked the
+                whole difference as one ~320px void in the top right — the
+                largest unexplained empty region on the site. Centring splits it
+                into two margins that read as composition. */}
+          <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
                 <SecurePulseName animate />
@@ -103,7 +108,7 @@ export default function SecurePulsePage() {
       {/* Domains */}
       <Section surface="ink" className="border-t border-border">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20">
             <div>
               <SectionHeader
                 heading={SP_DOMAINS.heading}

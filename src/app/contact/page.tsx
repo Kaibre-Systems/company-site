@@ -23,7 +23,7 @@ export default function ContactPage() {
       <Container>
         {/* Two columns from `md`, not `lg`: a half-width tab on a 1080p
             monitor is around 960px, which stacked the form below the fold. */}
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1fr] md:items-start md:gap-12 lg:gap-16">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:items-start md:gap-12 lg:gap-16">
           <div>
             <Heading level={1} size="display-2" className="max-w-[14ch]">
               Tell us about the work.
@@ -39,12 +39,15 @@ export default function ContactPage() {
           </div>
 
           {/* The form is a client island behind Suspense (it reads ?topic).
-              Reserving its measured height keeps the fallback-to-form swap
-              from shifting the page on hydration. */}
-          <div className="min-h-[651px] max-w-xl">
+              The reservation that keeps the fallback-to-form swap from
+              shifting the page belongs on the fallback, not on this wrapper:
+              on the wrapper it also applied to the sent and mail-app states,
+              which are a short card, and left ~465px of empty column under
+              them on a phone. */}
+          <div className="max-w-xl">
             <Suspense
               fallback={
-                <p className="text-body text-fg-muted">
+                <p className="min-h-[41rem] text-body text-fg-muted">
                   Loading the form — or write to{" "}
                   <a
                     href={`mailto:${SITE.email}`}

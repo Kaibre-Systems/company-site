@@ -115,7 +115,7 @@ export default function WorkPage() {
       {/* Commissioned systems (light) */}
       <Section surface="paper">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+          <div className="grid gap-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-20">
             <div>
               <SectionHeader
                 heading={WORK_COMMISSIONED.heading}

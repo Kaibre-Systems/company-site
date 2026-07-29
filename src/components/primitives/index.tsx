@@ -39,8 +39,8 @@ export function Section({
       aria-label={label}
       className={cn(
         "bg-surface text-fg",
-        space === "default" && "py-[clamp(4.5rem,10vh,8rem)]",
-        space === "tight" && "py-[clamp(3rem,6vh,4.5rem)]",
+        space === "default" && "py-[var(--section-space)]",
+        space === "tight" && "py-[var(--section-space-tight)]",
         className,
       )}
     >

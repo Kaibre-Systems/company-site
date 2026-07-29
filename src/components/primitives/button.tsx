@@ -35,11 +35,23 @@ export function Button({
   /** Primary actions glow by default; chrome (the navbar) does not. */
   halo?: boolean;
 }) {
+  const haloed = variant === "primary" && halo;
+
   const classes = cn(
     BASE,
     VARIANTS[variant],
     "relative",
     fullWidth && "w-full",
+    /**
+     * The aura wrapper below is a flex item. In a stacked CTA group
+     * (`flex-col`, so `align-items: stretch`) it is stretched to the full
+     * column, while the action inside keeps its content width — which left a
+     * full-bleed glow beside a button that no longer matched the secondary
+     * one next to it. Growing the action into whatever width the wrapper is
+     * given keeps the two the same size and the glow on the button, without
+     * either of them having to know which direction the group is stacked.
+     */
+    haloed && "grow",
     className,
   );
   const external = href.startsWith("http") || href.startsWith("mailto:");
@@ -60,7 +72,7 @@ export function Button({
     </Link>
   );
 
-  if (variant !== "primary" || !halo) return action;
+  if (!haloed) return action;
 
   /**
    * The aura sits in a wrapper rather than inside the button.
@@ -104,6 +116,11 @@ export function ArrowLink({
       className={cn(
         "group/arrow inline-flex items-center gap-2 font-sans text-body text-accent",
         "underline-offset-4 hover:underline",
+        // `w-fit` rather than `self-start`: these sit in groups that are
+        // stacked on a phone and centred in a row on a desktop, and only the
+        // stretch needs undoing. `min-h-11` makes the target 44px on touch
+        // without moving the text, since the label is centred in it.
+        "min-h-11 w-fit",
         className,
       )}
     >
