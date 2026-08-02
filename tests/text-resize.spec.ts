@@ -16,7 +16,7 @@ import { expect, test, type Page } from "@playwright/test";
      - nothing is clipped, and the page never scrolls horizontally at 320px.
    ========================================================================== */
 
-const ROUTES = ["/", "/securepulse", "/kai", "/work", "/contact"] as const;
+const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"] as const;
 
 const CASES = [
   { w: 320, h: 568, zoom: 100 },

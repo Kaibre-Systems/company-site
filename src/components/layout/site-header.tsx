@@ -109,16 +109,14 @@ export function SiteHeader() {
         data-scrolled="false"
         data-open={open ? "true" : "false"}
         className={cn(
-          // The header always carries its own ink surface. Pages that open on
-          // the light surface (/contact) would otherwise render light nav text
-          // on light paper — the bar has to be opaque to stay legible.
-          //
-          // Opaque in both scroll states, for the same reason. A frosted bar
-          // reads as intended over ink, where what shows through is the same
-          // near-black; over paper it let dark body text ghost up beside the
-          // wordmark, which is the one page the note above is about. A blur
-          // behind an opaque fill would only cost a compositing layer, so the
-          // scrolled state is now carried by its border alone.
+          // The header always carries its own ink surface, and it is opaque in
+          // both scroll states. A frosted bar reads as intended over ink, where
+          // what shows through is the same near-black; over the ember surface —
+          // which is what /contact opens on — it let the section's own copy
+          // ghost up beside the wordmark, and put the nav on a ground it was
+          // not coloured for. A blur behind an opaque fill would only cost a
+          // compositing layer, so the scrolled state is carried by its border
+          // alone.
           "fixed inset-x-0 top-0 z-50 border-b border-transparent bg-surface",
           "transition-[border-color] duration-200",
           "data-[scrolled=true]:border-border",

@@ -41,8 +41,8 @@ export default function WorkPage() {
         </Container>
       </Section>
 
-      {/* Luxury commerce — the anonymised snapshot (light surface) */}
-      <Section surface="paper">
+      {/* Luxury commerce — the anonymised snapshot (ember surface) */}
+      <Section surface="ember">
         <Container>
           <SectionHeader
             heading={WORK_LUXURY.heading}
@@ -112,8 +112,8 @@ export default function WorkPage() {
         </Container>
       </Section>
 
-      {/* Commissioned systems (light) */}
-      <Section surface="paper">
+      {/* Commissioned systems (ember) */}
+      <Section surface="ember">
         <Container>
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-20">
             <div>

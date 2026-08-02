@@ -90,7 +90,7 @@ export const KAI_FAQ = {
     },
     {
       q: "Does Kaibre build things other than kAI?",
-      a: "Yes. Kaibre is a software company — kAI is one of its products. We also build SecurePulse, and take on a small number of commissioned production systems each year.",
+      a: "Yes. Kaibre is a software company — kAI is one of its products. We also build SecurePuls, and take on a small number of commissioned production systems each year.",
     },
   ],
 } as const;
