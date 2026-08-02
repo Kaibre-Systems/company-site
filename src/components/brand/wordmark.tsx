@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
  *
  * Inlined from `full_logo_white.svg` with the editor metadata stripped and the
  * hardcoded `.cls-1` fill replaced by `currentColor`, so one asset works on
- * both the ink and paper surfaces.
+ * both the ink and ember surfaces.
  *
  * The group transform is load-bearing: the badge path is authored in a
  * different coordinate space from the lettering and must NOT be translated.

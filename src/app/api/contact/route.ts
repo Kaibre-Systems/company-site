@@ -19,7 +19,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const TOPICS: Record<string, string> = {
-  securepulse: "SecurePulse",
+  securepuls: "SecurePuls",
   kai: "kAI",
   partnership: "A partnership",
   commissioned: "A commissioned system",

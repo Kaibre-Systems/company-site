@@ -73,11 +73,11 @@ export const PRODUCTS = {
   body: "Two products in market, built on the same discipline. Both keep a person in the decision.",
   items: [
     {
-      name: "SecurePulse",
+      name: "SecurePuls",
       category: "Physical security assessment",
       headline: "Site assessments that show their working.",
-      body: "SecurePulse turns a physical security inspection into a structured assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings graded by severity. Every regulatory reference carries an evidence label, and a named assessor signs the report off.",
-      href: "/securepulse",
+      body: "SecurePuls turns a physical security inspection into a structured assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings graded by severity. Every regulatory reference carries an evidence label, and a named assessor signs the report off.",
+      href: "/securepuls",
       accent: true,
     },
     {

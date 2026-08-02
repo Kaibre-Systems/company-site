@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   const routes: { path: string; priority: number }[] = [
     { path: "", priority: 1 },
-    { path: "/securepulse", priority: 0.9 },
+    { path: "/securepuls", priority: 0.9 },
     { path: "/work", priority: 0.8 },
     { path: "/kai", priority: 0.7 },
     { path: "/contact", priority: 0.6 },

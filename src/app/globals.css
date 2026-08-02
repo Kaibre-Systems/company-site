@@ -5,10 +5,17 @@
    --------------------------------------------------------------------------
    Two surfaces, one token vocabulary.
 
-   Every section declares a surface via `data-surface="ink" | "paper"`.
+   Every section declares a surface via `data-surface="ink" | "ember"`.
    The semantic tokens below (--surface, --fg, --border, --accent, ...) are
    redefined per surface, so a component written once with `bg-surface
    text-fg` renders correctly on both without conditional classes.
+
+   Both surfaces are dark. The alternating surface was a near-white sheet, and
+   at the size these sections are — full-bleed, one after another — a visitor
+   scrolling from the near-black hero into one took the brightness change as a
+   flash rather than as a change of register. `ember` replaces it with a burnt
+   orange struck from the same hue as the brand ramp, so the two surfaces still
+   read as two distinct grounds without either of them being a light source.
 
    Components must never use raw hex. Use the semantic tokens.
    ========================================================================== */
@@ -55,11 +62,23 @@
   --color-ink-200: oklch(0.879 0.005 62);
   --color-ink-100: oklch(0.941 0.004 62);
 
-  /* --- Paper. Warm off-whites for light surfaces. ----------------------- */
-  --color-paper-50: oklch(0.984 0.004 78);
-  --color-paper-100: oklch(0.967 0.006 78);
-  --color-paper-200: oklch(0.928 0.008 78);
-  --color-paper-300: oklch(0.871 0.010 78);
+  /* --- Ember. The second surface: burnt orange, struck from the brand hue.
+     Same hue family as the ramp above, held two-thirds of the way down it and
+     pulled off its chroma peak — a full-bleed section is the largest field of
+     colour on the site, and the ramp's own saturation is tuned for marks a few
+     pixels wide, not for square metres of it. -------------------------- */
+  --color-ember-300: oklch(0.585 0.112 41);
+  --color-ember-400: oklch(0.512 0.112 41);
+  --color-ember-500: oklch(0.452 0.110 41);
+  --color-ember-600: oklch(0.404 0.104 41);
+  --color-ember-700: oklch(0.352 0.093 41);
+  --color-ember-800: oklch(0.300 0.080 41);
+
+  /* --- Cream. The type that sits on ember. Warm off-whites, carrying just
+     enough of the surface's own hue that they read as belonging to it. --- */
+  --color-cream-50: oklch(0.985 0.008 60);
+  --color-cream-200: oklch(0.905 0.024 52);
+  --color-cream-300: oklch(0.855 0.034 50);
 
   /* --- Single functional accent. Product-interface visuals only. -------- */
   --color-signal-400: oklch(0.712 0.062 218);
@@ -176,24 +195,34 @@
   --shadow-card: none;
 }
 
-[data-surface="paper"] {
-  --surface: var(--color-paper-50);
-  --surface-raised: oklch(1 0 0);
-  --surface-inset: var(--color-paper-100);
-  --fg: var(--color-ink-950);
-  --fg-muted: var(--color-ink-700);
-  --fg-subtle: var(--color-ink-600);
-  --border: var(--color-paper-200);
-  --border-strong: var(--color-paper-300);
-  --accent: var(--color-brand-700);
-  --accent-hover: var(--color-brand-800);
-  --accent-solid: var(--color-brand-700);
-  --accent-solid-hover: var(--color-brand-800);
-  --accent-contrast: oklch(1 0 0);
-  --accent-quiet: var(--color-brand-700);
-  --focus: var(--color-brand-700);
-  --success: var(--color-success-600);
-  --shadow-card: 0 1px 2px oklch(0.145 0.005 62 / 0.05), 0 8px 24px -12px oklch(0.145 0.005 62 / 0.12);
+/**
+ * The ember surface inverts one thing about the ink one: the accent cannot be
+ * the brand orange, because the ground already is. Orange-on-orange is a
+ * ~1.4:1 button. So on ember the accent runs to the *light* end of the same
+ * ramp for marks and text, and a filled action reverses out to cream with the
+ * darkest ember as its label. It is the same single accent, read against a
+ * different ground.
+ */
+[data-surface="ember"] {
+  --surface: var(--color-ember-600);
+  --surface-raised: var(--color-ember-500);
+  --surface-inset: var(--color-ember-700);
+  --fg: var(--color-cream-50);
+  --fg-muted: var(--color-cream-200);
+  --fg-subtle: var(--color-cream-300);
+  --border: var(--color-ember-400);
+  --border-strong: var(--color-ember-300);
+  --accent: var(--color-brand-200);
+  --accent-hover: var(--color-cream-50);
+  --accent-solid: var(--color-cream-50);
+  --accent-solid-hover: oklch(1 0 0);
+  --accent-contrast: var(--color-ember-800);
+  --accent-quiet: var(--color-brand-200);
+  --focus: var(--color-brand-200);
+  --success: var(--color-success-400);
+  /* Ember is dark enough that a black shadow reads as depth rather than dirt,
+     but it needs more of it than a white sheet did to register at all. */
+  --shadow-card: 0 1px 2px oklch(0.145 0.02 41 / 0.28), 0 10px 28px -14px oklch(0.145 0.02 41 / 0.55);
 }
 
 @theme inline {
@@ -413,7 +442,7 @@
   }
 }
 
-/* "Pulse" in SecurePulse, breathing. */
+/* "Puls" in SecurePuls, breathing. */
 @keyframes textBreathe {
   0%,
   100% {

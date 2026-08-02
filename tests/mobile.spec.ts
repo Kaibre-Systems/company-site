@@ -13,7 +13,7 @@ import { expect, test, type Page } from "@playwright/test";
    visitor can never reach — plus the routine mobile invariants around them.
    ========================================================================== */
 
-const ROUTES = ["/", "/securepulse", "/kai", "/work", "/contact"] as const;
+const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"] as const;
 
 /**
  * The required matrix. `small` is Safari's *small* viewport for the device —
@@ -321,8 +321,8 @@ test.describe("layout", () => {
 
   test("the fixed header stays opaque over both surfaces", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    // /contact opens on the light surface, where anything showing through the
-    // bar is dark body text against the wordmark rather than more near-black.
+    // /contact opens on the ember surface, where anything showing through the
+    // bar is burnt orange against the wordmark rather than more near-black.
     for (const route of ["/contact", "/"]) {
       await page.goto(route);
       for (const scroll of [0, 300]) {
@@ -442,6 +442,8 @@ test.describe("navigation", () => {
       ["/projects", "/work"],
       ["/team", "/"],
       ["/careers", "/contact"],
+      // The product is spelled SecurePuls; the old route must not 404.
+      ["/securepulse", "/securepuls"],
     ]) {
       await page.goto(from);
       await expect(page).toHaveURL(new RegExp(`${to.replace("/", "\\/")}$`));

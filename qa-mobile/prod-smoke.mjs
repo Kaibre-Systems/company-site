@@ -7,7 +7,7 @@
 import { chromium, webkit } from "@playwright/test";
 
 const BASE = process.argv[2] ?? "https://www.kaibresystems.com";
-const ROUTES = ["/", "/securepulse", "/kai", "/work", "/contact"];
+const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"];
 
 const fail = [];
 const bad = (s) => {
@@ -142,7 +142,7 @@ async function run(engineName, browserType, viewport, isMobile) {
   } else {
     const page = await ctx.newPage();
     await page.goto(BASE + "/", { waitUntil: "networkidle" });
-    for (const label of ["SecurePulse", "kAI", "Work"]) {
+    for (const label of ["SecurePuls", "kAI", "Work"]) {
       const link = page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: label, exact: true }).first();
       const href = await link.getAttribute("href");
       const r = await page.request.get(BASE + href);
@@ -177,6 +177,8 @@ async function routing() {
     ["/projects", "/work"],
     ["/team", "/"],
     ["/careers", "/contact"],
+    // The product is spelled SecurePuls; the route was corrected to match.
+    ["/securepulse", "/securepuls"],
   ]) {
     const r = await fetch(BASE + from, { redirect: "manual" });
     const loc = r.headers.get("location") ?? "";

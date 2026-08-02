@@ -13,7 +13,7 @@ import { Callout, WorkflowSteps } from "@/components/modules";
 import {
   AssessmentPanel,
   EvidenceLink,
-  SecurePulseName,
+  SecurePulsName,
   VisualFrame,
 } from "@/components/visuals";
 import {
@@ -25,22 +25,22 @@ import {
   SP_REPORT,
   SP_STATUS,
   SP_WORKFLOW,
-} from "@/content/securepulse";
+} from "@/content/securepuls";
 
 export const metadata: Metadata = {
-  title: "SecurePulse — Physical security assessment",
+  title: "SecurePuls — Physical security assessment",
   description:
-    "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings a named assessor signs off.",
-  alternates: { canonical: "/securepulse" },
+    "SecurePuls turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings a named assessor signs off.",
+  alternates: { canonical: "/securepuls" },
   openGraph: {
-    title: "SecurePulse — Physical security assessment | Kaibre",
+    title: "SecurePuls — Physical security assessment | Kaibre",
     description:
-      "Structured, evidence-backed physical security assessments for UAE and Gulf sites. SecurePulse drafts; qualified people decide.",
-    url: "/securepulse",
+      "Structured, evidence-backed physical security assessments for UAE and Gulf sites. SecurePuls drafts; qualified people decide.",
+    url: "/securepuls",
   },
 };
 
-export default function SecurePulsePage() {
+export default function SecurePulsPage() {
   return (
     <>
       {/* Hero */}
@@ -54,7 +54,7 @@ export default function SecurePulsePage() {
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
-                <SecurePulseName animate />
+                <SecurePulsName animate />
                 <span className="ml-3 text-body font-normal text-fg-subtle">
                   {SP_HERO.category}
                 </span>
@@ -80,8 +80,8 @@ export default function SecurePulsePage() {
         </Container>
       </Section>
 
-      {/* Jurisdiction (light) */}
-      <Section surface="paper">
+      {/* Jurisdiction (ember) */}
+      <Section surface="ember">
         <Container>
           <>
             <SectionHeader
@@ -134,8 +134,8 @@ export default function SecurePulsePage() {
         </Container>
       </Section>
 
-      {/* Evidence discipline (light) — the product's core differentiator */}
-      <Section surface="paper">
+      {/* Evidence discipline (ember) — the product's core differentiator */}
+      <Section surface="ember">
         <Container>
           <>
             <SectionHeader

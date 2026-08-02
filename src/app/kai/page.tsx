@@ -71,8 +71,8 @@ export default function KaiPage() {
         </Container>
       </Section>
 
-      {/* Value (light) */}
-      <Section surface="paper">
+      {/* Value (ember) */}
+      <Section surface="ember">
         <Container>
           <>
             <SectionHeader
