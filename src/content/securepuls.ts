@@ -1,11 +1,11 @@
 /**
- * SecurePulse page copy.
+ * SecurePuls page copy.
  *
- * Grounded in the SecurePulse product repositories (read-only inspection).
+ * Grounded in the SecurePuls product repositories (read-only inspection).
  * Every capability below is implemented today. Roadmap items are excluded.
  *
  * Hard constraints:
- *  - SecurePulse assesses PHYSICAL security in the UAE/GCC. Not infosec, not cyber.
+ *  - SecurePuls assesses PHYSICAL security in the UAE/GCC. Not infosec, not cyber.
  *  - No certification, accreditation, regulatory approval, or endorsement is claimed.
  *  - No named customers, institutions, or sectors-as-customers.
  *  - No metrics, percentages, or time savings.
@@ -15,17 +15,17 @@
 export const SP_HERO = {
   category: "Physical security assessment",
   headline: "Site assessments that show their working.",
-  body: "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment. It builds the checklist for the site's emirate and sector, captures photo evidence on the walk, grades findings by severity, and produces a consulting-standard report that a named assessor signs off.",
-  cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
+  body: "SecurePuls turns a physical security inspection into a structured, evidence-backed assessment. It builds the checklist for the site's emirate and sector, captures photo evidence on the walk, grades findings by severity, and produces a consulting-standard report that a named assessor signs off.",
+  cta: { label: "Talk to us about SecurePuls", href: "/contact?topic=securepuls" },
 } as const;
 
 export const SP_JURISDICTION = {
   heading: "In the UAE, location decides the rulebook.",
   body: [
     "Physical security requirements in the UAE are set per emirate, not federally. A site in Dubai answers to a different authority stack than the same operator's site in Abu Dhabi or Sharjah, and critical infrastructure adds another layer again.",
-    "SecurePulse starts from the site's emirate and sector, and builds the assessment from there. Regulatory references are drawn from a maintained knowledge base rather than generated freely.",
+    "SecurePuls starts from the site's emirate and sector, and builds the assessment from there. Regulatory references are drawn from a maintained knowledge base rather than generated freely.",
   ],
-  note: "SecurePulse currently supports assessments for energy (oil and gas) sites and government buildings.",
+  note: "SecurePuls currently supports assessments for energy (oil and gas) sites and government buildings.",
 } as const;
 
 export const SP_WORKFLOW = {
@@ -39,7 +39,7 @@ export const SP_WORKFLOW = {
     {
       n: "02",
       title: "Generate the checklist",
-      body: "SecurePulse produces an assessment checklist organised across ten physical security domains and tailored to the site rather than pulled from a generic template.",
+      body: "SecurePuls produces an assessment checklist organised across ten physical security domains and tailored to the site rather than pulled from a generic template.",
     },
     {
       n: "03",
@@ -80,7 +80,7 @@ export const SP_EVIDENCE = {
   heading: "Every regulatory claim carries its confidence.",
   body: [
     "UAE physical security guidance is unevenly published. Some requirements are set out in enacted law; some are only visible through approved installers and industry sources; some are genuinely unresolved.",
-    "SecurePulse labels each regulatory reference with the strength of the evidence behind it, and it is not permitted to present an unresolved item as a probable requirement. Where the answer is not established, the assessment says so and escalates it to the competent authority.",
+    "SecurePuls labels each regulatory reference with the strength of the evidence behind it, and it is not permitted to present an unresolved item as a probable requirement. Where the answer is not established, the assessment says so and escalates it to the competent authority.",
   ],
   labels: [
     {
@@ -103,16 +103,16 @@ export const SP_EVIDENCE = {
 } as const;
 
 export const SP_HUMAN = {
-  heading: "SecurePulse drafts. People decide.",
+  heading: "SecurePuls drafts. People decide.",
   body: [
-    "SecurePulse is professional advisory tooling. It is not a regulatory audit, a legal opinion, or a certification, and it does not replace a qualified security assessor.",
+    "SecurePuls is professional advisory tooling. It is not a regulatory audit, a legal opinion, or a certification, and it does not replace a qualified security assessor.",
     "Findings are drafts until a lead assessor and a reviewer accept them. Every report carries a named sign-off, records that it is a point-in-time assessment, and instructs the reader to verify regulatory references with the competent authority.",
   ],
 } as const;
 
 export const SP_REPORT = {
   heading: "A report a consultant would recognise.",
-  body: "SecurePulse produces the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
+  body: "SecurePuls produces the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
   sections: [
     "Assessment summary and risk scorecard",
     "Findings by domain",
@@ -127,7 +127,7 @@ export const SP_REPORT = {
 } as const;
 
 export const SP_STATUS = {
-  heading: "Where SecurePulse is today",
-  body: "SecurePulse is in active development and demonstration with organisations in the UAE and the wider Gulf. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",
-  cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
+  heading: "Where SecurePuls is today",
+  body: "SecurePuls is in active development and demonstration with organisations in the UAE and the wider Gulf. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",
+  cta: { label: "Talk to us about SecurePuls", href: "/contact?topic=securepuls" },
 } as const;

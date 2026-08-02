@@ -87,7 +87,7 @@ the contact email.
 src/
 ├─ app/                    routes — all static
 │  ├─ page.tsx             home
-│  ├─ securepulse/         product page
+│  ├─ securepuls/          product page
 │  ├─ kai/                 product page
 │  ├─ work/                selected work + commissioned systems
 │  ├─ contact/             contact form
@@ -110,7 +110,9 @@ Every user-facing string lives in `src/content/*.ts`. Components never contain c
 
 ### Design system
 
-Two surfaces, one token vocabulary. Each section declares `data-surface="ink" | "paper"`, and the semantic tokens (`--surface`, `--fg`, `--border`, `--accent`, …) resolve per surface — so `bg-surface text-fg` is correct on both without conditional classes.
+Two surfaces, one token vocabulary. Each section declares `data-surface="ink" | "ember"`, and the semantic tokens (`--surface`, `--fg`, `--border`, `--accent`, …) resolve per surface — so `bg-surface text-fg` is correct on both without conditional classes.
+
+Both surfaces are dark: near-black `ink`, and `ember`, a burnt orange struck from the brand hue. The alternating surface used to be a near-white sheet, and full-bleed at that size it read as a flash rather than as a change of register. The one place the two surfaces genuinely diverge is the accent — on ember the ground *is* brand orange, so the accent runs to the light end of the ramp and filled actions reverse out to cream.
 
 **Components must not contain raw hex.** ESLint enforces this. The single exception is `src/lib/raw-colors.ts`, for the two contexts that cannot read CSS variables: the `themeColor` meta tag and `next/og` image generation.
 

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <Section surface="paper" space="flush" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
+    <Section surface="ember" space="flush" className="pb-16 pt-24 sm:pb-20 sm:pt-28">
       <Container>
         {/* Two columns from `md`, not `lg`: a half-width tab on a 1080p
             monitor is around 960px, which stacked the form below the fold.

@@ -101,8 +101,8 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 3 — Production proof (light surface) ------------------------------ */}
-      <Section surface="paper">
+      {/* 3 — Production proof (ember surface) ------------------------------ */}
+      <Section surface="ember">
         <Container>
           <SectionHeader
             heading={PROOF.heading}
@@ -235,8 +235,8 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 7 — How we work (light surface) ------------------------------------ */}
-      <Section surface="paper" id={HOW_WE_WORK.id}>
+      {/* 7 — How we work (ember surface) ------------------------------------ */}
+      <Section surface="ember" id={HOW_WE_WORK.id}>
         <Container>
           <>
             <SectionHeader

@@ -38,7 +38,7 @@ const LANDSCAPE = [
   { name: "932x430", width: 932, height: 430, note: "large phone landscape" },
 ];
 
-const ROUTES = ["/", "/securepulse", "/kai", "/work", "/contact"];
+const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"];
 
 /**
  * Safari's *small* viewport per device — the height actually visible with the

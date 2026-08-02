@@ -32,8 +32,8 @@ export const SITE = {
 export const NAV = {
   products: [
     {
-      label: "SecurePulse",
-      href: "/securepulse",
+      label: "SecurePuls",
+      href: "/securepuls",
       note: "Physical security assessment",
     },
     { label: "kAI", href: "/kai", note: "Outbound voice agent" },
@@ -49,7 +49,7 @@ export const FOOTER_GROUPS = [
   {
     title: "Products",
     links: [
-      { label: "SecurePulse", href: "/securepulse" },
+      { label: "SecurePuls", href: "/securepuls" },
       { label: "kAI", href: "/kai" },
     ],
   },

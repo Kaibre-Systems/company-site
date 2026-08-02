@@ -6,7 +6,7 @@ import { withBrand } from "@/components/visuals";
    Layout primitives
    ========================================================================== */
 
-type Surface = "ink" | "paper";
+type Surface = "ink" | "ember";
 
 interface SectionProps {
   children: ReactNode;
