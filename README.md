@@ -112,7 +112,9 @@ Every user-facing string lives in `src/content/*.ts`. Components never contain c
 
 Two surfaces, one token vocabulary. Each section declares `data-surface="ink" | "ember"`, and the semantic tokens (`--surface`, `--fg`, `--border`, `--accent`, …) resolve per surface — so `bg-surface text-fg` is correct on both without conditional classes.
 
-Both surfaces are dark: near-black `ink`, and `ember`, a burnt orange struck from the brand hue. The alternating surface used to be a near-white sheet, and full-bleed at that size it read as a flash rather than as a change of register. The one place the two surfaces genuinely diverge is the accent — on ember the ground *is* brand orange, so the accent runs to the light end of the ramp and filled actions reverse out to cream.
+Both surfaces are dark: near-black `ink`, and `ember`, a burnt orange struck from the brand hue. The alternating surface used to be a near-white sheet, and full-bleed at that size it read as a flash rather than as a change of register. The one place the two surfaces genuinely diverge is the accent — on ember the ground *is* brand orange, so the accent runs to the light end of the ramp and filled actions reverse out to white with a near-black label.
+
+Entry fields are tokenised apart from the surface (`--field`, `--field-fg`, `--field-placeholder`, `--field-border`, `--field-border-focus`). A card and a text input want the same treatment on ink and emphatically do not on ember: a section is scenery, but a field is a target, and tinted the same as the ground it sits on its edge goes soft and the form reads as one block. On ember a field is a white sheet with near-black type.
 
 **Components must not contain raw hex.** ESLint enforces this. The single exception is `src/lib/raw-colors.ts`, for the two contexts that cannot read CSS variables: the `themeColor` meta tag and `next/og` image generation.
 

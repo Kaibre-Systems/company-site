@@ -62,9 +62,15 @@ interface Fields {
   work: string;
 }
 
+/**
+ * Fields carry their own tokens rather than the section's surface ones. On
+ * ember that resolves to a white sheet with near-black type: a field is a
+ * target rather than scenery, and tinted the same as the ground it sits on its
+ * edge went soft and the form read as one block.
+ */
 const FIELD =
-  "w-full rounded-control border border-border bg-surface-raised px-4 py-3 text-body text-fg " +
-  "placeholder:text-fg-subtle transition-colors duration-150 focus:border-accent";
+  "w-full rounded-control border border-field-border bg-field px-4 py-3 text-body text-field-fg " +
+  "placeholder:text-field-placeholder transition-colors duration-150 focus:border-field-border-focus";
 
 function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
@@ -232,9 +238,12 @@ export function ContactForm() {
               </option>
             ))}
           </select>
+          {/* Sits inside the field, so it takes the field's ink, not the
+              section's — on ember the surface tone is a near-invisible
+              cream-on-white. */}
           <ChevronDown
             aria-hidden
-            className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-fg-subtle"
+            className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-field-placeholder"
           />
         </div>
       </Field>
