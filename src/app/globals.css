@@ -193,15 +193,23 @@
   --focus: var(--color-brand-400);
   --success: var(--color-success-400);
   --shadow-card: none;
+  /* An entry field is the one surface a visitor is asked to work *inside* of,
+     so it is tokenised apart from `surface-raised` — a card and a text input
+     want the same treatment on ink and emphatically do not on ember. */
+  --field: var(--color-ink-900);
+  --field-fg: var(--color-ink-100);
+  --field-placeholder: var(--color-ink-400);
+  --field-border: var(--color-ink-800);
+  --field-border-focus: var(--color-brand-500);
 }
 
 /**
  * The ember surface inverts one thing about the ink one: the accent cannot be
  * the brand orange, because the ground already is. Orange-on-orange is a
  * ~1.4:1 button. So on ember the accent runs to the *light* end of the same
- * ramp for marks and text, and a filled action reverses out to cream with the
- * darkest ember as its label. It is the same single accent, read against a
- * different ground.
+ * ramp for marks and text, and a filled action reverses out to white with a
+ * near-black label. It is the same single accent, read against a different
+ * ground.
  */
 [data-surface="ember"] {
   --surface: var(--color-ember-600);
@@ -214,15 +222,33 @@
   --border-strong: var(--color-ember-300);
   --accent: var(--color-brand-200);
   --accent-hover: var(--color-cream-50);
-  --accent-solid: var(--color-cream-50);
-  --accent-solid-hover: oklch(1 0 0);
-  --accent-contrast: var(--color-ember-800);
+  /* The same white as a field, deliberately: a filled action and an entry box
+     are the two light objects on the surface, and two near-identical whites
+     read as a mistake rather than as a distinction. */
+  --accent-solid: oklch(1 0 0);
+  --accent-solid-hover: var(--color-cream-200);
+  --accent-contrast: var(--color-ink-950);
   --accent-quiet: var(--color-brand-200);
   --focus: var(--color-brand-200);
   --success: var(--color-success-400);
   /* Ember is dark enough that a black shadow reads as depth rather than dirt,
      but it needs more of it than a white sheet did to register at all. */
   --shadow-card: 0 1px 2px oklch(0.145 0.02 41 / 0.28), 0 10px 28px -14px oklch(0.145 0.02 41 / 0.55);
+
+  /**
+   * Entry fields are the one thing on ember that stays a light sheet, and the
+   * reason is the opposite of the one that took the light surface away. A
+   * full-bleed section is scenery — the eye passes over it. A field is a
+   * target: it has to say where it begins and ends, hold the caret, and show
+   * typed characters at speed. Tinted the same as the ground it sits on, the
+   * edge went soft and the whole form read as one brown block. It is a few
+   * hundred square pixels rather than a screenful, so it does not flash.
+   */
+  --field: oklch(1 0 0);
+  --field-fg: var(--color-ink-950);
+  --field-placeholder: var(--color-ink-600);
+  --field-border: var(--color-ink-300);
+  --field-border-focus: var(--color-brand-600);
 }
 
 @theme inline {
@@ -234,6 +260,11 @@
   --color-fg-subtle: var(--fg-subtle);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
+  --color-field: var(--field);
+  --color-field-fg: var(--field-fg);
+  --color-field-placeholder: var(--field-placeholder);
+  --color-field-border: var(--field-border);
+  --color-field-border-focus: var(--field-border-focus);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-solid: var(--accent-solid);
