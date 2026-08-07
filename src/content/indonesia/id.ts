@@ -4,50 +4,59 @@ import { EN_PATH } from "./locale";
 /**
  * SecurePuls Indonesia — Bahasa Indonesia.
  *
- * Ditulis langsung dalam ragam formal untuk audiens kepatuhan, hukum, risiko
- * dan audit di sektor jasa keuangan — bukan terjemahan kata per kata. Istilah
- * teknis yang lazim dipakai dalam bahasa Inggris di lingkungan perusahaan
- * Indonesia dipertahankan (gap, deployment, endpoint, spreadsheet, email,
- * PDF, Word, fintech, AI), begitu pula label bukti pada antarmuka produk
- * (VERIFIED / PARTIAL / INFERRED / GAP).
+ * Ditulis langsung dalam ragam formal untuk eksekutif kepatuhan, hukum,
+ * risiko dan audit — bukan terjemahan kata per kata, dan tidak lebih panjang
+ * dari versi Inggrisnya. Istilah yang lazim dipakai dalam bahasa Inggris di
+ * praktik kepatuhan Indonesia dipertahankan (gap analysis, gap, deployment,
+ * endpoint, spreadsheet, fintech, AI, PDF, Word, label bukti VERIFIED /
+ * PARTIAL / INFERRED / GAP); selebihnya memakai istilah baku: kepatuhan,
+ * ketentuan, temuan, keparahan, remediasi, verifikasi penelaah, jejak bukti,
+ * korpus regulasi.
  *
- * Disiplin klaim mengikuti `en.ts`: tidak ada regulasi, regulator, kerangka
- * atau undang-undang Indonesia yang disebut namanya; tidak ada sertifikasi,
- * persentase, atau nama pelanggan. Contoh pada bagian ketertelusuran diberi
- * label ilustratif.
+ * Disiplin klaim mengikuti `en.ts`: angka ±30 menit selalu dengan kualifikasi
+ * ("sekitar", "untuk asesmen yang telah dikonfigurasi"); OJK, Bank Indonesia,
+ * dan sektor asuransi disebut hanya sebagai kategori korpus yang
+ * dikonfigurasi per penugasan — tanpa klaim persetujuan atau cakupan penuh;
+ * angka di dalam mockup diberi label "Ilustratif".
  */
 export const ID: IndoContent = {
   locale: "id",
   meta: {
-    title: "SecurePuls Indonesia — asesmen kepatuhan lengkap dengan buktinya",
+    title: "SecurePuls Indonesia — asesmen kepatuhan berbantuan AI",
     description:
-      "SecurePuls menyusun asesmen kepatuhan untuk bank, fintech, dan perusahaan asuransi di Indonesia: setiap ketentuan terjawab, setiap temuan tertelusur ke sumbernya, dan laporan disahkan oleh penelaah Anda sendiri.",
+      "Analisis kesenjangan, temuan berperingkat keparahan, rencana remediasi, dan draf laporan siap telaah dalam sekitar 30 menit — berlandaskan korpus regulasi yang dikonfigurasi untuk penugasan, tertelusur ke sumber, dan diverifikasi penelaah Anda.",
     ogLocale: "id_ID",
   },
   chrome: {
     skip: "Langsung ke konten",
     kaibreHome: "Kaibre — situs perusahaan",
     marketLabel: "Indonesia",
-    toggle: {
-      navLabel: "Bahasa",
-      en: "English",
-      id: "Bahasa Indonesia",
-    },
+    toggle: { navLabel: "Bahasa", en: "English", id: "Bahasa Indonesia" },
     cta: { label: "Diskusikan asesmen", href: "#contact" },
   },
   hero: {
-    audience: "Untuk bank, fintech, dan perusahaan asuransi di Indonesia",
-    headline: "Asesmen kepatuhan, lengkap dengan buktinya.",
-    body: "SecurePuls mengubah seperangkat ketentuan dan bukti dari organisasi Anda menjadi asesmen terstruktur yang siap ditelaah: setiap ketentuan terjawab, setiap temuan diberi peringkat keparahan dan tertelusur ke sumbernya, dan laporannya disahkan oleh penelaah Anda sendiri.",
+    kicker:
+      "Asesmen kepatuhan berbantuan AI — untuk bank, fintech, dan perusahaan asuransi di Indonesia",
+    headline: "Draf asesmen kepatuhan dalam sekitar 30 menit, bukan berminggu-minggu.",
+    body: "SecurePuls membaca korpus regulasi yang dikonfigurasi untuk penugasan beserta kebijakan dan bukti institusi Anda, memetakan setiap ketentuan ke buktinya, menyusun analisis kesenjangan — temuan berperingkat keparahan, rencana remediasi — dan menghasilkan draf laporan siap telaah. Penelaah Anda memverifikasi dan mengesahkannya.",
+    timingNote:
+      "Durasi bervariasi menurut cakupan asesmen, volume bukti, dan konfigurasi.",
     cta: { label: "Diskusikan asesmen Anda", href: "#contact" },
     secondary: { label: "Lihat alur kerjanya", href: "#workflow" },
     panel: {
-      alt: "Draf temuan asesmen untuk tinjauan pengendalian internal; setiap baris menampilkan status buktinya dan menunggu pengesahan penelaah.",
-      caption: "Draf temuan — asesmen pengendalian internal",
+      alt: "Ikhtisar asesmen ilustratif: jumlah ketentuan yang dinilai, distribusi statusnya, temuan terbuka, dan status telaah.",
+      tag: "Ilustratif",
+      caption: "Asesmen regulasi — perbankan",
+      headline: { value: "42", label: "ketentuan dinilai" },
+      bar: [
+        { label: "Patuh", count: 31, tone: "positive" },
+        { label: "Parsial", count: 6, tone: "neutral" },
+        { label: "Gap", count: 5, tone: "attention" },
+      ],
       rows: [
-        { label: "Manajemen akses", status: "Terverifikasi", tone: "positive" },
-        { label: "Kelangsungan usaha", status: "Parsial", tone: "neutral" },
-        { label: "Pengawasan pihak ketiga", status: "Gap", tone: "attention" },
+        { label: "5 temuan — 1 kritis, 2 tinggi", tone: "attention" },
+        { label: "Bukti terpetakan ke sumbernya", tone: "positive" },
+        { label: "Menunggu verifikasi penelaah", tone: "neutral" },
       ],
       footnote:
         "Temuan tetap berupa draf sampai disahkan oleh penelaah yang ditunjuk.",
@@ -56,86 +65,86 @@ export const ID: IndoContent = {
   },
   inOut: {
     heading: "Apa yang masuk. Apa yang keluar.",
-    give: {
-      title: "Yang Anda berikan",
+    reads: {
+      title: "Yang dibaca SecurePuls",
       items: [
-        "Seperangkat ketentuan yang menjadi acuan asesmen — ketentuan regulasi dan kebijakan internal, dikonfigurasi per penugasan",
-        "Bukti untuk setiap ketentuan: jawaban tim Anda, catatan, dan lampiran pendukung",
-        "Penelaah yang memegang kewenangan pengesahan",
+        {
+          icon: "corpus",
+          label: "Korpus regulasi yang berlaku",
+          note: "dikurasi dan dikonfigurasi untuk penugasan",
+        },
+        { icon: "policy", label: "Kebijakan dan prosedur internal" },
+        { icon: "evidence", label: "Bukti dan dokumentasi pendukung" },
+        { icon: "history", label: "Temuan terdahulu, bila relevan" },
       ],
     },
-    get: {
+    produces: {
       title: "Yang dihasilkan SecurePuls",
       items: [
-        "Asesmen terstruktur lintas domain yang konsisten — setiap ketentuan dirumuskan sebagai pertanyaan yang dapat diverifikasi tim Anda",
-        "Temuan hanya bila ada kesenjangan atau ketidakpastian yang nyata, dengan peringkat Kritis hingga Informasional",
-        "Setiap referensi regulasi diberi label sesuai kekuatan bukti di baliknya",
-        "Rekomendasi yang melekat pada setiap temuan — tindakan segera, jangka pendek, dan jangka panjang",
-        "Laporan siap telaah — temuan, matriks risiko, peta jalan — diekspor ke PDF atau Word",
+        { icon: "assessment", label: "Asesmen pengendalian ketentuan demi ketentuan" },
+        { icon: "map", label: "Peta bukti dengan rujukan sumber yang persis" },
+        { icon: "gap", label: "Analisis kesenjangan (gap analysis)" },
+        { icon: "severity", label: "Temuan berperingkat keparahan" },
+        { icon: "remediation", label: "Rencana remediasi beserta rekomendasi" },
+        { icon: "report", label: "Draf laporan siap telaah — PDF atau Word" },
       ],
     },
   },
   workflow: {
-    heading: "Dari seperangkat ketentuan menjadi laporan yang disahkan.",
-    steps: [
+    heading: "Empat tahap. Satu jejak bukti.",
+    stages: [
       {
         n: "01",
-        title: "Konfigurasikan penugasan",
-        body: "Seperangkat ketentuan yang berlaku dikonfigurasi untuk penugasan itu, diambil dari basis pengetahuan yang terpelihara — bukan dihasilkan secara bebas.",
+        icon: "ground",
+        title: "Landasan",
+        body: "Korpus regulasi, kebijakan, dan bukti Anda — dalam satu tempat.",
       },
       {
         n: "02",
-        title: "Susun asesmennya",
-        body: "SecurePuls menyusun ketentuan ke dalam domain-domain yang konsisten, masing-masing dirumuskan sebagai pertanyaan yang dapat diverifikasi tim Anda.",
+        icon: "assess",
+        title: "Asesmen",
+        body: "AI memetakan ketentuan ke bukti dan menyusun analisis kesenjangannya.",
       },
       {
         n: "03",
-        title: "Rekam buktinya",
-        body: "Status, catatan, dan lampiran pendukung direkam pada setiap ketentuan selagi tim Anda mengerjakannya.",
+        icon: "remediation",
+        title: "Remediasi",
+        body: "Temuan diperingkat keparahannya, masing-masing dengan tindakan remediasi.",
       },
       {
         n: "04",
-        title: "Susun draf temuan",
-        body: "Temuan hanya diangkat bila ada kesenjangan atau ketidakpastian yang nyata — diberi peringkat keparahan, dengan rekomendasi yang menyertainya.",
-      },
-      {
-        n: "05",
-        title: "Telaah dan sahkan",
-        body: "Penelaah Anda menerima atau mengoreksi setiap temuan. Tidak ada yang final tanpa pengesahan dari penelaah yang ditunjuk.",
-      },
-      {
-        n: "06",
-        title: "Ekspor laporannya",
-        body: "Laporan terstruktur memuat temuan, matriks risiko, dan peta jalan — diekspor ke PDF atau Word.",
+        icon: "review",
+        title: "Telaah & laporkan",
+        body: "Penelaah Anda memverifikasi kesimpulannya. SecurePuls menghasilkan laporannya.",
       },
     ],
   },
   trace: {
     heading: "Tidak ada temuan tanpa sumber.",
-    body: "Kesimpulan yang tidak dapat ditelusuri adalah kesimpulan yang tidak dapat dipertanggungjawabkan. SecurePuls menjaga rantainya tetap utuh — dari ketentuan, ke bukti yang direkam terhadapnya, ke sumber di baliknya, hingga penelaah yang mengesahkannya.",
+    body: "Setiap temuan tetap terhubung ke buktinya, sumber di baliknya, dan penelaah yang memverifikasinya.",
     chain: [
       {
-        label: "Ketentuan",
+        label: "Ketentuan regulasi",
         text: "Hak akses ke data nasabah ditinjau sesuai jadwal yang ditetapkan.",
       },
       {
-        label: "Bukti yang terekam",
-        text: "Status: gap — tidak ada catatan tinjauan untuk dua siklus terakhir.",
+        label: "Bukti yang ditemukan",
+        text: "Kebijakan mewajibkan tinjauan triwulanan — tidak ada catatan tinjauan untuk dua triwulan terakhir.",
+        meta: "Sumber: kebijakan manajemen akses, bagian peninjauan",
       },
       {
-        label: "Sumber",
-        text: "Kebijakan internal manajemen akses, bagian peninjauan.",
-        meta: "Label bukti: VERIFIED",
-      },
-      {
-        label: "Draf temuan",
+        label: "Kesenjangan (gap)",
         text: "Tinjauan akses berkala tidak terbukti dilaksanakan.",
         meta: "Keparahan: Tinggi",
         accent: true,
       },
       {
-        label: "Keputusan penelaah",
-        text: "Dikonfirmasi dan disahkan oleh penelaah yang ditunjuk.",
+        label: "Remediasi",
+        text: "Pulihkan siklus tinjauan dan simpan catatan pengesahannya.",
+      },
+      {
+        label: "Verifikasi penelaah",
+        text: "Dikonfirmasi oleh penelaah yang ditunjuk.",
       },
     ],
     caption: "Contoh ilustratif — tidak diambil dari regulasi tertentu.",
@@ -159,97 +168,140 @@ export const ID: IndoContent = {
       },
     ],
   },
-  comparison: {
-    heading: "Asesmen yang sama, tanpa proses yang terpecah.",
-    before: {
-      title: "Proses manual",
-      items: [
-        "Ketentuan dilacak di spreadsheet",
-        "Bukti dikejar lewat email dan folder bersama",
-        "Temuan disalin antar dokumen",
-        "Sumber diperiksa ulang secara manual saat telaah",
-        "Laporan dirakit paling akhir, di bawah tenggat",
+  deliverables: {
+    heading: "Yang Anda terima.",
+    remediation: {
+      caption: "Rencana remediasi — cuplikan. Ilustratif.",
+      columns: {
+        finding: "Temuan",
+        severity: "Keparahan",
+        action: "Remediasi",
+        target: "Target",
+      },
+      rows: [
+        {
+          finding: "Tinjauan akses tidak terbukti",
+          severity: "Tinggi",
+          tone: "attention",
+          action: "Pulihkan siklus tinjauan triwulanan",
+          target: "30 hari",
+        },
+        {
+          finding: "Eskalasi insiden belum teruji",
+          severity: "Sedang",
+          tone: "neutral",
+          action: "Laksanakan dan dokumentasikan latihan eskalasi",
+          target: "60 hari",
+        },
+        {
+          finding: "Jadwal retensi tidak mutakhir",
+          severity: "Rendah",
+          tone: "positive",
+          action: "Selaraskan dengan kebijakan berjalan",
+          target: "90 hari",
+        },
       ],
+    },
+    report: {
+      caption: "Draf laporan — struktur",
+      title: "Laporan asesmen kepatuhan",
+      sections: [
+        "Ringkasan eksekutif",
+        "Analisis kesenjangan",
+        "Temuan dan keparahan",
+        "Rencana remediasi",
+        "Rujukan sumber",
+        "Pengesahan penelaah",
+      ],
+    },
+  },
+  comparison: {
+    heading: "Apa yang berubah.",
+    before: {
+      title: "Asesmen manual",
+      steps: [
+        "Membaca regulasi satu per satu",
+        "Spreadsheet dan pelacak",
+        "Mengejar bukti",
+        "Analisis kesenjangan manual",
+        "Menulis laporan",
+      ],
+      outcome: "Berhari-hari hingga berminggu-minggu",
     },
     after: {
       title: "Dengan SecurePuls",
-      items: [
-        "Satu struktur memuat ketentuan, bukti, dan temuan",
-        "Bukti direkam tepat pada ketentuannya",
-        "Sumber tetap melekat saat temuan berpindah",
-        "Telaah berlangsung di dalam alur kerja yang sama",
-        "Laporan dihasilkan dari apa yang telah ditelaah",
+      steps: [
+        "Korpus, kebijakan, dan bukti dalam satu tempat",
+        "Asesmen berbantuan AI",
+        "Analisis kesenjangan dan rencana remediasi",
+        "Verifikasi penelaah",
+        "Draf laporan siap telaah",
       ],
+      outcome: "Sekitar 30 menit menuju draf pertama",
     },
+    note: "Durasi bervariasi menurut cakupan asesmen, volume bukti, dan konfigurasi.",
     review: {
       heading: "SecurePuls menyusun draf. Tim Anda yang memutuskan.",
       body: [
-        "SecurePuls adalah perangkat kerja profesional untuk pekerjaan kepatuhan — bukan opini hukum, bukan audit, dan bukan sertifikasi. Analisis berbantuan AI mempercepat pembacaan, penstrukturan, dan referensi silang; pertimbangan tetap berada di tangan tim Anda.",
-        "Temuan tetap berupa draf sampai diterima oleh penelaah yang kompeten, dan setiap laporan memuat pengesahan itu.",
+        "AI mempercepat pembacaan, pemetaan, dan referensi silang — dan setiap kesimpulan tetap terlihat, dapat digugat, dan tertelusur ke buktinya.",
+        "SecurePuls adalah perangkat kerja profesional — bukan opini hukum, audit, atau sertifikasi. Temuan tetap berupa draf sampai diverifikasi penelaah yang kompeten, dan setiap laporan memuat pengesahan itu.",
       ],
     },
   },
   useCases: {
     heading: "Dibangun untuk pekerjaan yang teregulasi.",
-    body: "Struktur asesmen yang sama menampung pekerjaan berulang dan sarat bukti yang sudah dijalankan setiap lembaga.",
     groups: [
       {
         title: "Bank",
         items: [
           "Asesmen berkala atas ketentuan regulasi dan pengendalian internal",
-          "Pemetaan kebijakan terhadap ketentuan menjelang tinjauan regulator",
-          "Pengumpulan bukti yang tetap melekat pada ketentuannya",
+          "Pemetaan kebijakan ke ketentuan dengan analisis kesenjangan pengendalian",
+          "Temuan berbasis bukti dan pemantauan remediasi",
         ],
       },
       {
         title: "Fintech",
         items: [
-          "Menyiapkan bukti untuk tinjauan regulator",
-          "Menjaga dokumentasi kepatuhan tetap mutakhir di tengah perubahan produk yang cepat",
-          "Mengulang asesmen pengendalian tanpa menyusunnya dari awal",
+          "Kesiapan regulasi menjelang perizinan atau tinjauan",
+          "Bukti tetap mutakhir di tengah perubahan produk yang cepat",
+          "Asesmen kebijakan dan pengendalian dengan remediasi kesenjangan",
         ],
       },
       {
         title: "Perusahaan asuransi",
         items: [
-          "Melacak kewajiban regulasi dan kebijakan internal dalam satu struktur",
-          "Pelaporan tata kelola dan kepatuhan secara berkala",
-          "Bukti asesmen ditelaah sebelum masuk ke laporan",
+          "Asesmen kewajiban regulasi",
+          "Tinjauan tata kelola dan kebijakan",
+          "Pelaporan kepatuhan berkala dengan temuan dan remediasinya",
         ],
       },
     ],
   },
-  trust: {
-    heading: "Siap untuk lingkungan Anda.",
+  indonesia: {
+    heading: "Dibangun di sekitar regulasi yang berlaku bagi institusi Anda.",
     items: [
       {
-        title: "Deployment mandiri",
-        note: "SecurePuls berjalan sebagai deployment tersendiri dengan basis data sendiri, dan dapat dioperasikan di dalam lingkungan Anda.",
+        title: "Basis pengetahuan regulasi Indonesia yang terkurasi",
+        note: "Deployment di Indonesia dikonfigurasi dengan korpus regulasi untuk penugasan — ketentuan OJK, Bank Indonesia, dan sektor asuransi sesuai relevansinya — lengkap dengan rujukan sumber.",
       },
       {
-        title: "Akses terkendali",
-        note: "Akun dibuat oleh administrator Anda. Tidak ada pendaftaran publik.",
+        title: "Pemuatan dokumen untuk penugasan",
+        note: "SecurePuls dapat dikonfigurasi untuk memuat korpus regulasi yang berlaku beserta kebijakan, prosedur, dan bukti institusi Anda.",
+      },
+      {
+        title: "Deployment mandiri",
+        note: "Basis data sendiri, akun dibuat administrator, tanpa pendaftaran publik — dan dapat dioperasikan di dalam lingkungan Anda.",
       },
       {
         title: "Endpoint model dapat dikonfigurasi",
-        note: "Model analisis dikonfigurasi per deployment dan dapat diarahkan ke endpoint kompatibel OpenAI yang Anda setujui.",
-      },
-      {
-        title: "Konten asesmen tertelusur",
-        note: "Setiap temuan tetap terhubung ke bukti dan jawaban asalnya.",
+        note: "Analisis dapat dijalankan pada endpoint kompatibel OpenAI yang Anda setujui.",
       },
     ],
-    status: {
-      heading: "Posisi SecurePuls di Indonesia",
-      body: [
-        "SecurePuls dibangun dan dioperasikan oleh Kaibre, serta sedang dalam pengembangan dan demonstrasi aktif bersama organisasi-organisasi yang teregulasi. Seperangkat ketentuan yang menjadi acuan asesmen dikonfigurasi per penugasan — dan halaman ini baru akan menyebut kerangka regulasi Indonesia setelah dukungannya terverifikasi.",
-        "Jika tim Anda melakukan asesmen terhadap ketentuan regulasi atau ketentuan internal di Indonesia, kami ingin memperlihatkan versi terkini produk ini kepada Anda.",
-      ],
-    },
+    note: "SecurePuls tidak mengklaim persetujuan regulator. Cakupan korpus ditetapkan dan diverifikasi per penugasan.",
   },
   contact: {
     heading: "Diskusikan asesmen Anda.",
-    body: "Ceritakan pekerjaan asesmen tim Anda — ketentuan apa yang menjadi acuan, seberapa sering dilakukan, dan siapa yang menelaahnya. Pesan Anda sampai langsung ke tim yang membangun SecurePuls.",
+    body: "Sampaikan ketentuan apa yang menjadi acuan asesmen tim Anda dan siapa yang menelaah hasilnya. Pesan Anda sampai langsung ke tim yang membangun SecurePuls.",
     form: {
       name: { label: "Nama", error: "Mohon isi nama Anda." },
       email: {

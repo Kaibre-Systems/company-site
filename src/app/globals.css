@@ -183,11 +183,15 @@
   --border-strong: var(--color-ink-700);
   --accent: var(--color-brand-500);
   --accent-hover: var(--color-brand-400);
-  /* Solid fills are a step darker than accent text so white type clears 4.5:1
-     on them. Keeping the two separate means accent TEXT stays bright enough to
-     read on ink, instead of both being dragged toward one compromise value. */
-  --accent-solid: var(--color-brand-700);
-  --accent-solid-hover: var(--color-brand-600);
+  /* Solid fills are two steps darker than accent text so white type clears
+     4.5:1 with room to spare. Keeping the two separate means accent TEXT stays
+     bright enough to read on ink, instead of both being dragged toward one
+     compromise value. brand-800 rather than brand-700 came back from the
+     founders: at button size the brighter fill read as consumer-SaaS orange,
+     and the deeper burnt tone is the register an enterprise compliance buyer
+     expects. White on brand-800 is ~9:1. */
+  --accent-solid: var(--color-brand-800);
+  --accent-solid-hover: var(--color-brand-700);
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-300);
   --focus: var(--color-brand-400);
@@ -222,9 +226,11 @@
   --border-strong: var(--color-ember-300);
   --accent: var(--color-brand-200);
   --accent-hover: var(--color-cream-50);
-  /* The same white as a field, deliberately: a filled action and an entry box
-     are the two light objects on the surface, and two near-identical whites
-     read as a mistake rather than as a distinction. */
+  /* The filled action stays pure white while fields sit on cream-200: they
+     are the two light objects on the surface, and a full step of lightness
+     between them reads as a hierarchy — the action is the brightest thing on
+     the page, the field is the paper you write on. (Two *near-identical*
+     whites would read as a mistake; these are deliberately apart.) */
   --accent-solid: oklch(1 0 0);
   --accent-solid-hover: var(--color-cream-200);
   --accent-contrast: var(--color-ink-950);
@@ -241,13 +247,18 @@
    * full-bleed section is scenery — the eye passes over it. A field is a
    * target: it has to say where it begins and ends, hold the caret, and show
    * typed characters at speed. Tinted the same as the ground it sits on, the
-   * edge went soft and the whole form read as one brown block. It is a few
-   * hundred square pixels rather than a screenful, so it does not flash.
+   * edge went soft and the whole form read as one brown block.
+   *
+   * Warm cream rather than pure white, from founder review: a #fff sheet on a
+   * dark page read as a flash. cream-200 keeps the field unmistakably the
+   * light, interactive object on the surface while sitting in the site's own
+   * warm range — near-black type on it still clears 10:1, and the placeholder
+   * (ink-600) clears 4.5:1.
    */
-  --field: oklch(1 0 0);
+  --field: var(--color-cream-200);
   --field-fg: var(--color-ink-950);
   --field-placeholder: var(--color-ink-600);
-  --field-border: var(--color-ink-300);
+  --field-border: var(--color-ink-400);
   --field-border-focus: var(--color-brand-600);
 }
 
@@ -442,16 +453,18 @@
   }
 }
 
-/* Behind a primary action: a soft bed of light that breathes. */
+/* Behind a primary action: a soft bed of light that breathes. Peak held low
+   deliberately — at 0.5 the halo read as consumer-app neon against the
+   restrained enterprise register the founders asked for. */
 @keyframes glowButton {
   0%,
   100% {
-    opacity: 0.14;
+    opacity: 0.1;
     transform: scale(0.98);
   }
   50% {
-    opacity: 0.5;
-    transform: scale(1.06);
+    opacity: 0.3;
+    transform: scale(1.05);
   }
 }
 
@@ -461,10 +474,10 @@
 @keyframes auraRing {
   0% {
     box-shadow: 0 0 0 0 var(--accent);
-    opacity: 0.55;
+    opacity: 0.4;
   }
   70% {
-    box-shadow: 0 0 0 16px var(--accent);
+    box-shadow: 0 0 0 12px var(--accent);
     opacity: 0;
   }
   100% {
@@ -473,21 +486,22 @@
   }
 }
 
-/* "Puls" in SecurePuls, breathing. */
+/* "Puls" in SecurePuls, breathing. The glow is a suggestion rather than a
+   sign: the triple 40px bloom of the first pass read as neon on an
+   enterprise page, so the peak is now one tight halo. */
 @keyframes textBreathe {
   0%,
   100% {
     /* The trough has to stay legible — below ~0.45 the name reads as
        disappearing rather than breathing. */
-    opacity: 0.5;
+    opacity: 0.55;
     text-shadow: 0 0 0 transparent;
   }
   50% {
     opacity: 1;
     text-shadow:
-      0 0 6px var(--accent),
-      0 0 20px var(--accent),
-      0 0 40px var(--accent);
+      0 0 4px var(--accent),
+      0 0 14px var(--accent);
   }
 }
 

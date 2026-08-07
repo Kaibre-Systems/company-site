@@ -40,14 +40,20 @@ const FORBIDDEN_CLAIMS = [
   { re: /\b\d{1,3}\s?%/, why: "percentage metric" },
   { re: /\b\d+x\s+(more|faster|better|higher|increase)/i, why: "multiplier claim" },
   { re: /\b(trusted by|used by)\s+\d+/i, why: "customer count" },
-  /* The Indonesian pages must hold the same discipline in Bahasa Indonesia,
-     and no page may name an Indonesian regulator or framework until support
-     for it is verified. */
+  /* The Indonesian pages must hold the same discipline in Bahasa Indonesia.
+     OJK / Bank Indonesia / insurance-sector requirements may be named as
+     target corpus categories configured per engagement (founder-approved
+     framing) — but never as approving, endorsing, or completely covered, and
+     no specific instrument (POJK/SEOJK, UU PDP) or non-target regulator may
+     be named. */
   { re: /\b(tersertifikasi|terakreditasi|kepatuhan otomatis)\b/i, why: "certification claim (id)" },
-  { re: /\bdisetujui oleh\s+(OJK|Bank Indonesia|regulator)\b/i, why: "endorsement claim (id)" },
+  { re: /\bdisetujui\s+(?:oleh\s+)?(OJK|Bank Indonesia|regulator)\b/i, why: "endorsement claim (id)" },
   { re: /\bmenjamin\s+kepatuhan\b/i, why: "compliance guarantee (id)" },
-  { re: /\b(OJK|PPATK|POJK|SEOJK|Kominfo)\b/, why: "named Indonesian regulator/framework" },
-  { re: /\bBank Indonesia\b/, why: "named Indonesian regulator" },
+  { re: /\b(?:OJK|Bank Indonesia)[- ]approved\b/i, why: "regulator-approval claim" },
+  { re: /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia)\b/i, why: "regulator-approval claim" },
+  { re: /\b(?:complete|full)\s+coverage\b/i, why: "complete-coverage claim" },
+  { re: /\bcakupan\s+(?:penuh|lengkap|menyeluruh)\b/i, why: "complete-coverage claim (id)" },
+  { re: /\b(PPATK|POJK|SEOJK|Kominfo)\b/, why: "named regulator/instrument outside the corpus framing" },
   { re: /\b(UU\s?PDP|PDP Law)\b/i, why: "named Indonesian regulation" },
 ];
 

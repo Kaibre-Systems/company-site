@@ -4,138 +4,148 @@ import { ID_PATH } from "./locale";
 /**
  * SecurePuls Indonesia — English.
  *
- * Written to the executive standard: a time-constrained compliance, legal,
- * risk or audit decision-maker should know what the product is, what goes in,
- * what comes out, and where human review sits within two to three minutes.
+ * Written to the executive standard: a CCO, GC, CRO or audit executive gives
+ * this page two to three minutes. The headline carries the outcome and the
+ * time compression; the first sections carry the concrete inputs and
+ * deliverables; everything else is depth.
  *
- * Claim discipline (audited against the product repositories):
- *  - Every capability stated is implemented in the SecurePuls product today.
- *  - No named Indonesian regulation, regulator, framework or law. The
- *    regulatory corpus is configured per engagement; this page names no
- *    framework until support for it is verified.
- *  - No certifications, endorsements, percentages, time savings, customer
- *    names or counts. The worked example in the traceability section is
- *    labelled illustrative.
+ * Claim discipline:
+ *  - The ~30-minute figure is founder/practitioner-supplied evidence from the
+ *    working SecurePuls workflow, reviewed by a senior regulatory lawyer. It
+ *    is always qualified ("about", "for a configured assessment") and never
+ *    an SLA. The qualification line appears with the claim, once per claim
+ *    cluster, and stays short.
+ *  - OJK, Bank Indonesia and insurance-sector requirements are named only as
+ *    target corpus categories configured per engagement — never as approved,
+ *    certified or completely covered.
+ *  - Illustrative figures appear only inside mockups tagged "Illustrative".
+ *  - "Review-ready", never "audit-ready" — SecurePuls does not confer audit
+ *    assurance.
  */
 export const EN: IndoContent = {
   locale: "en",
   meta: {
-    title: "SecurePuls Indonesia — compliance assessment with the evidence attached",
+    title: "SecurePuls Indonesia — AI-assisted compliance assessment",
     description:
-      "SecurePuls structures compliance assessment for Indonesian banks, fintechs and insurers: every requirement answered, findings graded and traced to their sources, and a report your own reviewers sign off.",
+      "Gap analysis, severity-ranked findings, a remediation plan and a review-ready draft report in about 30 minutes — grounded in the regulatory corpus configured for the engagement, traced to sources, and verified by your reviewers.",
     ogLocale: "en_GB",
   },
   chrome: {
     skip: "Skip to content",
     kaibreHome: "Kaibre — company site",
     marketLabel: "Indonesia",
-    toggle: {
-      navLabel: "Language",
-      en: "English",
-      id: "Bahasa Indonesia",
-    },
+    toggle: { navLabel: "Language", en: "English", id: "Bahasa Indonesia" },
     cta: { label: "Discuss an assessment", href: "#contact" },
   },
   hero: {
-    audience: "For banks, fintechs and insurers in Indonesia",
-    headline: "Compliance assessment, with the evidence attached.",
-    body: "SecurePuls turns a set of requirements and your organisation's evidence into a structured, review-ready assessment: every requirement answered, findings graded by severity and traced to their sources, and a report your own reviewers sign off.",
+    kicker: "AI-assisted compliance assessment, for banks, fintechs and insurers in Indonesia",
+    headline: "Compliance assessment drafts in about 30 minutes, not weeks.",
+    body: "SecurePuls reads the regulatory corpus configured for the engagement alongside your policies and evidence, maps each requirement to its evidence, drafts the gap analysis — severity-ranked findings, remediation plan — and produces a review-ready draft report. Your reviewers verify and sign off.",
+    timingNote:
+      "Timing varies with assessment scope, evidence volume, and configuration.",
     cta: { label: "Discuss an assessment", href: "#contact" },
     secondary: { label: "See the workflow", href: "#workflow" },
     panel: {
-      alt: "Draft assessment findings for an internal control review, each row carrying its evidence status, awaiting reviewer sign-off.",
-      caption: "Draft findings — internal control assessment",
-      rows: [
-        { label: "Access management", status: "Verified", tone: "positive" },
-        { label: "Business continuity", status: "Partial", tone: "neutral" },
-        { label: "Third-party oversight", status: "Gap", tone: "attention" },
+      alt: "Illustrative assessment overview: requirements assessed, their status distribution, open findings, and review state.",
+      tag: "Illustrative",
+      caption: "Regulatory assessment — banking",
+      headline: { value: "42", label: "requirements assessed" },
+      bar: [
+        { label: "Compliant", count: 31, tone: "positive" },
+        { label: "Partial", count: 6, tone: "neutral" },
+        { label: "Gap", count: 5, tone: "attention" },
       ],
-      footnote: "Findings stay drafts until a designated reviewer signs off.",
+      rows: [
+        { label: "5 findings — 1 critical, 2 high", tone: "attention" },
+        { label: "Evidence mapped to sources", tone: "positive" },
+        { label: "Awaiting reviewer verification", tone: "neutral" },
+      ],
+      footnote: "Findings stay drafts until the designated reviewer signs off.",
     },
     illustrationNote: "Interface illustration.",
   },
   inOut: {
     heading: "What goes in. What comes out.",
-    give: {
-      title: "You provide",
+    reads: {
+      title: "SecurePuls reads",
       items: [
-        "The requirement set the assessment runs against — regulatory provisions and internal policy, configured per engagement",
-        "Evidence against each requirement: your team's answers, notes and supporting attachments",
-        "A reviewer who owns the sign-off",
+        {
+          icon: "corpus",
+          label: "The applicable regulatory corpus",
+          note: "curated and configured for the engagement",
+        },
+        { icon: "policy", label: "Internal policies and procedures" },
+        { icon: "evidence", label: "Supporting evidence and documentation" },
+        { icon: "history", label: "Previous findings, where relevant" },
       ],
     },
-    get: {
+    produces: {
       title: "SecurePuls produces",
       items: [
-        "A structured assessment across consistent domains — each requirement phrased as a question your team can verify",
-        "Findings only where there is a genuine gap or uncertainty, graded Critical to Informational",
-        "Every regulatory reference labelled by the strength of the evidence behind it",
-        "Recommendations attached to each finding — immediate, short-term and long-term actions",
-        "A review-ready report — findings, risk matrix, roadmap — exported to PDF or Word",
+        { icon: "assessment", label: "Requirement-by-requirement control assessment" },
+        { icon: "map", label: "Evidence map with exact source references" },
+        { icon: "gap", label: "Gap analysis" },
+        { icon: "severity", label: "Findings ranked by severity" },
+        { icon: "remediation", label: "Remediation plan with recommendations" },
+        { icon: "report", label: "Review-ready draft report — PDF or Word" },
       ],
     },
   },
   workflow: {
-    heading: "From requirement set to signed report.",
-    steps: [
+    heading: "Four stages. One evidence trail.",
+    stages: [
       {
         n: "01",
-        title: "Configure the engagement",
-        body: "The applicable requirement set is configured for the engagement, drawn from a maintained knowledge base rather than generated freely.",
+        icon: "ground",
+        title: "Ground",
+        body: "The regulatory corpus, your policies, and your evidence — in one place.",
       },
       {
         n: "02",
-        title: "Generate the assessment",
-        body: "SecurePuls structures the requirements into consistent domains, each one phrased as a question your team can verify.",
+        icon: "assess",
+        title: "Assess",
+        body: "AI maps requirements to evidence and drafts the gap analysis.",
       },
       {
         n: "03",
-        title: "Record the evidence",
-        body: "Status, notes and supporting attachments are captured against each requirement as your team works through it.",
+        icon: "remediation",
+        title: "Remediate",
+        body: "Findings ranked by severity, each with a remediation action.",
       },
       {
         n: "04",
-        title: "Draft the findings",
-        body: "Findings are raised only where there is a genuine gap or uncertainty — graded by severity, with recommendations attached.",
-      },
-      {
-        n: "05",
-        title: "Review and sign off",
-        body: "Your reviewer accepts or corrects every finding. Nothing becomes final without sign-off from a designated reviewer.",
-      },
-      {
-        n: "06",
-        title: "Export the report",
-        body: "A structured report carrying the findings, risk matrix and roadmap, exported to PDF or Word.",
+        icon: "review",
+        title: "Review & report",
+        body: "Your reviewer verifies the conclusions. SecurePuls produces the report.",
       },
     ],
   },
   trace: {
     heading: "No finding without a source.",
-    body: "A conclusion you cannot trace is a conclusion you cannot defend. SecurePuls keeps the chain intact — from the requirement, to the evidence recorded against it, to the source behind it, to the reviewer who signed it off.",
+    body: "Every finding stays linked to its evidence, the source behind it, and the reviewer who verified it.",
     chain: [
       {
-        label: "Requirement",
+        label: "Regulatory requirement",
         text: "Access rights to customer data are reviewed on a defined schedule.",
       },
       {
-        label: "Evidence recorded",
-        text: "Status: gap — no review record for the two most recent cycles.",
+        label: "Evidence found",
+        text: "Policy requires quarterly reviews — no review records for the two most recent quarters.",
+        meta: "Source: access-management policy, review section",
       },
       {
-        label: "Source",
-        text: "Internal access-management policy, review section.",
-        meta: "Evidence label: VERIFIED",
-      },
-      {
-        label: "Draft finding",
+        label: "Gap",
         text: "Periodic access reviews not evidenced.",
         meta: "Severity: High",
         accent: true,
       },
       {
-        label: "Reviewer decision",
-        text: "Confirmed and signed off by the designated reviewer.",
+        label: "Remediation",
+        text: "Reinstate the review cycle and retain sign-off records.",
+      },
+      {
+        label: "Reviewer verification",
+        text: "Confirmed by the designated reviewer.",
       },
     ],
     caption: "Illustrative example — not drawn from any specific regulation.",
@@ -159,97 +169,140 @@ export const EN: IndoContent = {
       },
     ],
   },
-  comparison: {
-    heading: "The same assessment, without the fragmentation.",
-    before: {
-      title: "The manual process",
-      items: [
-        "Requirements tracked in spreadsheets",
-        "Evidence chased over email and shared folders",
-        "Findings copied between documents",
-        "Sources re-checked by hand at review",
-        "The report assembled last, under deadline",
+  deliverables: {
+    heading: "What you receive.",
+    remediation: {
+      caption: "Remediation plan — extract. Illustrative.",
+      columns: {
+        finding: "Finding",
+        severity: "Severity",
+        action: "Remediation",
+        target: "Target",
+      },
+      rows: [
+        {
+          finding: "Access reviews not evidenced",
+          severity: "High",
+          tone: "attention",
+          action: "Reinstate the quarterly review cycle",
+          target: "30 days",
+        },
+        {
+          finding: "Incident escalation untested",
+          severity: "Medium",
+          tone: "neutral",
+          action: "Run and document an escalation exercise",
+          target: "60 days",
+        },
+        {
+          finding: "Retention schedule out of date",
+          severity: "Low",
+          tone: "positive",
+          action: "Align the schedule with current policy",
+          target: "90 days",
+        },
       ],
+    },
+    report: {
+      caption: "Draft report — structure",
+      title: "Compliance assessment report",
+      sections: [
+        "Executive summary",
+        "Gap analysis",
+        "Findings and severity",
+        "Remediation plan",
+        "Source references",
+        "Reviewer sign-off",
+      ],
+    },
+  },
+  comparison: {
+    heading: "What changes.",
+    before: {
+      title: "Manual assessment",
+      steps: [
+        "Reading the regulations",
+        "Spreadsheets and trackers",
+        "Chasing evidence",
+        "Manual gap analysis",
+        "Writing the report",
+      ],
+      outcome: "Days to weeks",
     },
     after: {
       title: "With SecurePuls",
-      items: [
-        "One structure holds requirements, evidence and findings",
-        "Evidence is recorded where the requirement lives",
-        "Sources stay attached as findings move",
-        "Review happens inside the same workflow",
-        "The report is generated from what was already reviewed",
+      steps: [
+        "Corpus, policies and evidence in one place",
+        "AI-assisted assessment",
+        "Gap analysis and remediation plan",
+        "Reviewer verification",
+        "Review-ready draft report",
       ],
+      outcome: "About 30 minutes to a first draft",
     },
+    note: "Timing varies with assessment scope, evidence volume, and configuration.",
     review: {
       heading: "SecurePuls drafts. Your team decides.",
       body: [
-        "SecurePuls is professional tooling for compliance work — not a legal opinion, not an audit, and not a certification. AI-assisted analysis accelerates the reading, structuring and cross-referencing; judgment stays with your team.",
-        "Findings remain drafts until a qualified reviewer accepts them, and every report carries that sign-off.",
+        "AI accelerates the reading, mapping and cross-referencing — and every conclusion stays visible, challengeable, and traceable to its evidence.",
+        "SecurePuls is professional tooling — not a legal opinion, an audit, or a certification. Findings remain drafts until a qualified reviewer verifies them, and every report carries that sign-off.",
       ],
     },
   },
   useCases: {
     heading: "Built for regulated work.",
-    body: "The same assessment structure carries the recurring, evidence-heavy work each institution already does.",
     groups: [
       {
         title: "Banks",
         items: [
           "Recurring regulatory and internal control assessments",
-          "Policy-to-requirement mapping ahead of a regulatory review",
-          "Evidence collection that stays attached to the requirement",
+          "Policy-to-requirement mapping with control gap analysis",
+          "Evidence-backed findings and remediation tracking",
         ],
       },
       {
         title: "Fintechs",
         items: [
-          "Preparing evidence for a regulatory review",
-          "Keeping compliance documentation current through rapid product change",
-          "Repeating control assessments without rebuilding them",
+          "Regulatory readiness ahead of a licensing step or review",
+          "Evidence kept current through rapid product change",
+          "Policy and control assessment with gap remediation",
         ],
       },
       {
         title: "Insurers",
         items: [
-          "Tracking regulatory obligations and internal policy in one structure",
-          "Recurring governance and compliance reporting",
-          "Assessment evidence reviewed before it reaches the report",
+          "Regulatory obligation assessment",
+          "Governance and policy review",
+          "Recurring compliance reporting with findings and remediation",
         ],
       },
     ],
   },
-  trust: {
-    heading: "Ready for your environment.",
+  indonesia: {
+    heading: "Built around the regulations that apply to your institution.",
     items: [
       {
-        title: "Self-contained deployment",
-        note: "SecurePuls runs as its own deployment with its own database, and can be operated inside your environment.",
+        title: "Curated Indonesian regulatory knowledge base",
+        note: "Indonesian deployments are configured with the regulatory corpus for the engagement — OJK, Bank Indonesia and insurance-sector requirements as applicable — with source references.",
       },
       {
-        title: "Controlled access",
-        note: "Accounts are created by your administrator. There is no public sign-up.",
+        title: "Document ingestion for the engagement",
+        note: "SecurePuls can be configured to ingest the applicable corpus alongside your policies, procedures and evidence.",
+      },
+      {
+        title: "Self-contained deployment",
+        note: "Its own database, administrator-created accounts, no public sign-up — and it can be operated inside your environment.",
       },
       {
         title: "Configurable model endpoint",
-        note: "The analysis model is configured per deployment and can point at an approved, OpenAI-compatible endpoint.",
-      },
-      {
-        title: "Traceable assessment content",
-        note: "Every finding stays linked to the evidence and answers it came from.",
+        note: "Analysis can run against an approved, OpenAI-compatible endpoint.",
       },
     ],
-    status: {
-      heading: "Where SecurePuls stands in Indonesia",
-      body: [
-        "SecurePuls is built and operated by Kaibre, and is in active development and demonstration with regulated organisations. The requirement sets an assessment runs against are configured per engagement — and this page will name Indonesian frameworks only once support for them is verified.",
-        "If your team assesses against regulatory or internal requirements in Indonesia, we would like to walk you through the current build.",
-      ],
-    },
+    note: "SecurePuls does not claim regulator approval. Corpus coverage is scoped and verified per engagement.",
   },
   contact: {
     heading: "Discuss an assessment.",
-    body: "Tell us about the assessment work your team does — which requirements, how often, and who reviews it. It reaches the people building SecurePuls.",
+    body: "Tell us which requirements your team assesses against and who reviews the result. It reaches the people building SecurePuls.",
     form: {
       name: { label: "Name", error: "Please add your name." },
       email: {

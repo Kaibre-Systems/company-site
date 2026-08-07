@@ -2,21 +2,25 @@ import {
   Card,
   Container,
   Heading,
-  Prose,
+  Note,
   Section,
   SectionHeader,
   Text,
 } from "@/components/primitives";
 import { Button, ArrowLink } from "@/components/primitives/button";
-import { Callout, FitList, WorkflowSteps } from "@/components/modules";
-import { StatusList, VisualFrame, withBrand } from "@/components/visuals";
+import { Callout } from "@/components/modules";
+import { VisualFrame, withBrand } from "@/components/visuals";
 import { IndoHeader } from "@/components/indonesia/chrome";
 import { IndoFooter } from "@/components/indonesia/footer";
 import { IndoContactForm } from "@/components/indonesia/contact-form";
 import { LangSync } from "@/components/indonesia/lang-sync";
 import {
-  DeliverableList,
-  InputList,
+  AssessmentOverview,
+  FlowCompare,
+  IconList,
+  RemediationTable,
+  ReportPreview,
+  StageGrid,
   TraceChain,
 } from "@/components/indonesia/visuals";
 import type { IndoContent } from "@/content/indonesia/types";
@@ -24,11 +28,12 @@ import type { IndoContent } from "@/content/indonesia/types";
 /**
  * The SecurePuls Indonesia experience — one component, two dictionaries.
  *
- * Section order follows the executive reading test: what it is and who it is
- * for (hero), what goes in and what comes out, the workflow, why a finding
- * can be defended (traceability), what changes against the manual process,
- * who decides, who it serves, where it runs, and how to start a conversation.
- * Nothing conceptual sits ahead of the concrete deliverables.
+ * Ordered for a two-to-three-minute executive read: outcome and time
+ * compression in the headline; inputs and deliverables before any concept;
+ * the workflow in four icon-led stages; then the depth — gap analysis with
+ * its evidence trail, the remediation plan and report a buyer actually
+ * receives, the before/after, who decides, who it serves, and what an
+ * Indonesian deployment includes. One conversion path at the end.
  *
  * The page renders its own chrome: the company-site header is English, and an
  * Indonesian-language page must not open under it.
@@ -60,16 +65,16 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
       <IndoHeader content={c} />
 
       <main id="main" tabIndex={-1}>
-        {/* Hero — what it is, who it is for, the primary outcome. */}
+        {/* Hero — outcome, time compression, and what the software is. */}
         <Section surface="ink" space="flush" className="pb-20 pt-14 sm:pb-24 sm:pt-20">
           <Container>
             <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
               <div>
-                <p className="text-body text-fg-subtle">{c.hero.audience}</p>
-                <Heading level={1} size="display-1" className="mt-4 max-w-[18ch]">
+                <p className="max-w-[52ch] text-body text-fg-subtle">{c.hero.kicker}</p>
+                <Heading level={1} size="display-1" className="mt-4 max-w-[26ch]">
                   {c.hero.headline}
                 </Heading>
-                <Text size="lead" className="mt-6 max-w-[56ch]">
+                <Text size="lead" className="mt-6 max-w-[58ch]">
                   {c.hero.body}
                 </Text>
                 <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
@@ -78,15 +83,14 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
                     {c.hero.secondary.label}
                   </ArrowLink>
                 </div>
+                <p className="mt-5 max-w-[52ch] text-fine text-fg-subtle">
+                  {c.hero.timingNote}
+                </p>
               </div>
 
               <div>
                 <VisualFrame label={c.hero.panel.alt}>
-                  <StatusList
-                    caption={c.hero.panel.caption}
-                    rows={c.hero.panel.rows}
-                    footnote={c.hero.panel.footnote}
-                  />
+                  <AssessmentOverview panel={c.hero.panel} />
                 </VisualFrame>
                 <p className="mt-3 text-fine text-fg-subtle">
                   {c.hero.illustrationNote}
@@ -96,32 +100,32 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
           </Container>
         </Section>
 
-        {/* In / out — the concrete deliverables, before any concept. */}
+        {/* In / out — the concrete inputs and deliverables. */}
         <Section surface="ember">
           <Container>
             <SectionHeader heading={c.inOut.heading} />
             <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
               <div>
-                <h3 className="text-heading-2 text-fg">{withBrand(c.inOut.give.title)}</h3>
-                <InputList items={c.inOut.give.items} className="mt-5" />
+                <h3 className="text-heading-2 text-fg">{withBrand(c.inOut.reads.title)}</h3>
+                <IconList items={c.inOut.reads.items} className="mt-6" />
               </div>
               <Card className="p-7 sm:p-8">
-                <h3 className="text-heading-2 text-fg">{withBrand(c.inOut.get.title)}</h3>
-                <DeliverableList items={c.inOut.get.items} className="mt-5" />
+                <h3 className="text-heading-2 text-fg">{withBrand(c.inOut.produces.title)}</h3>
+                <IconList items={c.inOut.produces.items} emphasis className="mt-6" />
               </Card>
             </div>
           </Container>
         </Section>
 
-        {/* Workflow — six steps, glanceable from the titles alone. */}
+        {/* Workflow — four stages, icon-led, glanceable. */}
         <Section surface="ink" id="workflow">
           <Container>
             <SectionHeader heading={c.workflow.heading} />
-            <WorkflowSteps steps={c.workflow.steps} />
+            <StageGrid stages={c.workflow.stages} />
           </Container>
         </Section>
 
-        {/* Traceability — the chain, then the confidence labels. */}
+        {/* Gap analysis and the evidence trail. */}
         <Section surface="ember">
           <Container>
             <SectionHeader heading={c.trace.heading} body={c.trace.body} />
@@ -137,9 +141,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
                       <dt className="font-mono text-label uppercase tracking-[0.085em] text-accent">
                         {label.code}
                       </dt>
-                      <dd className="mt-2 text-small text-fg-muted">
-                        {label.note}
-                      </dd>
+                      <dd className="mt-2 text-small text-fg-muted">{label.note}</dd>
                     </div>
                   ))}
                 </dl>
@@ -148,23 +150,26 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
           </Container>
         </Section>
 
-        {/* Before / after, and who decides. */}
+        {/* Deliverables — the remediation plan and the report, shown. */}
         <Section surface="ink">
           <Container>
-            <SectionHeader heading={c.comparison.heading} />
-            <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 sm:grid-cols-2 lg:gap-16">
-              <FitList
-                title={c.comparison.before.title}
-                items={c.comparison.before.items}
-                tone="no"
-              />
-              <FitList
-                title={c.comparison.after.title}
-                items={c.comparison.after.items}
-                tone="yes"
-              />
+            <SectionHeader heading={c.deliverables.heading} />
+            <div className="mt-12 grid grid-cols-[minmax(0,1fr)] items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-14">
+              <RemediationTable content={c.deliverables.remediation} />
+              <ReportPreview content={c.deliverables.report} />
             </div>
-            <Callout heading={c.comparison.review.heading} className="mt-14">
+          </Container>
+        </Section>
+
+        {/* Before / after, and who decides. */}
+        <Section surface="ember">
+          <Container>
+            <SectionHeader heading={c.comparison.heading} />
+            <div className="mt-12">
+              <FlowCompare comparison={c.comparison} />
+            </div>
+            <Note className="mt-6">{c.comparison.note}</Note>
+            <Callout heading={c.comparison.review.heading} className="mt-12">
               {c.comparison.review.body.map((p) => (
                 <Text key={p}>{p}</Text>
               ))}
@@ -173,9 +178,9 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* Use cases — banks, fintechs, insurers. */}
-        <Section surface="ember">
+        <Section surface="ink">
           <Container>
-            <SectionHeader heading={c.useCases.heading} body={c.useCases.body} />
+            <SectionHeader heading={c.useCases.heading} />
             <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {c.useCases.groups.map((group) => (
                 <div key={group.title}>
@@ -197,25 +202,19 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
           </Container>
         </Section>
 
-        {/* Deployment posture, and the honest Indonesia status. */}
-        <Section surface="ink">
+        {/* The Indonesian deployment — corpus, ingestion, environment. */}
+        <Section surface="ink" className="border-t border-border">
           <Container>
-            <SectionHeader heading={c.trust.heading} />
+            <SectionHeader heading={c.indonesia.heading} />
             <dl className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
-              {c.trust.items.map((item) => (
+              {c.indonesia.items.map((item) => (
                 <div key={item.title} className="bg-surface-raised p-6">
                   <dt className="text-body font-medium text-fg">{item.title}</dt>
                   <dd className="mt-2 text-small text-fg-muted">{item.note}</dd>
                 </div>
               ))}
             </dl>
-
-            <div className="mt-16 max-w-prose">
-              <Heading level={3} size="heading-1">
-                {c.trust.status.heading}
-              </Heading>
-              <Prose paragraphs={c.trust.status.body} size="body" className="mt-4" />
-            </div>
+            <Note className="mt-8">{c.indonesia.note}</Note>
           </Container>
         </Section>
 

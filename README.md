@@ -127,14 +127,21 @@ compact localised footer. `<html lang>` is corrected per locale by an inline
 script on load and a `LangSync` effect on soft navigation; the two pages name
 each other in `hreflang` alternates and the sitemap.
 
-Claim discipline is stricter here than on the rest of the site: no Indonesian
-regulator, framework or law is named anywhere on the pair until support for it
-is verified — the requirement sets an assessment runs against are described as
-configured per engagement. `tests/indonesia.spec.ts` enforces this, along with
-linguistic purity in both directions (no stray English on the Indonesian route
-beyond an approved-terms list, and vice versa), toggle behaviour, locale
-metadata, and the localised contact form. The general layout, text-resize and
-runtime suites include both routes in their matrices.
+Claim discipline on the pair, founder-approved: OJK, Bank Indonesia and
+insurance-sector requirements may be named as **target corpus categories
+configured per engagement** — never as approving, endorsing, or completely
+covered, and no specific instrument (POJK/SEOJK, UU PDP) or non-target
+regulator is named. The ~30-minute figure is founder/practitioner-supplied
+evidence from the working SecurePuls workflow reviewed by a senior regulatory
+lawyer; it always travels qualified ("about", "for a configured assessment",
+plus the scope/volume/configuration note) and never as an SLA. Illustrative
+figures appear only inside mockups tagged "Illustrative", and the vocabulary
+is "review-ready", never "audit-ready". `tests/indonesia.spec.ts` enforces all
+of this — plus scan-level presence of the load-bearing concepts, linguistic
+purity in both directions (no stray English on the Indonesian route beyond an
+approved-terms list, and vice versa), toggle behaviour, locale metadata, and
+the localised contact form. The general layout, text-resize and runtime suites
+include both routes in their matrices.
 
 ### Copy
 
