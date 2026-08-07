@@ -39,9 +39,11 @@ export interface FindingDocumentContent {
  * detailed finding in the report's own anatomy. Rendered inside a
  * `VisualFrame`, which carries the accessible description.
  *
- * `compact` is the product-card excerpt: header, the severity-headed
- * finding, and the reviewer state — the material without the prose, so the
- * card stays a teaser and the product page keeps the full page to itself.
+ * `compact` is the product-card excerpt: the context line, the
+ * severity-headed finding, and the reviewer state — the material without
+ * the document's own subtitle, version line or scoring metadata, so the
+ * card reads in a glance and the product page keeps the full page to
+ * itself.
  */
 export function FindingDocument({
   doc,
@@ -58,10 +60,14 @@ export function FindingDocument({
           <p className="font-mono text-label uppercase tracking-[0.085em] text-ink-600">
             {doc.institution}
           </p>
-          <p className="mt-1 font-display text-body font-bold">{doc.title}</p>
-          <p className="mt-0.5 hidden font-mono text-label text-ink-500 sm:block">
-            {doc.docMeta}
-          </p>
+          {!compact ? (
+            <>
+              <p className="mt-1 font-display text-body font-bold">{doc.title}</p>
+              <p className="mt-0.5 hidden font-mono text-label text-ink-500 sm:block">
+                {doc.docMeta}
+              </p>
+            </>
+          ) : null}
         </div>
         <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-ink-500">
           {doc.tag}
@@ -77,9 +83,11 @@ export function FindingDocument({
           <span className="font-mono text-label uppercase tracking-[0.085em] text-brand-700">
             {doc.finding.severity}
           </span>
-          <span className="hidden font-mono text-label text-ink-500 sm:inline">
-            {doc.finding.meta}
-          </span>
+          {!compact ? (
+            <span className="hidden font-mono text-label text-ink-500 sm:inline">
+              {doc.finding.meta}
+            </span>
+          ) : null}
         </p>
         <p className="mt-1.5 font-display text-small font-bold leading-snug">
           {doc.finding.title}

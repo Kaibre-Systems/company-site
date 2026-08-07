@@ -169,7 +169,7 @@ export default function HomePage() {
                 <ProductCard
                   {...PRODUCTS.items[0]}
                   visual={
-                    <VisualFrame label={SP_HERO_PANEL.alt}>
+                    <VisualFrame label={SP_HERO_PANEL.cardAlt}>
                       <FindingDocument doc={SP_HERO_PANEL} compact />
                     </VisualFrame>
                   }
@@ -195,7 +195,7 @@ export default function HomePage() {
                 <ProductCard
                   {...PRODUCTS.items[1]}
                   visual={
-                    <VisualFrame label={KAI_CALL_PANEL.alt}>
+                    <VisualFrame label={KAI_CALL_PANEL.cardAlt}>
                       <CallPanel content={KAI_CALL_PANEL} compact />
                     </VisualFrame>
                   }

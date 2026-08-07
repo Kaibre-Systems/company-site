@@ -28,6 +28,9 @@ export const SP_HERO = {
  */
 export const SP_HERO_PANEL = {
   alt: "Illustrative detailed-finding page from a SecurePulse physical security assessment of an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, with what was observed, the risk, the immediate remediation, and the reviewer state.",
+  /** The homepage teaser shows the excerpt without the prose. */
+  cardAlt:
+    "Illustrative excerpt of a SecurePulse assessment report for an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, awaiting reviewer sign-off.",
   tag: "Illustrative",
   institution: "Energy-sector facility · Dubai",
   title: "Physical security assessment",
