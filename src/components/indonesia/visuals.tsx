@@ -89,6 +89,26 @@ export function DocumentPanel({
         </p>
       </div>
 
+      {/* The finding, exactly as the real report frames one: id, severity,
+          a title that exercises judgment, and its category/points line. */}
+      <div className="border-b border-ink-200 py-3">
+        <p className="flex items-center gap-2.5">
+          <span className="font-mono text-label tracking-[0.085em] text-ink-600">
+            {panel.finding.id}
+          </span>
+          <span aria-hidden className="size-1.5 rounded-full bg-brand-700" />
+          <span className="font-mono text-label uppercase tracking-[0.085em] text-brand-700">
+            {panel.finding.severity}
+          </span>
+          <span className="hidden font-mono text-label text-ink-500 sm:inline">
+            {panel.finding.meta}
+          </span>
+        </p>
+        <p className="mt-1.5 text-small font-medium leading-snug">
+          {panel.finding.title}
+        </p>
+      </div>
+
       <dl>
         {panel.rows.map((row) => (
           <div
