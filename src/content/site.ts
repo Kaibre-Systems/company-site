@@ -50,6 +50,7 @@ export const FOOTER_GROUPS = [
     title: "Products",
     links: [
       { label: "SecurePuls", href: "/securepuls" },
+      { label: "SecurePuls Indonesia", href: "/securepuls/indonesia" },
       { label: "kAI", href: "/kai" },
     ],
   },

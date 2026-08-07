@@ -20,6 +20,7 @@ export const dynamic = "force-dynamic";
 
 const TOPICS: Record<string, string> = {
   securepuls: "SecurePuls",
+  "securepuls-id": "SecurePuls Indonesia",
   kai: "kAI",
   partnership: "A partnership",
   commissioned: "A commissioned system",
@@ -62,6 +63,10 @@ export async function POST(request: Request) {
   const work = clean(payload.work, 5000);
   const topicKey = clean(payload.topic, 40);
   const topic = TOPICS[topicKey] ?? TOPICS.other;
+  /* Optional fields from the SecurePuls Indonesia form. */
+  const role = clean(payload.role, 120);
+  const orgType = clean(payload.orgType, 60);
+  const locale = clean(payload.locale, 8);
 
   if (
     !name ||
@@ -100,12 +105,17 @@ export async function POST(request: Request) {
         `Name:    ${name}`,
         `Email:   ${email}`,
         `Company: ${company}`,
+        role ? `Role:    ${role}` : null,
+        orgType ? `Org:     ${orgType}` : null,
+        locale ? `Locale:  ${locale}` : null,
         `About:   ${topic}`,
         "",
         work,
         "",
         "— sent from the contact form on kaibresystems.com",
-      ].join("\n"),
+      ]
+        .filter((line): line is string => line !== null)
+        .join("\n"),
     });
 
     if (error) {

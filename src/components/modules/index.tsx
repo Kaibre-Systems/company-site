@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Check, Minus } from "lucide-react";
 import { Heading, Text } from "@/components/primitives";
-import { SecurePulsName } from "@/components/visuals";
+import { SecurePulsName, withBrand } from "@/components/visuals";
 import { cn } from "@/lib/utils";
 
 /* ==========================================================================
@@ -47,7 +47,7 @@ export function FitList({
   const Icon = tone === "yes" ? Check : Minus;
   return (
     <div>
-      <h3 className="text-small font-medium text-fg-subtle">{title}</h3>
+      <h3 className="text-small font-medium text-fg-subtle">{withBrand(title)}</h3>
       <ul className="mt-4 space-y-3">
         {items.map((item) => (
           <li key={item} className="flex gap-3">
