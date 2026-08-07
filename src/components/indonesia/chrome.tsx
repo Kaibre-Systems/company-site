@@ -33,17 +33,22 @@ export function IndoHeader({ content }: { content: IndoContent }) {
           <KaibreWordmark className="h-7 w-auto text-fg" />
         </Link>
 
-        {/* The product identity. Hidden on the narrowest screens — the hero
-            states it a viewport later, and the wordmark plus toggle already
+        {/* The product and its market, on the wordmark's own centreline: a
+            hairline divider, the product name, and the market designation.
+            The flag is drawn as CSS bands rather than the 🇮🇩 emoji, which
+            Windows renders as the letters "ID"; the visible word "Indonesia"
+            is the accessible name, so the mark itself stays decorative.
+            Hidden on the narrowest screens — the wordmark and toggle already
             fill 320px. */}
-        <span className="hidden items-baseline gap-2 sm:inline-flex">
-          <span aria-hidden className="text-fg-subtle">
-            /
-          </span>
-          <span className="text-heading-2 font-medium text-fg">
+        <span className="hidden items-center gap-3 sm:flex">
+          <span aria-hidden className="h-6 w-px shrink-0 bg-border-strong" />
+          <span className="text-body font-medium leading-none text-fg">
             <SecurePulsName animate={false} />
           </span>
-          <span className="text-small text-fg-subtle">{chrome.marketLabel}</span>
+          <span className="flex items-center gap-1.5 leading-none text-small text-fg-subtle">
+            <IndonesiaFlag />
+            {chrome.marketLabel}
+          </span>
         </span>
 
         <div className="ml-auto flex items-center gap-3 sm:gap-4">
@@ -63,6 +68,23 @@ export function IndoHeader({ content }: { content: IndoContent }) {
         </div>
       </div>
     </header>
+  );
+}
+
+/**
+ * The Indonesian flag as two CSS bands — deterministic on every platform,
+ * unlike the flag emoji, which Windows renders as the letters "ID". Sized to
+ * the small-text cap height so it sits on the market label's own line.
+ */
+function IndonesiaFlag() {
+  return (
+    <span
+      aria-hidden
+      className="inline-flex h-3 w-[18px] shrink-0 flex-col overflow-hidden rounded-[2px] border border-border-strong"
+    >
+      <span className="h-1/2 bg-merah" />
+      <span className="h-1/2 bg-white" />
+    </span>
   );
 }
 

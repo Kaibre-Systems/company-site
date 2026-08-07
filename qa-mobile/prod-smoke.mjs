@@ -47,13 +47,13 @@ const FORBIDDEN_CLAIMS = [
      no specific instrument (POJK/SEOJK, UU PDP) or non-target regulator may
      be named. */
   { re: /\b(tersertifikasi|terakreditasi|kepatuhan otomatis)\b/i, why: "certification claim (id)" },
-  { re: /\bdisetujui\s+(?:oleh\s+)?(OJK|Bank Indonesia|regulator)\b/i, why: "endorsement claim (id)" },
+  { re: /\bdisetujui\s+(?:oleh\s+)?(OJK|Bank Indonesia|PPATK|regulator)\b/i, why: "endorsement claim (id)" },
   { re: /\bmenjamin\s+kepatuhan\b/i, why: "compliance guarantee (id)" },
-  { re: /\b(?:OJK|Bank Indonesia)[- ]approved\b/i, why: "regulator-approval claim" },
-  { re: /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia)\b/i, why: "regulator-approval claim" },
+  { re: /\b(?:OJK|Bank Indonesia|PPATK)[- ]approved\b/i, why: "regulator-approval claim" },
+  { re: /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia|PPATK)\b/i, why: "regulator-approval claim" },
   { re: /\b(?:complete|full)\s+coverage\b/i, why: "complete-coverage claim" },
   { re: /\bcakupan\s+(?:penuh|lengkap|menyeluruh)\b/i, why: "complete-coverage claim (id)" },
-  { re: /\b(PPATK|POJK|SEOJK|Kominfo)\b/, why: "named regulator/instrument outside the corpus framing" },
+  { re: /\b(POJK|SEOJK|Kominfo)\b/, why: "named instrument/regulator outside the corpus framing" },
   { re: /\b(UU\s?PDP|PDP Law)\b/i, why: "named Indonesian regulation" },
 ];
 

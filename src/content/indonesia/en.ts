@@ -35,34 +35,25 @@ export const EN: IndoContent = {
     kaibreHome: "Kaibre — company site",
     marketLabel: "Indonesia",
     toggle: { navLabel: "Language", en: "English", id: "Bahasa Indonesia" },
-    cta: { label: "Discuss an assessment", href: "#contact" },
+    cta: { label: "Show us a workflow", href: "#contact" },
   },
   hero: {
-    kicker: "AI-assisted compliance assessment, for banks, fintechs and insurers in Indonesia",
     headline: "Compliance assessment drafts in about 30 minutes, not weeks.",
-    body: "SecurePuls reads the regulatory corpus configured for the engagement alongside your policies and evidence, maps each requirement to its evidence, drafts the gap analysis — severity-ranked findings, remediation plan — and produces a review-ready draft report. Your reviewers verify and sign off.",
-    timingNote:
-      "Timing varies with assessment scope, evidence volume, and configuration.",
-    cta: { label: "Discuss an assessment", href: "#contact" },
-    secondary: { label: "See the workflow", href: "#workflow" },
+    body: "SecurePuls AI turns the regulatory requirements, policies and evidence of an Indonesian financial institution into a gap analysis, remediation plan and review-ready draft — verified and signed off by your reviewers. Timing varies with scope, evidence volume and configuration.",
+    cta: { label: "Show us a workflow", href: "#contact" },
+    secondary: { label: "How it works", href: "#workflow" },
     panel: {
-      alt: "Illustrative assessment overview: requirements assessed, their status distribution, open findings, and review state.",
+      alt: "Illustrative assessment snapshot: requirements assessed, gaps found, severity, remediation state, and review state.",
       tag: "Illustrative",
-      caption: "Regulatory assessment — banking",
-      headline: { value: "42", label: "requirements assessed" },
-      bar: [
-        { label: "Compliant", count: 31, tone: "positive" },
-        { label: "Partial", count: 6, tone: "neutral" },
-        { label: "Gap", count: 5, tone: "attention" },
-      ],
+      caption: "Assessment",
       rows: [
-        { label: "5 findings — 1 critical, 2 high", tone: "attention" },
-        { label: "Evidence mapped to sources", tone: "positive" },
-        { label: "Awaiting reviewer verification", tone: "neutral" },
+        { label: "Requirements assessed", value: "42", tone: "neutral" },
+        { label: "Gap analysis", value: "5 gaps", tone: "attention" },
+        { label: "High severity", value: "2 findings", tone: "attention" },
+        { label: "Remediation plan", value: "Ready", tone: "positive" },
+        { label: "Reviewer", value: "Pending verification", tone: "neutral" },
       ],
-      footnote: "Findings stay drafts until the designated reviewer signs off.",
     },
-    illustrationNote: "Interface illustration.",
   },
   inOut: {
     heading: "What goes in. What comes out.",
@@ -72,7 +63,7 @@ export const EN: IndoContent = {
         {
           icon: "corpus",
           label: "The applicable regulatory corpus",
-          note: "curated and configured for the engagement",
+          note: "curated and maintained by Kaibre — not rebuilt by your team",
         },
         { icon: "policy", label: "Internal policies and procedures" },
         { icon: "evidence", label: "Supporting evidence and documentation" },
@@ -104,7 +95,7 @@ export const EN: IndoContent = {
         n: "02",
         icon: "assess",
         title: "Assess",
-        body: "AI maps requirements to evidence and drafts the gap analysis.",
+        body: "SecurePuls AI maps requirements to evidence and drafts the gap analysis.",
       },
       {
         n: "03",
@@ -126,26 +117,26 @@ export const EN: IndoContent = {
     chain: [
       {
         label: "Regulatory requirement",
-        text: "Access rights to customer data are reviewed on a defined schedule.",
+        text: "Access to customer data must be restricted to authorised roles.",
       },
       {
         label: "Evidence found",
-        text: "Policy requires quarterly reviews — no review records for the two most recent quarters.",
-        meta: "Source: access-management policy, review section",
+        text: "Policy defines role-based access — periodic access-review records are incomplete.",
+        meta: "Source: access-management policy",
       },
       {
-        label: "Gap",
-        text: "Periodic access reviews not evidenced.",
+        label: "Assessment",
+        text: "Partial — access reviews not evidenced.",
         meta: "Severity: High",
         accent: true,
       },
       {
         label: "Remediation",
-        text: "Reinstate the review cycle and retain sign-off records.",
+        text: "Implement periodic access reviews with named ownership and retained records.",
       },
       {
-        label: "Reviewer verification",
-        text: "Confirmed by the designated reviewer.",
+        label: "Reviewer",
+        text: "Pending verification.",
       },
     ],
     caption: "Illustrative example — not drawn from any specific regulation.",
@@ -172,7 +163,8 @@ export const EN: IndoContent = {
   deliverables: {
     heading: "What you receive.",
     remediation: {
-      caption: "Remediation plan — extract. Illustrative.",
+      title: "Remediation plan",
+      tag: "Illustrative",
       columns: {
         finding: "Finding",
         severity: "Severity",
@@ -204,14 +196,14 @@ export const EN: IndoContent = {
       ],
     },
     report: {
-      caption: "Draft report — structure",
       title: "Compliance assessment report",
       sections: [
         "Executive summary",
+        "Requirement assessment",
         "Gap analysis",
         "Findings and severity",
         "Remediation plan",
-        "Source references",
+        "Evidence and source references",
         "Reviewer sign-off",
       ],
     },
@@ -233,7 +225,7 @@ export const EN: IndoContent = {
       title: "With SecurePuls",
       steps: [
         "Corpus, policies and evidence in one place",
-        "AI-assisted assessment",
+        "SecurePuls AI drafts the assessment",
         "Gap analysis and remediation plan",
         "Reviewer verification",
         "Review-ready draft report",
@@ -255,17 +247,17 @@ export const EN: IndoContent = {
       {
         title: "Banks",
         items: [
-          "Recurring regulatory and internal control assessments",
-          "Policy-to-requirement mapping with control gap analysis",
-          "Evidence-backed findings and remediation tracking",
+          "Recurring regulatory assessments",
+          "Control gap analysis",
+          "Evidence-backed findings",
         ],
       },
       {
         title: "Fintechs",
         items: [
-          "Regulatory readiness ahead of a licensing step or review",
-          "Evidence kept current through rapid product change",
-          "Policy and control assessment with gap remediation",
+          "Regulatory readiness",
+          "Policy and control assessment",
+          "Remediation during rapid product change",
         ],
       },
       {
@@ -273,7 +265,7 @@ export const EN: IndoContent = {
         items: [
           "Regulatory obligation assessment",
           "Governance and policy review",
-          "Recurring compliance reporting with findings and remediation",
+          "Recurring findings and remediation reporting",
         ],
       },
     ],
@@ -283,7 +275,7 @@ export const EN: IndoContent = {
     items: [
       {
         title: "Curated Indonesian regulatory knowledge base",
-        note: "Indonesian deployments are configured with the regulatory corpus for the engagement — OJK, Bank Indonesia and insurance-sector requirements as applicable — with source references.",
+        note: "Configured with the corpus applicable to the institution and assessment scope — OJK, Bank Indonesia, PPATK and insurance-sector requirements as relevant — curated, verified and maintained as part of the deployment.",
       },
       {
         title: "Document ingestion for the engagement",
@@ -294,15 +286,15 @@ export const EN: IndoContent = {
         note: "Its own database, administrator-created accounts, no public sign-up — and it can be operated inside your environment.",
       },
       {
-        title: "Configurable model endpoint",
-        note: "Analysis can run against an approved, OpenAI-compatible endpoint.",
+        title: "Configurable AI model deployment",
+        note: "Analysis runs on a model deployment your institution approves and controls.",
       },
     ],
     note: "SecurePuls does not claim regulator approval. Corpus coverage is scoped and verified per engagement.",
   },
   contact: {
-    heading: "Discuss an assessment.",
-    body: "Tell us which requirements your team assesses against and who reviews the result. It reaches the people building SecurePuls.",
+    heading: "Bring us one compliance workflow.",
+    body: "Show us one assessment your team handles manually — we will demonstrate how SecurePuls structures the evidence, gap analysis, remediation plan and review-ready draft. The initial demonstration costs nothing.",
     form: {
       name: { label: "Name", error: "Please add your name." },
       email: {
@@ -323,17 +315,17 @@ export const EN: IndoContent = {
         ],
       },
       need: {
-        label: "Tell us about the assessment need",
-        hint: "Which requirements does your team assess against, how often, and who reviews the result?",
+        label: "What compliance workflow would you like to test?",
+        hint: "One line is enough.",
         placeholder:
-          "e.g. We run recurring internal control assessments across several entities. Requirements live in spreadsheets, evidence in shared folders, and two reviewers assemble the report by hand each cycle.",
-        error: "A sentence or two more, so we can give you a useful reply.",
+          "e.g. a recurring regulatory assessment, a policy review, a control gap analysis",
+        error: "A few words about the workflow, so we can prepare a relevant demonstration.",
       },
       submit: "Send it",
       sending: "Sending…",
       sent: {
         heading: "Thanks — that reached us.",
-        body: "Your message is in our inbox. You will hear back from the people building SecurePuls.",
+        body: "Your message is in our inbox. The people building SecurePuls will come back to you to arrange the demonstration.",
       },
       fallback: {
         heading: "One more step.",

@@ -92,7 +92,9 @@ export function IndoContactForm({
     if (!fields.email) next.email = form.email.errorMissing;
     else if (!isEmail(fields.email)) next.email = form.email.errorInvalid;
     if (!fields.company) next.company = form.company.error;
-    if (fields.work.length < 40) next.work = form.need.error;
+    /* The demonstration wedge asks for one workflow, not a briefing — a few
+       words ("policy review") must be enough to start the conversation. */
+    if (fields.work.length < 12) next.work = form.need.error;
 
     setErrors(next);
     if (Object.keys(next).length > 0) {

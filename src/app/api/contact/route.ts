@@ -68,10 +68,13 @@ export async function POST(request: Request) {
   const orgType = clean(payload.orgType, 60);
   const locale = clean(payload.locale, 8);
 
+  /* 12 rather than 40: the SecurePuls Indonesia form asks for one workflow
+     in a few words ("policy review" must pass). The company form still asks
+     for more client-side; this is the floor, not the ask. */
   if (
     !name ||
     !company ||
-    work.length < 40 ||
+    work.length < 12 ||
     !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
   ) {
     return NextResponse.json({ ok: false, reason: "invalid" }, { status: 422 });
