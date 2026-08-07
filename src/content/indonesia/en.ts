@@ -2,7 +2,7 @@ import type { IndoContent } from "./types";
 import { ID_PATH } from "./locale";
 
 /**
- * SecurePuls Indonesia — English.
+ * SecurePulse Indonesia — English.
  *
  * Written to the executive standard: a CCO, GC, CRO or audit executive gives
  * this page two to three minutes. The headline carries the outcome and the
@@ -11,7 +11,7 @@ import { ID_PATH } from "./locale";
  *
  * Claim discipline:
  *  - The ~30-minute figure is founder/practitioner-supplied evidence from the
- *    working SecurePuls workflow, reviewed by a senior regulatory lawyer. It
+ *    working SecurePulse workflow, reviewed by a senior regulatory lawyer. It
  *    is always qualified ("about", "for a configured assessment") and never
  *    an SLA. The qualification line appears with the claim, once per claim
  *    cluster, and stays short.
@@ -19,13 +19,13 @@ import { ID_PATH } from "./locale";
  *    target corpus categories configured per engagement — never as approved,
  *    certified or completely covered.
  *  - Illustrative figures appear only inside mockups tagged "Illustrative".
- *  - "Review-ready", never "audit-ready" — SecurePuls does not confer audit
+ *  - "Review-ready", never "audit-ready" — SecurePulse does not confer audit
  *    assurance.
  */
 export const EN: IndoContent = {
   locale: "en",
   meta: {
-    title: "SecurePuls Indonesia — AI-assisted compliance assessment",
+    title: "SecurePulse Indonesia — AI-assisted compliance assessment",
     description:
       "Gap analysis, severity-ranked findings, a remediation plan and a review-ready draft report in about 30 minutes — grounded in the regulatory corpus configured for the engagement, traced to sources, and verified by your reviewers.",
     ogLocale: "en_GB",
@@ -39,26 +39,28 @@ export const EN: IndoContent = {
   },
   hero: {
     headline: "Compliance assessment drafts in about 30 minutes, not weeks.",
-    body: "SecurePuls AI turns the regulatory requirements, policies and evidence of an Indonesian financial institution into a gap analysis, remediation plan and review-ready draft — verified and signed off by your reviewers. Timing varies with scope, evidence volume and configuration.",
+    body: "SecurePulse AI turns the regulatory requirements, policies and evidence of an Indonesian financial institution into a gap analysis, remediation plan and a polished, review-ready draft — verified and signed off by your reviewers. Timing varies with scope, evidence volume and configuration.",
     cta: { label: "Show us a workflow", href: "#contact" },
     secondary: { label: "How it works", href: "#workflow" },
     panel: {
-      alt: "Illustrative assessment snapshot: requirements assessed, gaps found, severity, remediation state, and review state.",
+      alt: "Illustrative page from a SecurePulse compliance assessment for a fictional Indonesian bank: the requirement, the evidence reviewed, a partial assessment with a high-severity gap, the remediation action, and the reviewer state.",
       tag: "Illustrative",
-      caption: "Assessment",
+      institution: "PT Bank Selat Biru",
+      title: "Regulatory compliance assessment",
       rows: [
-        { label: "Requirements assessed", value: "42", tone: "neutral" },
-        { label: "Gap analysis", value: "5 gaps", tone: "attention" },
-        { label: "High severity", value: "2 findings", tone: "attention" },
-        { label: "Remediation plan", value: "Ready", tone: "positive" },
-        { label: "Reviewer", value: "Pending verification", tone: "neutral" },
+        { label: "Requirement", value: "Access to customer data restricted to authorised roles" },
+        { label: "Evidence reviewed", value: "Access-management policy; review records", secondary: true },
+        { label: "Assessment", value: "Partial — gap identified", tone: "attention" },
+        { label: "Severity", value: "High", tone: "attention" },
+        { label: "Remediation", value: "Periodic access reviews, named ownership" },
+        { label: "Reviewer", value: "Pending verification" },
       ],
     },
   },
   inOut: {
     heading: "What goes in. What comes out.",
     reads: {
-      title: "SecurePuls reads",
+      title: "SecurePulse reads",
       items: [
         {
           icon: "corpus",
@@ -71,7 +73,7 @@ export const EN: IndoContent = {
       ],
     },
     produces: {
-      title: "SecurePuls produces",
+      title: "SecurePulse produces",
       items: [
         { icon: "assessment", label: "Requirement-by-requirement control assessment" },
         { icon: "map", label: "Evidence map with exact source references" },
@@ -95,7 +97,7 @@ export const EN: IndoContent = {
         n: "02",
         icon: "assess",
         title: "Assess",
-        body: "SecurePuls AI maps requirements to evidence and drafts the gap analysis.",
+        body: "SecurePulse AI maps requirements to evidence and drafts the gap analysis.",
       },
       {
         n: "03",
@@ -107,7 +109,7 @@ export const EN: IndoContent = {
         n: "04",
         icon: "review",
         title: "Review & report",
-        body: "Your reviewer verifies the conclusions. SecurePuls produces the report.",
+        body: "Your reviewer verifies the conclusions. SecurePulse produces the report.",
       },
     ],
   },
@@ -139,7 +141,7 @@ export const EN: IndoContent = {
         text: "Pending verification.",
       },
     ],
-    caption: "Illustrative example — not drawn from any specific regulation.",
+    caption: "Illustrative example.",
     labelsHeading: "Every regulatory reference carries its confidence.",
     labels: [
       {
@@ -222,22 +224,22 @@ export const EN: IndoContent = {
       outcome: "Days to weeks",
     },
     after: {
-      title: "With SecurePuls",
+      title: "With SecurePulse",
       steps: [
         "Corpus, policies and evidence in one place",
-        "SecurePuls AI drafts the assessment",
+        "SecurePulse AI drafts the assessment",
         "Gap analysis and remediation plan",
         "Reviewer verification",
-        "Review-ready draft report",
+        "Polished, review-ready draft report",
       ],
-      outcome: "About 30 minutes to a first draft",
+      outcome: "About 30 minutes to a polished draft",
     },
     note: "Timing varies with assessment scope, evidence volume, and configuration.",
     review: {
-      heading: "SecurePuls drafts. Your team decides.",
+      heading: "SecurePulse drafts. Your team decides.",
       body: [
         "AI accelerates the reading, mapping and cross-referencing — and every conclusion stays visible, challengeable, and traceable to its evidence.",
-        "SecurePuls is professional tooling — not a legal opinion, an audit, or a certification. Findings remain drafts until a qualified reviewer verifies them, and every report carries that sign-off.",
+        "SecurePulse is professional tooling — not a legal opinion, an audit, or a certification. Findings remain drafts until a qualified reviewer verifies them, and every report carries that sign-off.",
       ],
     },
   },
@@ -279,7 +281,7 @@ export const EN: IndoContent = {
       },
       {
         title: "Document ingestion for the engagement",
-        note: "SecurePuls can be configured to ingest the applicable corpus alongside your policies, procedures and evidence.",
+        note: "SecurePulse can be configured to ingest the applicable corpus alongside your policies, procedures and evidence.",
       },
       {
         title: "Self-contained deployment",
@@ -290,11 +292,11 @@ export const EN: IndoContent = {
         note: "Analysis runs on a model deployment your institution approves and controls.",
       },
     ],
-    note: "SecurePuls does not claim regulator approval. Corpus coverage is scoped and verified per engagement.",
+    note: "SecurePulse does not claim regulator approval. Corpus coverage is scoped and verified per engagement.",
   },
   contact: {
     heading: "Bring us one compliance workflow.",
-    body: "Show us one assessment your team handles manually — we will demonstrate how SecurePuls structures the evidence, gap analysis, remediation plan and review-ready draft. The initial demonstration costs nothing.",
+    body: "Show us one assessment your team handles manually — we will demonstrate how SecurePulse structures the evidence, gap analysis, remediation plan and review-ready draft. The initial demonstration costs nothing.",
     form: {
       name: { label: "Name", error: "Please add your name." },
       email: {
@@ -325,7 +327,7 @@ export const EN: IndoContent = {
       sending: "Sending…",
       sent: {
         heading: "Thanks — that reached us.",
-        body: "Your message is in our inbox. The people building SecurePuls will come back to you to arrange the demonstration.",
+        body: "Your message is in our inbox. The people building SecurePulse will come back to you to arrange the demonstration.",
       },
       fallback: {
         heading: "One more step.",
@@ -337,10 +339,10 @@ export const EN: IndoContent = {
     },
   },
   footer: {
-    tagline: "SecurePuls is a Kaibre product.",
+    tagline: "SecurePulse is a Kaibre product.",
     links: [
       { label: "Kaibre", href: "/" },
-      { label: "SecurePuls — product overview", href: "/securepuls" },
+      { label: "SecurePulse — product overview", href: "/securepulse" },
       { label: "Contact", href: "#contact" },
     ],
     languageLink: { label: "Baca dalam Bahasa Indonesia", href: ID_PATH },

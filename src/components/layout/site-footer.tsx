@@ -47,7 +47,7 @@ export function SiteFooter() {
                       {/* One span, deliberately: the link is a flex container,
                           and `withBrand` returns several children — as
                           separate flex items the space after the brand name
-                          collapses ("SecurePulsIndonesia"). */}
+                          collapses ("SecurePulseIndonesia"). */}
                       <span>{withBrand(link.label)}</span>
                     </Link>
                   </li>

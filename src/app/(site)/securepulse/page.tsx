@@ -13,7 +13,7 @@ import { Callout, WorkflowSteps } from "@/components/modules";
 import {
   AssessmentPanel,
   EvidenceLink,
-  SecurePulsName,
+  SecurePulseName,
   VisualFrame,
 } from "@/components/visuals";
 import {
@@ -26,22 +26,22 @@ import {
   SP_REPORT,
   SP_STATUS,
   SP_WORKFLOW,
-} from "@/content/securepuls";
+} from "@/content/securepulse";
 
 export const metadata: Metadata = {
-  title: "SecurePuls — Physical security assessment",
+  title: "SecurePulse — Physical security assessment",
   description:
-    "SecurePuls turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings a named assessor signs off.",
-  alternates: { canonical: "/securepuls" },
+    "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings a named assessor signs off.",
+  alternates: { canonical: "/securepulse" },
   openGraph: {
-    title: "SecurePuls — Physical security assessment | Kaibre",
+    title: "SecurePulse — Physical security assessment | Kaibre",
     description:
-      "Structured, evidence-backed physical security assessments for UAE and Gulf sites. SecurePuls drafts; qualified people decide.",
-    url: "/securepuls",
+      "Structured, evidence-backed physical security assessments for UAE and Gulf sites. SecurePulse drafts; qualified people decide.",
+    url: "/securepulse",
   },
 };
 
-export default function SecurePulsPage() {
+export default function SecurePulsePage() {
   return (
     <>
       {/* Hero */}
@@ -55,7 +55,7 @@ export default function SecurePulsPage() {
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
-                <SecurePulsName animate />
+                <SecurePulseName animate />
                 <span className="ml-3 text-body font-normal text-fg-subtle">
                   {SP_HERO.category}
                 </span>

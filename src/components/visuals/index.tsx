@@ -204,14 +204,14 @@ export function PulseDot({
 }
 
 /* ==========================================================================
-   SecurePulsName — the product name, with its pulse
+   SecurePulseName — the product name, with its pulse
    --------------------------------------------------------------------------
-   "Puls" carries the accent and breathes. Only the large instances animate;
+   "Pulse" carries the accent and breathes. Only the large instances animate;
    in nav and footer the colour alone does the work, so the chrome stays
    still. The text remains one continuous string for screen readers.
    ========================================================================== */
 
-export function SecurePulsName({
+export function SecurePulseName({
   animate = true,
   delay = 0,
   className,
@@ -231,14 +231,14 @@ export function SecurePulsName({
           animate && "motion-safe:animate-[textBreathe_3.6s_ease-in-out_infinite]",
         )}
       >
-        Puls
+        Pulse
       </span>
     </span>
   );
 }
 
 /**
- * Renders any copy with "SecurePuls" carrying its accent.
+ * Renders any copy with "SecurePulse" carrying its accent.
  *
  * Body mentions take the colour but stay still — a page of breathing words
  * would be unreadable. Only the display instances animate.
@@ -247,9 +247,9 @@ export function SecurePulsName({
  * invisible, so CTA labels keep the plain name.
  */
 export function withBrand(text: string) {
-  if (!text.includes("SecurePuls")) return text;
-  return text.split("SecurePuls").flatMap((part, i) =>
-    i === 0 ? [part] : [<SecurePulsName key={i} delay={i * 420} />, part],
+  if (!text.includes("SecurePulse")) return text;
+  return text.split("SecurePulse").flatMap((part, i) =>
+    i === 0 ? [part] : [<SecurePulseName key={i} delay={i * 420} />, part],
   );
 }
 
@@ -323,7 +323,7 @@ export function Flow({
 }
 
 /* ==========================================================================
-   EvidenceLink — SecurePuls
+   EvidenceLink — SecurePulse
    --------------------------------------------------------------------------
    The product's differentiator in one picture: a finding, and the source it
    is tied back to. Placeholder text only — never real regulation.

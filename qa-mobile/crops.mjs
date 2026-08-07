@@ -9,8 +9,8 @@ const b = await webkit.launch();
 const shots = [
   ["/", "h1", "home-hero", 375, 812],
   ["/", "#products", "home-products", 390, 844],
-  ["/securepuls", 'div[role="img"][aria-label^="A draft finding"]', "sp-evidence", 375, 812],
-  ["/securepuls", "h1", "sp-hero", 375, 812],
+  ["/securepulse", 'div[role="img"][aria-label^="A draft finding"]', "sp-evidence", 375, 812],
+  ["/securepulse", "h1", "sp-hero", 375, 812],
   ["/work", "h1", "work-hero", 375, 812],
   ["/work", "dl", "work-figures", 375, 812],
   ["/", "footer", "footer", 390, 844],

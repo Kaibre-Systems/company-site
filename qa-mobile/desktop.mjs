@@ -12,7 +12,7 @@ const BASE = process.env.BASE ?? "http://localhost:3100";
 const DIR = path.resolve(import.meta.dirname, process.argv[2] ?? "run", "desktop");
 fs.mkdirSync(DIR, { recursive: true });
 
-const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"];
+const ROUTES = ["/", "/securepulse", "/kai", "/work", "/contact"];
 const SIZES = [
   { name: "1440x900", w: 1440, h: 900 },
   { name: "1920x1080", w: 1920, h: 1080 },
@@ -40,8 +40,8 @@ const CROPS = [
   ["/", "#products", "home-products"],
   ["/", "main > section:nth-of-type(2)", "home-thesis"],
   ["/", "main > section:nth-of-type(3)", "home-proof"],
-  ["/securepuls", "main > section:nth-of-type(1)", "sp-hero"],
-  ["/securepuls", 'div[role="img"][aria-label^="A draft finding"]', "sp-evidence"],
+  ["/securepulse", "main > section:nth-of-type(1)", "sp-hero"],
+  ["/securepulse", 'div[role="img"][aria-label^="A draft finding"]', "sp-evidence"],
   ["/kai", "main > section:nth-of-type(1)", "kai-hero"],
   ["/kai", "main > section:nth-of-type(2)", "kai-value"],
   ["/work", "main > section:nth-of-type(1)", "work-hero"],

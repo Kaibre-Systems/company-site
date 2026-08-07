@@ -15,7 +15,7 @@ import { IndoFooter } from "@/components/indonesia/footer";
 import { IndoContactForm } from "@/components/indonesia/contact-form";
 import { LangSync } from "@/components/indonesia/lang-sync";
 import {
-  AssessmentOverview,
+  DocumentPanel,
   FlowCompare,
   IconList,
   RemediationTable,
@@ -26,7 +26,7 @@ import {
 import type { IndoContent } from "@/content/indonesia/types";
 
 /**
- * The SecurePuls Indonesia experience — one component, two dictionaries.
+ * The SecurePulse Indonesia experience — one component, two dictionaries.
  *
  * Ordered for a two-to-three-minute executive read: outcome and time
  * compression in the headline; inputs and deliverables before any concept;
@@ -66,9 +66,9 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
 
       <main id="main" tabIndex={-1}>
         {/* Hero — outcome, time compression, and what the software is. */}
-        <Section surface="ink" space="flush" className="pb-20 pt-14 sm:pb-24 sm:pt-20">
+        <Section surface="ink" space="flush" className="pb-16 pt-10 sm:pb-24 sm:pt-20">
           <Container>
-            <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
+            <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-9 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
               <div>
                 <Heading level={1} size="display-1" className="max-w-[26ch]">
                   {c.hero.headline}
@@ -84,9 +84,16 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
                 </div>
               </div>
 
-              <div>
-                <VisualFrame label={c.hero.panel.alt}>
-                  <AssessmentOverview panel={c.hero.panel} />
+              <div className="relative">
+                {/* One quiet atmospheric moment: a warm bed of light behind
+                    the document, so the paper reads as lit rather than pasted
+                    onto the black. Decorative only. */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-5 rounded-card bg-accent opacity-[0.14] blur-2xl"
+                />
+                <VisualFrame label={c.hero.panel.alt} className="relative">
+                  <DocumentPanel panel={c.hero.panel} />
                 </VisualFrame>
               </div>
             </div>
@@ -97,7 +104,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         <Section surface="ember">
           <Container>
             <SectionHeader heading={c.inOut.heading} />
-            <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
               <div>
                 <h3 className="text-heading-2 text-fg">{withBrand(c.inOut.reads.title)}</h3>
                 <IconList items={c.inOut.reads.items} className="mt-6" />
@@ -122,7 +129,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         <Section surface="ink">
           <Container>
             <SectionHeader heading={c.trace.heading} body={c.trace.body} />
-            <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-9 sm:mt-12 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
               <TraceChain nodes={c.trace.chain} caption={c.trace.caption} />
               <div>
                 <Heading level={3} size="heading-1">
@@ -147,7 +154,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         <Section surface="coal">
           <Container>
             <SectionHeader heading={c.deliverables.heading} />
-            <div className="mt-12 grid grid-cols-[minmax(0,1fr)] items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-14">
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-14">
               <RemediationTable content={c.deliverables.remediation} />
               <ReportPreview content={c.deliverables.report} />
             </div>
@@ -158,11 +165,10 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         <Section surface="ink">
           <Container>
             <SectionHeader heading={c.comparison.heading} />
-            <div className="mt-12">
+            <div className="mt-8 sm:mt-12">
               <FlowCompare comparison={c.comparison} />
             </div>
-            <Note className="mt-6">{c.comparison.note}</Note>
-            <Callout heading={c.comparison.review.heading} className="mt-12">
+            <Callout heading={c.comparison.review.heading} className="mt-8 p-5 sm:mt-12 sm:p-9">
               {c.comparison.review.body.map((p) => (
                 <Text key={p}>{p}</Text>
               ))}
@@ -174,7 +180,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         <Section surface="coal">
           <Container>
             <SectionHeader heading={c.useCases.heading} />
-            <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-8">
               {c.useCases.groups.map((group) => (
                 <div key={group.title}>
                   <h3 className="text-heading-2 text-fg">{group.title}</h3>
@@ -199,7 +205,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         <Section surface="ink">
           <Container>
             <SectionHeader heading={c.indonesia.heading} />
-            <dl className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
+            <dl className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:mt-12 sm:grid-cols-2">
               {c.indonesia.items.map((item) => (
                 <div key={item.title} className="bg-surface-raised p-6">
                   <dt className="text-body font-medium text-fg">{item.title}</dt>

@@ -22,6 +22,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SecurePulsIndonesiaIdPage() {
+export default function SecurePulseIndonesiaIdPage() {
   return <IndonesiaExperience content={ID} />;
 }

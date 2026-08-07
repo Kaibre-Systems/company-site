@@ -15,9 +15,9 @@ import { expect, test, type Page } from "@playwright/test";
 
 const ROUTES = [
   "/",
-  "/securepuls",
-  "/securepuls/indonesia",
-  "/id/securepuls/indonesia",
+  "/securepulse",
+  "/securepulse/indonesia",
+  "/id/securepulse/indonesia",
   "/kai",
   "/work",
   "/contact",
@@ -450,8 +450,10 @@ test.describe("navigation", () => {
       ["/projects", "/work"],
       ["/team", "/"],
       ["/careers", "/contact"],
-      // The product is spelled SecurePuls; the old route must not 404.
-      ["/securepulse", "/securepuls"],
+      // The product is spelled SecurePulse; the legacy slugs must not 404.
+      ["/securepuls", "/securepulse"],
+      ["/securepuls/indonesia", "/securepulse/indonesia"],
+      ["/id/securepuls/indonesia", "/id/securepulse/indonesia"],
     ]) {
       await page.goto(from);
       await expect(page).toHaveURL(new RegExp(`${to.replace("/", "\\/")}$`));

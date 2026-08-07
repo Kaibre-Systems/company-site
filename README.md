@@ -89,12 +89,12 @@ src/
 │  ├─ (site)/              the company site, under the English chrome
 │  │  ├─ layout.tsx        SiteChrome: skip link · header · main · footer
 │  │  ├─ page.tsx          home
-│  │  ├─ securepuls/       product page (UAE physical security)
+│  │  ├─ securepulse/       product page (UAE physical security)
 │  │  ├─ kai/              product page
 │  │  ├─ work/             selected work + commissioned systems
 │  │  └─ contact/          contact form
-│  ├─ securepuls/indonesia/     SecurePuls Indonesia — English
-│  ├─ id/securepuls/indonesia/  SecurePuls Indonesia — Bahasa Indonesia
+│  ├─ securepulse/indonesia/     SecurePulse Indonesia — English
+│  ├─ id/securepulse/indonesia/  SecurePulse Indonesia — Bahasa Indonesia
 │  ├─ robots.ts · sitemap.ts · opengraph-image.tsx
 │  └─ globals.css          the design system (tokens only)
 ├─ content/                ALL copy lives here, as typed objects
@@ -111,10 +111,10 @@ src/
 └─ lib/                    utils · raw-colors
 ```
 
-### SecurePuls Indonesia
+### SecurePulse Indonesia
 
 A bilingual product experience for Indonesian banks, fintechs and insurers:
-`/securepuls/indonesia` (English) and `/id/securepuls/indonesia` (Bahasa
+`/securepulse/indonesia` (English) and `/id/securepulse/indonesia` (Bahasa
 Indonesia). One page component, two typed dictionaries — the
 `IndoContent` interface in `src/content/indonesia/types.ts` is the
 synchronisation guarantee, so a string added to one locale fails the build
@@ -132,7 +132,7 @@ insurance-sector requirements may be named as **target corpus categories
 configured per engagement** — never as approving, endorsing, or completely
 covered, and no specific instrument (POJK/SEOJK, UU PDP) or non-target
 regulator is named. The ~30-minute figure is founder/practitioner-supplied
-evidence from the working SecurePuls workflow reviewed by a senior regulatory
+evidence from the working SecurePulse workflow reviewed by a senior regulatory
 lawyer; it always travels qualified ("about", "for a configured assessment",
 plus the scope/volume/configuration note) and never as an SLA. Illustrative
 figures appear only inside mockups tagged "Illustrative", and the vocabulary

@@ -5,7 +5,7 @@ import { SITE } from "@/content/site";
 import type { IndoContent } from "@/content/indonesia/types";
 
 /**
- * Compact, fully localised footer for the SecurePuls Indonesia experience.
+ * Compact, fully localised footer for the SecurePulse Indonesia experience.
  * One block rather than the company site's column groups: this is a single
  * page, and the footer's jobs are attribution, a route back to Kaibre, the
  * plain-text address (the contact fallback of last resort), and the

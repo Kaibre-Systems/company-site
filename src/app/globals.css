@@ -85,7 +85,7 @@
   --color-signal-600: oklch(0.512 0.062 218);
 
   /* --- Indonesian flag red. Used only by the market-designation mark in
-     the SecurePuls Indonesia chrome — drawn as CSS bands rather than the
+     the SecurePulse Indonesia chrome — drawn as CSS bands rather than the
      🇮🇩 emoji, because Windows renders flag emoji as the letters "ID". --- */
   --color-merah: oklch(0.55 0.2 27);
 
@@ -508,7 +508,7 @@
   }
 }
 
-/* "Puls" in SecurePuls, breathing. The glow is a suggestion rather than a
+/* "Puls" in SecurePulse, breathing. The glow is a suggestion rather than a
    sign: the triple 40px bloom of the first pass read as neon on an
    enterprise page, so the peak is now one tight halo. */
 @keyframes textBreathe {

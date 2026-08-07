@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { SiteChrome } from "@/components/layout/site-chrome";
 
 /**
- * Layout for the company site proper. The SecurePuls Indonesia experience
+ * Layout for the company site proper. The SecurePulse Indonesia experience
  * lives outside this group and carries its own, fully localised chrome — an
  * Indonesian-language page must not open under an English header.
  */

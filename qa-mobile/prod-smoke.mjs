@@ -9,17 +9,17 @@ import { chromium, webkit } from "@playwright/test";
 const BASE = process.argv[2] ?? "https://www.kaibresystems.com";
 const ROUTES = [
   "/",
-  "/securepuls",
-  "/securepuls/indonesia",
-  "/id/securepuls/indonesia",
+  "/securepulse",
+  "/securepulse/indonesia",
+  "/id/securepulse/indonesia",
   "/kai",
   "/work",
   "/contact",
 ];
 
-/** The SecurePuls Indonesia pair carries its own localised chrome — no
+/** The SecurePulse Indonesia pair carries its own localised chrome — no
  *  hamburger menu, a language toggle instead, and hreflang alternates. */
-const isMicrosite = (route) => route.endsWith("/securepuls/indonesia");
+const isMicrosite = (route) => route.endsWith("/securepulse/indonesia");
 
 const fail = [];
 const bad = (s) => {
@@ -101,7 +101,7 @@ async function run(engineName, browserType, viewport, isMobile) {
         mailto: !!document.querySelector('footer a[href^="mailto:"]'),
         text: (document.body.innerText || "").replace(/\\s+/g, " "),
         images: document.images.length,
-        langToggle: !!document.querySelector('header nav a[href*="securepuls/indonesia"]'),
+        langToggle: !!document.querySelector('header nav a[href*="securepulse/indonesia"]'),
         htmlLang: document.documentElement.lang,
         alternates: [...document.querySelectorAll("link[rel=alternate][hreflang]")]
           .map((l) => l.getAttribute("hreflang") + " " + l.href),
@@ -122,7 +122,7 @@ async function run(engineName, browserType, viewport, isMobile) {
       if (m.htmlLang !== expectedLang)
         bad(`${route}: html lang is "${m.htmlLang}", expected "${expectedLang}"`);
       for (const code of ["en", "id"]) {
-        if (!m.alternates.some((a) => a.startsWith(code + " ") && a.includes("securepuls/indonesia")))
+        if (!m.alternates.some((a) => a.startsWith(code + " ") && a.includes("securepulse/indonesia")))
           bad(`${route}: missing hreflang "${code}" alternate (${JSON.stringify(m.alternates)})`);
       }
     }
@@ -185,7 +185,7 @@ async function run(engineName, browserType, viewport, isMobile) {
   } else {
     const page = await ctx.newPage();
     await page.goto(BASE + "/", { waitUntil: "networkidle" });
-    for (const label of ["SecurePuls", "kAI", "Work"]) {
+    for (const label of ["SecurePulse", "kAI", "Work"]) {
       const link = page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: label, exact: true }).first();
       const href = await link.getAttribute("href");
       const r = await page.request.get(BASE + href);
@@ -220,8 +220,10 @@ async function routing() {
     ["/projects", "/work"],
     ["/team", "/"],
     ["/careers", "/contact"],
-    // The product is spelled SecurePuls; the route was corrected to match.
-    ["/securepulse", "/securepuls"],
+    // The product is spelled SecurePulse; the legacy slugs redirect.
+    ["/securepuls", "/securepulse"],
+    ["/securepuls/indonesia", "/securepulse/indonesia"],
+    ["/id/securepuls/indonesia", "/id/securepulse/indonesia"],
   ]) {
     const r = await fetch(BASE + from, { redirect: "manual" });
     const loc = r.headers.get("location") ?? "";
