@@ -52,12 +52,6 @@ const ICONS: Record<IndoIcon, ComponentType<{ className?: string }>> = {
   review: FileCheck2,
 };
 
-const TONE_FILL = {
-  positive: "bg-success",
-  neutral: "bg-fg-subtle",
-  attention: "bg-accent",
-} as const;
-
 /* ==========================================================================
    DocumentPanel — one page of the actual work product
    --------------------------------------------------------------------------
@@ -77,22 +71,28 @@ export function DocumentPanel({
 }) {
   return (
     <div className="bg-cream-50 p-5 text-ink-950 sm:p-6">
-      <div className="flex items-start justify-between gap-4 border-b border-ink-300 pb-3.5">
+      {/* Document header, in the report's own voice: institution, title, and
+          the version/standing line — with the illustrative tag where a
+          classification would sit. */}
+      <div className="flex items-start justify-between gap-4 border-b-2 border-ink-950/80 pb-3">
         <div className="min-w-0">
           <p className="font-mono text-label uppercase tracking-[0.085em] text-ink-600">
             {panel.institution}
           </p>
-          <p className="mt-1 text-body font-medium">{panel.title}</p>
+          <p className="mt-1 font-display text-body font-bold">{panel.title}</p>
+          <p className="mt-0.5 hidden font-mono text-label text-ink-500 sm:block">
+            {panel.docMeta}
+          </p>
         </div>
         <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-ink-500">
           {panel.tag}
         </p>
       </div>
 
-      {/* The finding, exactly as the real report frames one: id, severity,
-          a title that exercises judgment, and its category/points line. */}
+      {/* The finding, exactly as the report frames one: id, severity, a
+          title that exercises judgment, and its category/points line. */}
       <div className="border-b border-ink-200 py-3">
-        <p className="flex items-center gap-2.5">
+        <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
           <span className="font-mono text-label tracking-[0.085em] text-ink-600">
             {panel.finding.id}
           </span>
@@ -104,43 +104,33 @@ export function DocumentPanel({
             {panel.finding.meta}
           </span>
         </p>
-        <p className="mt-1.5 text-small font-medium leading-snug">
+        <p className="mt-1.5 font-display text-small font-bold leading-snug">
           {panel.finding.title}
         </p>
       </div>
 
-      <dl>
-        {panel.rows.map((row) => (
-          <div
-            key={row.label}
+      {/* Run-in body paragraphs — the report's registers, verbatim in style:
+          "What we observed: …", "Remediation: Immediate — …". */}
+      <div className="space-y-2.5 pt-3">
+        {panel.body.map((item) => (
+          <p
+            key={item.label}
             className={cn(
-              "grid grid-cols-[minmax(0,6.5rem)_minmax(0,1fr)] gap-x-4 border-b border-ink-200 py-2.5 last:border-b-0 sm:grid-cols-[minmax(0,8rem)_minmax(0,1fr)]",
-              row.secondary && "hidden sm:grid",
+              "text-fine leading-relaxed text-ink-700",
+              item.secondary && "hidden sm:block",
             )}
           >
-            <dt className="text-fine text-ink-600">{row.label}</dt>
-            <dd
-              className={cn(
-                "text-fine font-medium",
-                row.tone === "attention"
-                  ? "text-brand-700"
-                  : row.tone === "positive"
-                    ? "text-success-600"
-                    : "text-ink-950",
-              )}
-            >
-              {row.value}
-            </dd>
-          </div>
+            <strong className="font-medium text-ink-950">{item.label}: </strong>
+            {item.text}
+          </p>
         ))}
-      </dl>
-
-      {/* The page continues — suggested, never written. */}
-      <div aria-hidden className="mt-4 hidden space-y-1.5 sm:block">
-        <div className="h-1.5 w-full rounded-pill bg-ink-200" />
-        <div className="h-1.5 w-4/5 rounded-pill bg-ink-200" />
-        <div className="h-1.5 w-3/5 rounded-pill bg-ink-200" />
       </div>
+
+      {/* The document's own footer: section and page position. */}
+      <p className="mt-4 flex items-center justify-between border-t border-ink-200 pt-2.5 font-mono text-label text-ink-500">
+        <span className="hidden sm:inline">SecurePulse</span>
+        <span>{panel.pageLine}</span>
+      </p>
     </div>
   );
 }
@@ -298,10 +288,10 @@ export function TraceChain({
    survive 320px.
    ========================================================================== */
 
-export function RemediationTable({
+export function RoadmapTable({
   content,
 }: {
-  content: IndoContent["deliverables"]["remediation"];
+  content: IndoContent["deliverables"]["roadmap"];
 }) {
   const { columns, rows, title, tag } = content;
 
@@ -315,11 +305,12 @@ export function RemediationTable({
           {tag}
         </span>
       </h3>
-      <div className="mt-4 overflow-hidden rounded-card border border-border bg-surface-raised">
-        {/* Table layout from `sm` up. */}
+      <div className="mt-4 overflow-hidden rounded-card border border-border bg-surface-raised shadow-[var(--shadow-card)]">
+        {/* Table layout from `sm` up — the roadmap's own columns: phase,
+            recommendation, owner, expected risk reduction. */}
         <div className="hidden sm:block">
-          <div className="grid grid-cols-[minmax(0,1.3fr)_auto_minmax(0,1.5fr)_auto] gap-x-5 border-b border-border px-5 py-3">
-            {[columns.finding, columns.severity, columns.action, columns.target].map(
+          <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)_minmax(0,0.8fr)_auto] gap-x-5 border-b border-border px-5 py-3">
+            {[columns.phase, columns.action, columns.owner, columns.reduction].map(
               (col) => (
                 <span
                   key={col}
@@ -332,36 +323,29 @@ export function RemediationTable({
           </div>
           {rows.map((row) => (
             <div
-              key={row.finding}
-              className="grid grid-cols-[minmax(0,1.3fr)_auto_minmax(0,1.5fr)_auto] items-baseline gap-x-5 border-b border-border px-5 py-3.5 last:border-b-0"
+              key={row.phase}
+              className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)_minmax(0,0.8fr)_auto] items-baseline gap-x-5 border-b border-border px-5 py-3.5 last:border-b-0"
             >
-              <span className="text-small text-fg">{row.finding}</span>
-              <span className="flex items-center gap-2 text-small text-fg-muted">
-                <span aria-hidden className={cn("size-1.5 rounded-full", TONE_FILL[row.tone])} />
-                {row.severity}
-              </span>
+              <span className="font-mono text-label text-fg">{row.phase}</span>
               <span className="text-small text-fg-muted">{row.action}</span>
-              <span className="font-mono text-label text-fg-subtle">{row.target}</span>
+              <span className="text-small text-fg-muted">{row.owner}</span>
+              <span className="text-small text-fg">{row.reduction}</span>
             </div>
           ))}
         </div>
 
-        {/* Stacked below `sm`. */}
+        {/* Stacked below `sm`: phase leads, owner and reduction share a line. */}
         <ul className="sm:hidden">
           {rows.map((row) => (
             <li
-              key={row.finding}
+              key={row.phase}
               className="space-y-1.5 border-b border-border p-4 last:border-b-0"
             >
-              <p className="flex items-baseline justify-between gap-3">
-                <span className="text-small font-medium text-fg">{row.finding}</span>
-                <span className="flex shrink-0 items-center gap-2 text-small text-fg-muted">
-                  <span aria-hidden className={cn("size-1.5 rounded-full", TONE_FILL[row.tone])} />
-                  {row.severity}
-                </span>
-              </p>
+              <p className="font-mono text-label text-fg">{row.phase}</p>
               <p className="text-small text-fg-muted">{row.action}</p>
-              <p className="font-mono text-label text-fg-subtle">{row.target}</p>
+              <p className="text-fine text-fg-subtle">
+                {row.owner} {"·"} {row.reduction}
+              </p>
             </li>
           ))}
         </ul>
@@ -385,7 +369,7 @@ export function ReportPreview({
   return (
     /* The document explains itself: its own title, then its contents. No
        caption underneath repeating what the title already says. */
-    <div className="rounded-card border border-border bg-surface-raised p-5 sm:p-7">
+    <div className="rounded-card border border-border bg-surface-raised p-5 shadow-[var(--shadow-card)] sm:p-7">
       <p className="border-b border-border-strong pb-3.5 text-heading-2 text-fg sm:pb-4">
         {content.title}
       </p>

@@ -70,6 +70,8 @@ export interface IndoContent {
       tag: string;
       institution: string;
       title: string;
+      /** Document meta line — version and standing, in the report's voice. */
+      docMeta: string;
       finding: {
         id: string;
         severity: string;
@@ -77,12 +79,15 @@ export interface IndoContent {
         /** Category · points line, in the report's own scoring vocabulary. */
         meta: string;
       };
-      rows: readonly {
+      /** Run-in paragraphs, exactly as the report writes a finding:
+       *  "What we observed: …". `secondary` items fold away on phones. */
+      body: readonly {
         label: string;
-        value: string;
-        tone?: "attention" | "positive";
+        text: string;
         secondary?: boolean;
       }[];
+      /** The document's own footer — section name and page position. */
+      pageLine: string;
     };
   };
   inOut: {
@@ -115,17 +120,16 @@ export interface IndoContent {
   };
   deliverables: {
     heading: string;
-    remediation: {
+    roadmap: {
       title: string;
       /** Small inline "Illustrative" marker beside the title. */
       tag: string;
-      columns: { finding: string; severity: string; action: string; target: string };
+      columns: { phase: string; action: string; owner: string; reduction: string };
       rows: readonly {
-        finding: string;
-        severity: string;
-        tone: "attention" | "neutral" | "positive";
+        phase: string;
         action: string;
-        target: string;
+        owner: string;
+        reduction: string;
       }[];
     };
     report: {
