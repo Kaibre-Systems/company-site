@@ -297,12 +297,15 @@ export function RequirementMap({
       </h3>
       <div className="mt-4 overflow-hidden rounded-card border border-border bg-surface-raised shadow-[var(--shadow-card)]">
         <div className="hidden sm:block">
-          <div className="grid grid-cols-[minmax(0,1.6fr)_minmax(0,0.7fr)_minmax(0,1.3fr)_auto] gap-x-5 border-b border-border px-5 py-3">
+          <div className="grid grid-cols-[minmax(0,1.55fr)_minmax(0,0.7fr)_minmax(0,1.25fr)_minmax(4rem,0.3fr)] gap-x-5 border-b border-border px-5 py-3">
             {[columns.requirement, columns.evidence, columns.status, columns.priority].map(
-              (col) => (
+              (col, index) => (
                 <span
                   key={col}
-                  className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle"
+                  className={cn(
+                    "font-mono text-label uppercase tracking-[0.085em] text-fg-subtle",
+                    index === 3 && "justify-self-end",
+                  )}
                 >
                   {col}
                 </span>
@@ -312,14 +315,14 @@ export function RequirementMap({
           {rows.map((row) => (
             <div
               key={row.requirement}
-              className="grid grid-cols-[minmax(0,1.6fr)_minmax(0,0.7fr)_minmax(0,1.3fr)_auto] items-baseline gap-x-5 border-b border-border px-5 py-3.5 last:border-b-0"
+              className="grid grid-cols-[minmax(0,1.55fr)_minmax(0,0.7fr)_minmax(0,1.25fr)_minmax(4rem,0.3fr)] items-center gap-x-5 border-b border-border px-5 py-3.5 last:border-b-0"
             >
               <span className="text-small text-fg">{row.requirement}</span>
               <span className="font-mono text-label uppercase tracking-[0.085em] text-accent">
                 {row.evidence}
               </span>
               <span className="text-small text-fg-muted">{row.status}</span>
-              <span className="text-small text-fg">{row.priority}</span>
+              <span className="justify-self-end text-small text-fg">{row.priority}</span>
             </div>
           ))}
         </div>
