@@ -8,7 +8,7 @@ import {
   SectionHeader,
   Text,
 } from "@/components/primitives";
-import { Button } from "@/components/primitives/button";
+import { ArrowLink, Button } from "@/components/primitives/button";
 import { Callout, WorkflowSteps } from "@/components/modules";
 import {
   AssessmentPanel,
@@ -21,6 +21,7 @@ import {
   SP_EVIDENCE,
   SP_HERO,
   SP_HUMAN,
+  SP_INDONESIA,
   SP_JURISDICTION,
   SP_REPORT,
   SP_STATUS,
@@ -200,6 +201,16 @@ export default function SecurePulsPage() {
           <Prose paragraphs={[SP_STATUS.body]} size="body" className="mt-5" />
           <div className="mt-8">
             <Button href={SP_STATUS.cta.href}>{SP_STATUS.cta.label}</Button>
+          </div>
+
+          {/* The Indonesian-market experience, cross-linked rather than folded
+              in: this page carries the UAE physical-security positioning, and
+              the two must not blur into one claim. */}
+          <div className="mt-14 border-t border-border pt-8">
+            <Text size="small">{SP_INDONESIA.body}</Text>
+            <ArrowLink href={SP_INDONESIA.cta.href} className="mt-3">
+              {SP_INDONESIA.cta.label}
+            </ArrowLink>
           </div>
         </Container>
       </Section>
