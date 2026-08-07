@@ -21,3 +21,6 @@ qa-screenshots/
 qa-mobile/*/
 playwright-report/
 test-results/
+
+# Playwright MCP session artifacts.
+.playwright-mcp/

@@ -254,6 +254,26 @@ export function withBrand(text: string) {
 }
 
 /* ==========================================================================
+   IndonesiaFlag — the market-designation mark
+   --------------------------------------------------------------------------
+   Two CSS bands rather than the 🇮🇩 emoji, which Windows renders as the
+   letters "ID". Decorative: the visible word "Indonesia" beside it is
+   always the accessible name.
+   ========================================================================== */
+
+export function IndonesiaFlag() {
+  return (
+    <span
+      aria-hidden
+      className="inline-flex h-3 w-[18px] shrink-0 flex-col overflow-hidden rounded-[2px] border border-border-strong"
+    >
+      <span className="h-1/2 bg-merah" />
+      <span className="h-1/2 bg-white" />
+    </span>
+  );
+}
+
+/* ==========================================================================
    Flow — a labelled sequence, optionally splitting at the end
    --------------------------------------------------------------------------
    Used wherever a page describes something moving through stages. One
@@ -319,125 +339,6 @@ export function Flow({
         </ul>
       ) : null}
     </div>
-  );
-}
-
-/* ==========================================================================
-   EvidenceLink — SecurePulse
-   --------------------------------------------------------------------------
-   The product's differentiator in one picture: a finding, and the source it
-   is tied back to. Placeholder text only — never real regulation.
-   ========================================================================== */
-
-export function EvidenceLink({ className }: { className?: string }) {
-  return (
-    <div
-      role="img"
-      aria-label="A draft finding joined by a link to the site photo and authority reference it was drawn from."
-      className={cn(
-        "grid items-center gap-4 sm:grid-cols-[1fr_auto_1fr]",
-        className,
-      )}
-    >
-      <div className="rounded-card border border-border bg-surface-raised p-5">
-        <p className="text-small text-fg-subtle">Finding</p>
-        <p className="mt-2 text-body text-fg">Perimeter lighting not continuous</p>
-        <p className="mt-3 text-small text-fg-muted">Severity: high</p>
-      </div>
-
-      <div aria-hidden className="flex items-center justify-center gap-1 sm:flex-col">
-        <span className="h-px w-8 bg-accent sm:h-8 sm:w-px" />
-        <span className="size-1.5 shrink-0 rounded-full bg-accent" />
-        <span className="h-px w-8 bg-accent sm:h-8 sm:w-px" />
-      </div>
-
-      <div className="rounded-card border border-border bg-surface-raised p-5">
-        <p className="text-small text-fg-subtle">Traced back to</p>
-        <p className="mt-2 text-body text-fg">Site photo, north boundary</p>
-        <p className="mt-3 text-small text-fg-muted">
-          Authority reference, with its evidence label
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ==========================================================================
-   StatusList — product panels
-   --------------------------------------------------------------------------
-   A caption, then rows of "what it is" and "where it stands". A dot carries
-   the state and the word names it, so meaning never rests on colour alone.
-   ========================================================================== */
-
-export interface StatusRow {
-  label: string;
-  status: string;
-  /** Reuses PulseDot's tones so the two never drift apart. */
-  tone: "positive" | "attention" | "neutral";
-}
-
-export function StatusList({
-  caption,
-  rows,
-  footnote,
-}: {
-  caption: string;
-  rows: readonly StatusRow[];
-  footnote?: string;
-}) {
-  return (
-    <div className="p-6">
-      <p className="text-small text-fg-subtle">{caption}</p>
-
-      <ul className="mt-5 space-y-4">
-        {rows.map((row, i) => (
-          <li
-            key={row.label}
-            className="grid grid-cols-[1fr_auto] items-baseline gap-4"
-          >
-            <span className="text-body text-fg">{row.label}</span>
-            <span className="flex w-[7.5rem] items-center gap-2 text-small text-fg-muted">
-              <PulseDot tone={row.tone} delay={i * 320} />
-              {row.status}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {footnote ? (
-        <p className="mt-6 border-t border-border pt-4 text-fine text-fg-subtle">
-          {footnote}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-export function AssessmentPanel() {
-  return (
-    <StatusList
-      caption="Draft findings"
-      rows={[
-        { label: "Perimeter security", status: "Verified", tone: "positive" },
-        { label: "Access control", status: "Partial", tone: "neutral" },
-        { label: "Supply chain & delivery", status: "Gap", tone: "attention" },
-      ]}
-      footnote="Signed off by a named assessor before it becomes a report."
-    />
-  );
-}
-
-export function CallOutcomeList() {
-  return (
-    <StatusList
-      caption="Call outcomes"
-      rows={[
-        { label: "Budget confirmed", status: "Qualified", tone: "positive" },
-        { label: "Call back next week", status: "Callback", tone: "attention" },
-        { label: "Outside the area", status: "Not qualified", tone: "neutral" },
-      ]}
-      footnote="Only the qualified conversations reach your team."
-    />
   );
 }
 

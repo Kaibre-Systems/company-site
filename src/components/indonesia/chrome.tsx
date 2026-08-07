@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { KaibreWordmark } from "@/components/brand/wordmark";
-import { SecurePulseName } from "@/components/visuals";
+import { IndonesiaFlag, SecurePulseName } from "@/components/visuals";
 import { PATH_BY_LOCALE } from "@/content/indonesia/locale";
 import type { IndoContent } from "@/content/indonesia/types";
 import { cn } from "@/lib/utils";
@@ -68,23 +68,6 @@ export function IndoHeader({ content }: { content: IndoContent }) {
         </div>
       </div>
     </header>
-  );
-}
-
-/**
- * The Indonesian flag as two CSS bands — deterministic on every platform,
- * unlike the flag emoji, which Windows renders as the letters "ID". Sized to
- * the small-text cap height so it sits on the market label's own line.
- */
-function IndonesiaFlag() {
-  return (
-    <span
-      aria-hidden
-      className="inline-flex h-3 w-[18px] shrink-0 flex-col overflow-hidden rounded-[2px] border border-border-strong"
-    >
-      <span className="h-1/2 bg-merah" />
-      <span className="h-1/2 bg-white" />
-    </span>
   );
 }
 

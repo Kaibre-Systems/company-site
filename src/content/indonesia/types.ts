@@ -135,6 +135,12 @@ export interface IndoContent {
     report: {
       title: string;
       sections: readonly string[];
+      /** Attestation rows, in the report's own document-control grammar:
+       *  the draft is SecurePulse's, the verification is the customer's. */
+      signoff: {
+        heading: string;
+        rows: readonly { role: string; state: string }[];
+      };
     };
   };
   comparison: {

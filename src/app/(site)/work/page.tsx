@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/primitives/button";
 import { FitList } from "@/components/modules";
 import { Flow, PulseDot } from "@/components/visuals";
+import { SystemTopology } from "@/components/visuals/topology";
 import { WORK_COMMISSIONED, WORK_HERO, WORK_LUXURY } from "@/content/work";
 
 export const metadata: Metadata = {
@@ -63,8 +64,11 @@ export default function WorkPage() {
         </Container>
       </Section>
 
-      {/* Scope */}
-      <Section surface="ink">
+      {/* Scope (coal) — the system's shape, then how a trade moves through
+          it. The topology carries the "production system" argument the
+          figures above cannot: several coordinated subsystems, a gate in
+          front of trading, and an operator seat under all of it. */}
+      <Section surface="coal">
         <Container>
           <>
             <Heading level={2} size="display-2" className="max-w-[20ch]">
@@ -75,28 +79,19 @@ export default function WorkPage() {
             </Text>
           </>
 
-          <div className="mt-12">
+          <SystemTopology content={WORK_LUXURY.topology} className="mt-12" />
+
+          <div className="mt-14 border-t border-border pt-10">
             <h3 className="text-heading-2 font-medium text-fg">
               {WORK_LUXURY.lifecycleTitle}
             </h3>
             <Flow className="mt-7" stages={WORK_LUXURY.lifecycle} />
           </div>
-
-          <ul className="mt-14 grid gap-x-12 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
-            {WORK_LUXURY.scope.map((item) => (
-              <li
-                key={item.title}
-                className="border-b border-border py-3.5 text-body text-fg-muted"
-              >
-                {item.title}
-              </li>
-            ))}
-          </ul>
         </Container>
       </Section>
 
       {/* Why it mattered */}
-      <Section surface="ink" className="border-t border-border">
+      <Section surface="ink">
         <Container size="prose">
           <>
             <Heading level={2} size="heading-1">

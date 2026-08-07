@@ -21,6 +21,7 @@ import type {
   IndoIcon,
 } from "@/content/indonesia/types";
 import { PulseDot } from "@/components/visuals";
+import { FindingDocument, ReportContents } from "@/components/visuals/document";
 
 /* ==========================================================================
    Compliance-specific visual vocabulary
@@ -69,70 +70,7 @@ export function DocumentPanel({
 }: {
   panel: IndoContent["hero"]["panel"];
 }) {
-  return (
-    <div className="bg-cream-50 p-5 text-ink-950 sm:p-6">
-      {/* Document header, in the report's own voice: institution, title, and
-          the version/standing line — with the illustrative tag where a
-          classification would sit. */}
-      <div className="flex items-start justify-between gap-4 border-b-2 border-ink-950/80 pb-3">
-        <div className="min-w-0">
-          <p className="font-mono text-label uppercase tracking-[0.085em] text-ink-600">
-            {panel.institution}
-          </p>
-          <p className="mt-1 font-display text-body font-bold">{panel.title}</p>
-          <p className="mt-0.5 hidden font-mono text-label text-ink-500 sm:block">
-            {panel.docMeta}
-          </p>
-        </div>
-        <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-ink-500">
-          {panel.tag}
-        </p>
-      </div>
-
-      {/* The finding, exactly as the report frames one: id, severity, a
-          title that exercises judgment, and its category/points line. */}
-      <div className="border-b border-ink-200 py-3">
-        <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-          <span className="font-mono text-label tracking-[0.085em] text-ink-600">
-            {panel.finding.id}
-          </span>
-          <span aria-hidden className="size-1.5 rounded-full bg-brand-700" />
-          <span className="font-mono text-label uppercase tracking-[0.085em] text-brand-700">
-            {panel.finding.severity}
-          </span>
-          <span className="hidden font-mono text-label text-ink-500 sm:inline">
-            {panel.finding.meta}
-          </span>
-        </p>
-        <p className="mt-1.5 font-display text-small font-bold leading-snug">
-          {panel.finding.title}
-        </p>
-      </div>
-
-      {/* Run-in body paragraphs — the report's registers, verbatim in style:
-          "What we observed: …", "Remediation: Immediate — …". */}
-      <div className="space-y-2.5 pt-3">
-        {panel.body.map((item) => (
-          <p
-            key={item.label}
-            className={cn(
-              "text-fine leading-relaxed text-ink-700",
-              item.secondary && "hidden sm:block",
-            )}
-          >
-            <strong className="font-medium text-ink-950">{item.label}: </strong>
-            {item.text}
-          </p>
-        ))}
-      </div>
-
-      {/* The document's own footer: section and page position. */}
-      <p className="mt-4 flex items-center justify-between border-t border-ink-200 pt-2.5 font-mono text-label text-ink-500">
-        <span className="hidden sm:inline">SecurePulse</span>
-        <span>{panel.pageLine}</span>
-      </p>
-    </div>
-  );
+  return <FindingDocument doc={panel} />;
 }
 
 /* ==========================================================================
@@ -366,25 +304,15 @@ export function ReportPreview({
 }: {
   content: IndoContent["deliverables"]["report"];
 }) {
+  /* The document explains itself: its own title, its contents, and — because
+     this report's last page is an attestation — the sign-off rows that put
+     "your team decides" inside the deliverable rather than beside it. */
   return (
-    /* The document explains itself: its own title, then its contents. No
-       caption underneath repeating what the title already says. */
-    <div className="rounded-card border border-border bg-surface-raised p-5 shadow-[var(--shadow-card)] sm:p-7">
-      <p className="border-b border-border-strong pb-3.5 text-heading-2 text-fg sm:pb-4">
-        {content.title}
-      </p>
-      <ol className="mt-4 space-y-2.5">
-        {content.sections.map((section, i) => (
-          <li key={section} className="flex items-baseline gap-3">
-            <span className="font-mono text-label text-fg-subtle">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <span className="text-body text-fg-muted">{section}</span>
-            <span aria-hidden className="mb-1 flex-1 self-end border-b border-dotted border-border" />
-          </li>
-        ))}
-      </ol>
-    </div>
+    <ReportContents
+      title={content.title}
+      sections={content.sections}
+      signoff={content.signoff}
+    />
   );
 }
 
