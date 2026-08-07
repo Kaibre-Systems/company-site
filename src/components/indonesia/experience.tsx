@@ -18,8 +18,8 @@ import {
   DocumentPanel,
   FlowCompare,
   IconList,
-  RemediationTable,
   ReportPreview,
+  RoadmapTable,
   StageGrid,
   TraceChain,
 } from "@/components/indonesia/visuals";
@@ -150,12 +150,15 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
           </Container>
         </Section>
 
-        {/* Deliverables — the remediation plan and the report, shown. */}
-        <Section surface="coal">
+        {/* Deliverables — the roadmap and the report, on paper. The one
+            light section on the page, deliberately: the work product sits on
+            a desk, and the change of register is the rhythm break the dark
+            sections need. */}
+        <Section surface="paper">
           <Container>
             <SectionHeader heading={c.deliverables.heading} />
             <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-14">
-              <RemediationTable content={c.deliverables.remediation} />
+              <RoadmapTable content={c.deliverables.roadmap} />
               <ReportPreview content={c.deliverables.report} />
             </div>
           </Container>

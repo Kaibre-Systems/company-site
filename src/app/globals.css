@@ -188,15 +188,13 @@
   --border-strong: var(--color-ink-700);
   --accent: var(--color-brand-500);
   --accent-hover: var(--color-brand-400);
-  /* Solid fills are two steps darker than accent text so white type clears
-     4.5:1 with room to spare. Keeping the two separate means accent TEXT stays
-     bright enough to read on ink, instead of both being dragged toward one
-     compromise value. brand-800 rather than brand-700 came back from the
-     founders: at button size the brighter fill read as consumer-SaaS orange,
-     and the deeper burnt tone is the register an enterprise compliance buyer
-     expects. White on brand-800 is ~9:1. */
-  --accent-solid: var(--color-brand-800);
-  --accent-solid-hover: var(--color-brand-700);
+  /* Solid fills sit far below accent text so white type clears 4.5:1 with
+     room to spare. The founders pushed this twice: brand-700 read as
+     consumer-SaaS orange, brand-800 was still "not sufficiently burnt", so
+     filled actions now sit on brand-900 — an oxide tone — with brand-800 as
+     the hover lift. White on brand-900 is ~13:1. */
+  --accent-solid: var(--color-brand-900);
+  --accent-solid-hover: var(--color-brand-800);
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-300);
   --focus: var(--color-brand-400);
@@ -221,11 +219,50 @@
  * field tokens inherit the ink values from `:root`.
  */
 [data-surface="coal"] {
-  --surface: var(--color-ink-900);
-  --surface-raised: var(--color-ink-850);
-  --surface-inset: var(--color-ink-950);
-  --border: var(--color-ink-700);
-  --border-strong: var(--color-ink-600);
+  --surface: var(--color-ink-850);
+  --surface-raised: var(--color-ink-800);
+  --surface-inset: var(--color-ink-900);
+  --border: var(--color-ink-600);
+  --border-strong: var(--color-ink-500);
+}
+
+/* Coal sections breathe: a vertical tonal transition from their raised tone
+   into their ground, so the change of register is felt at the seam rather
+   than inferred from a token. */
+[data-surface="coal"]:where(section) {
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-ink-800),
+    var(--color-ink-850) 18rem
+  );
+}
+
+/**
+ * `paper` is the light surface, reserved for the sections where the actual
+ * work product appears — a document should sit on a desk, not float in a
+ * void. It exists because the founders asked for document-derived light
+ * surfaces; it is not the old alternating white sheet. Type inverts to the
+ * ink ramp; the accent holds AA by dropping to brand-700 for marks and
+ * brand-800 for fills.
+ */
+[data-surface="paper"] {
+  --surface: var(--color-cream-200);
+  --surface-raised: var(--color-cream-50);
+  --surface-inset: var(--color-cream-300);
+  --fg: var(--color-ink-950);
+  --fg-muted: var(--color-ink-700);
+  --fg-subtle: var(--color-ink-600);
+  --border: var(--color-ink-300);
+  --border-strong: var(--color-ink-400);
+  --accent: var(--color-brand-700);
+  --accent-hover: var(--color-brand-800);
+  --accent-solid: var(--color-brand-800);
+  --accent-solid-hover: var(--color-brand-900);
+  --accent-contrast: oklch(1 0 0);
+  --accent-quiet: var(--color-brand-700);
+  --focus: var(--color-brand-600);
+  --success: var(--color-success-600);
+  --shadow-card: 0 1px 2px oklch(0.145 0.02 41 / 0.08), 0 10px 24px -16px oklch(0.145 0.02 41 / 0.25);
 }
 
 /**
@@ -237,14 +274,14 @@
  * ground.
  */
 [data-surface="ember"] {
-  --surface: var(--color-ember-600);
-  --surface-raised: var(--color-ember-500);
-  --surface-inset: var(--color-ember-700);
+  --surface: var(--color-ember-700);
+  --surface-raised: var(--color-ember-600);
+  --surface-inset: var(--color-ember-800);
   --fg: var(--color-cream-50);
   --fg-muted: var(--color-cream-200);
   --fg-subtle: var(--color-cream-300);
-  --border: var(--color-ember-400);
-  --border-strong: var(--color-ember-300);
+  --border: var(--color-ember-500);
+  --border-strong: var(--color-ember-400);
   --accent: var(--color-brand-200);
   --accent-hover: var(--color-cream-50);
   /* The filled action stays pure white while fields sit on cream-200: they
@@ -481,12 +518,12 @@
 @keyframes glowButton {
   0%,
   100% {
-    opacity: 0.1;
+    opacity: 0.08;
     transform: scale(0.98);
   }
   50% {
-    opacity: 0.3;
-    transform: scale(1.05);
+    opacity: 0.22;
+    transform: scale(1.04);
   }
 }
 
@@ -496,7 +533,7 @@
 @keyframes auraRing {
   0% {
     box-shadow: 0 0 0 0 var(--accent);
-    opacity: 0.4;
+    opacity: 0.3;
   }
   70% {
     box-shadow: 0 0 0 12px var(--accent);
