@@ -53,35 +53,23 @@ export interface IndoContent {
     cta: { label: string; href: string };
   };
   hero: {
-    /** The one line above the headline: AI-assisted + who it is for. */
-    kicker: string;
     headline: string;
+    /** One mechanism line. Carries the audience, the AI, the deliverables,
+     *  the human gate, and the timing qualification — one hierarchy level. */
     body: string;
-    /** The restrained qualification of the timing claim. */
-    timingNote: string;
     cta: { label: string; href: string };
     secondary: { label: string; href: string };
+    /** Flat assessment snapshot: caption, illustrative tag, uniform rows. */
     panel: {
       alt: string;
-      /** Corner tag marking the figures as illustrative. */
       tag: string;
       caption: string;
-      /** The headline figure — "42" + "requirements assessed". */
-      headline: { value: string; label: string };
-      /** Stacked distribution bar with its legend. */
-      bar: readonly {
-        label: string;
-        count: number;
-        tone: "positive" | "neutral" | "attention";
-      }[];
-      /** Compact status rows under the bar. */
       rows: readonly {
         label: string;
+        value: string;
         tone: "positive" | "attention" | "neutral";
       }[];
-      footnote: string;
     };
-    illustrationNote: string;
   };
   inOut: {
     heading: string;
@@ -114,7 +102,9 @@ export interface IndoContent {
   deliverables: {
     heading: string;
     remediation: {
-      caption: string;
+      title: string;
+      /** Small inline "Illustrative" marker beside the title. */
+      tag: string;
       columns: { finding: string; severity: string; action: string; target: string };
       rows: readonly {
         finding: string;
@@ -125,7 +115,6 @@ export interface IndoContent {
       }[];
     };
     report: {
-      caption: string;
       title: string;
       sections: readonly string[];
     };

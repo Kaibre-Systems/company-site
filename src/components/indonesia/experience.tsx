@@ -70,8 +70,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
           <Container>
             <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
               <div>
-                <p className="max-w-[52ch] text-body text-fg-subtle">{c.hero.kicker}</p>
-                <Heading level={1} size="display-1" className="mt-4 max-w-[26ch]">
+                <Heading level={1} size="display-1" className="max-w-[26ch]">
                   {c.hero.headline}
                 </Heading>
                 <Text size="lead" className="mt-6 max-w-[58ch]">
@@ -83,18 +82,12 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
                     {c.hero.secondary.label}
                   </ArrowLink>
                 </div>
-                <p className="mt-5 max-w-[52ch] text-fine text-fg-subtle">
-                  {c.hero.timingNote}
-                </p>
               </div>
 
               <div>
                 <VisualFrame label={c.hero.panel.alt}>
                   <AssessmentOverview panel={c.hero.panel} />
                 </VisualFrame>
-                <p className="mt-3 text-fine text-fg-subtle">
-                  {c.hero.illustrationNote}
-                </p>
               </div>
             </div>
           </Container>
@@ -118,7 +111,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* Workflow — four stages, icon-led, glanceable. */}
-        <Section surface="ink" id="workflow">
+        <Section surface="coal" id="workflow">
           <Container>
             <SectionHeader heading={c.workflow.heading} />
             <StageGrid stages={c.workflow.stages} />
@@ -126,7 +119,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* Gap analysis and the evidence trail. */}
-        <Section surface="ember">
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.trace.heading} body={c.trace.body} />
             <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
@@ -151,7 +144,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* Deliverables — the remediation plan and the report, shown. */}
-        <Section surface="ink">
+        <Section surface="coal">
           <Container>
             <SectionHeader heading={c.deliverables.heading} />
             <div className="mt-12 grid grid-cols-[minmax(0,1fr)] items-start gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-14">
@@ -162,7 +155,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* Before / after, and who decides. */}
-        <Section surface="ember">
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.comparison.heading} />
             <div className="mt-12">
@@ -178,7 +171,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* Use cases — banks, fintechs, insurers. */}
-        <Section surface="ink">
+        <Section surface="coal">
           <Container>
             <SectionHeader heading={c.useCases.heading} />
             <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
@@ -190,7 +183,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
                       <li key={item} className="flex gap-3 text-body text-fg-muted">
                         <span
                           aria-hidden
-                          className="mt-2.5 size-1 shrink-0 rounded-full bg-accent"
+                          className="mt-2.5 size-1 shrink-0 rounded-full bg-border-strong"
                         />
                         {item}
                       </li>
@@ -203,7 +196,7 @@ export function IndonesiaExperience({ content }: { content: IndoContent }) {
         </Section>
 
         {/* The Indonesian deployment — corpus, ingestion, environment. */}
-        <Section surface="ink" className="border-t border-border">
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.indonesia.heading} />
             <dl className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">

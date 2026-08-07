@@ -32,36 +32,25 @@ export const ID: IndoContent = {
     kaibreHome: "Kaibre — situs perusahaan",
     marketLabel: "Indonesia",
     toggle: { navLabel: "Bahasa", en: "English", id: "Bahasa Indonesia" },
-    cta: { label: "Diskusikan asesmen", href: "#contact" },
+    cta: { label: "Tunjukkan alur kerja", href: "#contact" },
   },
   hero: {
-    kicker:
-      "Asesmen kepatuhan berbantuan AI — untuk bank, fintech, dan perusahaan asuransi di Indonesia",
     headline: "Draf asesmen kepatuhan dalam sekitar 30 menit, bukan berminggu-minggu.",
-    body: "SecurePuls membaca korpus regulasi yang dikonfigurasi untuk penugasan beserta kebijakan dan bukti institusi Anda, memetakan setiap ketentuan ke buktinya, menyusun analisis kesenjangan — temuan berperingkat keparahan, rencana remediasi — dan menghasilkan draf laporan siap telaah. Penelaah Anda memverifikasi dan mengesahkannya.",
-    timingNote:
-      "Durasi bervariasi menurut cakupan asesmen, volume bukti, dan konfigurasi.",
-    cta: { label: "Diskusikan asesmen Anda", href: "#contact" },
-    secondary: { label: "Lihat alur kerjanya", href: "#workflow" },
+    body: "SecurePuls AI mengubah ketentuan regulasi, kebijakan, dan bukti lembaga jasa keuangan Indonesia menjadi analisis kesenjangan, rencana remediasi, dan draf siap telaah — diverifikasi dan disahkan oleh penelaah Anda. Durasi bervariasi menurut cakupan, volume bukti, dan konfigurasi.",
+    cta: { label: "Tunjukkan alur kerja Anda", href: "#contact" },
+    secondary: { label: "Cara kerjanya", href: "#workflow" },
     panel: {
-      alt: "Ikhtisar asesmen ilustratif: jumlah ketentuan yang dinilai, distribusi statusnya, temuan terbuka, dan status telaah.",
+      alt: "Cuplikan asesmen ilustratif: ketentuan yang dinilai, kesenjangan yang ditemukan, keparahan, status remediasi, dan status telaah.",
       tag: "Ilustratif",
-      caption: "Asesmen regulasi — perbankan",
-      headline: { value: "42", label: "ketentuan dinilai" },
-      bar: [
-        { label: "Patuh", count: 31, tone: "positive" },
-        { label: "Parsial", count: 6, tone: "neutral" },
-        { label: "Gap", count: 5, tone: "attention" },
-      ],
+      caption: "Asesmen",
       rows: [
-        { label: "5 temuan — 1 kritis, 2 tinggi", tone: "attention" },
-        { label: "Bukti terpetakan ke sumbernya", tone: "positive" },
-        { label: "Menunggu verifikasi penelaah", tone: "neutral" },
+        { label: "Ketentuan dinilai", value: "42", tone: "neutral" },
+        { label: "Analisis kesenjangan", value: "5 gap", tone: "attention" },
+        { label: "Keparahan tinggi", value: "2 temuan", tone: "attention" },
+        { label: "Rencana remediasi", value: "Siap", tone: "positive" },
+        { label: "Penelaah", value: "Menunggu verifikasi", tone: "neutral" },
       ],
-      footnote:
-        "Temuan tetap berupa draf sampai disahkan oleh penelaah yang ditunjuk.",
     },
-    illustrationNote: "Ilustrasi antarmuka.",
   },
   inOut: {
     heading: "Apa yang masuk. Apa yang keluar.",
@@ -71,7 +60,7 @@ export const ID: IndoContent = {
         {
           icon: "corpus",
           label: "Korpus regulasi yang berlaku",
-          note: "dikurasi dan dikonfigurasi untuk penugasan",
+          note: "dikurasi dan dipelihara oleh Kaibre — tidak disusun ulang oleh tim Anda",
         },
         { icon: "policy", label: "Kebijakan dan prosedur internal" },
         { icon: "evidence", label: "Bukti dan dokumentasi pendukung" },
@@ -103,7 +92,7 @@ export const ID: IndoContent = {
         n: "02",
         icon: "assess",
         title: "Asesmen",
-        body: "AI memetakan ketentuan ke bukti dan menyusun analisis kesenjangannya.",
+        body: "SecurePuls AI memetakan ketentuan ke bukti dan menyusun analisis kesenjangannya.",
       },
       {
         n: "03",
@@ -125,26 +114,26 @@ export const ID: IndoContent = {
     chain: [
       {
         label: "Ketentuan regulasi",
-        text: "Hak akses ke data nasabah ditinjau sesuai jadwal yang ditetapkan.",
+        text: "Akses ke data nasabah wajib dibatasi sesuai peran yang berwenang.",
       },
       {
         label: "Bukti yang ditemukan",
-        text: "Kebijakan mewajibkan tinjauan triwulanan — tidak ada catatan tinjauan untuk dua triwulan terakhir.",
-        meta: "Sumber: kebijakan manajemen akses, bagian peninjauan",
+        text: "Kebijakan menetapkan akses berbasis peran — catatan tinjauan akses berkala tidak lengkap.",
+        meta: "Sumber: kebijakan manajemen akses",
       },
       {
-        label: "Kesenjangan (gap)",
-        text: "Tinjauan akses berkala tidak terbukti dilaksanakan.",
+        label: "Asesmen",
+        text: "Parsial — tinjauan akses tidak terbukti dilaksanakan.",
         meta: "Keparahan: Tinggi",
         accent: true,
       },
       {
         label: "Remediasi",
-        text: "Pulihkan siklus tinjauan dan simpan catatan pengesahannya.",
+        text: "Terapkan tinjauan akses berkala dengan penanggung jawab yang ditunjuk dan catatan yang tersimpan.",
       },
       {
-        label: "Verifikasi penelaah",
-        text: "Dikonfirmasi oleh penelaah yang ditunjuk.",
+        label: "Penelaah",
+        text: "Menunggu verifikasi.",
       },
     ],
     caption: "Contoh ilustratif — tidak diambil dari regulasi tertentu.",
@@ -171,7 +160,8 @@ export const ID: IndoContent = {
   deliverables: {
     heading: "Yang Anda terima.",
     remediation: {
-      caption: "Rencana remediasi — cuplikan. Ilustratif.",
+      title: "Rencana remediasi",
+      tag: "Ilustratif",
       columns: {
         finding: "Temuan",
         severity: "Keparahan",
@@ -203,14 +193,14 @@ export const ID: IndoContent = {
       ],
     },
     report: {
-      caption: "Draf laporan — struktur",
       title: "Laporan asesmen kepatuhan",
       sections: [
         "Ringkasan eksekutif",
+        "Asesmen ketentuan",
         "Analisis kesenjangan",
         "Temuan dan keparahan",
         "Rencana remediasi",
-        "Rujukan sumber",
+        "Bukti dan rujukan sumber",
         "Pengesahan penelaah",
       ],
     },
@@ -232,7 +222,7 @@ export const ID: IndoContent = {
       title: "Dengan SecurePuls",
       steps: [
         "Korpus, kebijakan, dan bukti dalam satu tempat",
-        "Asesmen berbantuan AI",
+        "SecurePuls AI menyusun asesmennya",
         "Analisis kesenjangan dan rencana remediasi",
         "Verifikasi penelaah",
         "Draf laporan siap telaah",
@@ -254,17 +244,17 @@ export const ID: IndoContent = {
       {
         title: "Bank",
         items: [
-          "Asesmen berkala atas ketentuan regulasi dan pengendalian internal",
-          "Pemetaan kebijakan ke ketentuan dengan analisis kesenjangan pengendalian",
-          "Temuan berbasis bukti dan pemantauan remediasi",
+          "Asesmen regulasi berkala",
+          "Analisis kesenjangan pengendalian",
+          "Temuan berbasis bukti",
         ],
       },
       {
         title: "Fintech",
         items: [
-          "Kesiapan regulasi menjelang perizinan atau tinjauan",
-          "Bukti tetap mutakhir di tengah perubahan produk yang cepat",
-          "Asesmen kebijakan dan pengendalian dengan remediasi kesenjangan",
+          "Kesiapan regulasi",
+          "Asesmen kebijakan dan pengendalian",
+          "Remediasi di tengah perubahan produk yang cepat",
         ],
       },
       {
@@ -272,7 +262,7 @@ export const ID: IndoContent = {
         items: [
           "Asesmen kewajiban regulasi",
           "Tinjauan tata kelola dan kebijakan",
-          "Pelaporan kepatuhan berkala dengan temuan dan remediasinya",
+          "Pelaporan temuan dan remediasi berkala",
         ],
       },
     ],
@@ -282,7 +272,7 @@ export const ID: IndoContent = {
     items: [
       {
         title: "Basis pengetahuan regulasi Indonesia yang terkurasi",
-        note: "Deployment di Indonesia dikonfigurasi dengan korpus regulasi untuk penugasan — ketentuan OJK, Bank Indonesia, dan sektor asuransi sesuai relevansinya — lengkap dengan rujukan sumber.",
+        note: "Dikonfigurasi dengan korpus yang berlaku bagi institusi dan cakupan asesmennya — ketentuan OJK, Bank Indonesia, PPATK, dan sektor asuransi sesuai relevansinya — dikurasi, diverifikasi, dan dipelihara sebagai bagian dari deployment.",
       },
       {
         title: "Pemuatan dokumen untuk penugasan",
@@ -293,15 +283,15 @@ export const ID: IndoContent = {
         note: "Basis data sendiri, akun dibuat administrator, tanpa pendaftaran publik — dan dapat dioperasikan di dalam lingkungan Anda.",
       },
       {
-        title: "Endpoint model dapat dikonfigurasi",
-        note: "Analisis dapat dijalankan pada endpoint kompatibel OpenAI yang Anda setujui.",
+        title: "Deployment model AI dapat dikonfigurasi",
+        note: "Analisis berjalan pada deployment model yang disetujui dan dikendalikan institusi Anda.",
       },
     ],
     note: "SecurePuls tidak mengklaim persetujuan regulator. Cakupan korpus ditetapkan dan diverifikasi per penugasan.",
   },
   contact: {
-    heading: "Diskusikan asesmen Anda.",
-    body: "Sampaikan ketentuan apa yang menjadi acuan asesmen tim Anda dan siapa yang menelaah hasilnya. Pesan Anda sampai langsung ke tim yang membangun SecurePuls.",
+    heading: "Bawakan kami satu alur kerja kepatuhan.",
+    body: "Tunjukkan satu asesmen yang masih dikerjakan tim Anda secara manual — kami akan mendemonstrasikan bagaimana SecurePuls menyusun bukti, analisis kesenjangan, rencana remediasi, dan draf siap telaahnya. Demonstrasi awal tanpa biaya.",
     form: {
       name: { label: "Nama", error: "Mohon isi nama Anda." },
       email: {
@@ -322,18 +312,18 @@ export const ID: IndoContent = {
         ],
       },
       need: {
-        label: "Ceritakan kebutuhan asesmen Anda",
-        hint: "Ketentuan apa yang menjadi acuan asesmen tim Anda, seberapa sering, dan siapa yang menelaah hasilnya?",
+        label: "Alur kerja kepatuhan apa yang ingin Anda uji?",
+        hint: "Satu kalimat pun cukup.",
         placeholder:
-          "cth. Kami menjalankan asesmen pengendalian internal secara berkala di beberapa entitas. Ketentuan tercatat di spreadsheet, bukti tersebar di folder bersama, dan dua penelaah merakit laporannya secara manual setiap siklus.",
+          "cth. asesmen regulasi berkala, tinjauan kebijakan, analisis kesenjangan pengendalian",
         error:
-          "Tambahkan satu-dua kalimat lagi agar kami dapat memberi jawaban yang berguna.",
+          "Tuliskan sedikit tentang alur kerjanya agar kami dapat menyiapkan demonstrasi yang relevan.",
       },
       submit: "Kirim",
       sending: "Mengirim…",
       sent: {
         heading: "Terima kasih — pesan Anda sudah sampai.",
-        body: "Pesan Anda ada di kotak masuk kami. Anda akan mendapat balasan dari tim yang membangun SecurePuls.",
+        body: "Pesan Anda ada di kotak masuk kami. Tim yang membangun SecurePuls akan menghubungi Anda untuk mengatur demonstrasinya.",
       },
       fallback: {
         heading: "Satu langkah lagi.",

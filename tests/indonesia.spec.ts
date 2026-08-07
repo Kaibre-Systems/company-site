@@ -75,11 +75,11 @@ const INDONESIAN_MARKERS = /\b(dan|yang|untuk|dengan|kami|adalah|setiap)\b/gi;
  * timing promise.
  */
 const FORBIDDEN = [
-  /\b(PPATK|POJK|SEOJK|Kominfo)\b/,
+  /\b(POJK|SEOJK|Kominfo)\b/,
   /\b(UU\s?PDP|PDP Law)\b/i,
-  /\b(?:OJK|Bank Indonesia)[- ]approved\b/i,
-  /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia|the regulator)\b/i,
-  /\bdisetujui\s+(?:oleh\s+)?(?:OJK|Bank Indonesia|regulator)\b/i,
+  /\b(?:OJK|Bank Indonesia|PPATK)[- ]approved\b/i,
+  /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia|PPATK|the regulator)\b/i,
+  /\bdisetujui\s+(?:oleh\s+)?(?:OJK|Bank Indonesia|PPATK|regulator)\b/i,
   /\b(?:complete|full)\s+coverage\b/i,
   /\bcakupan\s+(?:penuh|lengkap|menyeluruh)\b/i,
   /\b(certified|accredited|regulator[- ]approved|guaranteed)\b/i,
@@ -270,7 +270,7 @@ test.describe("regulatory guardrails", () => {
         EN_PATH,
         [
           /about 30 minutes/i,
-          /AI-assisted/i,
+          /SecurePuls AI/,
           /gap analysis/i,
           /remediation plan/i,
           /severity/i,
@@ -278,13 +278,14 @@ test.describe("regulatory guardrails", () => {
           /regulatory corpus/i,
           /OJK/,
           /Bank Indonesia/,
+          /PPATK/,
         ],
       ],
       [
         ID_PATH,
         [
           /sekitar 30 menit/i,
-          /berbantuan AI/i,
+          /SecurePuls AI/,
           /analisis kesenjangan/i,
           /rencana remediasi/i,
           /keparahan/i,
@@ -292,6 +293,7 @@ test.describe("regulatory guardrails", () => {
           /korpus regulasi/i,
           /OJK/,
           /Bank Indonesia/,
+          /PPATK/,
         ],
       ],
     ];
@@ -382,7 +384,7 @@ test.describe("contact form", () => {
   test("the header CTA lands on the form, clear of the sticky header", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto(EN_PATH);
-    await page.getByRole("banner").getByRole("link", { name: "Discuss an assessment" }).click();
+    await page.getByRole("banner").getByRole("link", { name: "Show us a workflow" }).click();
     await page.waitForTimeout(400);
     const m = await page.evaluate(() => {
       const heading = document.querySelector("#contact h2")!;

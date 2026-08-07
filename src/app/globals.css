@@ -84,6 +84,11 @@
   --color-signal-400: oklch(0.712 0.062 218);
   --color-signal-600: oklch(0.512 0.062 218);
 
+  /* --- Indonesian flag red. Used only by the market-designation mark in
+     the SecurePuls Indonesia chrome — drawn as CSS bands rather than the
+     🇮🇩 emoji, because Windows renders flag emoji as the letters "ID". --- */
+  --color-merah: oklch(0.55 0.2 27);
+
   --color-success-400: oklch(0.762 0.135 152);
   --color-success-600: oklch(0.582 0.126 152);
 
@@ -208,6 +213,22 @@
 }
 
 /**
+ * `coal` is the third surface: the same warm near-neutrals as ink, held one
+ * step lighter. It exists to break the ink → ember → ink → ember alternation
+ * that made every section change an orange event — a page can now step
+ * between true black and warm charcoal, and reserve ember for the few
+ * moments that earn it. Only the grounds and borders shift; type, accent and
+ * field tokens inherit the ink values from `:root`.
+ */
+[data-surface="coal"] {
+  --surface: var(--color-ink-900);
+  --surface-raised: var(--color-ink-850);
+  --surface-inset: var(--color-ink-950);
+  --border: var(--color-ink-700);
+  --border-strong: var(--color-ink-600);
+}
+
+/**
  * The ember surface inverts one thing about the ink one: the accent cannot be
  * the brand orange, because the ground already is. Orange-on-orange is a
  * ~1.4:1 button. So on ember the accent runs to the *light* end of the same
@@ -249,16 +270,17 @@
    * typed characters at speed. Tinted the same as the ground it sits on, the
    * edge went soft and the whole form read as one brown block.
    *
-   * Warm cream rather than pure white, from founder review: a #fff sheet on a
-   * dark page read as a flash. cream-200 keeps the field unmistakably the
-   * light, interactive object on the surface while sitting in the site's own
-   * warm range — near-black type on it still clears 10:1, and the placeholder
-   * (ink-600) clears 4.5:1.
+   * Warm paper rather than white, twice revised by founder review: #fff read
+   * as a flash, and cream-200 was still "a giant white rectangle". cream-300
+   * is a subdued warm sheet that still reads as the interactive object on the
+   * surface — near-black type on it clears ~12:1, the ink-700 placeholder
+   * ~8:1, and the ink-500 border keeps a visible edge (~3:1) so the field
+   * never dissolves into the ground.
    */
-  --field: var(--color-cream-200);
+  --field: var(--color-cream-300);
   --field-fg: var(--color-ink-950);
-  --field-placeholder: var(--color-ink-600);
-  --field-border: var(--color-ink-400);
+  --field-placeholder: var(--color-ink-700);
+  --field-border: var(--color-ink-500);
   --field-border-focus: var(--color-brand-600);
 }
 

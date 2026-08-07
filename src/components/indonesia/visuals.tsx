@@ -80,48 +80,22 @@ export function AssessmentOverview({
         </p>
       </div>
 
-      <p className="mt-4 flex items-baseline gap-3">
-        <span className="font-mono text-display-2 text-fg">
-          {panel.headline.value}
-        </span>
-        <span className="text-small text-fg-muted">{panel.headline.label}</span>
-      </p>
-
-      {/* Status distribution: one stacked bar, then its legend. */}
-      <div
-        aria-hidden
-        className="mt-4 flex h-2 gap-px overflow-hidden rounded-pill"
-      >
-        {panel.bar.map((seg) => (
-          <span
-            key={seg.label}
-            style={{ flexGrow: seg.count }}
-            className={cn("min-w-1", TONE_FILL[seg.tone])}
-          />
-        ))}
-      </div>
-      <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
-        {panel.bar.map((seg) => (
-          <li key={seg.label} className="flex items-center gap-2 text-small text-fg-muted">
-            <span aria-hidden className={cn("size-1.5 rounded-full", TONE_FILL[seg.tone])} />
-            {seg.label}
-            <span className="font-mono text-label text-fg-subtle">{seg.count}</span>
-          </li>
-        ))}
-      </ul>
-
-      <ul className="mt-5 space-y-3 border-t border-border pt-4">
+      {/* One hierarchy level: uniform label → value rows. The dot carries the
+          state; nothing else is annotated. */}
+      <ul className="mt-5">
         {panel.rows.map((row, i) => (
-          <li key={row.label} className="flex items-center gap-2.5 text-small text-fg">
-            <PulseDot tone={row.tone} delay={i * 320} />
-            {row.label}
+          <li
+            key={row.label}
+            className="flex items-baseline justify-between gap-4 border-t border-border py-3 first:border-t-0"
+          >
+            <span className="text-body text-fg-muted">{row.label}</span>
+            <span className="flex shrink-0 items-center gap-2 text-body text-fg">
+              <PulseDot tone={row.tone} delay={i * 320} />
+              {row.value}
+            </span>
           </li>
         ))}
       </ul>
-
-      <p className="mt-5 border-t border-border pt-4 text-fine text-fg-subtle">
-        {panel.footnote}
-      </p>
     </div>
   );
 }
@@ -194,15 +168,13 @@ export function StageGrid({
         const Icon = ICONS[stage.icon];
         return (
           <li key={stage.n}>
-            <div className="flex items-center gap-3">
-              <span
-                aria-hidden
-                className="flex size-10 items-center justify-center rounded-control border border-border-strong text-accent"
-              >
-                <Icon className="size-5" />
-              </span>
-              <span className="font-mono text-label text-fg-subtle">{stage.n}</span>
-            </div>
+            {/* Icon, name, one sentence — three things, no numbering row. */}
+            <span
+              aria-hidden
+              className="flex size-10 items-center justify-center rounded-control border border-border-strong text-fg-muted"
+            >
+              <Icon className="size-5" />
+            </span>
             <h3 className="mt-4 text-heading-1 text-fg">{stage.title}</h3>
             <p className="mt-2 max-w-[36ch] text-body text-fg-muted">{stage.body}</p>
           </li>
@@ -249,11 +221,18 @@ export function TraceChain({
               <div className={cn(!last && "pb-5")}>
                 <p className="text-small text-fg-subtle">{node.label}</p>
                 <p className="mt-1 text-body text-fg">{node.text}</p>
-                {node.meta ? (
-                  <p className="mt-1.5 font-mono text-label tracking-[0.02em] text-accent">
-                    {node.meta}
-                  </p>
-                ) : null}
+                {/* Mono reference line. Quiet by default — the accented node
+                    halo already marks where the meaning sits, and a page of
+                    orange metadata reads as noise. */}
+                <p
+                  className={cn(
+                    "mt-1.5 font-mono text-label tracking-[0.02em]",
+                    node.accent ? "text-accent" : "text-fg-subtle",
+                    !node.meta && "hidden",
+                  )}
+                >
+                  {node.meta}
+                </p>
               </div>
             </li>
           );
@@ -279,11 +258,19 @@ export function RemediationTable({
 }: {
   content: IndoContent["deliverables"]["remediation"];
 }) {
-  const { columns, rows, caption } = content;
+  const { columns, rows, title, tag } = content;
 
   return (
-    <figure>
-      <div className="overflow-hidden rounded-card border border-border bg-surface-raised">
+    <div>
+      {/* Flat: the deliverable's own name, one small illustrative marker,
+          then the table. No "extract", no caption row, no footer. */}
+      <h3 className="flex items-baseline gap-3">
+        <span className="text-heading-2 text-fg">{title}</span>
+        <span className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+          {tag}
+        </span>
+      </h3>
+      <div className="mt-4 overflow-hidden rounded-card border border-border bg-surface-raised">
         {/* Table layout from `sm` up. */}
         <div className="hidden sm:block">
           <div className="grid grid-cols-[minmax(0,1.3fr)_auto_minmax(0,1.5fr)_auto] gap-x-5 border-b border-border px-5 py-3">
@@ -334,8 +321,7 @@ export function RemediationTable({
           ))}
         </ul>
       </div>
-      <figcaption className="mt-3 text-fine text-fg-subtle">{caption}</figcaption>
-    </figure>
+    </div>
   );
 }
 
@@ -352,27 +338,24 @@ export function ReportPreview({
   content: IndoContent["deliverables"]["report"];
 }) {
   return (
-    <figure>
-      <div className="rounded-card border border-border bg-surface-raised p-6 sm:p-7">
-        <p className="border-b border-border-strong pb-4 text-heading-2 text-fg">
-          {content.title}
-        </p>
-        <ol className="mt-4 space-y-2.5">
-          {content.sections.map((section, i) => (
-            <li key={section} className="flex items-baseline gap-3">
-              <span className="font-mono text-label text-fg-subtle">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="text-body text-fg-muted">{section}</span>
-              <span aria-hidden className="mb-1 flex-1 self-end border-b border-dotted border-border" />
-            </li>
-          ))}
-        </ol>
-      </div>
-      <figcaption className="mt-3 text-fine text-fg-subtle">
-        {content.caption}
-      </figcaption>
-    </figure>
+    /* The document explains itself: its own title, then its contents. No
+       caption underneath repeating what the title already says. */
+    <div className="rounded-card border border-border bg-surface-raised p-6 sm:p-7">
+      <p className="border-b border-border-strong pb-4 text-heading-2 text-fg">
+        {content.title}
+      </p>
+      <ol className="mt-4 space-y-2.5">
+        {content.sections.map((section, i) => (
+          <li key={section} className="flex items-baseline gap-3">
+            <span className="font-mono text-label text-fg-subtle">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className="text-body text-fg-muted">{section}</span>
+            <span aria-hidden className="mb-1 flex-1 self-end border-b border-dotted border-border" />
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
