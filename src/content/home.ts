@@ -74,19 +74,15 @@ export const PRODUCTS = {
   items: [
     {
       name: "SecurePulse",
-      category: "Physical security assessment",
       headline: "Site assessments that show their working.",
-      body: "SecurePulse turns a physical security inspection into a structured assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings graded by severity. Every regulatory reference carries an evidence label, and a named assessor signs the report off.",
+      body: "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings graded by severity. A named assessor signs the report off.",
       href: "/securepulse",
-      accent: true,
     },
     {
       name: "kAI",
-      category: "Outbound voice agent",
       headline: "Calls the list. Flags the ones worth your time.",
       body: "kAI runs outbound qualification calls on your own number, follows the script your team agreed, and classifies each conversation so your people spend their hours on the leads that justify them.",
       href: "/kai",
-      accent: false,
     },
   ],
   /** The Indonesian deployment, discoverable without a detour: one line

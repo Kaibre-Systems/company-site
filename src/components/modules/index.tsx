@@ -72,7 +72,6 @@ export function FitList({
 
 export function ProductCard({
   name,
-  category,
   headline,
   body,
   href,
@@ -80,7 +79,6 @@ export function ProductCard({
   className,
 }: {
   name: string;
-  category: string;
   headline: string;
   body: string;
   href: string;
@@ -93,21 +91,20 @@ export function ProductCard({
           so the eye counts one edge instead of two. */}
       <div className="flex h-full flex-col">
         <div className="flex items-start justify-between gap-4">
-          <div>
-            {/* The product name is the thing being introduced, so it is the
-                largest type here — the tagline supports it, not the reverse. */}
-            <h3 className="text-heading-1 font-medium text-fg">
-              {name === "SecurePulse" ? <SecurePulseName animate /> : name}
-            </h3>
-            <p className="mt-1 text-small text-fg-subtle">{category}</p>
-          </div>
+          {/* The product name is the thing being introduced, so it is the
+              largest type here. No category tagline: the headline right
+              under it is the first descriptive level — one hierarchy step,
+              not two. */}
+          <h3 className="text-heading-1 font-medium text-fg">
+            {name === "SecurePulse" ? <SecurePulseName animate /> : name}
+          </h3>
           <ArrowUpRight
             aria-hidden
             className="mt-1 size-5 shrink-0 text-fg-subtle transition-[color,transform] duration-150 group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
           />
         </div>
 
-        <p className="mt-6 text-lead font-medium text-fg">{headline}</p>
+        <p className="mt-4 text-lead font-medium text-fg">{headline}</p>
         <Text size="small" className="mt-3 max-w-prose">
           {body}
         </Text>

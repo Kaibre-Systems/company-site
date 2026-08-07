@@ -22,6 +22,9 @@ export const KAI_HERO = {
  */
 export const KAI_CALL_PANEL = {
   alt: "Illustrative outbound qualification call in progress: kAI asks scripted questions, the lead answers, the answers become structured fields — budget confirmed, timeline this quarter, decision-maker on the call — and the conversation is classified as qualified and routed to the team.",
+  /** The homepage teaser: one exchange, the extracted fields, the outcome. */
+  cardAlt:
+    "Illustrative live qualification call: kAI asks about budget, the lead confirms, the answers become structured fields, and the call is classified as qualified and routed to the team.",
   context: "Outbound call · your number",
   state: "In conversation · 02:41",
   transcript: [

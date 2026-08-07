@@ -42,9 +42,13 @@ export function CallPanel({
 }) {
   return (
     <div className={cn("p-5", !compact && "sm:p-6")}>
-      {/* Call header: where it runs, and that it is running. */}
+      {/* Call header: where it runs, and that it is running. The compact
+          teaser keeps only the live state — the card copy beside it already
+          says whose number the calls run on. */}
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-border pb-3">
-        <p className="text-small text-fg-subtle">{content.context}</p>
+        {!compact ? (
+          <p className="text-small text-fg-subtle">{content.context}</p>
+        ) : null}
         <p className="flex items-center gap-2 font-mono text-label text-fg-muted">
           <PulseDot tone="live" />
           {content.state}
@@ -78,12 +82,15 @@ export function CallPanel({
         ))}
       </ul>
 
-      {/* What the speech became: structured answers, not a recording. */}
+      {/* What the speech became: structured answers, not a recording. In the
+          compact teaser the field/value pairs say it without a heading. */}
       <div className="mt-4 border-t border-border pt-3.5">
-        <p className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-          {content.answersLabel}
-        </p>
-        <dl className="mt-2.5 flex flex-wrap gap-x-6 gap-y-1.5">
+        {!compact ? (
+          <p className="mb-2.5 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+            {content.answersLabel}
+          </p>
+        ) : null}
+        <dl className="flex flex-wrap gap-x-6 gap-y-1.5">
           {content.answers.map((a) => (
             <div key={a.field} className="flex items-baseline gap-2">
               <dt className="text-fine text-fg-subtle">{a.field}</dt>
