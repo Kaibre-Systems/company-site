@@ -13,7 +13,15 @@ import { expect, test, type Page } from "@playwright/test";
    visitor can never reach — plus the routine mobile invariants around them.
    ========================================================================== */
 
-const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"] as const;
+const ROUTES = [
+  "/",
+  "/securepuls",
+  "/securepuls/indonesia",
+  "/id/securepuls/indonesia",
+  "/kai",
+  "/work",
+  "/contact",
+] as const;
 
 /**
  * The required matrix. `small` is Safari's *small* viewport for the device —

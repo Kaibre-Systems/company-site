@@ -126,6 +126,11 @@ export const SP_REPORT = {
   ],
 } as const;
 
+export const SP_INDONESIA = {
+  body: "SecurePuls is also being prepared for Indonesian banks, fintechs, insurers and other regulated financial institutions — with a dedicated experience in English and Bahasa Indonesia.",
+  cta: { label: "SecurePuls for Indonesia", href: "/securepuls/indonesia" },
+} as const;
+
 export const SP_STATUS = {
   heading: "Where SecurePuls is today",
   body: "SecurePuls is in active development and demonstration with organisations in the UAE and the wider Gulf. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",

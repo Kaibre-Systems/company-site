@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Linkedin } from "lucide-react";
 import { FOOTER_GROUPS, SITE } from "@/content/site";
 import { KaibreWordmark } from "@/components/brand/wordmark";
-import { SecurePulsName } from "@/components/visuals";
+import { withBrand } from "@/components/visuals";
 
 export function SiteFooter() {
   return (
@@ -44,11 +44,11 @@ export function SiteFooter() {
                       href={link.href}
                       className="inline-flex min-h-11 min-w-11 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
                     >
-                      {link.label === "SecurePuls" ? (
-                        <SecurePulsName animate />
-                      ) : (
-                        link.label
-                      )}
+                      {/* One span, deliberately: the link is a flex container,
+                          and `withBrand` returns several children — as
+                          separate flex items the space after the brand name
+                          collapses ("SecurePulsIndonesia"). */}
+                      <span>{withBrand(link.label)}</span>
                     </Link>
                   </li>
                 ))}

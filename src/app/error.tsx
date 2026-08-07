@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { Container, Heading, Section, Text } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import { SITE } from "@/content/site";
 
 export default function Error({
@@ -17,7 +18,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <Section surface="ink" space="flush" className="pb-32 pt-40">
+    <SiteChrome>
+      <Section surface="ink" space="flush" className="pb-32 pt-40">
       <Container size="prose">
         <Heading level={1} size="display-2" className="mt-4">
           Something went wrong on our side.
@@ -45,6 +47,7 @@ export default function Error({
           </Button>
         </div>
       </Container>
-    </Section>
+      </Section>
+    </SiteChrome>
   );
 }

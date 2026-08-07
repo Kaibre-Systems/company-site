@@ -86,23 +86,55 @@ the contact email.
 ```
 src/
 ├─ app/                    routes — all static
-│  ├─ page.tsx             home
-│  ├─ securepuls/          product page
-│  ├─ kai/                 product page
-│  ├─ work/                selected work + commissioned systems
-│  ├─ contact/             contact form
+│  ├─ (site)/              the company site, under the English chrome
+│  │  ├─ layout.tsx        SiteChrome: skip link · header · main · footer
+│  │  ├─ page.tsx          home
+│  │  ├─ securepuls/       product page (UAE physical security)
+│  │  ├─ kai/              product page
+│  │  ├─ work/             selected work + commissioned systems
+│  │  └─ contact/          contact form
+│  ├─ securepuls/indonesia/     SecurePuls Indonesia — English
+│  ├─ id/securepuls/indonesia/  SecurePuls Indonesia — Bahasa Indonesia
 │  ├─ robots.ts · sitemap.ts · opengraph-image.tsx
 │  └─ globals.css          the design system (tokens only)
 ├─ content/                ALL copy lives here, as typed objects
+│  └─ indonesia/           the bilingual pair: types.ts is the contract,
+│                          en.ts and id.ts must both satisfy it
 ├─ components/
 │  ├─ primitives/          Section · Container · Heading · Text · Button · Card
 │  ├─ modules/             WorkflowSteps · ProductCard · FitList · Callout
 │  ├─ visuals/             constructed interface illustrations
-│  ├─ layout/              header · footer
+│  ├─ indonesia/           microsite chrome · trace chain · localised form
+│  ├─ layout/              header · footer · SiteChrome
 │  ├─ forms/               contact form
 │  └─ brand/               wordmark
 └─ lib/                    utils · raw-colors
 ```
+
+### SecurePuls Indonesia
+
+A bilingual product experience for Indonesian banks, fintechs and insurers:
+`/securepuls/indonesia` (English) and `/id/securepuls/indonesia` (Bahasa
+Indonesia). One page component, two typed dictionaries — the
+`IndoContent` interface in `src/content/indonesia/types.ts` is the
+synchronisation guarantee, so a string added to one locale fails the build
+until the other carries it.
+
+The pair renders its own fully localised chrome (the company-site header is
+English, and an Indonesian page must not open under it): a sticky header with
+an EN | ID toggle that preserves the visitor's section via the URL hash, and a
+compact localised footer. `<html lang>` is corrected per locale by an inline
+script on load and a `LangSync` effect on soft navigation; the two pages name
+each other in `hreflang` alternates and the sitemap.
+
+Claim discipline is stricter here than on the rest of the site: no Indonesian
+regulator, framework or law is named anywhere on the pair until support for it
+is verified — the requirement sets an assessment runs against are described as
+configured per engagement. `tests/indonesia.spec.ts` enforces this, along with
+linguistic purity in both directions (no stray English on the Indonesian route
+beyond an approved-terms list, and vice versa), toggle behaviour, locale
+metadata, and the localised contact form. The general layout, text-resize and
+runtime suites include both routes in their matrices.
 
 ### Copy
 

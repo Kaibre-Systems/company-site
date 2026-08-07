@@ -6,8 +6,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { SITE } from "@/content/site";
 import { RAW } from "@/lib/raw-colors";
-import { SiteHeader } from "@/components/layout/site-header";
-import { SiteFooter } from "@/components/layout/site-footer";
 
 /**
  * Three variable families, each with a job.
@@ -116,21 +114,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANISATION_LD) }}
         />
       </head>
+      {/* Chrome lives in the route groups rather than here: the company site
+          renders the English shell via `(site)/layout.tsx`, and the SecurePuls
+          Indonesia experience renders its own localised shell. The root
+          `not-found` and `error` pages compose `SiteChrome` themselves. */}
       <body className="min-h-dvh bg-ink-950 antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-control focus:bg-accent-solid focus:px-4 focus:py-3 focus:text-body focus:text-accent-contrast"
-        >
-          Skip to content
-        </a>
-
-        <SiteHeader />
-
-        <main id="main" tabIndex={-1}>
-          {children}
-        </main>
-
-        <SiteFooter />
+        {children}
 
         <Analytics />
         <SpeedInsights />

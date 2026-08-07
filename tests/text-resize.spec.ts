@@ -16,7 +16,15 @@ import { expect, test, type Page } from "@playwright/test";
      - nothing is clipped, and the page never scrolls horizontally at 320px.
    ========================================================================== */
 
-const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"] as const;
+const ROUTES = [
+  "/",
+  "/securepuls",
+  "/securepuls/indonesia",
+  "/id/securepuls/indonesia",
+  "/kai",
+  "/work",
+  "/contact",
+] as const;
 
 const CASES = [
   { w: 320, h: 568, zoom: 100 },
@@ -101,17 +109,23 @@ test.describe("text resizing", () => {
             .filter((d) => d.over > 1);
 
           const h1 = document.querySelector("h1");
+          // The SecurePuls Indonesia chrome has no hamburger — its operable
+          // control is the language toggle link. Measure whichever exists.
+          const toggleEl = document.querySelector("header button");
+          const langEl = document.querySelector("header nav a");
           return {
             vw, docW: de.scrollWidth,
             rootFontSize: parseFloat(getComputedStyle(de).fontSize),
-            toggle: box(document.querySelector("header button")),
+            toggle: toggleEl ? box(toggleEl) : null,
+            langLink: langEl ? box(langEl) : null,
             logo: box(document.querySelector("header svg")),
             h1: h1 ? { ...box(h1), fontSize: parseFloat(getComputedStyle(h1).fontSize) } : null,
             spilling: spilling.slice(0, 5), clippedText: clippedText.slice(0, 5), diagrams,
           };
         })()`) as {
           vw: number; docW: number; rootFontSize: number;
-          toggle: { w: number; h: number; right: number; left: number };
+          toggle: { w: number; h: number; right: number; left: number } | null;
+          langLink: { w: number; h: number; right: number; left: number } | null;
           logo: { w: number; h: number; right: number; left: number };
           h1: { w: number; h: number; right: number; fontSize: number } | null;
           spilling: string[]; clippedText: string[]; diagrams: { over: number; label: string }[];
@@ -124,11 +138,20 @@ test.describe("text resizing", () => {
         expect(m.diagrams, `diagram wider than its container`).toEqual([]);
 
         // Navigation stays visible and operable. The target does not need to
-        // grow with the text — it does need to stay at least 44px.
-        expect(m.toggle.w, "hamburger width").toBeGreaterThanOrEqual(44);
-        expect(m.toggle.h, "hamburger height").toBeGreaterThanOrEqual(44);
-        expect(m.toggle.right, "hamburger off screen").toBeLessThanOrEqual(m.vw + 1);
-        await expect(page.getByRole("button", { name: /open menu/i })).toBeVisible();
+        // grow with the text — it does need to stay at least 44px. On the
+        // SecurePuls Indonesia pages the operable control is the language
+        // toggle rather than a hamburger.
+        if (m.toggle) {
+          expect(m.toggle.w, "hamburger width").toBeGreaterThanOrEqual(44);
+          expect(m.toggle.h, "hamburger height").toBeGreaterThanOrEqual(44);
+          expect(m.toggle.right, "hamburger off screen").toBeLessThanOrEqual(m.vw + 1);
+          await expect(page.getByRole("button", { name: /open menu/i })).toBeVisible();
+        } else {
+          expect(m.langLink, "no operable control in the header").not.toBeNull();
+          expect(m.langLink!.w, "language toggle width").toBeGreaterThanOrEqual(44);
+          expect(m.langLink!.h, "language toggle height").toBeGreaterThanOrEqual(44);
+          expect(m.langLink!.right, "language toggle off screen").toBeLessThanOrEqual(m.vw + 1);
+        }
 
         // The wordmark stays whole and recognisable rather than shrinking away
         // or growing until it crowds the bar out.

@@ -7,7 +7,19 @@
 import { chromium, webkit } from "@playwright/test";
 
 const BASE = process.argv[2] ?? "https://www.kaibresystems.com";
-const ROUTES = ["/", "/securepuls", "/kai", "/work", "/contact"];
+const ROUTES = [
+  "/",
+  "/securepuls",
+  "/securepuls/indonesia",
+  "/id/securepuls/indonesia",
+  "/kai",
+  "/work",
+  "/contact",
+];
+
+/** The SecurePuls Indonesia pair carries its own localised chrome — no
+ *  hamburger menu, a language toggle instead, and hreflang alternates. */
+const isMicrosite = (route) => route.endsWith("/securepuls/indonesia");
 
 const fail = [];
 const bad = (s) => {
@@ -28,6 +40,15 @@ const FORBIDDEN_CLAIMS = [
   { re: /\b\d{1,3}\s?%/, why: "percentage metric" },
   { re: /\b\d+x\s+(more|faster|better|higher|increase)/i, why: "multiplier claim" },
   { re: /\b(trusted by|used by)\s+\d+/i, why: "customer count" },
+  /* The Indonesian pages must hold the same discipline in Bahasa Indonesia,
+     and no page may name an Indonesian regulator or framework until support
+     for it is verified. */
+  { re: /\b(tersertifikasi|terakreditasi|kepatuhan otomatis)\b/i, why: "certification claim (id)" },
+  { re: /\bdisetujui oleh\s+(OJK|Bank Indonesia|regulator)\b/i, why: "endorsement claim (id)" },
+  { re: /\bmenjamin\s+kepatuhan\b/i, why: "compliance guarantee (id)" },
+  { re: /\b(OJK|PPATK|POJK|SEOJK|Kominfo)\b/, why: "named Indonesian regulator/framework" },
+  { re: /\bBank Indonesia\b/, why: "named Indonesian regulator" },
+  { re: /\b(UU\s?PDP|PDP Law)\b/i, why: "named Indonesian regulation" },
 ];
 
 async function run(engineName, browserType, viewport, isMobile) {
@@ -74,6 +95,10 @@ async function run(engineName, browserType, viewport, isMobile) {
         mailto: !!document.querySelector('footer a[href^="mailto:"]'),
         text: (document.body.innerText || "").replace(/\\s+/g, " "),
         images: document.images.length,
+        langToggle: !!document.querySelector('header nav a[href*="securepuls/indonesia"]'),
+        htmlLang: document.documentElement.lang,
+        alternates: [...document.querySelectorAll("link[rel=alternate][hreflang]")]
+          .map((l) => l.getAttribute("hreflang") + " " + l.href),
       };
     })()`);
 
@@ -81,8 +106,20 @@ async function run(engineName, browserType, viewport, isMobile) {
     if (m.docW > m.vw + 1) bad(`${route}: horizontal overflow ${m.docW} > ${m.vw}`);
     if (m.h1count !== 1) bad(`${route}: ${m.h1count} h1 elements`);
     if (!m.logo || m.logo.w < 80) bad(`${route}: wordmark missing or tiny ${JSON.stringify(m.logo)}`);
-    if (isMobile && (!m.toggle || m.toggle.w < 44 || m.toggle.h < 44))
+    if (isMobile && !isMicrosite(route) && (!m.toggle || m.toggle.w < 44 || m.toggle.h < 44))
       bad(`${route}: hamburger under 44px ${JSON.stringify(m.toggle)}`);
+
+    /* Locale pair: toggle in the chrome, corrected html lang, hreflang both ways. */
+    if (isMicrosite(route)) {
+      const expectedLang = route.startsWith("/id/") ? "id" : "en";
+      if (!m.langToggle) bad(`${route}: no language toggle in the header`);
+      if (m.htmlLang !== expectedLang)
+        bad(`${route}: html lang is "${m.htmlLang}", expected "${expectedLang}"`);
+      for (const code of ["en", "id"]) {
+        if (!m.alternates.some((a) => a.startsWith(code + " ") && a.includes("securepuls/indonesia")))
+          bad(`${route}: missing hreflang "${code}" alternate (${JSON.stringify(m.alternates)})`);
+      }
+    }
 
     /* Metadata */
     if (!m.canonical?.startsWith("https://www.kaibresystems.com"))
