@@ -14,6 +14,47 @@ export const KAI_HERO = {
   secondary: { label: "Start a conversation", href: "/contact?topic=kai" },
 } as const;
 
+/**
+ * The hero visual: one call, mid-conversation. The transcript, the
+ * structured answers extracted from it, and the classification it ends in —
+ * kAI's whole workflow in the product's own material. Illustrative dialogue;
+ * no real lead, no real campaign.
+ */
+export const KAI_CALL_PANEL = {
+  alt: "Illustrative outbound qualification call in progress: kAI asks scripted questions, the lead answers, the answers become structured fields — budget confirmed, timeline this quarter, decision-maker on the call — and the conversation is classified as qualified and routed to the team.",
+  context: "Outbound call · your number",
+  state: "In conversation · 02:41",
+  transcript: [
+    {
+      speaker: "kAI",
+      agent: true,
+      text: "Is there a budget already approved for this?",
+    },
+    {
+      speaker: "Lead",
+      text: "Yes — sign-off came through this quarter.",
+    },
+    {
+      speaker: "kAI",
+      agent: true,
+      text: "And who would be involved in the decision?",
+      secondary: true,
+    },
+    {
+      speaker: "Lead",
+      text: "That's me, with our operations lead.",
+      secondary: true,
+    },
+  ],
+  answersLabel: "Structured answers",
+  answers: [
+    { field: "Budget", value: "Confirmed" },
+    { field: "Timeline", value: "This quarter" },
+    { field: "Decision-maker", value: "On the call" },
+  ],
+  outcome: "Qualified — routed to your team",
+} as const;
+
 export const KAI_WORKFLOW = {
   heading: "Your process, before a single call goes out.",
   steps: [

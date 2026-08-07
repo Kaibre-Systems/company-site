@@ -188,13 +188,16 @@
   --border-strong: var(--color-ink-700);
   --accent: var(--color-brand-500);
   --accent-hover: var(--color-brand-400);
-  /* Solid fills sit far below accent text so white type clears 4.5:1 with
-     room to spare. The founders pushed this twice: brand-700 read as
-     consumer-SaaS orange, brand-800 was still "not sufficiently burnt", so
-     filled actions now sit on brand-900 — an oxide tone — with brand-800 as
-     the hover lift. White on brand-900 is ~13:1. */
-  --accent-solid: var(--color-brand-900);
-  --accent-solid-hover: var(--color-brand-800);
+  /* Two oranges, two jobs. The oxide tones (brand-800/900, the ember ramp)
+     are the brand *environment* — large surfaces, atmosphere. A primary
+     action is the one place the orange is allowed to be energetic again:
+     when every filled action sat on oxide it was the darkest object on an
+     ink page, and the conversion path read as recessed chrome. brand-600 is
+     the ramp's anchor; white on it is ~4.6:1, so AA holds at body size, and
+     the hover steps *down* the ramp so the pressed state deepens rather
+     than brightens toward the failing contrast of brand-500. */
+  --accent-solid: var(--color-brand-600);
+  --accent-solid-hover: var(--color-brand-700);
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-300);
   --focus: var(--color-brand-400);
@@ -242,8 +245,9 @@
  * work product appears — a document should sit on a desk, not float in a
  * void. It exists because the founders asked for document-derived light
  * surfaces; it is not the old alternating white sheet. Type inverts to the
- * ink ramp; the accent holds AA by dropping to brand-700 for marks and
- * brand-800 for fills.
+ * ink ramp; accent marks hold AA by dropping to brand-700, while filled
+ * actions carry the same energetic brand-600 as the dark surfaces — the
+ * primary action is the one saturated object on the sheet.
  */
 [data-surface="paper"] {
   --surface: var(--color-cream-200);
@@ -256,8 +260,8 @@
   --border-strong: var(--color-ink-400);
   --accent: var(--color-brand-700);
   --accent-hover: var(--color-brand-800);
-  --accent-solid: var(--color-brand-800);
-  --accent-solid-hover: var(--color-brand-900);
+  --accent-solid: var(--color-brand-600);
+  --accent-solid-hover: var(--color-brand-700);
   --accent-contrast: oklch(1 0 0);
   --accent-quiet: var(--color-brand-700);
   --focus: var(--color-brand-600);

@@ -11,18 +11,25 @@ import {
 import { ArrowLink, Button } from "@/components/primitives/button";
 import { Callout, WorkflowSteps } from "@/components/modules";
 import {
-  AssessmentPanel,
-  EvidenceLink,
+  IndonesiaFlag,
   SecurePulseName,
   VisualFrame,
 } from "@/components/visuals";
 import {
+  FindingDocument,
+  ReportContents,
+  RequirementMap,
+  RiskScorecard,
+} from "@/components/visuals/document";
+import {
   SP_DOMAINS,
   SP_EVIDENCE,
   SP_HERO,
+  SP_HERO_PANEL,
   SP_HUMAN,
-  SP_INDONESIA,
   SP_JURISDICTION,
+  SP_MAPPING,
+  SP_MARKETS,
   SP_REPORT,
   SP_STATUS,
   SP_WORKFLOW,
@@ -44,14 +51,10 @@ export const metadata: Metadata = {
 export default function SecurePulsePage() {
   return (
     <>
-      {/* Hero */}
-      <Section surface="ink" space="flush" className="pb-20 pt-32 sm:pb-24 sm:pt-40">
+      {/* Hero — the copy beside the work product itself: one page of the
+          report, on paper, lit from behind. */}
+      <Section surface="ink" space="flush" className="pb-20 pt-28 sm:pb-24 sm:pt-36">
         <Container>
-          {/* Centred, not bottom-aligned. The panel is about half the height of
-                the column beside it, so pinning it to the baseline banked the
-                whole difference as one ~320px void in the top right — the
-                largest unexplained empty region on the site. Centring splits it
-                into two margins that read as composition. */}
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
@@ -71,17 +74,22 @@ export default function SecurePulsePage() {
               </div>
             </div>
 
-            <div>
-              <VisualFrame label="Draft assessment findings, each carrying the confidence behind it, awaiting sign-off.">
-                <AssessmentPanel />
+            <div className="relative">
+              {/* A warm bed of light behind the document, so the paper reads
+                  as lit rather than pasted onto the black. Decorative only. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-5 rounded-card bg-accent opacity-[0.14] blur-2xl"
+              />
+              <VisualFrame label={SP_HERO_PANEL.alt} className="relative">
+                <FindingDocument doc={SP_HERO_PANEL} />
               </VisualFrame>
-<p className="mt-3 text-fine text-fg-subtle">Interface illustration.</p>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Jurisdiction (ember) */}
+      {/* Jurisdiction (ember) — the market fact the product is built on. */}
       <Section surface="ember">
         <Container>
           <>
@@ -94,8 +102,8 @@ export default function SecurePulsePage() {
         </Container>
       </Section>
 
-      {/* Workflow */}
-      <Section surface="ink">
+      {/* Workflow (coal) — a change of register, not another black slab. */}
+      <Section surface="coal">
         <Container>
           <>
             <SectionHeader
@@ -107,7 +115,7 @@ export default function SecurePulsePage() {
       </Section>
 
       {/* Domains */}
-      <Section surface="ink" className="border-t border-border">
+      <Section surface="ink">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20">
             <div>
@@ -135,7 +143,8 @@ export default function SecurePulsePage() {
         </Container>
       </Section>
 
-      {/* Evidence discipline (ember) — the product's core differentiator */}
+      {/* Evidence discipline (ember) — the differentiator, shown in the
+          report's own compliance-mapping grammar rather than asserted. */}
       <Section surface="ember">
         <Container>
           <>
@@ -145,7 +154,7 @@ export default function SecurePulsePage() {
             />
           </>
 
-          <EvidenceLink className="mt-12" />
+          <RequirementMap content={SP_MAPPING} className="mt-12" />
 
           <>
             <dl className="mt-10 grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
@@ -162,55 +171,73 @@ export default function SecurePulsePage() {
         </Container>
       </Section>
 
-      {/* Human review — above the CTA, by design */}
-      <Section surface="ink">
+      {/* The deliverable (paper) — what leadership actually receives, on the
+          desk it will land on. */}
+      <Section surface="paper">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <Callout heading={SP_HUMAN.heading}>
-                {SP_HUMAN.body.map((p) => (
-                  <Text key={p}>{p}</Text>
-                ))}
-              </Callout>
-            </div>
-
-            <div>
-              <Heading level={2} size="heading-1" className="mt-4">
-                {SP_REPORT.heading}
-              </Heading>
-              <Text className="mt-4">{SP_REPORT.body}</Text>
-              <ul className="mt-6 space-y-2.5">
-                {SP_REPORT.sections.map((s) => (
-                  <li key={s} className="flex gap-3 text-body text-fg-muted">
-                    <span aria-hidden className="mt-2.5 size-1 shrink-0 rounded-full bg-accent" />
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <SectionHeader heading={SP_REPORT.heading} body={SP_REPORT.body} />
+          <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-14">
+            <ReportContents
+              title={SP_REPORT.contents.title}
+              sections={SP_REPORT.contents.sections}
+              signoff={SP_REPORT.contents.signoff}
+            />
+            <RiskScorecard
+              title={SP_REPORT.scorecard.title}
+              tag={SP_REPORT.scorecard.tag}
+              columns={SP_REPORT.scorecard.columns}
+              rows={SP_REPORT.scorecard.rows}
+              totals={SP_REPORT.scorecard.totals}
+            />
           </div>
         </Container>
       </Section>
 
-      {/* Status + CTA */}
+      {/* Human review — above the CTA, by design. */}
+      <Section surface="ink">
+        <Container>
+          <div className="max-w-[46rem]">
+            <Callout heading={SP_HUMAN.heading}>
+              {SP_HUMAN.body.map((p) => (
+                <Text key={p}>{p}</Text>
+              ))}
+            </Callout>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Markets + status + CTA */}
       <Section surface="ink" className="border-t border-border">
-        <Container size="prose">
-          <Heading level={2} size="heading-1">
-            {SP_STATUS.heading}
+        <Container>
+          <Heading level={2} size="display-2">
+            {SP_MARKETS.heading}
           </Heading>
-          <Prose paragraphs={[SP_STATUS.body]} size="body" className="mt-5" />
-          <div className="mt-8">
-            <Button href={SP_STATUS.cta.href}>{SP_STATUS.cta.label}</Button>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2">
+            {SP_MARKETS.markets.map((market) => (
+              <div key={market.name} className="bg-surface-raised p-6 sm:p-7">
+                <h3 className="flex items-center gap-2.5 text-heading-2 font-medium text-fg">
+                  {"flag" in market && market.flag ? <IndonesiaFlag /> : null}
+                  {market.name}
+                </h3>
+                <p className="mt-1 text-small text-fg-subtle">{market.domain}</p>
+                <p className="mt-3 text-small text-fg-muted">{market.note}</p>
+                {"href" in market && market.href ? (
+                  <ArrowLink href={market.href} className="mt-4">
+                    {market.cta}
+                  </ArrowLink>
+                ) : null}
+              </div>
+            ))}
           </div>
 
-          {/* The Indonesian-market experience, cross-linked rather than folded
-              in: this page carries the UAE physical-security positioning, and
-              the two must not blur into one claim. */}
-          <div className="mt-14 border-t border-border pt-8">
-            <Text size="small">{SP_INDONESIA.body}</Text>
-            <ArrowLink href={SP_INDONESIA.cta.href} className="mt-3">
-              {SP_INDONESIA.cta.label}
-            </ArrowLink>
+          <div className="mt-16 max-w-prose border-t border-border pt-10">
+            <Heading level={2} size="heading-1">
+              {SP_STATUS.heading}
+            </Heading>
+            <Prose paragraphs={[SP_STATUS.body]} size="body" className="mt-5" />
+            <div className="mt-8">
+              <Button href={SP_STATUS.cta.href}>{SP_STATUS.cta.label}</Button>
+            </div>
           </div>
         </Container>
       </Section>

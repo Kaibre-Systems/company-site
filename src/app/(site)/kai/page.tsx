@@ -8,8 +8,15 @@ import {
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
 import { WorkflowSteps } from "@/components/modules";
-import { CallOutcomeList, Flow, VisualFrame } from "@/components/visuals";
-import { KAI_FAQ, KAI_HERO, KAI_VALUE, KAI_WORKFLOW } from "@/content/kai";
+import { Flow, VisualFrame } from "@/components/visuals";
+import { CallPanel } from "@/components/visuals/call";
+import {
+  KAI_CALL_PANEL,
+  KAI_FAQ,
+  KAI_HERO,
+  KAI_VALUE,
+  KAI_WORKFLOW,
+} from "@/content/kai";
 import { CALENDLY_URL } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -62,10 +69,12 @@ export default function KaiPage() {
             </div>
 
             <div>
-              <VisualFrame label="Call outcomes, each tagged with a qualification classification.">
-                <CallOutcomeList />
+              <VisualFrame label={KAI_CALL_PANEL.alt}>
+                <CallPanel content={KAI_CALL_PANEL} />
               </VisualFrame>
-<p className="mt-3 text-fine text-fg-subtle">Interface illustration.</p>
+              <p className="mt-3 text-fine text-fg-subtle">
+                Interface illustration.
+              </p>
             </div>
           </div>
         </Container>
@@ -90,8 +99,8 @@ export default function KaiPage() {
         </Container>
       </Section>
 
-      {/* Workflow */}
-      <Section surface="ink">
+      {/* Workflow (coal) — a change of register between the two ink slabs. */}
+      <Section surface="coal">
         <Container>
           <>
             <SectionHeader
@@ -103,7 +112,7 @@ export default function KaiPage() {
       </Section>
 
       {/* FAQ */}
-      <Section surface="ink" className="border-t border-border">
+      <Section surface="ink">
         <Container size="prose">
           <Heading level={2} size="display-2" className="mt-4">
             {KAI_FAQ.heading}

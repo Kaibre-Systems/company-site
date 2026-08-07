@@ -221,6 +221,14 @@ export const ID: IndoContent = {
         "Pemetaan kepatuhan",
         "Pengesahan penelaah",
       ],
+      signoff: {
+        heading: "Pengesahan",
+        rows: [
+          { role: "Disusun oleh", state: "SecurePulse — draf" },
+          { role: "Diverifikasi oleh", state: "Penelaah Anda" },
+          { role: "Disetujui oleh", state: "Pimpinan kepatuhan Anda" },
+        ],
+      },
     },
   },
   comparison: {

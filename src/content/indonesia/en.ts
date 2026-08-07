@@ -224,6 +224,14 @@ export const EN: IndoContent = {
         "Compliance mapping",
         "Reviewer sign-off",
       ],
+      signoff: {
+        heading: "Sign-off",
+        rows: [
+          { role: "Prepared by", state: "SecurePulse — draft" },
+          { role: "Verified by", state: "Your reviewer" },
+          { role: "Approved by", state: "Your compliance lead" },
+        ],
+      },
     },
   },
   comparison: {

@@ -27,42 +27,41 @@ export const WORK_LUXURY = {
     { value: "Live", label: "In commercial use" },
   ],
   lifecycleTitle: "How a trade moves through it",
+  /** Labels only: the topology above already describes each subsystem, so
+   *  the lifecycle reads as one clean line rather than repeating the notes. */
   lifecycle: [
-    { label: "Listed", note: "A unique item, priced on its own merits." },
-    { label: "Bid or offered", note: "A timed auction, or a private negotiation." },
-    { label: "Parties verified", note: "Identity and trade licence checked before money moves." },
-    { label: "Paid", note: "Recorded against a ledger rather than inferred." },
-    { label: "Fulfilled", note: "Tracked to delivery, and after-sale service.", accent: true },
+    { label: "Listed" },
+    { label: "Bid or offered" },
+    { label: "Parties verified" },
+    { label: "Paid" },
+    { label: "Fulfilled", accent: true },
   ],
   scopeTitle: "What the system does",
   scopeIntro:
-    "Described at the level of capability rather than implementation, the platform covers:",
-  scope: [
-    {
-      title: "Multi-sided trading",
-      body: "Listing, buying, and selling high-value individual items, each of which is unique and priced accordingly.",
+    "Described at the level of structure rather than implementation — nothing here identifies the client, and everything here runs in production.",
+  /**
+   * The anonymised shape of the platform. Truthful at the level of
+   * structure — a trade spine, a verification gate in front of trading, an
+   * operator console under everything — with nothing that identifies the
+   * client or the category.
+   */
+  topology: {
+    alt: "System structure: a verification gate admits participants into a trade path running from catalogue through auctions and offers to orders, ledger and fulfilment — with the operator console connected beneath every stage.",
+    gate: {
+      label: "Verified participants",
+      note: "Identity and trade licence checked before a trade opens.",
     },
-    {
-      title: "Auctions and offers",
-      body: "Timed auctions with live bidding, alongside private offers and negotiation between parties.",
+    stages: [
+      { label: "Catalogue", note: "Unique items, each priced on its own merits." },
+      { label: "Auctions & offers", note: "Timed bidding and private negotiation." },
+      { label: "Orders & ledger", note: "Money movement recorded, not inferred." },
+      { label: "Fulfilment", note: "Tracked to delivery and after-sale service." },
+    ],
+    console: {
+      label: "Operator console",
+      note: "The administrative seat where accuracy is maintained day to day — connected to every stage above.",
     },
-    {
-      title: "Payments and balances",
-      body: "Order and payment flows with a transaction ledger, so money movement is recorded rather than inferred.",
-    },
-    {
-      title: "Verified participants",
-      body: "Identity and trade-licence verification with a review queue, because at these values it matters who is on the other side of a trade.",
-    },
-    {
-      title: "Order lifecycle",
-      body: "Purchases tracked from agreement to fulfilment, including after-sale service requests.",
-    },
-    {
-      title: "Operator tooling",
-      body: "An administrative console for the people who run the business day to day, which is where the accuracy is actually maintained.",
-    },
-  ],
+  },
   responsibilityTitle: "Why it mattered",
   responsibility: [
     "A platform like this has more than one way to be expensive. A pricing or availability error is visible to a buyer immediately. A failed payment path strands a transaction worth more than most annual salaries. A weak verification step lets the wrong counterparty into a trade.",

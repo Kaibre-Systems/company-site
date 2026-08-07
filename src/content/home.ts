@@ -89,6 +89,13 @@ export const PRODUCTS = {
       accent: false,
     },
   ],
+  /** The Indonesian deployment, discoverable without a detour: one line
+   *  under the SecurePulse panel, marked with the market flag. */
+  securepulseMarket: {
+    note: "Also deployed for Indonesian financial institutions",
+    label: "SecurePulse Indonesia",
+    href: "/securepulse/indonesia",
+  },
 } as const;
 
 export const COMMISSIONED = {

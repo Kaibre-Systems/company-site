@@ -19,6 +19,47 @@ export const SP_HERO = {
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
 } as const;
 
+/**
+ * The hero visual: one page of the report SecurePulse actually produces,
+ * structured after the real deliverable's detailed-finding anatomy. The
+ * facility is anonymised the way a published excerpt would be — no client,
+ * no authority named inside the mockup — and the corner tag marks it
+ * illustrative.
+ */
+export const SP_HERO_PANEL = {
+  alt: "Illustrative detailed-finding page from a SecurePulse physical security assessment of an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, with what was observed, the risk, the immediate remediation, and the reviewer state.",
+  tag: "Illustrative",
+  institution: "Energy-sector facility · Dubai",
+  title: "Physical security assessment",
+  docMeta: "Draft 1.0 · For management review",
+  finding: {
+    id: "F-07",
+    severity: "High",
+    title: "Perimeter CCTV asserted as operational, but retention and test records not evidenced",
+    meta: "Surveillance & monitoring · 8 points",
+  },
+  body: [
+    {
+      label: "What we observed",
+      text: "The checklist records continuous perimeter coverage across twelve cameras on the north boundary; no retention settings, alarm-test reports, or maintenance records were attached to evidence it.",
+    },
+    {
+      label: "Risk",
+      text: "Unevidenced surveillance cannot support management reliance — or an incident investigation.",
+      secondary: true,
+    },
+    {
+      label: "Remediation",
+      text: "Immediate — attach retention settings and the latest alarm-test report; re-verify within 30 days.",
+    },
+    {
+      label: "Reviewer",
+      text: "Pending sign-off.",
+    },
+  ],
+  pageLine: "Detailed findings · 6 / 14",
+} as const;
+
 export const SP_JURISDICTION = {
   heading: "In the UAE, location decides the rulebook.",
   body: [
@@ -102,6 +143,43 @@ export const SP_EVIDENCE = {
   ],
 } as const;
 
+/**
+ * The compliance-mapping grammar from the report itself: requirement,
+ * evidence label, where it stands, and its priority. Three rows show the
+ * discipline — one confirmed, one partial, one honest gap. Anonymised:
+ * authorities are described, never named, inside a mockup.
+ */
+export const SP_MAPPING = {
+  title: "Requirement mapping",
+  tag: "Illustrative",
+  columns: {
+    requirement: "Requirement",
+    evidence: "Evidence",
+    status: "Standing",
+    priority: "Priority",
+  },
+  rows: [
+    {
+      requirement: "Continuous perimeter lighting at the site boundary",
+      evidence: "VERIFIED",
+      status: "Applies to the site — confirmed from the authority's enacted framework",
+      priority: "High",
+    },
+    {
+      requirement: "CCTV retention minimums for restricted areas",
+      evidence: "PARTIAL",
+      status: "Applies — technical minimums to be confirmed against the current manual",
+      priority: "Medium",
+    },
+    {
+      requirement: "Operator-specific design standards",
+      evidence: "GAP",
+      status: "Unresolved — escalated to the competent authority, not assumed",
+      priority: "High",
+    },
+  ],
+} as const;
+
 export const SP_HUMAN = {
   heading: "SecurePulse drafts. People decide.",
   body: [
@@ -112,23 +190,67 @@ export const SP_HUMAN = {
 
 export const SP_REPORT = {
   heading: "A report a consultant would recognise.",
-  body: "SecurePulse produces the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
-  sections: [
-    "Assessment summary and risk scorecard",
-    "Findings by domain",
-    "Detailed findings with severity",
-    "Risk matrix",
-    "Compensating controls for critical and high findings",
-    "Indicative compliance mapping",
-    "Prioritised recommendations roadmap",
-    "Assumptions, information gaps, and appendices",
-    "Named sign-off and attestation",
-  ],
+  body: "After the walk, the checklist, and the review, leadership receives a document — the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
+  contents: {
+    title: "Physical security assessment report",
+    sections: [
+      "Assessment summary and risk scorecard",
+      "Findings by domain",
+      "Detailed findings with severity",
+      "Risk matrix",
+      "Compensating controls",
+      "Indicative compliance mapping",
+      "Recommendations roadmap",
+      "Assumptions and information gaps",
+      "Sign-off and attestation",
+    ],
+    signoff: {
+      heading: "Sign-off",
+      rows: [
+        { role: "Prepared by", state: "SecurePulse — draft" },
+        { role: "Lead assessor", state: "Named sign-off" },
+        { role: "Reviewer", state: "Approved for issue" },
+      ],
+    },
+  },
+  scorecard: {
+    title: "Risk scorecard",
+    tag: "Illustrative",
+    columns: { severity: "Severity", count: "Findings" },
+    rows: [
+      { severity: "Critical", count: "0" },
+      { severity: "High", count: "2", accent: true },
+      { severity: "Medium", count: "1" },
+      { severity: "Low", count: "0" },
+      { severity: "Informational", count: "1" },
+    ],
+    totals: { label: "Weighted risk points", value: "21" },
+  },
 } as const;
 
-export const SP_INDONESIA = {
-  body: "SecurePulse is also being prepared for Indonesian banks, fintechs, insurers and other regulated financial institutions — with a dedicated experience in English and Bahasa Indonesia.",
-  cta: { label: "SecurePulse for Indonesia", href: "/securepulse/indonesia" },
+/**
+ * Where SecurePulse runs. The UAE positioning stays this page's claim; the
+ * Indonesian financial-sector deployment is a separate experience and the
+ * two must not blur into one — but a buyer on this page should discover it
+ * without already knowing the URL.
+ */
+export const SP_MARKETS = {
+  heading: "Two markets, one discipline.",
+  markets: [
+    {
+      name: "UAE & Gulf",
+      domain: "Physical security assessment",
+      note: "Emirate- and sector-aware site assessments for energy and government facilities. This page.",
+    },
+    {
+      name: "Indonesia",
+      domain: "Financial-institution compliance",
+      note: "AI-assisted regulatory compliance assessment for banks, fintechs and insurers — in English and Bahasa Indonesia.",
+      href: "/securepulse/indonesia",
+      cta: "SecurePulse Indonesia",
+      flag: true,
+    },
+  ],
 } as const;
 
 export const SP_STATUS = {

@@ -15,13 +15,16 @@ import {
   ProductCard,
 } from "@/components/modules";
 import {
-  AssessmentPanel,
-  CallOutcomeList,
   Flow,
+  IndonesiaFlag,
   PulseDot,
   MonitoredSignal,
   VisualFrame,
 } from "@/components/visuals";
+import { CallPanel } from "@/components/visuals/call";
+import { FindingDocument } from "@/components/visuals/document";
+import { KAI_CALL_PANEL } from "@/content/kai";
+import { SP_HERO_PANEL } from "@/content/securepulse";
 import {
   COMMISSIONED,
   COMPANY,
@@ -138,8 +141,13 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 4 — Products ------------------------------------------------------ */}
-      <Section surface="ink" id="products" className="relative overflow-hidden">
+      {/* 4 — Products (coal) ----------------------------------------------
+          The products get their own room: warm charcoal rather than a third
+          ink slab, and each panel carries its product's own material — a
+          page of the SecurePulse report, a kAI call mid-conversation. A
+          visitor should be able to tell the two apart with the labels
+          covered. */}
+      <Section surface="coal" id="products" className="relative overflow-hidden">
         <Container className="relative">
           <>
             <SectionHeader
@@ -157,27 +165,42 @@ export default function HomePage() {
               className="pointer-events-none absolute bottom-[-4rem] left-1/2 h-[34rem] w-[70rem] max-w-[130%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,var(--color-brand-500),transparent)] blur-2xl motion-safe:animate-[glowSection_7s_ease-in-out_infinite]"
             />
             <div className="relative grid gap-6 lg:grid-cols-5">
-            <div className="lg:col-span-3">
-              <ProductCard
-                {...PRODUCTS.items[0]}
-                visual={
-                  <VisualFrame label="Draft assessment findings, each carrying the confidence behind it, awaiting sign-off.">
-                    <AssessmentPanel />
-                  </VisualFrame>
-                }
-              />
-            </div>
+              <div className="lg:col-span-3">
+                <ProductCard
+                  {...PRODUCTS.items[0]}
+                  visual={
+                    <VisualFrame label={SP_HERO_PANEL.alt}>
+                      <FindingDocument doc={SP_HERO_PANEL} compact />
+                    </VisualFrame>
+                  }
+                />
+                {/* The Indonesian deployment, one line under its product —
+                    outside the card link, so the two destinations stay two
+                    targets. */}
+                <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-small text-fg-subtle">
+                  <span className="inline-flex items-center gap-2">
+                    <IndonesiaFlag />
+                    <span>{PRODUCTS.securepulseMarket.note}</span>
+                  </span>
+                  <ArrowLink
+                    href={PRODUCTS.securepulseMarket.href}
+                    className="text-small"
+                  >
+                    {PRODUCTS.securepulseMarket.label}
+                  </ArrowLink>
+                </p>
+              </div>
 
-            <div className="lg:col-span-2">
-              <ProductCard
-                {...PRODUCTS.items[1]}
-                visual={
-                  <VisualFrame label="Call outcomes, each tagged with a qualification classification.">
-                    <CallOutcomeList />
-                  </VisualFrame>
-                }
-              />
-            </div>
+              <div className="lg:col-span-2">
+                <ProductCard
+                  {...PRODUCTS.items[1]}
+                  visual={
+                    <VisualFrame label={KAI_CALL_PANEL.alt}>
+                      <CallPanel content={KAI_CALL_PANEL} compact />
+                    </VisualFrame>
+                  }
+                />
+              </div>
             </div>
           </div>
 
@@ -186,8 +209,9 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 5 — Commissioned systems ------------------------------------------ */}
-      <Section surface="ink" id={COMMISSIONED.id} className="border-t border-border">
+      {/* 5 — Commissioned systems ------------------------------------------
+          The surface change out of coal is the seam; a border would double it. */}
+      <Section surface="ink" id={COMMISSIONED.id}>
         <Container>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-20">
             <div>
@@ -260,8 +284,9 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 8 — Company --------------------------------------------------------- */}
-      <Section surface="ink" id={COMPANY.id}>
+      {/* 8 — Company (coal) — the second charcoal room, so the page steps
+          ink → ember → coal on its way out instead of falling back to black. */}
+      <Section surface="coal" id={COMPANY.id}>
         <Container>
           <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
             <SectionHeader heading={COMPANY.heading} body={COMPANY.body} />
@@ -299,7 +324,7 @@ export default function HomePage() {
       </Section>
 
       {/* 9 — Conversion ------------------------------------------------------ */}
-      <Section surface="ink" className="border-t border-border">
+      <Section surface="ink">
         <Container>
           <Callout className="text-center">
             <Heading level={2} size="display-2" className="mx-auto max-w-[18ch]">
