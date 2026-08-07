@@ -1,7 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 /* ==========================================================================
-   SecurePuls Indonesia — the bilingual pair
+   SecurePulse Indonesia — the bilingual pair
    --------------------------------------------------------------------------
    What only these tests hold:
      - the language toggle works both ways and preserves the visitor's place;
@@ -16,8 +16,8 @@ import { expect, test, type Page } from "@playwright/test";
    covered by the general suites, which include them in their route lists.
    ========================================================================== */
 
-const EN_PATH = "/securepuls/indonesia";
-const ID_PATH = "/id/securepuls/indonesia";
+const EN_PATH = "/securepulse/indonesia";
+const ID_PATH = "/id/securepulse/indonesia";
 
 const EN_H1 = "Compliance assessment drafts in about 30 minutes, not weeks.";
 const ID_H1 =
@@ -29,7 +29,7 @@ const ID_H1 =
  * Indonesian audience uses in English. Stripped before the leak scan.
  */
 const APPROVED_IN_ID = [
-  "SecurePuls",
+  "SecurePulse",
   "Kaibre",
   "Bahasa Indonesia",
   "Read in English", // the language link is deliberately in its own language
@@ -270,7 +270,7 @@ test.describe("regulatory guardrails", () => {
         EN_PATH,
         [
           /about 30 minutes/i,
-          /SecurePuls AI/,
+          /SecurePulse AI/,
           /gap analysis/i,
           /remediation plan/i,
           /severity/i,
@@ -285,7 +285,7 @@ test.describe("regulatory guardrails", () => {
         ID_PATH,
         [
           /sekitar 30 menit/i,
-          /SecurePuls AI/,
+          /SecurePulse AI/,
           /analisis kesenjangan/i,
           /rencana remediasi/i,
           /keparahan/i,
@@ -349,7 +349,7 @@ test.describe("contact form", () => {
 
     expect(posted).not.toBeNull();
     expect(posted!).toMatchObject({
-      topic: "securepuls-id",
+      topic: "securepulse-id",
       locale: "id",
       orgType: "bank",
       role: "Kepala Kepatuhan",
@@ -378,7 +378,7 @@ test.describe("contact form", () => {
 
     await expect(page.locator('[role="status"]')).toBeVisible();
     await expect(page.locator('[role="status"]')).toContainText("Thanks");
-    expect(posted!).toMatchObject({ topic: "securepuls-id", locale: "en", orgType: "insurer" });
+    expect(posted!).toMatchObject({ topic: "securepulse-id", locale: "en", orgType: "insurer" });
   });
 
   test("the header CTA lands on the form, clear of the sticky header", async ({ page }) => {

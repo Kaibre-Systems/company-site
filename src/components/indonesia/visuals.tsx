@@ -59,43 +59,68 @@ const TONE_FILL = {
 } as const;
 
 /* ==========================================================================
-   AssessmentOverview — the hero panel
+   DocumentPanel — one page of the actual work product
    --------------------------------------------------------------------------
-   What an assessment looks like at a glance: how many requirements, how they
-   split across compliant / partial / gap, the open findings, and the review
-   state. The figures are illustrative and the panel says so in its corner.
+   The hero visual is a page from a compliance assessment for an obviously
+   fictional Indonesian bank: paper, a document header, and the requirement →
+   evidence → assessment → severity → remediation → reviewer record. It shows
+   what SecurePulse produces rather than a dashboard about it. The corner tag
+   is the only illustrative marker; the accessible label states the fiction
+   outright. Secondary rows drop out below the sm breakpoint so a phone reads
+   five short rows, not seven.
    ========================================================================== */
 
-export function AssessmentOverview({
+export function DocumentPanel({
   panel,
 }: {
   panel: IndoContent["hero"]["panel"];
 }) {
   return (
-    <div className="p-6">
-      <div className="flex items-baseline justify-between gap-4">
-        <p className="text-small text-fg-subtle">{panel.caption}</p>
-        <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
+    <div className="bg-cream-50 p-5 text-ink-950 sm:p-6">
+      <div className="flex items-start justify-between gap-4 border-b border-ink-300 pb-3.5">
+        <div className="min-w-0">
+          <p className="font-mono text-label uppercase tracking-[0.085em] text-ink-600">
+            {panel.institution}
+          </p>
+          <p className="mt-1 text-body font-medium">{panel.title}</p>
+        </div>
+        <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-ink-500">
           {panel.tag}
         </p>
       </div>
 
-      {/* One hierarchy level: uniform label → value rows. The dot carries the
-          state; nothing else is annotated. */}
-      <ul className="mt-5">
-        {panel.rows.map((row, i) => (
-          <li
+      <dl>
+        {panel.rows.map((row) => (
+          <div
             key={row.label}
-            className="flex items-baseline justify-between gap-4 border-t border-border py-3 first:border-t-0"
+            className={cn(
+              "grid grid-cols-[minmax(0,6.5rem)_minmax(0,1fr)] gap-x-4 border-b border-ink-200 py-2.5 last:border-b-0 sm:grid-cols-[minmax(0,8rem)_minmax(0,1fr)]",
+              row.secondary && "hidden sm:grid",
+            )}
           >
-            <span className="text-body text-fg-muted">{row.label}</span>
-            <span className="flex shrink-0 items-center gap-2 text-body text-fg">
-              <PulseDot tone={row.tone} delay={i * 320} />
+            <dt className="text-fine text-ink-600">{row.label}</dt>
+            <dd
+              className={cn(
+                "text-fine font-medium",
+                row.tone === "attention"
+                  ? "text-brand-700"
+                  : row.tone === "positive"
+                    ? "text-success-600"
+                    : "text-ink-950",
+              )}
+            >
               {row.value}
-            </span>
-          </li>
+            </dd>
+          </div>
         ))}
-      </ul>
+      </dl>
+
+      {/* The page continues — suggested, never written. */}
+      <div aria-hidden className="mt-4 hidden space-y-1.5 sm:block">
+        <div className="h-1.5 w-full rounded-pill bg-ink-200" />
+        <div className="h-1.5 w-4/5 rounded-pill bg-ink-200" />
+        <div className="h-1.5 w-3/5 rounded-pill bg-ink-200" />
+      </div>
     </div>
   );
 }
@@ -118,11 +143,11 @@ export function IconList({
   className?: string;
 }) {
   return (
-    <ul className={cn("space-y-3.5", className)}>
+    <ul className={cn("space-y-3 sm:space-y-3.5", className)}>
       {items.map((item) => {
         const Icon = ICONS[item.icon];
         return (
-          <li key={item.label} className="flex items-start gap-3.5">
+          <li key={item.label} className="flex items-start gap-3 sm:gap-3.5">
             <span
               aria-hidden
               className={cn(
@@ -163,7 +188,7 @@ export function StageGrid({
   stages: IndoContent["workflow"]["stages"];
 }) {
   return (
-    <ol className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+    <ol className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-x-8 gap-y-8 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
       {stages.map((stage) => {
         const Icon = ICONS[stage.icon];
         return (
@@ -218,7 +243,7 @@ export function TraceChain({
                 {!last ? <span className="w-px flex-1 bg-border-strong" /> : null}
               </div>
 
-              <div className={cn(!last && "pb-5")}>
+              <div className={cn(!last && "pb-4 sm:pb-5")}>
                 <p className="text-small text-fg-subtle">{node.label}</p>
                 <p className="mt-1 text-body text-fg">{node.text}</p>
                 {/* Mono reference line. Quiet by default — the accented node
@@ -238,7 +263,7 @@ export function TraceChain({
           );
         })}
       </ol>
-      <figcaption className="mt-5 border-t border-border pt-4 text-fine text-fg-subtle">
+      <figcaption className="mt-4 border-t border-border pt-3.5 text-fine text-fg-subtle">
         {caption}
       </figcaption>
     </figure>
@@ -306,7 +331,7 @@ export function RemediationTable({
           {rows.map((row) => (
             <li
               key={row.finding}
-              className="space-y-1.5 border-b border-border p-5 last:border-b-0"
+              className="space-y-1.5 border-b border-border p-4 last:border-b-0"
             >
               <p className="flex items-baseline justify-between gap-3">
                 <span className="text-small font-medium text-fg">{row.finding}</span>
@@ -328,7 +353,7 @@ export function RemediationTable({
 /* ==========================================================================
    ReportPreview — the deliverable, as a document
    --------------------------------------------------------------------------
-   A table of contents rather than a fake page: the sections a SecurePuls
+   A table of contents rather than a fake page: the sections a SecurePulse
    report carries, in order, ending at the reviewer's sign-off.
    ========================================================================== */
 
@@ -340,8 +365,8 @@ export function ReportPreview({
   return (
     /* The document explains itself: its own title, then its contents. No
        caption underneath repeating what the title already says. */
-    <div className="rounded-card border border-border bg-surface-raised p-6 sm:p-7">
-      <p className="border-b border-border-strong pb-4 text-heading-2 text-fg">
+    <div className="rounded-card border border-border bg-surface-raised p-5 sm:p-7">
+      <p className="border-b border-border-strong pb-3.5 text-heading-2 text-fg sm:pb-4">
         {content.title}
       </p>
       <ol className="mt-4 space-y-2.5">
@@ -369,14 +394,18 @@ export function ReportPreview({
 function FlowColumn({
   flow,
   emphasis,
+  note,
 }: {
   flow: { title: string; steps: readonly string[]; outcome: string };
   emphasis: boolean;
+  /** Rendered under the outcome in fine type — the timing qualification
+   *  travels inside the card instead of occupying its own row. */
+  note?: string;
 }) {
   return (
     <div
       className={cn(
-        "rounded-card border p-6 sm:p-7",
+        "rounded-card border p-5 sm:p-7",
         emphasis ? "border-border-strong bg-surface-raised" : "border-border",
       )}
     >
@@ -397,7 +426,7 @@ function FlowColumn({
                 </span>
                 {!last ? <span className="w-px flex-1 bg-border" /> : null}
               </div>
-              <p className={cn("text-body", last ? "pb-0" : "pb-3.5", emphasis ? "text-fg" : "text-fg-muted")}>
+              <p className={cn("text-body", last ? "pb-0" : "pb-3 sm:pb-3.5", emphasis ? "text-fg" : "text-fg-muted")}>
                 {step}
               </p>
             </li>
@@ -412,6 +441,7 @@ function FlowColumn({
       >
         {flow.outcome}
       </p>
+      {note ? <p className="mt-1.5 text-fine text-fg-subtle">{note}</p> : null}
     </div>
   );
 }
@@ -422,9 +452,9 @@ export function FlowCompare({
   comparison: IndoContent["comparison"];
 }) {
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)] gap-6 sm:grid-cols-2 lg:gap-8">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">
       <FlowColumn flow={comparison.before} emphasis={false} />
-      <FlowColumn flow={comparison.after} emphasis />
+      <FlowColumn flow={comparison.after} emphasis note={comparison.note} />
     </div>
   );
 }

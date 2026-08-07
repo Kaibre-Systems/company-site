@@ -2,7 +2,7 @@ import type { IndoContent } from "./types";
 import { EN_PATH } from "./locale";
 
 /**
- * SecurePuls Indonesia — Bahasa Indonesia.
+ * SecurePulse Indonesia — Bahasa Indonesia.
  *
  * Ditulis langsung dalam ragam formal untuk eksekutif kepatuhan, hukum,
  * risiko dan audit — bukan terjemahan kata per kata, dan tidak lebih panjang
@@ -22,7 +22,7 @@ import { EN_PATH } from "./locale";
 export const ID: IndoContent = {
   locale: "id",
   meta: {
-    title: "SecurePuls Indonesia — asesmen kepatuhan berbantuan AI",
+    title: "SecurePulse Indonesia — asesmen kepatuhan berbantuan AI",
     description:
       "Analisis kesenjangan, temuan berperingkat keparahan, rencana remediasi, dan draf laporan siap telaah dalam sekitar 30 menit — berlandaskan korpus regulasi yang dikonfigurasi untuk penugasan, tertelusur ke sumber, dan diverifikasi penelaah Anda.",
     ogLocale: "id_ID",
@@ -36,26 +36,28 @@ export const ID: IndoContent = {
   },
   hero: {
     headline: "Draf asesmen kepatuhan dalam sekitar 30 menit, bukan berminggu-minggu.",
-    body: "SecurePuls AI mengubah ketentuan regulasi, kebijakan, dan bukti lembaga jasa keuangan Indonesia menjadi analisis kesenjangan, rencana remediasi, dan draf siap telaah — diverifikasi dan disahkan oleh penelaah Anda. Durasi bervariasi menurut cakupan, volume bukti, dan konfigurasi.",
+    body: "SecurePulse AI mengubah ketentuan regulasi, kebijakan, dan bukti lembaga jasa keuangan Indonesia menjadi analisis kesenjangan, rencana remediasi, dan draf rapi yang siap ditelaah — diverifikasi dan disahkan oleh penelaah Anda. Durasi bervariasi menurut cakupan, volume bukti, dan konfigurasi.",
     cta: { label: "Tunjukkan alur kerja Anda", href: "#contact" },
     secondary: { label: "Cara kerjanya", href: "#workflow" },
     panel: {
-      alt: "Cuplikan asesmen ilustratif: ketentuan yang dinilai, kesenjangan yang ditemukan, keparahan, status remediasi, dan status telaah.",
+      alt: "Halaman ilustratif dari asesmen kepatuhan SecurePulse untuk bank Indonesia fiktif: ketentuan, bukti yang ditinjau, asesmen parsial dengan kesenjangan berkeparahan tinggi, tindakan remediasi, dan status penelaah.",
       tag: "Ilustratif",
-      caption: "Asesmen",
+      institution: "PT Bank Selat Biru",
+      title: "Asesmen kepatuhan regulasi",
       rows: [
-        { label: "Ketentuan dinilai", value: "42", tone: "neutral" },
-        { label: "Analisis kesenjangan", value: "5 gap", tone: "attention" },
-        { label: "Keparahan tinggi", value: "2 temuan", tone: "attention" },
-        { label: "Rencana remediasi", value: "Siap", tone: "positive" },
-        { label: "Penelaah", value: "Menunggu verifikasi", tone: "neutral" },
+        { label: "Ketentuan", value: "Akses ke data nasabah dibatasi sesuai peran yang berwenang" },
+        { label: "Bukti ditinjau", value: "Kebijakan manajemen akses; catatan tinjauan", secondary: true },
+        { label: "Asesmen", value: "Parsial — kesenjangan teridentifikasi", tone: "attention" },
+        { label: "Keparahan", value: "Tinggi", tone: "attention" },
+        { label: "Remediasi", value: "Tinjauan akses berkala, penanggung jawab ditunjuk" },
+        { label: "Penelaah", value: "Menunggu verifikasi" },
       ],
     },
   },
   inOut: {
     heading: "Apa yang masuk. Apa yang keluar.",
     reads: {
-      title: "Yang dibaca SecurePuls",
+      title: "Yang dibaca SecurePulse",
       items: [
         {
           icon: "corpus",
@@ -68,7 +70,7 @@ export const ID: IndoContent = {
       ],
     },
     produces: {
-      title: "Yang dihasilkan SecurePuls",
+      title: "Yang dihasilkan SecurePulse",
       items: [
         { icon: "assessment", label: "Asesmen pengendalian ketentuan demi ketentuan" },
         { icon: "map", label: "Peta bukti dengan rujukan sumber yang persis" },
@@ -92,7 +94,7 @@ export const ID: IndoContent = {
         n: "02",
         icon: "assess",
         title: "Asesmen",
-        body: "SecurePuls AI memetakan ketentuan ke bukti dan menyusun analisis kesenjangannya.",
+        body: "SecurePulse AI memetakan ketentuan ke bukti dan menyusun analisis kesenjangannya.",
       },
       {
         n: "03",
@@ -104,7 +106,7 @@ export const ID: IndoContent = {
         n: "04",
         icon: "review",
         title: "Telaah & laporkan",
-        body: "Penelaah Anda memverifikasi kesimpulannya. SecurePuls menghasilkan laporannya.",
+        body: "Penelaah Anda memverifikasi kesimpulannya. SecurePulse menghasilkan laporannya.",
       },
     ],
   },
@@ -136,7 +138,7 @@ export const ID: IndoContent = {
         text: "Menunggu verifikasi.",
       },
     ],
-    caption: "Contoh ilustratif — tidak diambil dari regulasi tertentu.",
+    caption: "Contoh ilustratif.",
     labelsHeading: "Setiap referensi regulasi disertai tingkat keyakinannya.",
     labels: [
       {
@@ -219,22 +221,22 @@ export const ID: IndoContent = {
       outcome: "Berhari-hari hingga berminggu-minggu",
     },
     after: {
-      title: "Dengan SecurePuls",
+      title: "Dengan SecurePulse",
       steps: [
         "Korpus, kebijakan, dan bukti dalam satu tempat",
-        "SecurePuls AI menyusun asesmennya",
+        "SecurePulse AI menyusun asesmennya",
         "Analisis kesenjangan dan rencana remediasi",
         "Verifikasi penelaah",
-        "Draf laporan siap telaah",
+        "Draf laporan rapi yang siap ditelaah",
       ],
-      outcome: "Sekitar 30 menit menuju draf pertama",
+      outcome: "Sekitar 30 menit menuju draf yang rapi",
     },
     note: "Durasi bervariasi menurut cakupan asesmen, volume bukti, dan konfigurasi.",
     review: {
-      heading: "SecurePuls menyusun draf. Tim Anda yang memutuskan.",
+      heading: "SecurePulse menyusun draf. Tim Anda yang memutuskan.",
       body: [
         "AI mempercepat pembacaan, pemetaan, dan referensi silang — dan setiap kesimpulan tetap terlihat, dapat digugat, dan tertelusur ke buktinya.",
-        "SecurePuls adalah perangkat kerja profesional — bukan opini hukum, audit, atau sertifikasi. Temuan tetap berupa draf sampai diverifikasi penelaah yang kompeten, dan setiap laporan memuat pengesahan itu.",
+        "SecurePulse adalah perangkat kerja profesional — bukan opini hukum, audit, atau sertifikasi. Temuan tetap berupa draf sampai diverifikasi penelaah yang kompeten, dan setiap laporan memuat pengesahan itu.",
       ],
     },
   },
@@ -276,7 +278,7 @@ export const ID: IndoContent = {
       },
       {
         title: "Pemuatan dokumen untuk penugasan",
-        note: "SecurePuls dapat dikonfigurasi untuk memuat korpus regulasi yang berlaku beserta kebijakan, prosedur, dan bukti institusi Anda.",
+        note: "SecurePulse dapat dikonfigurasi untuk memuat korpus regulasi yang berlaku beserta kebijakan, prosedur, dan bukti institusi Anda.",
       },
       {
         title: "Deployment mandiri",
@@ -287,11 +289,11 @@ export const ID: IndoContent = {
         note: "Analisis berjalan pada deployment model yang disetujui dan dikendalikan institusi Anda.",
       },
     ],
-    note: "SecurePuls tidak mengklaim persetujuan regulator. Cakupan korpus ditetapkan dan diverifikasi per penugasan.",
+    note: "SecurePulse tidak mengklaim persetujuan regulator. Cakupan korpus ditetapkan dan diverifikasi per penugasan.",
   },
   contact: {
     heading: "Bawakan kami satu alur kerja kepatuhan.",
-    body: "Tunjukkan satu asesmen yang masih dikerjakan tim Anda secara manual — kami akan mendemonstrasikan bagaimana SecurePuls menyusun bukti, analisis kesenjangan, rencana remediasi, dan draf siap telaahnya. Demonstrasi awal tanpa biaya.",
+    body: "Tunjukkan satu asesmen yang masih dikerjakan tim Anda secara manual — kami akan mendemonstrasikan bagaimana SecurePulse menyusun bukti, analisis kesenjangan, rencana remediasi, dan draf siap telaahnya. Demonstrasi awal tanpa biaya.",
     form: {
       name: { label: "Nama", error: "Mohon isi nama Anda." },
       email: {
@@ -323,7 +325,7 @@ export const ID: IndoContent = {
       sending: "Mengirim…",
       sent: {
         heading: "Terima kasih — pesan Anda sudah sampai.",
-        body: "Pesan Anda ada di kotak masuk kami. Tim yang membangun SecurePuls akan menghubungi Anda untuk mengatur demonstrasinya.",
+        body: "Pesan Anda ada di kotak masuk kami. Tim yang membangun SecurePulse akan menghubungi Anda untuk mengatur demonstrasinya.",
       },
       fallback: {
         heading: "Satu langkah lagi.",
@@ -335,10 +337,10 @@ export const ID: IndoContent = {
     },
   },
   footer: {
-    tagline: "SecurePuls adalah produk Kaibre.",
+    tagline: "SecurePulse adalah produk Kaibre.",
     links: [
       { label: "Kaibre", href: "/" },
-      { label: "SecurePuls — ikhtisar produk", href: "/securepuls" },
+      { label: "SecurePulse — ikhtisar produk", href: "/securepulse" },
       { label: "Kontak", href: "#contact" },
     ],
     languageLink: { label: "Read in English", href: EN_PATH },

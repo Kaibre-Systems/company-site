@@ -11,10 +11,11 @@ const nextConfig: NextConfig = {
    * email signatures), so each one is permanently redirected to the closest
    * surviving destination rather than 404ing.
    *
-   * /securepulse is the same story for a different reason: the product is
-   * spelled SecurePuls, and the route was corrected to match. Anything already
-   * pointing at the misspelling — links, the search index, a signature — keeps
-   * working.
+   * /securepuls is the naming history: the site shipped for a period under
+   * that spelling before the founders confirmed the official name is
+   * SecurePulse and the routes were corrected to match. Everything that ever
+   * pointed at the old slugs — shared links, the search index, signatures —
+   * keeps working, including the bilingual Indonesia pair.
    */
   async redirects() {
     return [
@@ -23,7 +24,9 @@ const nextConfig: NextConfig = {
       { source: "/projects", destination: "/work", permanent: true },
       { source: "/team", destination: "/", permanent: true },
       { source: "/careers", destination: "/contact", permanent: true },
-      { source: "/securepulse", destination: "/securepuls", permanent: true },
+      { source: "/securepuls", destination: "/securepulse", permanent: true },
+      { source: "/securepuls/:path*", destination: "/securepulse/:path*", permanent: true },
+      { source: "/id/securepuls/:path*", destination: "/id/securepulse/:path*", permanent: true },
     ];
   },
 };

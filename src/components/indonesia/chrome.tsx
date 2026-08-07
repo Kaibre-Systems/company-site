@@ -3,13 +3,13 @@
 import Link from "next/link";
 import type { MouseEvent } from "react";
 import { KaibreWordmark } from "@/components/brand/wordmark";
-import { SecurePulsName } from "@/components/visuals";
+import { SecurePulseName } from "@/components/visuals";
 import { PATH_BY_LOCALE } from "@/content/indonesia/locale";
 import type { IndoContent } from "@/content/indonesia/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Microsite header for the SecurePuls Indonesia experience.
+ * Microsite header for the SecurePulse Indonesia experience.
  *
  * Deliberately simpler than the company-site header: one page, so there is no
  * menu to manage — the chrome carries the wordmark, the product identity, the
@@ -43,7 +43,7 @@ export function IndoHeader({ content }: { content: IndoContent }) {
         <span className="hidden items-center gap-3 sm:flex">
           <span aria-hidden className="h-6 w-px shrink-0 bg-border-strong" />
           <span className="text-body font-medium leading-none text-fg">
-            <SecurePulsName animate={false} />
+            <SecurePulseName animate={false} />
           </span>
           <span className="flex items-center gap-1.5 leading-none text-small text-fg-subtle">
             <IndonesiaFlag />

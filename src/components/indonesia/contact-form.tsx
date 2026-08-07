@@ -7,12 +7,12 @@ import type { IndoContent } from "@/content/indonesia/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Contact form for the SecurePuls Indonesia experience.
+ * Contact form for the SecurePulse Indonesia experience.
  *
  * Same three-layer delivery as the company-site form — API send, mail-app
  * handoff, plain-text address — with the copy fully driven by the locale
  * dictionary, plus the two fields an enterprise evaluation needs: role and
- * organisation type. Posts the `securepuls-id` topic so the enquiry arrives
+ * organisation type. Posts the `securepulse-id` topic so the enquiry arrives
  * labelled.
  */
 
@@ -46,14 +46,14 @@ function buildMailto(f: Fields, orgTypeLabel: string) {
     `Company: ${f.company}`,
     f.role ? `Role: ${f.role}` : null,
     `Organisation type: ${orgTypeLabel}`,
-    `About: SecurePuls Indonesia`,
+    `About: SecurePulse Indonesia`,
     "",
     f.work,
   ]
     .filter((line): line is string => line !== null)
     .join("\n");
   return `mailto:${SITE.email}?subject=${encodeURIComponent(
-    `SecurePuls Indonesia — ${f.company}`,
+    `SecurePulse Indonesia — ${f.company}`,
   )}&body=${encodeURIComponent(body)}`;
 }
 
@@ -109,7 +109,7 @@ export function IndoContactForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...fields,
-          topic: "securepuls-id",
+          topic: "securepulse-id",
           locale,
           website,
         }),

@@ -19,8 +19,8 @@ import { cn } from "@/lib/utils";
 
 const TOPICS = [
   {
-    value: "securepuls",
-    label: "SecurePuls",
+    value: "securepulse",
+    label: "SecurePulse",
     placeholder:
       "e.g. We assess physical security across a dozen sites in Abu Dhabi and Dubai. Two senior assessors spend about three weeks per site walking it, writing findings, and producing the report — so each site gets covered once a year at best.",
   },

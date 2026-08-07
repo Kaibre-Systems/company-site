@@ -19,8 +19,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const TOPICS: Record<string, string> = {
-  securepuls: "SecurePuls",
-  "securepuls-id": "SecurePuls Indonesia",
+  securepulse: "SecurePulse",
+  "securepulse-id": "SecurePulse Indonesia",
   kai: "kAI",
   partnership: "A partnership",
   commissioned: "A commissioned system",
@@ -63,12 +63,12 @@ export async function POST(request: Request) {
   const work = clean(payload.work, 5000);
   const topicKey = clean(payload.topic, 40);
   const topic = TOPICS[topicKey] ?? TOPICS.other;
-  /* Optional fields from the SecurePuls Indonesia form. */
+  /* Optional fields from the SecurePulse Indonesia form. */
   const role = clean(payload.role, 120);
   const orgType = clean(payload.orgType, 60);
   const locale = clean(payload.locale, 8);
 
-  /* 12 rather than 40: the SecurePuls Indonesia form asks for one workflow
+  /* 12 rather than 40: the SecurePulse Indonesia form asks for one workflow
      in a few words ("policy review" must pass). The company form still asks
      for more client-side; this is the floor, not the ask. */
   if (

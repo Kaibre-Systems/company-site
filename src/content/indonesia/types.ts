@@ -1,5 +1,5 @@
 /**
- * Content contract for the SecurePuls Indonesia experience.
+ * Content contract for the SecurePulse Indonesia experience.
  *
  * One interface, two dictionaries (`en.ts`, `id.ts`). The type is the
  * synchronisation guarantee: a section, item or label added to one locale
@@ -59,15 +59,19 @@ export interface IndoContent {
     body: string;
     cta: { label: string; href: string };
     secondary: { label: string; href: string };
-    /** Flat assessment snapshot: caption, illustrative tag, uniform rows. */
+    /** The hero visual: one page of a fictional compliance assessment for an
+     *  obviously fictional Indonesian institution. `secondary` rows hide on
+     *  the narrowest screens; the tag is the only illustrative marker. */
     panel: {
       alt: string;
       tag: string;
-      caption: string;
+      institution: string;
+      title: string;
       rows: readonly {
         label: string;
         value: string;
-        tone: "positive" | "attention" | "neutral";
+        tone?: "attention" | "positive";
+        secondary?: boolean;
       }[];
     };
   };

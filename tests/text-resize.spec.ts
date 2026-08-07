@@ -18,9 +18,9 @@ import { expect, test, type Page } from "@playwright/test";
 
 const ROUTES = [
   "/",
-  "/securepuls",
-  "/securepuls/indonesia",
-  "/id/securepuls/indonesia",
+  "/securepulse",
+  "/securepulse/indonesia",
+  "/id/securepulse/indonesia",
   "/kai",
   "/work",
   "/contact",
@@ -109,7 +109,7 @@ test.describe("text resizing", () => {
             .filter((d) => d.over > 1);
 
           const h1 = document.querySelector("h1");
-          // The SecurePuls Indonesia chrome has no hamburger — its operable
+          // The SecurePulse Indonesia chrome has no hamburger — its operable
           // control is the language toggle link. Measure whichever exists.
           const toggleEl = document.querySelector("header button");
           const langEl = document.querySelector("header nav a");
@@ -139,7 +139,7 @@ test.describe("text resizing", () => {
 
         // Navigation stays visible and operable. The target does not need to
         // grow with the text — it does need to stay at least 44px. On the
-        // SecurePuls Indonesia pages the operable control is the language
+        // SecurePulse Indonesia pages the operable control is the language
         // toggle rather than a hamburger.
         if (m.toggle) {
           expect(m.toggle.w, "hamburger width").toBeGreaterThanOrEqual(44);

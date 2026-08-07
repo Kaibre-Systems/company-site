@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Check, Minus } from "lucide-react";
 import { Heading, Text } from "@/components/primitives";
-import { SecurePulsName, withBrand } from "@/components/visuals";
+import { SecurePulseName, withBrand } from "@/components/visuals";
 import { cn } from "@/lib/utils";
 
 /* ==========================================================================
@@ -97,7 +97,7 @@ export function ProductCard({
             {/* The product name is the thing being introduced, so it is the
                 largest type here — the tagline supports it, not the reverse. */}
             <h3 className="text-heading-1 font-medium text-fg">
-              {name === "SecurePuls" ? <SecurePulsName animate /> : name}
+              {name === "SecurePulse" ? <SecurePulseName animate /> : name}
             </h3>
             <p className="mt-1 text-small text-fg-subtle">{category}</p>
           </div>

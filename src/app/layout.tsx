@@ -115,7 +115,7 @@ export default function RootLayout({
         />
       </head>
       {/* Chrome lives in the route groups rather than here: the company site
-          renders the English shell via `(site)/layout.tsx`, and the SecurePuls
+          renders the English shell via `(site)/layout.tsx`, and the SecurePulse
           Indonesia experience renders its own localised shell. The root
           `not-found` and `error` pages compose `SiteChrome` themselves. */}
       <body className="min-h-dvh bg-ink-950 antialiased">
