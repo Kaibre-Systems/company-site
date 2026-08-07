@@ -60,13 +60,23 @@ export interface IndoContent {
     cta: { label: string; href: string };
     secondary: { label: string; href: string };
     /** The hero visual: one page of a fictional compliance assessment for an
-     *  obviously fictional Indonesian institution. `secondary` rows hide on
-     *  the narrowest screens; the tag is the only illustrative marker. */
+     *  obviously fictional Indonesian institution, structured after the real
+     *  SecurePulse report's detailed-finding anatomy — a severity-headed
+     *  finding, then requirement → observed → remediation → reviewer.
+     *  `secondary` items hide on the narrowest screens; the corner tag is the
+     *  only illustrative marker. */
     panel: {
       alt: string;
       tag: string;
       institution: string;
       title: string;
+      finding: {
+        id: string;
+        severity: string;
+        title: string;
+        /** Category · points line, in the report's own scoring vocabulary. */
+        meta: string;
+      };
       rows: readonly {
         label: string;
         value: string;
