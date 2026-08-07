@@ -5,19 +5,30 @@
  * synchronisation guarantee: a section, item or label added to one locale
  * fails the build until the other carries it too. Components never contain
  * copy and never branch on locale — they render whichever dictionary the
- * route hands them.
+ * route hands them. Icons are referenced by key so the dictionaries stay
+ * plain data; the key → icon map lives in the visuals module.
  */
 
 export type IndoLocale = "en" | "id";
 
-export interface StatusRowContent {
-  label: string;
-  status: string;
-  tone: "positive" | "attention" | "neutral";
-}
+/** Icon vocabulary for the reads/produces and workflow visuals. */
+export type IndoIcon =
+  | "corpus"
+  | "policy"
+  | "evidence"
+  | "history"
+  | "assessment"
+  | "map"
+  | "gap"
+  | "severity"
+  | "remediation"
+  | "report"
+  | "ground"
+  | "assess"
+  | "review";
 
 export interface ChainNodeContent {
-  /** What kind of thing this node is — "Requirement", "Evidence", … */
+  /** What kind of thing this node is — "Regulatory requirement", "Gap", … */
   label: string;
   /** The illustrative content itself. */
   text: string;
@@ -36,40 +47,61 @@ export interface IndoContent {
   };
   chrome: {
     skip: string;
-    /** Accessible name for the wordmark link back to the Kaibre site. */
     kaibreHome: string;
-    /** Shown beside the product name in the header. */
     marketLabel: string;
-    toggle: {
-      navLabel: string;
-      en: string;
-      id: string;
-    };
+    toggle: { navLabel: string; en: string; id: string };
     cta: { label: string; href: string };
   };
   hero: {
-    audience: string;
+    /** The one line above the headline: AI-assisted + who it is for. */
+    kicker: string;
     headline: string;
     body: string;
+    /** The restrained qualification of the timing claim. */
+    timingNote: string;
     cta: { label: string; href: string };
     secondary: { label: string; href: string };
     panel: {
-      /** Accessible description of the illustration as a whole. */
       alt: string;
+      /** Corner tag marking the figures as illustrative. */
+      tag: string;
       caption: string;
-      rows: readonly StatusRowContent[];
+      /** The headline figure — "42" + "requirements assessed". */
+      headline: { value: string; label: string };
+      /** Stacked distribution bar with its legend. */
+      bar: readonly {
+        label: string;
+        count: number;
+        tone: "positive" | "neutral" | "attention";
+      }[];
+      /** Compact status rows under the bar. */
+      rows: readonly {
+        label: string;
+        tone: "positive" | "attention" | "neutral";
+      }[];
       footnote: string;
     };
     illustrationNote: string;
   };
   inOut: {
     heading: string;
-    give: { title: string; items: readonly string[] };
-    get: { title: string; items: readonly string[] };
+    reads: {
+      title: string;
+      items: readonly { icon: IndoIcon; label: string; note?: string }[];
+    };
+    produces: {
+      title: string;
+      items: readonly { icon: IndoIcon; label: string }[];
+    };
   };
   workflow: {
     heading: string;
-    steps: readonly { n: string; title: string; body: string }[];
+    stages: readonly {
+      n: string;
+      icon: IndoIcon;
+      title: string;
+      body: string;
+    }[];
   };
   trace: {
     heading: string;
@@ -79,21 +111,41 @@ export interface IndoContent {
     labelsHeading: string;
     labels: readonly { code: string; note: string }[];
   };
+  deliverables: {
+    heading: string;
+    remediation: {
+      caption: string;
+      columns: { finding: string; severity: string; action: string; target: string };
+      rows: readonly {
+        finding: string;
+        severity: string;
+        tone: "attention" | "neutral" | "positive";
+        action: string;
+        target: string;
+      }[];
+    };
+    report: {
+      caption: string;
+      title: string;
+      sections: readonly string[];
+    };
+  };
   comparison: {
     heading: string;
-    before: { title: string; items: readonly string[] };
-    after: { title: string; items: readonly string[] };
+    before: { title: string; steps: readonly string[]; outcome: string };
+    after: { title: string; steps: readonly string[]; outcome: string };
+    /** The timing qualification, set once, beside the boldest claim. */
+    note: string;
     review: { heading: string; body: readonly string[] };
   };
   useCases: {
     heading: string;
-    body: string;
     groups: readonly { title: string; items: readonly string[] }[];
   };
-  trust: {
+  indonesia: {
     heading: string;
     items: readonly { title: string; note: string }[];
-    status: { heading: string; body: readonly string[] };
+    note: string;
   };
   contact: {
     heading: string;
@@ -103,7 +155,10 @@ export interface IndoContent {
       email: { label: string; errorMissing: string; errorInvalid: string };
       company: { label: string; error: string };
       role: { label: string };
-      orgType: { label: string; options: readonly { value: string; label: string }[] };
+      orgType: {
+        label: string;
+        options: readonly { value: string; label: string }[];
+      };
       need: { label: string; hint: string; placeholder: string; error: string };
       submit: string;
       sending: string;
@@ -114,7 +169,6 @@ export interface IndoContent {
   footer: {
     tagline: string;
     links: readonly { label: string; href: string }[];
-    /** The counterpart page, offered in its own language. */
     languageLink: { label: string; href: string };
   };
 }

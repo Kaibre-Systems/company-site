@@ -19,8 +19,9 @@ import { expect, test, type Page } from "@playwright/test";
 const EN_PATH = "/securepuls/indonesia";
 const ID_PATH = "/id/securepuls/indonesia";
 
-const EN_H1 = "Compliance assessment, with the evidence attached.";
-const ID_H1 = "Asesmen kepatuhan, lengkap dengan buktinya.";
+const EN_H1 = "Compliance assessment drafts in about 30 minutes, not weeks.";
+const ID_H1 =
+  "Draf asesmen kepatuhan dalam sekitar 30 menit, bukan berminggu-minggu.";
 
 /**
  * English terms approved for use inside Indonesian copy: the product and
@@ -43,11 +44,16 @@ const APPROVED_IN_ID = [
   "AI",
   "fintech",
   "deployment",
+  "Deployment",
   "endpoint",
+  "Endpoint",
   "spreadsheet",
+  "Spreadsheet",
   "email",
   "folder",
+  "gap analysis", // accepted alongside "analisis kesenjangan"
   "gap",
+  "Gap",
   "status",
   "Website", // hidden honeypot label
 ];
@@ -60,17 +66,27 @@ const ENGLISH_MARKERS =
 const INDONESIAN_MARKERS = /\b(dan|yang|untuk|dengan|kami|adalah|setiap)\b/gi;
 
 /**
- * Neither page may name an Indonesian regulator, framework or law — the
- * corpus is configured per engagement and nothing is claimed until verified —
- * and neither may carry a certification or guarantee in either language.
+ * OJK, Bank Indonesia and insurance-sector requirements may be named as
+ * target corpus categories configured per engagement — that framing is
+ * founder-approved. What must never appear, in either language: approval or
+ * endorsement by a regulator, certifications, guarantees, coverage claimed
+ * as complete, specific instruments (POJK/SEOJK numbers, UU PDP), other
+ * regulators the corpus does not target, percentages, or an unqualified
+ * timing promise.
  */
 const FORBIDDEN = [
-  /\b(OJK|PPATK|POJK|SEOJK|Kominfo)\b/,
-  /\bBank Indonesia\b/,
+  /\b(PPATK|POJK|SEOJK|Kominfo)\b/,
   /\b(UU\s?PDP|PDP Law)\b/i,
+  /\b(?:OJK|Bank Indonesia)[- ]approved\b/i,
+  /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia|the regulator)\b/i,
+  /\bdisetujui\s+(?:oleh\s+)?(?:OJK|Bank Indonesia|regulator)\b/i,
+  /\b(?:complete|full)\s+coverage\b/i,
+  /\bcakupan\s+(?:penuh|lengkap|menyeluruh)\b/i,
   /\b(certified|accredited|regulator[- ]approved|guaranteed)\b/i,
   /\b(tersertifikasi|terakreditasi|kepatuhan otomatis)\b/i,
   /\bmenjamin\s+kepatuhan\b/i,
+  /\b(?:guaranteed|always|every assessment)\s+(?:in|within)\s+30\b/i,
+  /\bselalu\s+30\s+menit\b/i,
   /\b\d{1,3}\s?%/,
 ];
 
@@ -225,18 +241,68 @@ test.describe("no language leaks", () => {
 
 test.describe("regulatory guardrails", () => {
   for (const path of [EN_PATH, ID_PATH]) {
-    test(`${path} makes no forbidden claim and names no regulator`, async ({ page }) => {
+    test(`${path} makes no forbidden claim`, async ({ page }) => {
       await page.goto(path);
       const text = await visibleText(page);
       for (const re of FORBIDDEN) {
         const hit = re.exec(text);
         expect(hit, `"${hit?.[0]}" appears on ${path}`).toBeNull();
       }
-      // The illustrative example must be labelled as illustrative.
-      const label = path.startsWith("/id/") ? /Contoh ilustratif/ : /Illustrative example/;
+      // Illustrative material must be labelled as illustrative.
+      const label = path.startsWith("/id/") ? /ilustratif/i : /illustrative/i;
       expect(text).toMatch(label);
+      // The timing claim must never travel without its qualification.
+      const qualifier = path.startsWith("/id/")
+        ? /Durasi bervariasi/
+        : /Timing varies/;
+      expect(text).toMatch(qualifier);
     });
   }
+
+  /**
+   * The executive scan: a visitor reading only headings, bold terms and
+   * numbers must still meet the load-bearing concepts. These are the words
+   * that carry the page — if a rewrite drops one, this fails.
+   */
+  test("scan-level concepts are present in both locales", async ({ page }) => {
+    const expectations: [string, RegExp[]][] = [
+      [
+        EN_PATH,
+        [
+          /about 30 minutes/i,
+          /AI-assisted/i,
+          /gap analysis/i,
+          /remediation plan/i,
+          /severity/i,
+          /reviewer/i,
+          /regulatory corpus/i,
+          /OJK/,
+          /Bank Indonesia/,
+        ],
+      ],
+      [
+        ID_PATH,
+        [
+          /sekitar 30 menit/i,
+          /berbantuan AI/i,
+          /analisis kesenjangan/i,
+          /rencana remediasi/i,
+          /keparahan/i,
+          /penelaah/i,
+          /korpus regulasi/i,
+          /OJK/,
+          /Bank Indonesia/,
+        ],
+      ],
+    ];
+    for (const [path, terms] of expectations) {
+      await page.goto(path);
+      const text = await visibleText(page);
+      for (const term of terms) {
+        expect(text, `${path} is missing ${term}`).toMatch(term);
+      }
+    }
+  });
 });
 
 /* --------------------------------------------------------------------------
