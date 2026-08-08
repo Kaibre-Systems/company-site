@@ -95,7 +95,13 @@ export function IconList({
       {items.map((item) => {
         const Icon = ICONS[item.icon];
         return (
-          <li key={item.label} className="flex items-start gap-3 sm:gap-3.5">
+          <li
+            key={item.label}
+            className={cn(
+              "flex gap-3 sm:gap-3.5",
+              emphasis ? "items-center" : "items-start",
+            )}
+          >
             <span
               aria-hidden
               className={cn(
@@ -107,7 +113,7 @@ export function IconList({
             >
               <Icon className="size-4" />
             </span>
-            <span className="min-w-0 pt-1.5">
+            <span className={cn("min-w-0", !emphasis && "pt-1.5")}>
               <span className={cn("block text-body", emphasis ? "text-fg" : "text-fg-muted")}>
                 {item.label}
               </span>
