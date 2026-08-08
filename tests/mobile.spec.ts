@@ -217,6 +217,37 @@ test.describe("home: hero visualisation to the block beneath it", () => {
    ========================================================================== */
 
 test.describe("layout", () => {
+  test("SecurePulse output icons stay centred on wrapped and single-line labels", async ({ page }) => {
+    for (const route of ["/securepulse/indonesia", "/id/securepulse/indonesia"]) {
+      for (const width of [404, 1440]) {
+        await page.setViewportSize({ width, height: 900 });
+        await page.goto(route);
+        await settle(page);
+
+        const deltas = await page.evaluate(() => {
+          const headings = [...document.querySelectorAll("main h3")];
+          const heading = headings.find((el) =>
+            /(?:SecurePulse produces|Yang dihasilkan SecurePulse)/.test(el.textContent ?? ""),
+          );
+          const rows = heading?.parentElement?.querySelectorAll("li") ?? [];
+
+          return [...rows].map((row) => {
+            const icon = row.children[0]?.getBoundingClientRect();
+            const label = row.children[1]?.getBoundingClientRect();
+            if (!icon || !label) return Number.POSITIVE_INFINITY;
+            return Math.abs(icon.top + icon.height / 2 - (label.top + label.height / 2));
+          });
+        });
+
+        expect(deltas, `${route} at ${width}px has no output rows`).not.toHaveLength(0);
+        expect(
+          Math.max(...deltas),
+          `${route} output icon and label centres drift at ${width}px`,
+        ).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+
   for (const vp of [...PHONES, ...LANDSCAPE]) {
     for (const route of ROUTES) {
       test(`${route} at ${vp.name}: no horizontal overflow, every section visible`, async ({
