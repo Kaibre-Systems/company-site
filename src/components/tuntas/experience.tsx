@@ -119,15 +119,25 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
               {/* One obligation, opened — the product's own panel. It is the
                   argument: a reader should be able to tell what Tuntas hands
                   back without reading the copy beside it. */}
-              <VisualFrame
-                label={c.screens.obligation.alt}
-                className="shadow-[var(--shadow-card)]"
-              >
-                <ObligationPanel
-                  content={c.screens.obligation}
-                  clip="max-h-[38rem] lg:max-h-[46rem]"
-                />
-              </VisualFrame>
+              <figure>
+                <VisualFrame
+                  label={c.screens.obligation.alt}
+                  className="shadow-[var(--shadow-card)]"
+                >
+                  <ObligationPanel
+                    content={c.screens.obligation}
+                    clip="max-h-[38rem] lg:max-h-[46rem]"
+                  />
+                </VisualFrame>
+                {/* Said once, under the first panel: these are the product's
+                    screens, and they are in the product's language. On the
+                    English page that is the difference between a reader
+                    thinking "I cannot read this" and "of course — that is
+                    what my compliance officer reads". */}
+                <figcaption className="mt-3 max-w-[52ch] text-fine text-fg-subtle">
+                  {c.hero.panelNote}
+                </figcaption>
+              </figure>
             </div>
           </Container>
         </Section>

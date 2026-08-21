@@ -34,7 +34,6 @@ export const HERO = {
  * disclaimer travels with the description rather than sitting under it.
  */
 export const FEATURED = {
-  eyebrow: "In market now",
   headline: "A new regulation arrives. Tuntas works out what it changes.",
   body: "Tuntas reads a new Indonesian financial regulation against a company's own SOPs, policies, agreements and terms, and returns the position obligation by obligation — what changed, what it means here, what is missing, what has to be revised, who owns it, and by when. Every conclusion points to the article and the document it rests on.",
   points: [
@@ -52,6 +51,9 @@ export const FEATURED = {
     },
   ],
   disclaimer: "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice.",
+  /** The panel is the product's own screen, and the product is Indonesian. */
+  panelNote:
+    "The panel is a Tuntas screen, in Bahasa Indonesia — the language the regulation, the documents and the review are all in. The regulation is real; the company in it is not.",
   cta: { label: "See Tuntas", href: "/tuntas" },
   secondary: { label: "Baca dalam Bahasa Indonesia", href: "/id/tuntas" },
 } as const;

@@ -1,5 +1,6 @@
 import type { TuntasContent } from "./types";
 import { ID_PATH } from "./locale";
+import { SCREENS } from "./screens";
 
 /**
  * Tuntas — English.
@@ -57,121 +58,30 @@ export const EN: TuntasContent = {
     cta: { label: "Walk through an example", href: "#contact" },
     secondary: { label: "How it works", href: "#workflow" },
     note: "Tuntas is an analysis tool, not legal advice.",
+    panelNote:
+      "The screens on this page are the product's own, in Bahasa Indonesia — the language the regulation, the documents and the review are all in. The regulation is real; the company in them is not.",
   },
+  /**
+   * The screens are Bahasa Indonesia on this page too, deliberately — see
+   * `screens.ts`. Only the accessible description is English: it is read
+   * instead of the screen, so it belongs to whoever is reading this page.
+   */
   screens: {
     regulation: {
-      alt: "The screen a matter opens on in Tuntas: POJK 40 of 2024, received from OJK on 14 August 2026, replacing POJK 10/POJK.05/2022, analysed against 18 documents belonging to a fictional company. 49 obligations are unreviewed, 4 deadlines have already passed, and the next one falls on 10 September 2026.",
-      meta: "OJK · Received 14 August 2026",
-      title: "POJK 40 of 2024: Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
-      replaces:
-        "Replaces POJK 10/POJK.05/2022. A wholesale replacement of the LPBBTI (peer-to-peer lending) regime, analysed against 18 company documents.",
-      lines: [
-        { text: "49 obligations you have not reviewed" },
-        { text: "4 deadlines have already passed", tone: "gap" },
-        { text: "Next deadline 10 September 2026" },
-      ],
+      ...SCREENS.regulation,
+      alt: "The screen a matter opens on in Tuntas, in Bahasa Indonesia: POJK 40 of 2024, received from OJK on 14 August 2026, replacing POJK 10/POJK.05/2022, analysed against 18 documents belonging to a fictional company. 49 obligations are unreviewed, 4 deadlines have already passed, and the next one falls on 10 September 2026.",
     },
     obligation: {
-      alt: "One obligation opened in Tuntas: obligation 4 of POJK 40 of 2024 requires the company to ensure that members of its Board of Directors and Board of Commissioners hold a competency certificate. Tuntas concludes the obligation is not met, names the company documents the conclusion rests on, states what the company has to do, and gives the deadline. The company is fictional; the regulation is real.",
-      tag: "Illustrative",
-      mark: "Tuntas",
-      no: "Obligation no. 4",
-      chip: "Action needed from you",
-      chipTone: "gap",
-      label: "Obligation (new regulation)",
-      text: "The company must ensure that members of the Board of Directors and members of the Board of Commissioners hold a competency certificate from a professional certification institution in the financial-technology field registered with the Financial Services Authority.",
-      cite: "POJK 40/2024 · Art. 51(1)",
-      oldLabel: "Old rule (POJK 10/2022, revoked)",
-      oldText: "Amended — the obligation already existed, and its content has changed. The old wording placed the duty on each officer individually; the new one places it on the company, which must ensure they hold it.",
-      oldCite: "POJK 10/2022 · Art. 16(1)",
-      conclusion: {
-        tone: "gap",
-        title: "Not met.",
-        basisLabel: "Basis for the conclusion",
-        basis: [
-          "Memo SDM Sertifikasi (2025) records the certificates of the President Commissioner and the Independent Commissioner as valid until 22 August 2025, and the Technology Director's until 9 March 2026; no document supplied evidences a renewal after those dates.",
-          "Register Kepatuhan (2025), row R-06, itself marks this obligation's status as Partial.",
-          "The missing renewal is evidenced by the company's own documents rather than merely absent from them.",
-        ],
-        docsLabel: "Company documents checked for this conclusion:",
-        docs: [
-          "Memo SDM Sertifikasi (2025)",
-          "Register Kepatuhan (2025)",
-          "Struktur Organisasi (2026)",
-        ],
-      },
-      action: {
-        label: "What the company has to do",
-        text: "Update the certification status memo, complete the outstanding renewals, and put validity monitoring into the compliance calendar with a reminder before each expiry.",
-        unit: "Suggested unit: Divisi SDM & Umum, monitored by Divisi Kepatuhan & Legal (the company decides — this suggestion is open to discussion).",
-      },
-      deadline: {
-        label: "Deadline",
-        text: "Immediately; the certificates of the President Commissioner and the Independent Commissioner are recorded as expiring on 22 August 2025, and the Technology Director's on 9 March 2026.",
-      },
+      ...SCREENS.obligation,
+      alt: "One obligation opened in Tuntas, in Bahasa Indonesia: obligation 4 of POJK 40 of 2024 requires the company to ensure that members of its Board of Directors and Board of Commissioners hold a competency certificate from a professional certification institution registered with the Financial Services Authority. The old rule placed that duty on each officer individually. Tuntas concludes the obligation is not met, names the three company documents the conclusion rests on, states what the company has to do, and gives the deadline. The company is fictional; the regulation is real.",
     },
     register: {
-      alt: "The obligation register in Tuntas: three obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — two marked as needing action from you, one marked as not applicable.",
-      columns: {
-        no: "No.",
-        obligation: "Obligation (new regulation)",
-        article: "Article",
-        action: "Action",
-      },
-      chapter: { title: "CHAPTER VI — HUMAN RESOURCES", count: "3 obligations" },
-      rows: [
-        {
-          no: "4",
-          obligation:
-            "The company must ensure that members of the Board of Directors and members of the Board of Commissioners hold a competency certificate from a professional certification institution in the financial-technology field registered with the Financial Services Authority.",
-          article: "Art. 51(1)",
-          action: "Action needed from you",
-          tone: "gap",
-        },
-        {
-          no: "5",
-          obligation:
-            "The company must ensure that officers one level below the Board of Directors hold a competency certificate from a professional certification institution in the financial-technology field registered with the Financial Services Authority.",
-          article: "Art. 51(1)",
-          action: "Action needed from you",
-          tone: "gap",
-        },
-        {
-          no: "6",
-          obligation:
-            "A member of the Board of Directors who is a foreign national must hold Indonesian-language certification no later than one year from the date the Financial Services Authority approves the appointment.",
-          article: "Art. 51(2)",
-          action: "Not applicable",
-          tone: "na",
-        },
-      ],
-      note: "Tuntas is an analysis tool, not legal advice.",
+      ...SCREENS.register,
+      alt: "The obligation register in Tuntas, in Bahasa Indonesia: three obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — two marked as needing action from you, one marked as not applicable.",
     },
     memo: {
-      alt: "The memorandum Tuntas prepared for the Board of Directors and Board of Commissioners of a fictional company, dated 14 August 2026, on the impact of POJK 40 of 2024, which revokes POJK 10/POJK.05/2022.",
-      title: "MEMORANDUM",
-      head: [
-        { label: "To", value: "Board of Directors and Board of Commissioners" },
-        { label: "From", value: "Compliance function" },
-        { label: "Date", value: "14 August 2026" },
-        {
-          label: "Subject",
-          value:
-            "Initial summary of the impact of POJK 40 of 2024, which revokes POJK 10/POJK.05/2022, on the regulatory obligations of PT Benderang Dana Teknologi as a licensed conventional LPBBTI operator.",
-        },
-      ],
-      body: [
-        {
-          lead: "The regulation.",
-          text: "POJK 40 of 2024 has been in force since its promulgation on 27 December 2024 and revokes POJK 10/POJK.05/2022 by Article 236; the revoked regulation is referred to solely as a comparison.",
-        },
-        {
-          lead: "What the analysis found.",
-          text: "The analysis dated 14 August 2026 covers 50 obligations: 18 evidenced gaps, 13 obligations only partly met, 15 that cannot be assessed yet because the evidence supplied is insufficient, 1 supported by evidence, 1 contradiction between company documents, and 2 provisions that do not apply to the company.",
-        },
-      ],
-      footnote:
-        "Prepared by Tuntas for the Board of Directors and Board of Commissioners. A draft — reviewed, edited and decided by your compliance function.",
+      ...SCREENS.memo,
+      alt: "The memorandum Tuntas prepared for the Board of Directors and Board of Commissioners of a fictional company, in Bahasa Indonesia, dated 14 August 2026, on the impact of POJK 40 of 2024, which revokes POJK 10/POJK.05/2022.",
     },
   },
   problem: {

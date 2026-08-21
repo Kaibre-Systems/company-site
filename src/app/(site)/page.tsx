@@ -102,18 +102,10 @@ export default function HomePage() {
         <Container>
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16">
             <div>
-              {/* The dot is the ink, not the product's green: inside Tuntas
-                  green means "this obligation is satisfied", and it is not
-                  available as decoration on a page about it. */}
-              <p className="flex items-center gap-2.5 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-                <PulseDot tone="accent" />
-                {FEATURED.eyebrow}
-              </p>
-
               {/* The mark, at reading size and drawn from the identity's own
                   paths — the first thing the section says is the product's
-                  name in its own letterforms. */}
-              <TuntasWordmark className="mt-6 h-5 w-auto text-fg sm:h-6" />
+                  name in its own letterforms, with nothing above it. */}
+              <TuntasWordmark className="h-5 w-auto text-fg sm:h-6" />
 
               <Heading level={2} size="display-2" className="mt-6 max-w-[20ch]">
                 {FEATURED.headline}
@@ -158,15 +150,20 @@ export default function HomePage() {
                 block. The sheet is the argument: a visitor should be able to
                 tell what Tuntas hands back without reading the copy beside
                 it. */}
-            <VisualFrame
-              label={TUNTAS.screens.obligation.alt}
-              className="shadow-[var(--shadow-card)]"
-            >
-              <ObligationPanel
-                content={TUNTAS.screens.obligation}
-                clip="max-h-[34rem] lg:max-h-[40rem]"
-              />
-            </VisualFrame>
+            <figure>
+              <VisualFrame
+                label={TUNTAS.screens.obligation.alt}
+                className="shadow-[var(--shadow-card)]"
+              >
+                <ObligationPanel
+                  content={TUNTAS.screens.obligation}
+                  clip="max-h-[34rem] lg:max-h-[40rem]"
+                />
+              </VisualFrame>
+              <figcaption className="mt-3 text-fine text-fg-subtle">
+                {FEATURED.panelNote}
+              </figcaption>
+            </figure>
           </div>
         </Container>
       </Section>
@@ -268,7 +265,12 @@ export default function HomePage() {
                        carries its own theme, which is the point of the row:
                        each panel is its own product's material. */
                     <div data-theme="tuntas">
-                      <RegulationCard content={TUNTAS.screens.regulation} />
+                      <VisualFrame
+                        label={TUNTAS.screens.regulation.alt}
+                        className="border-0 bg-transparent"
+                      >
+                        <RegulationCard content={TUNTAS.screens.regulation} />
+                      </VisualFrame>
                     </div>
                   }
                 />

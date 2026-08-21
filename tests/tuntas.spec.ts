@@ -228,14 +228,52 @@ test.describe("no language leaks", () => {
     expect(leaks, `English function words on the Indonesian route`).toEqual([]);
   });
 
-  test("the English route carries no stray Indonesian", async ({ page }) => {
+  /**
+   * The English route's *copy* carries no stray Indonesian. Its reproduced
+   * screens are a different matter and are excluded: the product is Bahasa
+   * Indonesia end to end, the regulation and the company documents it quotes
+   * are Indonesian, and translating a screen for this page would be showing
+   * something that does not exist. They are marked `role="img"` and carry an
+   * English accessible description, which is what a reader who cannot read
+   * them gets instead.
+   */
+  test("the English route's own copy carries no stray Indonesian", async ({
+    page,
+  }) => {
     await page.goto(EN_PATH);
     await settle(page);
-    // The language link is deliberately in Indonesian; strip it first.
-    let text = await visibleText(page);
+    let text = await page.evaluate(() => {
+      const clone = document.body.cloneNode(true) as HTMLElement;
+      for (const el of clone.querySelectorAll('[role="img"], script, style, template')) {
+        el.remove();
+      }
+      return (clone.textContent || "").replace(/\s+/g, " ");
+    });
+    // The language link is deliberately in Indonesian; strip it too.
     text = text.split("Baca dalam Bahasa Indonesia").join(" ");
     const leaks = [...new Set(text.match(INDONESIAN_MARKERS) ?? [])];
-    expect(leaks, `Indonesian function words on the English route`).toEqual([]);
+    expect(leaks, `Indonesian function words in the English copy`).toEqual([]);
+  });
+
+  /**
+   * And the screens really are the Indonesian ones, on both routes. If a
+   * later edit "helpfully" translates a panel for the English page, this is
+   * what catches it.
+   */
+  test("the reproduced screens are in Bahasa on both routes", async ({ page }) => {
+    for (const path of [EN_PATH, ID_PATH]) {
+      await page.goto(path);
+      await settle(page);
+      const panels = await page.evaluate(() =>
+        [...document.querySelectorAll('[role="img"]')]
+          .map((el) => (el as HTMLElement).textContent ?? "")
+          .join(" ")
+          .replace(/\s+/g, " "),
+      );
+      expect(panels, `${path} renders no screens`).not.toHaveLength(0);
+      expect(panels, `${path} screens are not in Bahasa`).toMatch(/\bkewajiban\b/i);
+      expect(panels).toMatch(/\bPasal\b|\bPs\./);
+    }
   });
 
   test("one h1 per page, in the page's own language", async ({ page }) => {
@@ -263,9 +301,18 @@ test.describe("regulatory guardrails", () => {
         const hit = re.exec(text);
         expect(hit, `"${hit?.[0]}" appears on ${path}`).toBeNull();
       }
-      // Illustrative material must be labelled as illustrative.
-      const label = path.startsWith("/id/") ? /ilustra/i : /illustrative/i;
+      // Illustrative material must be labelled as illustrative — and the
+      // company in it stated to be fictional. The screens carry the product's
+      // own Bahasa tag on both routes, so the English page says "fictional"
+      // in the caption beside them rather than inside them.
+      const label = path.startsWith("/id/")
+        ? /ilustra|fiktif/i
+        : /illustrative|ilustrasi/i;
       expect(text).toMatch(label);
+      const fiction = path.startsWith("/id/") ? /fiktif/i : /fictional/i;
+      expect(text, `${path} does not say the company is fictional`).toMatch(
+        fiction,
+      );
       // The scope claim must never travel without its qualification.
       const qualifier = path.startsWith("/id/")
         ? /Cakupan dan beban kerjanya bergantung/

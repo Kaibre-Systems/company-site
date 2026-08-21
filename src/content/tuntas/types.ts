@@ -57,6 +57,12 @@ export interface TuntasContent {
     secondary: { label: string; href: string };
     /** The line the product itself puts at the foot of every screen. */
     note: string;
+    /**
+     * What the reproduced screens are, said once, under the first of them.
+     * On the English page this is load-bearing — the panels are in Bahasa
+     * Indonesia and the reader is owed the reason.
+     */
+    panelNote: string;
   };
 
   /**
