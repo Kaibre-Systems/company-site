@@ -127,7 +127,7 @@ export const ID: TuntasContent = {
         n: "02",
         icon: "assess",
         title: "Tuntas menganalisis",
-        body: "Memo Direksi lebih dahulu, lalu register kewajiban, permintaan dokumen, tindakan, dan tenggatnya.",
+        body: "Ia membaca regulasi baru itu terhadap setiap dokumen yang Anda unggah, kewajiban demi kewajiban.",
       },
       {
         n: "03",

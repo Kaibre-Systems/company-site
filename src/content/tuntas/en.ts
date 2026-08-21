@@ -167,7 +167,7 @@ export const EN: TuntasContent = {
         n: "02",
         icon: "assess",
         title: "Tuntas analyses",
-        body: "The Board memo first, then the obligation register, the document requests, the actions and the deadlines.",
+        body: "It reads the new regulation against every document you uploaded, obligation by obligation.",
       },
       {
         n: "03",
