@@ -58,8 +58,7 @@ export const EN: TuntasContent = {
     cta: { label: "Walk through an example", href: "#contact" },
     secondary: { label: "How it works", href: "#workflow" },
     note: "Tuntas is an analysis tool, not legal advice.",
-    panelNote:
-      "The screens on this page are the product's own, in Bahasa Indonesia — the language the regulation, the documents and the review are all in. The regulation is real; the company in them is not.",
+    panelNote: "Fictional company, real regulation.",
   },
   /**
    * The screens are Bahasa Indonesia on this page too, deliberately — see

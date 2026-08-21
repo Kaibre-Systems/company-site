@@ -129,12 +129,9 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                     clip="max-h-[38rem] lg:max-h-[46rem]"
                   />
                 </VisualFrame>
-                {/* Said once, under the first panel: these are the product's
-                    screens, and they are in the product's language. On the
-                    English page that is the difference between a reader
-                    thinking "I cannot read this" and "of course — that is
-                    what my compliance officer reads". */}
-                <figcaption className="mt-3 max-w-[52ch] text-fine text-fg-subtle">
+                {/* The demo's own standing line, in the demo's own words. It
+                    carries the fiction disclosure for the whole page. */}
+                <figcaption className="mt-3 text-fine text-fg-subtle">
                   {c.hero.panelNote}
                 </figcaption>
               </figure>

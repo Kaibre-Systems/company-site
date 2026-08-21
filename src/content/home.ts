@@ -51,9 +51,8 @@ export const FEATURED = {
     },
   ],
   disclaimer: "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice.",
-  /** The panel is the product's own screen, and the product is Indonesian. */
-  panelNote:
-    "The panel is a Tuntas screen, in Bahasa Indonesia — the language the regulation, the documents and the review are all in. The regulation is real; the company in it is not.",
+  /** The demo's own standing line, in the demo's own four words. */
+  panelNote: "Fictional company, real regulation.",
   cta: { label: "See Tuntas", href: "/tuntas" },
   secondary: { label: "Baca dalam Bahasa Indonesia", href: "/id/tuntas" },
 } as const;

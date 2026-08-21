@@ -41,8 +41,7 @@ export const ID: TuntasContent = {
     cta: { label: "Lihat contoh lengkapnya", href: "#contact" },
     secondary: { label: "Bagaimana cara kerjanya", href: "#workflow" },
     note: "Tuntas adalah alat bantu analisis, bukan nasihat hukum.",
-    panelNote:
-      "Tampilan di halaman ini diambil apa adanya dari produknya. Regulasinya asli; perusahaan di dalamnya fiktif.",
+    panelNote: "Perusahaan fiktif, regulasi asli.",
   },
   screens: {
     regulation: { ...SCREENS.regulation, alt: "Layar pembuka satu perkara di Tuntas: POJK 40 Tahun 2024 diterima dari OJK pada 14 Agustus 2026, menggantikan POJK 10/POJK.05/2022, dianalisis terhadap 18 dokumen perusahaan fiktif. Tercatat 49 kewajiban yang belum ditinjau, 4 tenggat yang sudah lewat, dan tenggat berikutnya pada 10 September 2026." },

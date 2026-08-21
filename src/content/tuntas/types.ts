@@ -58,9 +58,10 @@ export interface TuntasContent {
     /** The line the product itself puts at the foot of every screen. */
     note: string;
     /**
-     * What the reproduced screens are, said once, under the first of them.
-     * On the English page this is load-bearing — the panels are in Bahasa
-     * Indonesia and the reader is owed the reason.
+     * What the reproduced screens are, said once, under the first of them,
+     * in the four words the demo's own header uses. It carries the fiction
+     * disclosure for the whole page: the panels are the product's, and the
+     * product tags them in Bahasa.
      */
     panelNote: string;
   };
