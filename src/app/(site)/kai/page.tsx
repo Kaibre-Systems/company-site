@@ -17,7 +17,6 @@ import {
   KAI_VALUE,
   KAI_WORKFLOW,
 } from "@/content/kai";
-import { CALENDLY_URL } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "kAI — Outbound voice agent for lead qualification",
@@ -32,8 +31,16 @@ export const metadata: Metadata = {
   },
 };
 
-/** kAI is the one product where a booking link matches how it is actually sold. */
-const DEMO_URL = `${CALENDLY_URL}?utm_source=kaibresystems.com&utm_medium=kai-page&utm_content=demo`;
+/**
+ * Every action on this site now lands on the same form.
+ *
+ * kAI used to send people to a Calendly page — the one product where a
+ * self-service booking link matched how it is sold. It no longer earns the
+ * exception: the form reaches the same inbox through Resend, it arrives
+ * tagged with the product, and it does not hand a visitor off to a third
+ * party mid-decision. One conversion path is also one thing to maintain.
+ */
+const DEMO_URL = "/contact?topic=kai";
 
 export default function KaiPage() {
   return (
@@ -143,7 +150,7 @@ export default function KaiPage() {
           </ul>
 
           <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button href={DEMO_URL}>Book a kAI demo</Button>
+            <Button href={DEMO_URL}>{KAI_HERO.primary.label}</Button>
             <Button href="/contact?topic=kai" variant="secondary">
               Start a conversation
             </Button>

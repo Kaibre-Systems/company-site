@@ -10,8 +10,10 @@ export const KAI_HERO = {
   category: "Outbound voice agent",
   headline: "Calls the list. Flags the ones worth your time.",
   body: "kAI places outbound qualification calls on your own number, holds a natural conversation from the script your team agreed, collects the answers that decide whether a lead is real, and classifies each call so your people spend their hours on the opportunities that justify them.",
-  primary: { label: "Book a kAI demo", href: "" },
-  secondary: { label: "Start a conversation", href: "/contact?topic=kai" },
+  /** Both actions reach the same form; the primary one says what to ask for.
+   *  `href` is set at the call site, which is where the topic is known. */
+  primary: { label: "Ask for a kAI demo", href: "/contact?topic=kai" },
+  secondary: { label: "See what we've built", href: "/work" },
 } as const;
 
 /**

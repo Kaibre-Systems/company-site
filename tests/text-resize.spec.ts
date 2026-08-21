@@ -23,6 +23,7 @@ const ROUTES = [
   "/id/tuntas",
   "/kai",
   "/work",
+  "/company",
   "/contact",
 ] as const;
 

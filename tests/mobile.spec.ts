@@ -20,6 +20,7 @@ const ROUTES = [
   "/id/tuntas",
   "/kai",
   "/work",
+  "/company",
   "/contact",
 ] as const;
 
@@ -469,17 +470,34 @@ test.describe("navigation", () => {
 
   test("in-page anchors land clear of the fixed header", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 659 });
-    for (const hash of ["#products", "#commissioned", "#how-we-work", "#company"]) {
-      await page.goto("/" + hash);
+    // `#how-we-work` and `#data` moved to /company with the sections
+    // themselves; `#company` stayed on the homepage so links already in the
+    // wild still land on something.
+    for (const target of [
+      "/#products",
+      "/#commissioned",
+      "/#company",
+      "/company#how-we-work",
+      "/company#data",
+    ]) {
+      await page.goto(target);
       await page.waitForTimeout(400);
+      const hash = "#" + target.split("#")[1];
       const m = await page.evaluate((h) => {
-        const heading = document.querySelector(h)!.querySelector("h1,h2,h3")!;
+        const section = document.querySelector(h);
+        if (!section) return null;
+        const heading = section.querySelector("h1,h2,h3");
+        if (!heading) return null;
         return {
           headingTop: heading.getBoundingClientRect().top,
           headerBottom: document.querySelector("header")!.getBoundingClientRect().bottom,
         };
       }, hash);
-      expect(m.headingTop, `${hash} heading sits under the header`).toBeGreaterThan(m.headerBottom);
+      expect(m, `${target} has no such section`).not.toBeNull();
+      expect(
+        m!.headingTop,
+        `${target} heading sits under the header`,
+      ).toBeGreaterThan(m!.headerBottom);
     }
   });
 

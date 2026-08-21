@@ -1,7 +1,7 @@
-// Single source of truth for outbound CTA destinations on the marketing site.
-// Every "Book a kAI demo", "Book a discovery call", and "Talk to engineering"
-// CTA reads from this constant — do NOT hardcode Calendly URLs in components.
-export const CALENDLY_URL = "https://calendly.com/systemskaibre/30min";
+// Every action on the marketing site lands on /contact, which posts to the
+// Resend-backed API route. There is no scheduling link any more: a Calendly
+// page handed the visitor to a third party in the middle of a decision, and
+// the form reaches the same inbox tagged with the product they came from.
 
 // LinkedIn — already used in nav/footer/legacy CTAs.
 export const LINKEDIN_URL =

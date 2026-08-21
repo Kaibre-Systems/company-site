@@ -3,7 +3,6 @@ import {
   Container,
   Heading,
   Note,
-  Prose,
   Section,
   SectionHeader,
   Text,
@@ -34,8 +33,6 @@ import {
   FEATURED,
   FINAL_CTA,
   HERO,
-  HOW_WE_WORK,
-  PARTNERSHIPS,
   PRODUCTS,
   PROOF,
   THESIS,
@@ -316,8 +313,14 @@ export default function HomePage() {
           </div>
 
           {/* One caption for all three panels rather than the same line
-              three times. */}
-          <p className="mt-5 text-fine text-fg-subtle">Interface illustrations.</p>
+              three times. The Tuntas panel is a reproduction of a screen the
+              product actually renders, so "illustrations" would be wrong for
+              a third of the row; what is true of all three is that the
+              material in them is not a real customer's. */}
+          <p className="mt-5 text-fine text-fg-subtle">
+            Product screens. No real customer, engagement or campaign appears
+            in any of them.
+          </p>
         </Container>
       </Section>
 
@@ -354,88 +357,47 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 7 — Partnerships --------------------------------------------------- */}
-      <Section surface="ink" space="tight" className="border-t border-border">
-        <Container size="prose">
-          <>
-            <Heading level={2} size="heading-1">
-              {PARTNERSHIPS.heading}
-            </Heading>
-            <Prose paragraphs={PARTNERSHIPS.body} size="body" className="mt-5" />
-            <div className="mt-7">
-              <ArrowLink href={PARTNERSHIPS.cta.href}>
-                {PARTNERSHIPS.cta.label}
-              </ArrowLink>
-            </div>
-          </>
-        </Container>
-      </Section>
+      {/* 7 — Company (coal) — the second charcoal room, so the page steps
+          ink → ember → coal on its way out instead of falling back to black.
 
-      {/* 8 — How we work (ember surface) ------------------------------------ */}
-      <Section surface="ember" id={HOW_WE_WORK.id}>
-        <Container>
-          <>
-            <SectionHeader
-              heading={HOW_WE_WORK.heading}
-            />
-          </>
-
-          <ol className="mt-12 grid gap-x-16 gap-y-10 sm:grid-cols-2">
-            {HOW_WE_WORK.steps.map((step, i) => (
-              <li key={step.title}>
-                <p className="font-mono text-label text-fg-subtle">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <Heading level={3} size="heading-1" className="mt-3">
-                  {step.title}
-                </Heading>
-                <Text className="mt-3 max-w-[46ch]">{step.body}</Text>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </Section>
-
-      {/* 9 — Company (coal) — the second charcoal room, so the page steps
-          ink → ember → coal on its way out instead of falling back to black. */}
+          Short, and pointing at the page. The founder background, the four
+          working principles, the partnership position and the data-handling
+          answers are all on /company now; repeating them here made the
+          homepage the longest page on the site and still left "Company" as a
+          fragment. The `#company` id stays so older links land here. */}
       <Section surface="coal" id={COMPANY.id}>
         <Container>
-          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
-            <SectionHeader heading={COMPANY.heading} body={COMPANY.body} />
+          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+            <div>
+              <SectionHeader heading={COMPANY.heading} body={COMPANY.body} />
+              <div className="mt-8">
+                <ArrowLink href={COMPANY.cta.href}>{COMPANY.cta.label}</ArrowLink>
+              </div>
+            </div>
 
             {/* Facts, not a third paragraph. */}
             <dl className="grid content-start gap-y-5 self-center">
               {COMPANY.facts.map((f) => (
                 <div
                   key={f.label}
-                  className="grid grid-cols-[1fr_auto] items-baseline gap-4 border-b border-border pb-4"
+                  /* Wrapping flex, not a two-column grid. The `auto` column
+                     could not shrink, so at a 200% default font size on a
+                     320px screen a value like "UAE, Indonesia, Canada, United
+                     States" set the row's width and pushed the whole document
+                     sideways. Wrapped, a long value simply takes its own
+                     line. */
+                  className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 border-b border-border pb-4"
                 >
-                  <dt className="text-small text-fg-subtle">{f.label}</dt>
-                  <dd className="text-body text-fg">{f.value}</dd>
+                  <dt className="min-w-0 text-small text-fg-subtle">{f.label}</dt>
+                  <dd className="min-w-0 text-body text-fg">{f.value}</dd>
                 </div>
               ))}
             </dl>
           </div>
-
-          {/* Founder background — where the standards come from. */}
-          <div className="mt-14 border-t border-border pt-10">
-            <h3 className="text-small font-medium text-fg-subtle">
-              {COMPANY.credibility.label}
-            </h3>
-            <Text className="mt-4 max-w-prose">{COMPANY.credibility.body}</Text>
-            <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-              {COMPANY.credibility.domains.map((d, i) => (
-                <li key={d} className="flex items-center gap-2.5 text-body text-fg">
-                  <PulseDot delay={i * 400} />
-                  {d}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Container>
       </Section>
 
-      {/* 10 — Conversion ----------------------------------------------------- */}
+      {/* 8 — Conversion ------------------------------------------------------ */}
       <Section surface="ink">
         <Container>
           <Callout className="text-center">

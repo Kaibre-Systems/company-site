@@ -94,10 +94,20 @@ export const THESIS = {
 } as const;
 
 export const PROOF = {
-  heading: "A catalogue where a single record is worth five or six figures.",
+  /**
+   * The heading leads with the transferable claim rather than the category.
+   *
+   * This is the site's one piece of hard proof, and the category it comes
+   * from — luxury commerce — is not the world of the buyer most likely to be
+   * reading. What transfers is the standard the system is held to: a record
+   * that is wrong is an event, not a ticket. That is the same sentence a
+   * compliance director would use about a register of obligations, so it
+   * leads, and the figures follow to substantiate it.
+   */
+  heading: "Where a wrong record is an event, not a support ticket.",
   body: [
     "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
-    "At those values accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event. The system is live in commercial use, and Kaibre continues to support and operate it.",
+    "At those values accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event. The system is live in commercial use, and Kaibre continues to support and operate it — the same people who designed it.",
   ],
   figures: [
     { value: "$10k – $500k", label: "Individual product value" },
@@ -143,9 +153,9 @@ export const PRODUCTS = {
 
 export const COMMISSIONED = {
   id: "commissioned",
-  heading: "We take on a few commissioned builds a year.",
+  heading: "Some organisations have one workflow that carries the business.",
   body: [
-    "Some organisations have one workflow that matters more than the rest of the business combined, and nothing on the market fits it. Those are the ones we take on.",
+    "When it matters more than the rest of the business combined and nothing on the market fits it, that is the kind of system we take on and then keep running.",
     "We build the system, put it into production, and keep operating it. The people who designed it are the ones running it a year later.",
   ],
   fit: {
@@ -201,15 +211,34 @@ export const HOW_WE_WORK = {
 
 export const COMPANY = {
   id: "company",
-  heading: "Small, founder-led, and deliberate about what we take on.",
+  /**
+   * Founder-led, without the scarcity reading.
+   *
+   * The previous version of this section counted: "deliberately small", "a
+   * limited number of builds", "a few a year". To one reader that is
+   * selectivity; to a regulated institution deciding who will hold its
+   * internal procedures, it answers a question they did not ask and raises
+   * the one they did — will this vendor still be operating in two years. The
+   * "a few a year" fact was scoped to commissioned builds and read as the
+   * company's whole output, which also understated it: Tuntas is a product,
+   * not a commissioned build.
+   *
+   * What survives is the part that is both true and reassuring: the person
+   * you talk to is the person responsible, and Kaibre operates what it
+   * builds rather than handing it over.
+   */
+  heading: "Founder-led, and still running what we built.",
   body: [
-    "We are deliberately small. That is why we take on a limited number of builds, and why the person you talk to first is the person responsible for the work.",
+    "The person you talk to first is the person responsible for the work, and the people who designed a system are the ones operating it a year later. That is the arrangement, not an upsell.",
   ],
   /** Scannable facts rather than a third paragraph. */
   facts: [
     { label: "Registered", value: "Abu Dhabi, UAE" },
-    { label: "Working across", value: "UAE, Canada, United States" },
-    { label: "Commissioned builds", value: "A few a year" },
+    {
+      label: "Working across",
+      value: "UAE, Indonesia, Canada, United States",
+    },
+    { label: "Systems in production", value: "Built, operated, and supported by us" },
   ],
   /**
    * Founder background only. This describes where the founders have worked —
@@ -225,6 +254,8 @@ export const COMPANY = {
       "Healthcare and prescription insurance",
     ],
   },
+  /** The homepage states the position; /company answers the questions. */
+  cta: { label: "About Kaibre", href: "/company" },
 } as const;
 
 export const FINAL_CTA = {
