@@ -22,8 +22,9 @@ import {
   VisualFrame,
 } from "@/components/visuals";
 import { CallPanel } from "@/components/visuals/call";
-import { FindingDocument, ReportContents } from "@/components/visuals/document";
+import { FindingDocument } from "@/components/visuals/document";
 import { TuntasWordmark } from "@/components/brand/tuntas";
+import { ObligationPanel, RegulationCard } from "@/components/tuntas/screens";
 import { KAI_CALL_PANEL } from "@/content/kai";
 import { SP_HERO_PANEL } from "@/content/securepulse";
 import { EN as TUNTAS } from "@/content/tuntas/en";
@@ -101,8 +102,11 @@ export default function HomePage() {
         <Container>
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-16">
             <div>
+              {/* The dot is the ink, not the product's green: inside Tuntas
+                  green means "this obligation is satisfied", and it is not
+                  available as decoration on a page about it. */}
               <p className="flex items-center gap-2.5 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-                <PulseDot tone="live" />
+                <PulseDot tone="accent" />
                 {FEATURED.eyebrow}
               </p>
 
@@ -150,15 +154,18 @@ export default function HomePage() {
               <Note className="mt-9">{FEATURED.disclaimer}</Note>
             </div>
 
-            {/* One obligation from the register, exactly as the product
-                sets it. The sheet is the argument: a visitor should be able
-                to tell what Tuntas hands back without reading the copy
-                beside it. */}
+            {/* One obligation, opened — the product's own panel, block for
+                block. The sheet is the argument: a visitor should be able to
+                tell what Tuntas hands back without reading the copy beside
+                it. */}
             <VisualFrame
-              label={TUNTAS.hero.panel.alt}
+              label={TUNTAS.screens.obligation.alt}
               className="shadow-[var(--shadow-card)]"
             >
-              <FindingDocument doc={TUNTAS.hero.panel} />
+              <ObligationPanel
+                content={TUNTAS.screens.obligation}
+                clip="max-h-[34rem] lg:max-h-[40rem]"
+              />
             </VisualFrame>
           </div>
         </Container>
@@ -255,18 +262,13 @@ export default function HomePage() {
                 <ProductCard
                   {...PRODUCTS.items[0]}
                   visual={
-                    /* Themed, but not on paper. The white sheet belongs to
-                       the featured section above; a second full-height one
-                       here would be the loudest object in a row of three and
-                       would say "Tuntas" twice as emphatically as the page
-                       means to. The theme still carries: the accents in this
-                       panel are the product's green, on the section's own
-                       charcoal. */
+                    /* The screen a matter opens on — the other end of the
+                       product from the obligation panel in the featured
+                       section above, so neither artifact appears twice. It
+                       carries its own theme, which is the point of the row:
+                       each panel is its own product's material. */
                     <div data-theme="tuntas">
-                      <ReportContents
-                        title={TUNTAS.deliverables.report.title}
-                        sections={TUNTAS.deliverables.report.sections}
-                      />
+                      <RegulationCard content={TUNTAS.screens.regulation} />
                     </div>
                   }
                 />

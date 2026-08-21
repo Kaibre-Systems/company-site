@@ -29,6 +29,7 @@ export const ID: TuntasContent = {
     skip: "Lompat ke konten",
     home: "Tuntas — beranda",
     kaibreHome: "Kaibre",
+    tagline: "Perubahan regulasi",
     marketLabel: "Indonesia",
     toggle: { navLabel: "Bahasa", en: "English", id: "Bahasa Indonesia" },
     cta: { label: "Lihat contoh lengkapnya", href: "#contact" },
@@ -38,41 +39,122 @@ export const ID: TuntasContent = {
     body: "Untuk Kepatuhan dan Hukum di lembaga jasa keuangan Indonesia. Anda menyebutkan regulasinya dan mengunggah dokumen yang ada. Tuntas mengembalikan gambaran utuhnya — kewajiban demi kewajiban, dengan setiap kesimpulan menunjuk pasal dan dokumen perusahaan yang mendasarinya.",
     cta: { label: "Lihat contoh lengkapnya", href: "#contact" },
     secondary: { label: "Bagaimana pekerjaannya berjalan", href: "#workflow" },
-    panel: {
-      alt: "Contoh ilustratif satu kewajiban dari register Tuntas: regulasi OJK yang nyata dianalisis terhadap dokumen perusahaan fiktif. Kewajiban nomor 45 mewajibkan Direksi dan Dewan Komisaris memiliki sertifikat kompetensi; dokumen perusahaan hanya mencakup Direksi, sehingga kewajiban itu baru terpenuhi sebagian, dokumen yang kurang diminta dengan menyebut namanya, dan penelaah belum memutuskan.",
+    note: "Tuntas adalah alat bantu analisis, bukan nasihat hukum.",
+  },
+  screens: {
+    regulation: {
+      alt: "Layar pembuka satu perkara di Tuntas: POJK 40 Tahun 2024 diterima dari OJK pada 14 Agustus 2026, menggantikan POJK 10/POJK.05/2022, dianalisis terhadap 18 dokumen perusahaan fiktif. Tercatat 49 kewajiban yang belum ditinjau, 4 tenggat yang sudah lewat, dan tenggat berikutnya pada 10 September 2026.",
+      meta: "OJK · Diterima 14 Agustus 2026",
+      title: "POJK 40 Tahun 2024: Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+      replaces:
+        "Menggantikan POJK 10/POJK.05/2022. Penggantian menyeluruh rezim LPBBTI (P2P lending), dianalisis terhadap 18 dokumen perusahaan.",
+      lines: [
+        { text: "49 kewajiban belum Anda tinjau" },
+        { text: "4 tenggat sudah lewat", tone: "gap" },
+        { text: "Tenggat berikutnya 10 September 2026" },
+      ],
+    },
+    obligation: {
+      alt: "Panel rincian satu kewajiban di Tuntas: kewajiban nomor 4 dari POJK 40 Tahun 2024 mewajibkan Penyelenggara memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja. Tuntas menyimpulkan kewajiban ini belum dipenuhi, menyebut dokumen perusahaan yang menjadi dasarnya, menuliskan yang perlu dilakukan perusahaan, dan menyatakan tenggatnya. Perusahaannya fiktif; regulasinya asli.",
       tag: "Ilustrasi",
       mark: "Tuntas",
-      institution: "PT Benderang Dana Teknologi — fiktif",
-      title: "Register kewajiban — POJK 40 Tahun 2024",
-      docMeta: "Draf · regulasi asli, perusahaan fiktif, 18 dokumen",
-      finding: {
-        id: "No. 45",
-        severity: "Terpenuhi sebagian",
-        tone: "neutral",
-        title:
-          "Anggota Direksi dan anggota Dewan Komisaris wajib memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi",
-        meta: "Ps. 51 (1) · Perlu tindakan dari Anda",
+      no: "Kewajiban no. 4",
+      chip: "Perlu tindakan dari Anda",
+      chipTone: "gap",
+      label: "Kewajiban (peraturan baru)",
+      text: "Penyelenggara wajib memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi di bidang teknologi finansial yang terdaftar di Otoritas Jasa Keuangan.",
+      cite: "POJK 40/2024 · Ps. 51 (1)",
+      oldLabel: "Aturan lama (POJK 10/2022, dicabut)",
+      oldText: "Berubah — kewajiban ini sudah ada, isinya berubah. Rumusan lama membebankan kewajiban langsung kepada tiap pengurus; rumusan baru menempatkan Penyelenggara sebagai pihak yang wajib memastikan.",
+      oldCite: "POJK 10/2022 · Ps. 16 (1)",
+      conclusion: {
+        tone: "gap",
+        title: "Belum dipenuhi.",
+        basisLabel: "Dasar kesimpulan",
+        basis: [
+          "Memo SDM Sertifikasi (2025) mencantumkan masa berlaku sertifikat Komisaris Utama dan Komisaris Independen sampai 22 Agustus 2025 dan Direktur Teknologi sampai 9 Maret 2026; tidak ada dokumen yang diserahkan yang membuktikan perpanjangan setelah tanggal-tanggal tersebut.",
+          "Register Kepatuhan (2025) baris R-06 sendiri menandai status kewajiban ini sebagai Sebagian.",
+          "Kesenjangan bukti perpanjangan bersifat terbukti dari dokumen internal, bukan sekadar ketiadaan informasi.",
+        ],
+        docsLabel: "Dokumen perusahaan yang diperiksa untuk kesimpulan ini:",
+        docs: [
+          "Memo SDM Sertifikasi (2025)",
+          "Register Kepatuhan (2025)",
+          "Struktur Organisasi (2026)",
+        ],
       },
-      body: [
+      action: {
+        label: "Yang perlu dilakukan perusahaan",
+        text: "Memutakhirkan memo status sertifikasi, menyelesaikan perpanjangan yang tertunda, dan menetapkan pemantauan masa berlaku dalam kalender kepatuhan dengan pengingat sebelum jatuh tempo.",
+        unit: "Usulan unit pelaksana: Divisi SDM & Umum dengan pemantauan Divisi Kepatuhan & Legal (perusahaan yang menentukan — usulan ini terbuka didiskusikan).",
+      },
+      deadline: {
+        label: "Tenggat",
+        text: "Segera; sertifikat Komisaris Utama dan Komisaris Independen tercatat berakhir 22 Agustus 2025 dan Direktur Teknologi 9 Maret 2026.",
+      },
+    },
+    register: {
+      alt: "Register kewajiban di Tuntas: tiga kewajiban dari BAB VI POJK 40 Tahun 2024, masing-masing dengan nomor, rumusan kewajibannya, pasalnya, dan satu keterangan tindakan — dua bertanda perlu tindakan dari Anda, satu bertanda tidak berlaku.",
+      columns: {
+        no: "No.",
+        obligation: "Kewajiban (peraturan baru)",
+        article: "Pasal",
+        action: "Tindakan",
+      },
+      chapter: { title: "BAB VI — SUMBER DAYA MANUSIA", count: "3 kewajiban" },
+      rows: [
         {
-          label: "Yang diwajibkan regulasi",
-          text: "Setiap anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja yang masih berlaku dari lembaga sertifikasi profesi di bidang teknologi finansial.",
+          no: "4",
+          obligation:
+            "Penyelenggara wajib memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi di bidang teknologi finansial yang terdaftar di Otoritas Jasa Keuangan.",
+          article: "Ps. 51 (1)",
+          action: "Perlu tindakan dari Anda",
+          tone: "gap",
         },
         {
-          label: "Yang ditunjukkan dokumen Anda",
-          text: "SOP kompetensi mencakup Direksi dan menyebut lembaga sertifikasinya. Tidak ada dokumen yang mencakup Dewan Komisaris, dan tidak ada sertifikat terlampir untuk ketiga anggotanya.",
-          secondary: true,
+          no: "5",
+          obligation:
+            "Penyelenggara wajib memastikan pejabat 1 (satu) tingkat di bawah Direksi memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi di bidang teknologi finansial yang terdaftar di Otoritas Jasa Keuangan.",
+          article: "Ps. 51 (1)",
+          action: "Perlu tindakan dari Anda",
+          tone: "gap",
         },
         {
-          label: "Yang diperlukan Tuntas",
-          text: "Sertifikat ketiga anggota Dewan Komisaris, atau klausul yang memperluas kewajiban itu kepada mereka. Sampai itu ada, kewajiban ini baru terpenuhi sebagian — Tuntas tidak menyimpulkan di atas dokumen yang belum dilihatnya.",
-        },
-        {
-          label: "Tinjauan Anda",
-          text: "Belum ditinjau.",
+          no: "6",
+          obligation:
+            "Anggota Direksi yang merupakan warga negara asing wajib memiliki sertifikasi Bahasa Indonesia paling lambat 1 tahun sejak tanggal persetujuan sebagai anggota Direksi oleh Otoritas Jasa Keuangan.",
+          article: "Ps. 51 (2)",
+          action: "Tidak berlaku",
+          tone: "na",
         },
       ],
-      pageLine: "Apa yang berubah · 45 / 49",
+      note: "Tuntas adalah alat bantu analisis, bukan nasihat hukum.",
+    },
+    memo: {
+      alt: "Memorandum yang disusun Tuntas untuk Direksi dan Dewan Komisaris perusahaan fiktif, tertanggal 14 Agustus 2026, mengenai dampak POJK 40 Tahun 2024 yang mencabut POJK 10/POJK.05/2022.",
+      title: "MEMORANDUM",
+      head: [
+        { label: "Kepada", value: "Direksi dan Dewan Komisaris" },
+        { label: "Dari", value: "Fungsi Kepatuhan" },
+        { label: "Tanggal", value: "14 Agustus 2026" },
+        {
+          label: "Perihal",
+          value:
+            "Ringkasan awal hasil analisis dampak POJK 40 Tahun 2024, yang mencabut POJK 10/POJK.05/2022, terhadap kewajiban regulasi PT Benderang Dana Teknologi selaku Penyelenggara LPBBTI konvensional berizin.",
+        },
+      ],
+      body: [
+        {
+          lead: "Identitas regulasi.",
+          text: "POJK 40 Tahun 2024 berlaku sejak diundangkan pada 27 Desember 2024 dan mencabut POJK 10/POJK.05/2022 melalui Pasal 236; peraturan yang dicabut dirujuk semata-mata sebagai pembanding.",
+        },
+        {
+          lead: "Hasil analisis.",
+          text: "Analisis bertanggal 14 Agustus 2026 mencakup 50 baris kewajiban: 18 kesenjangan yang terbukti, 13 kewajiban yang baru terpenuhi sebagian, 15 kewajiban yang belum dapat dinilai karena bukti belum memadai, 1 kewajiban yang telah didukung bukti, 1 pertentangan bukti, dan 2 ketentuan yang tidak berlaku bagi Perseroan.",
+        },
+      ],
+      footnote:
+        "Disusun oleh Tuntas untuk Direksi dan Dewan Komisaris. Draf — ditelaah, disunting, dan diputuskan oleh fungsi kepatuhan Anda.",
     },
   },
   problem: {
@@ -183,33 +265,6 @@ export const ID: TuntasContent = {
   trace: {
     heading: "Tidak ada kesimpulan tanpa pasal dan dokumennya.",
     body: "Setiap kesimpulan tetap terhubung pada ketentuan yang mendasarinya, dokumen perusahaan tempat ia dibaca, dan penelaah yang menerimanya. Bila dokumen tidak menjawab, Tuntas mengatakannya dan meminta — ia tidak menebak, dan ia tidak memihak di antara dua dokumen Anda sendiri.",
-    chain: [
-      {
-        label: "Kewajiban dalam regulasi baru",
-        text: "Perusahaan wajib memiliki kebijakan tertulis mengenai penanganan pengaduan pengguna, yang ditinjau paling sedikit setahun sekali.",
-        meta: "POJK 40/2024, Ps. 62 (1)",
-      },
-      {
-        label: "Yang ditunjukkan dokumen",
-        text: "SOP penanganan pengaduan ada dan menyebut penanggung jawabnya. Tidak ada siklus peninjauan yang tercatat.",
-        meta: "Sumber: SOP Penanganan Pengaduan, §4",
-      },
-      {
-        label: "Kesimpulan",
-        text: "Terpenuhi sebagian — kebijakannya ada; peninjauan tahunannya belum terbukti.",
-        meta: "Perlu tindakan dari Anda",
-        accent: true,
-      },
-      {
-        label: "Apa yang diubah, di mana",
-        text: "Tambahkan siklus peninjauan tahunan beserta penanggung jawabnya pada §4 SOP penanganan pengaduan.",
-      },
-      {
-        label: "Tinjauan Anda",
-        text: "Belum ditinjau. Tidak ada yang selesai hanya karena diklik; statusnya bergerak mengikuti bukti.",
-      },
-    ],
-    caption: "Contoh ilustratif.",
     labelsHeading: "Lima kesimpulan, tidak ada yang keenam.",
     labels: [
       {
@@ -236,54 +291,10 @@ export const ID: TuntasContent = {
   },
   deliverables: {
     heading: "Yang Anda terima.",
-    actions: {
-      title: "Pusat tindak lanjut",
-      tag: "Ilustrasi",
-      columns: {
-        when: "Tenggat",
-        action: "Apa yang harus diubah, dan di mana",
-        owner: "Penanggung jawab",
-        state: "Status",
-      },
-      rows: [
-        {
-          when: "Sudah lewat",
-          action: "Perluas klausul sertifikasi kompetensi kepada Dewan Komisaris — SOP kompetensi §2",
-          owner: "Human Capital",
-          state: "Terbuka",
-        },
-        {
-          when: "10 Sep 2026",
-          action: "Masukkan laporan bulanan kepada OJK ke kalender pelaporan — SOP pelaporan §7",
-          owner: "Keuangan",
-          state: "Sedang direvisi",
-        },
-        {
-          when: "31 Des 2026",
-          action: "Tambahkan siklus peninjauan tahunan pada SOP penanganan pengaduan — §4",
-          owner: "Operasional",
-          state: "Menunggu telaah",
-        },
-      ],
-    },
-    report: {
-      title: "Memorandum untuk Direksi dan Dewan Komisaris",
-      sections: [
-        "Regulasi apa ini, dan apa yang dicabutnya",
-        "Apa yang berubah, dan apa artinya bagi perusahaan ini",
-        "Kewajiban yang belum dipenuhi dan yang terpenuhi sebagian",
-        "Apa yang belum dapat dinilai, dan apa yang diperlukan untuk menilainya",
-        "Tenggat, yang sudah lewat lebih dulu",
-        "Apa yang harus diubah, pada dokumen mana, dan siapa penanggung jawabnya",
-      ],
-      signoff: {
-        heading: "Kedudukan",
-        rows: [
-          { role: "Disusun oleh", state: "Tuntas — draf" },
-          { role: "Ditelaah oleh", state: "Petugas kepatuhan Anda" },
-          { role: "Diputuskan oleh", state: "Fungsi kepatuhan Anda" },
-        ],
-      },
+    body: "Dua layar yang sama dengan yang dipakai tim Anda: perkaranya, dan memo untuk Direksi yang dapat disunting lalu dikirim.",
+    captions: {
+      regulation: "Layar pembuka satu perkara.",
+      memo: "Memo Direksi, dapat disunting, diunduh sebagai Word atau dicetak sebagai PDF.",
     },
   },
   packages: {

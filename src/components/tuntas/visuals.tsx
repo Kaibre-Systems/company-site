@@ -16,24 +16,20 @@ import {
   Stamp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type {
-  ChainNodeContent,
-  TuntasContent,
-  TuntasIcon,
-} from "@/content/tuntas/types";
-import { PulseDot } from "@/components/visuals";
-import { FindingDocument, ReportContents } from "@/components/visuals/document";
+import type { TuntasContent, TuntasIcon } from "@/content/tuntas/types";
 
 /* ==========================================================================
-   Regulatory-change visual vocabulary
+   The page's own diagram vocabulary
    --------------------------------------------------------------------------
-   Everything here draws a piece of the work itself — one obligation from the
-   register, the chain from a provision to a conclusion, the action centre,
-   the memo to the Board — rather than a generic interface rectangle. Same grammar as the rest of the site:
-   thin rules, small nodes, one accent, tokens only. Content always comes
-   from the locale dictionaries, so every illustration localises with the
-   page, and anything with figures carries the dictionary's "Illustrative"
-   tag.
+   What is left here is the marketing page's furniture — the reads/produces
+   lists, the stages, the before/after — drawn in the same grammar as the
+   rest of the site: thin rules, small nodes, tokens only, copy always from
+   the locale dictionaries.
+
+   The product's *screens* are not here. They live in `screens.tsx`, and they
+   are reproductions rather than diagrams: the same blocks, labels and
+   sentences the application shows. Anything that illustrates the work should
+   be built there, from the application, rather than invented here.
    ========================================================================== */
 
 /** Dictionary icon keys → lucide marks, kept in one place so the content
@@ -59,26 +55,6 @@ const ICONS: Record<TuntasIcon, ComponentType<{ className?: string }>> = {
   review: FileCheck2,
   conclude: Stamp,
 };
-
-/* ==========================================================================
-   DocumentPanel — one page of the actual work product
-   --------------------------------------------------------------------------
-   The hero visual is one obligation from the register, for an obviously
-   fictional Indonesian company: paper, a document header, and the
-   requirement → what the documents show → what is still needed → reviewer
-   record. It shows what Tuntas produces rather than a dashboard about it.
-   The corner tag is the only illustrative marker; the accessible label
-   states the fiction outright. Secondary rows drop out below the sm
-   breakpoint so a phone reads three short rows, not four.
-   ========================================================================== */
-
-export function DocumentPanel({
-  panel,
-}: {
-  panel: TuntasContent["hero"]["panel"];
-}) {
-  return <FindingDocument doc={panel} />;
-}
 
 /* ==========================================================================
    IconList — reads / produces
@@ -172,167 +148,6 @@ export function StageGrid({
         );
       })}
     </ol>
-  );
-}
-
-/* ==========================================================================
-   TraceChain — gap analysis, one worked example
-   --------------------------------------------------------------------------
-   Requirement → evidence → gap → remediation → reviewer, joined by one
-   continuous rail. The rail is the point: nothing on it stands alone.
-   ========================================================================== */
-
-export function TraceChain({
-  nodes,
-  caption,
-  className,
-}: {
-  nodes: readonly ChainNodeContent[];
-  caption: string;
-  className?: string;
-}) {
-  return (
-    <figure className={cn("max-w-[36rem]", className)}>
-      <ol>
-        {nodes.map((node, i) => {
-          const last = i === nodes.length - 1;
-          return (
-            <li key={node.label} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4">
-              <div aria-hidden className="flex flex-col items-center">
-                <span className="flex h-6 items-center">
-                  {node.accent ? (
-                    <PulseDot tone="accent" size="md" halo />
-                  ) : (
-                    <span className="size-2 rounded-full bg-border-strong" />
-                  )}
-                </span>
-                {!last ? <span className="w-px flex-1 bg-border-strong" /> : null}
-              </div>
-
-              <div className={cn(!last && "pb-4 sm:pb-5")}>
-                <p className="text-small text-fg-subtle">{node.label}</p>
-                <p className="mt-1 text-body text-fg">{node.text}</p>
-                {/* Mono reference line. Quiet by default — the accented node
-                    halo already marks where the meaning sits, and a page of
-                    orange metadata reads as noise. */}
-                <p
-                  className={cn(
-                    "mt-1.5 font-mono text-label tracking-[0.02em]",
-                    node.accent ? "text-accent" : "text-fg-subtle",
-                    !node.meta && "hidden",
-                  )}
-                >
-                  {node.meta}
-                </p>
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-      <figcaption className="mt-4 border-t border-border pt-3.5 text-fine text-fg-subtle">
-        {caption}
-      </figcaption>
-    </figure>
-  );
-}
-
-/* ==========================================================================
-   ActionTable — the action centre, as the officer reads it
-   --------------------------------------------------------------------------
-   Deadline | what has to change and where | owner | state. Three
-   illustrative rows, the passed deadline first, because that is the order
-   the product itself puts them in. A real table from `sm` up; stacked cards
-   below it, because four columns do not survive 320px.
-   ========================================================================== */
-
-export function ActionTable({
-  content,
-}: {
-  content: TuntasContent["deliverables"]["actions"];
-}) {
-  const { columns, rows, title, tag } = content;
-
-  return (
-    <div>
-      {/* Flat: the deliverable's own name, one small illustrative marker,
-          then the table. No "extract", no caption row, no footer. */}
-      <h3 className="flex items-baseline gap-3">
-        <span className="text-heading-2 text-fg">{title}</span>
-        <span className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-          {tag}
-        </span>
-      </h3>
-      <div className="mt-4 overflow-hidden rounded-card border border-border bg-surface-raised shadow-[var(--shadow-card)]">
-        {/* Table layout from `sm` up — the action centre's own columns:
-            deadline, what has to change and where, owner, state. */}
-        <div className="hidden sm:block">
-          <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)_minmax(0,0.8fr)_auto] gap-x-5 border-b border-border px-5 py-3">
-            {[columns.when, columns.action, columns.owner, columns.state].map(
-              (col) => (
-                <span
-                  key={col}
-                  className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle"
-                >
-                  {col}
-                </span>
-              ),
-            )}
-          </div>
-          {rows.map((row) => (
-            <div
-              key={row.when}
-              className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)_minmax(0,0.8fr)_auto] items-baseline gap-x-5 border-b border-border px-5 py-3.5 last:border-b-0"
-            >
-              <span className="font-mono text-label text-fg">{row.when}</span>
-              <span className="text-small text-fg-muted">{row.action}</span>
-              <span className="text-small text-fg-muted">{row.owner}</span>
-              <span className="text-small text-fg">{row.state}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Stacked below `sm`: the deadline leads, owner and state share a
-            line. */}
-        <ul className="sm:hidden">
-          {rows.map((row) => (
-            <li
-              key={row.when}
-              className="space-y-1.5 border-b border-border p-4 last:border-b-0"
-            >
-              <p className="font-mono text-label text-fg">{row.when}</p>
-              <p className="text-small text-fg-muted">{row.action}</p>
-              <p className="text-fine text-fg-subtle">
-                {row.owner} {"·"} {row.state}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-/* ==========================================================================
-   ReportPreview — the deliverable, as a document
-   --------------------------------------------------------------------------
-   A table of contents rather than a fake page: the sections the memo to the
-   Board carries, in order, ending where the decision sits.
-   ========================================================================== */
-
-export function ReportPreview({
-  content,
-}: {
-  content: TuntasContent["deliverables"]["report"];
-}) {
-  /* The document explains itself: its own title, its contents, and — because
-     the memo's standing is the whole question — the rows that put "your
-     officer decides" inside the deliverable rather than beside it. */
-  return (
-    <ReportContents
-      title={content.title}
-      sections={content.sections}
-      signoff={content.signoff}
-    />
   );
 }
 

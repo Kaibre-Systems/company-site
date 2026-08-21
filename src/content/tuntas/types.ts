@@ -28,17 +28,6 @@ export type TuntasIcon =
   | "review"
   | "conclude";
 
-export interface ChainNodeContent {
-  /** What kind of thing this node is — "Regulatory requirement", "Gap", … */
-  label: string;
-  /** The illustrative content itself. */
-  text: string;
-  /** A supporting reference line, set in the mono face. */
-  meta?: string;
-  /** The node the accent lands on — where the meaning sits. */
-  accent?: boolean;
-}
-
 export interface TuntasContent {
   locale: TuntasLocale;
   meta: {
@@ -52,6 +41,8 @@ export interface TuntasContent {
     home: string;
     /** Visible label on the quiet link back to the parent company. */
     kaibreHome: string;
+    /** What the product's own header puts beside the wordmark. */
+    tagline: string;
     marketLabel: string;
     toggle: { navLabel: string; en: string; id: string };
     cta: { label: string; href: string };
@@ -63,42 +54,82 @@ export interface TuntasContent {
     body: string;
     cta: { label: string; href: string };
     secondary: { label: string; href: string };
-    /** The hero visual: one obligation from the register, exactly as the
-     *  product sets it — a real regulation read against an obviously
-     *  fictional company's documents, headed by its conclusion, then
-     *  requirement → what the documents show → what is still needed →
-     *  reviewer. `secondary` items hide on the narrowest screens; the corner
-     *  tag is the only illustrative marker. */
-    panel: {
+    /** The line the product itself puts at the foot of every screen. */
+    note: string;
+  };
+
+  /**
+   * Reproductions of the product's own screens.
+   *
+   * Every string here is transcribed from the Tuntas application and the
+   * analysis it produced for the public demo — a real OJK regulation read
+   * against an openly fictional company's documents. The English dictionary
+   * translates that text and changes nothing else: no summarising, no
+   * marketing register, no invented figures. The screens are the argument,
+   * and they are already the version the product's readers understood.
+   */
+  screens: {
+    /** The screen a matter opens on. */
+    regulation: {
       alt: string;
-      tag: string;
-      /** The product name in the sheet's footer — the document says whose
-       *  it is, so the component never hardcodes a brand. */
-      mark: string;
-      institution: string;
+      /** Authority and receipt date, in the mono meta line. */
+      meta: string;
       title: string;
-      /** Document meta line — version and standing, in the report's voice. */
-      docMeta: string;
-      finding: {
-        id: string;
-        severity: string;
-        /** See `FindingDocumentContent` — Tuntas conclusions are neutral. */
-        tone?: "accent" | "neutral";
+      replaces: string;
+      /** The three lines that decide whether today is the day. */
+      lines: readonly { text: string; tone?: "gap" }[];
+    };
+    /** One obligation, opened: the detail panel. */
+    obligation: {
+      alt: string;
+      /** The illustrative marker, in the panel's own footer. */
+      tag: string;
+      mark: string;
+      no: string;
+      chip: string;
+      chipTone: "gap" | "supported" | "partial" | "info" | "na";
+      label: string;
+      text: string;
+      cite: string;
+      oldLabel: string;
+      oldText: string;
+      oldCite: string;
+      conclusion: {
+        tone: "gap" | "supported" | "partial" | "info" | "na";
         title: string;
-        /** Category · points line, in the report's own scoring vocabulary. */
-        meta: string;
+        basisLabel: string;
+        basis: readonly string[];
+        docsLabel: string;
+        docs: readonly string[];
       };
-      /** Run-in paragraphs, exactly as the report writes a finding:
-       *  "What we observed: …". `secondary` items fold away on phones. */
-      body: readonly {
-        label: string;
-        text: string;
-        secondary?: boolean;
+      action: { label: string; text: string; unit: string };
+      deadline: { label: string; text: string };
+    };
+    /** A few rows of the register, grouped by chapter as the product groups
+     *  them. */
+    register: {
+      alt: string;
+      columns: { no: string; obligation: string; article: string; action: string };
+      chapter: { title: string; count: string };
+      rows: readonly {
+        no: string;
+        obligation: string;
+        article: string;
+        action: string;
+        tone: "gap" | "supported" | "partial" | "info" | "na";
       }[];
-      /** The document's own footer — section name and page position. */
-      pageLine: string;
+      note: string;
+    };
+    /** The memorandum to the Board, as it is printed. */
+    memo: {
+      alt: string;
+      title: string;
+      head: readonly { label: string; value: string }[];
+      body: readonly { lead: string; text: string }[];
+      footnote: string;
     };
   };
+
   /** The pain, before any mechanism: the work as the officer does it today,
    *  and the three facts that make it expensive to get wrong. */
   problem: {
@@ -129,37 +160,16 @@ export interface TuntasContent {
   trace: {
     heading: string;
     body: string;
-    chain: readonly ChainNodeContent[];
-    caption: string;
     labelsHeading: string;
     labels: readonly { code: string; note: string }[];
   };
   deliverables: {
     heading: string;
-    /** The action centre: what remains, who acts next, and by when. */
-    actions: {
-      title: string;
-      /** Small inline "Illustrative" marker beside the title. */
-      tag: string;
-      columns: { when: string; action: string; owner: string; state: string };
-      rows: readonly {
-        when: string;
-        action: string;
-        owner: string;
-        state: string;
-      }[];
-    };
-    report: {
-      title: string;
-      sections: readonly string[];
-      /** Standing rows, in the document's own control grammar: the draft is
-       *  Tuntas's, the review and the decision are the customer's. */
-      signoff: {
-        heading: string;
-        rows: readonly { role: string; state: string }[];
-      };
-    };
+    body: string;
+    /** Caption under each of the two reproduced screens. */
+    captions: { regulation: string; memo: string };
   };
+
   /** The two commercial packages, described by what they do rather than by
    *  what they cost — prices are a conversation, never a web page. */
   packages: {

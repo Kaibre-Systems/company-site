@@ -46,6 +46,7 @@ export const EN: TuntasContent = {
     skip: "Skip to content",
     home: "Tuntas — home",
     kaibreHome: "Kaibre",
+    tagline: "Regulatory change",
     marketLabel: "Indonesia",
     toggle: { navLabel: "Language", en: "English", id: "Bahasa Indonesia" },
     cta: { label: "Walk through an example", href: "#contact" },
@@ -55,41 +56,122 @@ export const EN: TuntasContent = {
     body: "For Compliance and Legal at Indonesian financial institutions. You name the regulation and upload the documents you have. Tuntas returns the complete picture — obligation by obligation, with every conclusion pointing to the article and the company document it rests on.",
     cta: { label: "Walk through an example", href: "#contact" },
     secondary: { label: "How the work moves", href: "#workflow" },
-    panel: {
-      alt: "Illustrative obligation from a Tuntas register: a real OJK regulation analysed against a fictional company's documents. Obligation 45 requires directors and commissioners to hold competency certification; the company's documents cover the directors only, so the obligation is partly met, the missing document is requested by name, and the reviewer has not yet decided.",
+    note: "Tuntas is an analysis tool, not legal advice.",
+  },
+  screens: {
+    regulation: {
+      alt: "The screen a matter opens on in Tuntas: POJK 40 of 2024, received from OJK on 14 August 2026, replacing POJK 10/POJK.05/2022, analysed against 18 documents belonging to a fictional company. 49 obligations are unreviewed, 4 deadlines have already passed, and the next one falls on 10 September 2026.",
+      meta: "OJK · Received 14 August 2026",
+      title: "POJK 40 of 2024: Layanan Pendanaan Bersama Berbasis Teknologi Informasi",
+      replaces:
+        "Replaces POJK 10/POJK.05/2022. A wholesale replacement of the LPBBTI (peer-to-peer lending) regime, analysed against 18 company documents.",
+      lines: [
+        { text: "49 obligations you have not reviewed" },
+        { text: "4 deadlines have already passed", tone: "gap" },
+        { text: "Next deadline 10 September 2026" },
+      ],
+    },
+    obligation: {
+      alt: "One obligation opened in Tuntas: obligation 4 of POJK 40 of 2024 requires the company to ensure that members of its Board of Directors and Board of Commissioners hold a competency certificate. Tuntas concludes the obligation is not met, names the company documents the conclusion rests on, states what the company has to do, and gives the deadline. The company is fictional; the regulation is real.",
       tag: "Illustrative",
       mark: "Tuntas",
-      institution: "PT Benderang Dana Teknologi — fictional",
-      title: "Obligation register — POJK 40 of 2024",
-      docMeta: "Draft · a real regulation, a fictional company, 18 documents",
-      finding: {
-        id: "No. 45",
-        severity: "Partly met",
-        tone: "neutral",
-        title:
-          "Directors and members of the Board of Commissioners must hold competency certification from a professional certification institution",
-        meta: "Art. 51(1) · action needed from you",
+      no: "Obligation no. 4",
+      chip: "Action needed from you",
+      chipTone: "gap",
+      label: "Obligation (new regulation)",
+      text: "The company must ensure that members of the Board of Directors and members of the Board of Commissioners hold a competency certificate from a professional certification institution in the financial-technology field registered with the Financial Services Authority.",
+      cite: "POJK 40/2024 · Art. 51(1)",
+      oldLabel: "Old rule (POJK 10/2022, revoked)",
+      oldText: "Amended — the obligation already existed, and its content has changed. The old wording placed the duty on each officer individually; the new one places it on the company, which must ensure they hold it.",
+      oldCite: "POJK 10/2022 · Art. 16(1)",
+      conclusion: {
+        tone: "gap",
+        title: "Not met.",
+        basisLabel: "Basis for the conclusion",
+        basis: [
+          "Memo SDM Sertifikasi (2025) records the certificates of the President Commissioner and the Independent Commissioner as valid until 22 August 2025, and the Technology Director's until 9 March 2026; no document supplied evidences a renewal after those dates.",
+          "Register Kepatuhan (2025), row R-06, itself marks this obligation's status as Partial.",
+          "The missing renewal is evidenced by the company's own documents rather than merely absent from them.",
+        ],
+        docsLabel: "Company documents checked for this conclusion:",
+        docs: [
+          "Memo SDM Sertifikasi (2025)",
+          "Register Kepatuhan (2025)",
+          "Struktur Organisasi (2026)",
+        ],
       },
-      body: [
+      action: {
+        label: "What the company has to do",
+        text: "Update the certification status memo, complete the outstanding renewals, and put validity monitoring into the compliance calendar with a reminder before each expiry.",
+        unit: "Suggested unit: Divisi SDM & Umum, monitored by Divisi Kepatuhan & Legal (the company decides — this suggestion is open to discussion).",
+      },
+      deadline: {
+        label: "Deadline",
+        text: "Immediately; the certificates of the President Commissioner and the Independent Commissioner are recorded as expiring on 22 August 2025, and the Technology Director's on 9 March 2026.",
+      },
+    },
+    register: {
+      alt: "The obligation register in Tuntas: three obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — two marked as needing action from you, one marked as not applicable.",
+      columns: {
+        no: "No.",
+        obligation: "Obligation (new regulation)",
+        article: "Article",
+        action: "Action",
+      },
+      chapter: { title: "CHAPTER VI — HUMAN RESOURCES", count: "3 obligations" },
+      rows: [
         {
-          label: "What the regulation requires",
-          text: "Every member of the Board of Directors and the Board of Commissioners holds a valid competency certificate issued by a professional certification institution in the financial-technology field.",
+          no: "4",
+          obligation:
+            "The company must ensure that members of the Board of Directors and members of the Board of Commissioners hold a competency certificate from a professional certification institution in the financial-technology field registered with the Financial Services Authority.",
+          article: "Art. 51(1)",
+          action: "Action needed from you",
+          tone: "gap",
         },
         {
-          label: "What your documents show",
-          text: "The competency SOP covers the Board of Directors and names the certifying institution. No document covers the Board of Commissioners, and no certificates are attached for its three members.",
-          secondary: true,
+          no: "5",
+          obligation:
+            "The company must ensure that officers one level below the Board of Directors hold a competency certificate from a professional certification institution in the financial-technology field registered with the Financial Services Authority.",
+          article: "Art. 51(1)",
+          action: "Action needed from you",
+          tone: "gap",
         },
         {
-          label: "What Tuntas needs",
-          text: "The certificates for the three commissioners, or the clause that extends the requirement to them. Until then the obligation is partly met — Tuntas does not conclude on documents it has not seen.",
-        },
-        {
-          label: "Reviewer",
-          text: "Not yet reviewed.",
+          no: "6",
+          obligation:
+            "A member of the Board of Directors who is a foreign national must hold Indonesian-language certification no later than one year from the date the Financial Services Authority approves the appointment.",
+          article: "Art. 51(2)",
+          action: "Not applicable",
+          tone: "na",
         },
       ],
-      pageLine: "What changed · 45 / 49",
+      note: "Tuntas is an analysis tool, not legal advice.",
+    },
+    memo: {
+      alt: "The memorandum Tuntas prepared for the Board of Directors and Board of Commissioners of a fictional company, dated 14 August 2026, on the impact of POJK 40 of 2024, which revokes POJK 10/POJK.05/2022.",
+      title: "MEMORANDUM",
+      head: [
+        { label: "To", value: "Board of Directors and Board of Commissioners" },
+        { label: "From", value: "Compliance function" },
+        { label: "Date", value: "14 August 2026" },
+        {
+          label: "Subject",
+          value:
+            "Initial summary of the impact of POJK 40 of 2024, which revokes POJK 10/POJK.05/2022, on the regulatory obligations of PT Benderang Dana Teknologi as a licensed conventional LPBBTI operator.",
+        },
+      ],
+      body: [
+        {
+          lead: "The regulation.",
+          text: "POJK 40 of 2024 has been in force since its promulgation on 27 December 2024 and revokes POJK 10/POJK.05/2022 by Article 236; the revoked regulation is referred to solely as a comparison.",
+        },
+        {
+          lead: "What the analysis found.",
+          text: "The analysis dated 14 August 2026 covers 50 obligations: 18 evidenced gaps, 13 obligations only partly met, 15 that cannot be assessed yet because the evidence supplied is insufficient, 1 supported by evidence, 1 contradiction between company documents, and 2 provisions that do not apply to the company.",
+        },
+      ],
+      footnote:
+        "Prepared by Tuntas for the Board of Directors and Board of Commissioners. A draft — reviewed, edited and decided by your compliance function.",
     },
   },
   problem: {
@@ -200,33 +282,6 @@ export const EN: TuntasContent = {
   trace: {
     heading: "No conclusion without its article and its document.",
     body: "Every conclusion stays linked to the provision it rests on, the company document it was read from, and the reviewer who accepted it. Where the documents do not answer, Tuntas says so and asks — it does not guess, and it does not pick a side between two of your own documents.",
-    chain: [
-      {
-        label: "Obligation in the new regulation",
-        text: "The company must hold a written policy on the handling of user complaints, reviewed at least annually.",
-        meta: "POJK 40/2024, Art. 62(1)",
-      },
-      {
-        label: "What the documents show",
-        text: "The complaint-handling SOP exists and names an owner. It records no review cycle.",
-        meta: "Source: SOP Penanganan Pengaduan, §4",
-      },
-      {
-        label: "Conclusion",
-        text: "Partly met — the policy is in place; the annual review is not evidenced.",
-        meta: "Action needed from you",
-        accent: true,
-      },
-      {
-        label: "What to change, where",
-        text: "Add the annual review cycle and its named owner to §4 of the complaint-handling SOP.",
-      },
-      {
-        label: "Reviewer",
-        text: "Not yet reviewed. Nothing closes on a click; the status moves when the evidence does.",
-      },
-    ],
-    caption: "Illustrative example.",
     labelsHeading: "Five conclusions, and no sixth.",
     labels: [
       {
@@ -253,54 +308,10 @@ export const EN: TuntasContent = {
   },
   deliverables: {
     heading: "What you receive.",
-    actions: {
-      title: "Action centre",
-      tag: "Illustrative",
-      columns: {
-        when: "Deadline",
-        action: "What has to change, and where",
-        owner: "Owner",
-        state: "State",
-      },
-      rows: [
-        {
-          when: "Passed",
-          action: "Extend the competency-certification clause to the Board of Commissioners — competency SOP §2",
-          owner: "Human Capital",
-          state: "Open",
-        },
-        {
-          when: "10 Sep 2026",
-          action: "Add the monthly report to OJK to the reporting calendar — reporting SOP §7",
-          owner: "Finance",
-          state: "In revision",
-        },
-        {
-          when: "31 Dec 2026",
-          action: "Add the annual review cycle to the complaint-handling SOP — §4",
-          owner: "Operations",
-          state: "Awaiting review",
-        },
-      ],
-    },
-    report: {
-      title: "Memorandum to the Board of Directors and Board of Commissioners",
-      sections: [
-        "What the regulation is, and what it revokes",
-        "What changed, and what it means for this company",
-        "Obligations not met, and partly met",
-        "What cannot be assessed yet, and what is needed to assess it",
-        "Deadlines, passed ones first",
-        "What has to change, in which document, and who owns it",
-      ],
-      signoff: {
-        heading: "Standing",
-        rows: [
-          { role: "Prepared by", state: "Tuntas — draft" },
-          { role: "Reviewed by", state: "Your compliance officer" },
-          { role: "Decided by", state: "Your compliance function" },
-        ],
-      },
+    body: "The same two screens your team works in: the matter itself, and the memorandum to the Board that you can edit and send.",
+    captions: {
+      regulation: "The screen a matter opens on.",
+      memo: "The Board memo — editable, downloadable as Word, printable as PDF.",
     },
   },
   packages: {

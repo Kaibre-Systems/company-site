@@ -14,15 +14,13 @@ import { TuntasHeader } from "@/components/tuntas/chrome";
 import { TuntasFooter } from "@/components/tuntas/footer";
 import { TuntasContactForm } from "@/components/tuntas/contact-form";
 import { LangSync } from "@/components/tuntas/lang-sync";
+import { FlowCompare, IconList, StageGrid } from "@/components/tuntas/visuals";
 import {
-  ActionTable,
-  DocumentPanel,
-  FlowCompare,
-  IconList,
-  ReportPreview,
-  StageGrid,
-  TraceChain,
-} from "@/components/tuntas/visuals";
+  MemoSheet,
+  ObligationPanel,
+  RegisterStrip,
+  RegulationCard,
+} from "@/components/tuntas/screens";
 import type { TuntasContent } from "@/content/tuntas/types";
 
 /**
@@ -41,10 +39,17 @@ import type { TuntasContent } from "@/content/tuntas/types";
  * product should open under it.
  *
  * `data-theme="tuntas"` on the root is the whole of the visual difference.
- * Every component below is the company site's own, unmodified; the theme
- * re-resolves the semantic tokens against the product's palette and display
- * face, so the page comes out in Tuntas's identity rather than Kaibre's
- * without a single conditional in the tree.
+ * Every layout component below is the company site's own, unmodified; the
+ * theme re-resolves the semantic tokens against the product's palette and
+ * display face, so the page comes out in Tuntas's identity — ink on paper,
+ * no brand colour — rather than Kaibre's, without a conditional in the tree.
+ *
+ * The panels are not illustrations of the product. They are its screens,
+ * rebuilt block for block, carrying the sentences the engine actually wrote
+ * about a real regulation read against the demo's fictional company. The
+ * product's readers understood those screens on sight; a page that
+ * paraphrased them into marketing language would be throwing away the one
+ * version already known to work.
  */
 export function TuntasExperience({ content }: { content: TuntasContent }) {
   const c = content;
@@ -85,7 +90,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
             register so the work product is visible above the fold. */}
         <Section surface="ink" space="flush" className="pb-16 pt-10 sm:pb-24 sm:pt-20">
           <Container>
-            <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-9 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
+            <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-9 sm:gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16">
               <div>
                 <Heading level={1} size="display-1" className="max-w-[26ch]">
                   {c.hero.headline}
@@ -94,25 +99,34 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                   {c.hero.body}
                 </Text>
                 <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
-                  <Button href={c.hero.cta.href}>{c.hero.cta.label}</Button>
+                  {/* No halo anywhere in this theme. The glow is light coming
+                      off an action on a dark ground; on paper the same blur
+                      is a smudge under the button. */}
+                  <Button href={c.hero.cta.href} halo={false}>
+                    {c.hero.cta.label}
+                  </Button>
                   <ArrowLink href={c.hero.secondary.href}>
                     {c.hero.secondary.label}
                   </ArrowLink>
                 </div>
+
+                {/* The product's own footer line, in the product's own words,
+                    where a visitor meets it before anything else. */}
+                <Note className="mt-9">{c.hero.note}</Note>
               </div>
 
-              <div className="relative">
-                {/* One quiet atmospheric moment: a bed of light behind the
-                    sheet, so the paper reads as lit rather than pasted onto
-                    the ink. Decorative only. */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -inset-5 rounded-card bg-accent opacity-[0.12] blur-2xl"
+              {/* One obligation, opened — the product's own panel. It is the
+                  argument: a reader should be able to tell what Tuntas hands
+                  back without reading the copy beside it. */}
+              <VisualFrame
+                label={c.screens.obligation.alt}
+                className="shadow-[var(--shadow-card)]"
+              >
+                <ObligationPanel
+                  content={c.screens.obligation}
+                  clip="max-h-[38rem] lg:max-h-[46rem]"
                 />
-                <VisualFrame label={c.hero.panel.alt} className="relative">
-                  <DocumentPanel panel={c.hero.panel} />
-                </VisualFrame>
-              </div>
+              </VisualFrame>
             </div>
           </Container>
         </Section>
@@ -126,7 +140,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
               <SectionHeader heading={c.problem.heading} body={c.problem.body} />
               <dl className="grid content-start gap-y-6 self-center">
                 {c.problem.facts.map((fact) => (
-                  <div key={fact.title} className="border-l-2 border-accent/50 pl-5">
+                  <div key={fact.title} className="border-l-2 border-border-strong pl-5">
                     <dt className="text-body font-medium text-fg">{fact.title}</dt>
                     <dd className="mt-1.5 max-w-[48ch] text-small text-fg-muted">
                       {fact.note}
@@ -139,7 +153,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
         </Section>
 
         {/* In / out — the concrete inputs and deliverables. */}
-        <Section surface="ember">
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.inOut.heading} />
             <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
@@ -156,49 +170,82 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
         </Section>
 
         {/* The workflow — five stages, icon-led, glanceable. */}
-        <Section surface="ink" id="workflow">
+        <Section surface="coal" id="workflow">
           <Container>
             <SectionHeader heading={c.workflow.heading} />
             <StageGrid stages={c.workflow.stages} />
           </Container>
         </Section>
 
-        {/* The evidence chain and the five conclusions. The discipline the
-            product is actually sold on: nothing concluded that is not traced,
-            and nothing guessed where the documents are silent. */}
-        <Section surface="coal">
+        {/* The register, and the five conclusions it can reach. The
+            discipline the product is actually sold on: nothing concluded that
+            is not traced, and nothing guessed where the documents are
+            silent. */}
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.trace.heading} body={c.trace.body} />
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-9 sm:mt-12 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
-              <TraceChain nodes={c.trace.chain} caption={c.trace.caption} />
-              <div>
-                <Heading level={3} size="heading-1">
-                  {c.trace.labelsHeading}
-                </Heading>
-                <dl className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border">
-                  {c.trace.labels.map((label) => (
-                    <div key={label.code} className="bg-surface-raised p-5">
-                      <dt className="font-mono text-label uppercase tracking-[0.085em] text-accent">
-                        {label.code}
-                      </dt>
-                      <dd className="mt-2 text-small text-fg-muted">{label.note}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
+
+            {/* The register at full width. It is a table of long legal
+                sentences, and the product gives it the whole screen for the
+                same reason: squeezed into half a column, every obligation
+                broke into fifteen lines and stopped being readable. */}
+            <VisualFrame
+              label={c.screens.register.alt}
+              className="mt-8 border-0 bg-transparent sm:mt-12"
+            >
+              <RegisterStrip content={c.screens.register} />
+            </VisualFrame>
+
+            <div className="mt-12 sm:mt-16">
+              <Heading level={3} size="heading-1">
+                {c.trace.labelsHeading}
+              </Heading>
+              <dl className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+                {c.trace.labels.map((label) => (
+                  <div key={label.code} className="bg-surface-raised p-5">
+                    <dt className="font-mono text-label uppercase tracking-[0.085em] text-fg">
+                      {label.code}
+                    </dt>
+                    <dd className="mt-2 text-small text-fg-muted">{label.note}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </Container>
         </Section>
 
-        {/* Deliverables — the action centre and the memo, on paper. The one
-            light section on the page, deliberately: the work product sits on
-            a desk, and this is the sheet the product itself renders. */}
+        {/* Deliverables — the two screens themselves, on the wash, so each
+            one reads as a sheet lying on a desk rather than as part of the
+            page. */}
         <Section surface="paper">
           <Container>
-            <SectionHeader heading={c.deliverables.heading} />
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-14">
-              <ActionTable content={c.deliverables.actions} />
-              <ReportPreview content={c.deliverables.report} />
+            <SectionHeader
+              heading={c.deliverables.heading}
+              body={c.deliverables.body}
+            />
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-2 lg:gap-12">
+              <figure>
+                <VisualFrame
+                  label={c.screens.regulation.alt}
+                  className="border-0 bg-transparent shadow-[var(--shadow-card)]"
+                >
+                  <RegulationCard content={c.screens.regulation} />
+                </VisualFrame>
+                <figcaption className="mt-3 text-fine text-fg-subtle">
+                  {c.deliverables.captions.regulation}
+                </figcaption>
+              </figure>
+              <figure>
+                <VisualFrame
+                  label={c.screens.memo.alt}
+                  className="border-0 bg-transparent"
+                >
+                  <MemoSheet content={c.screens.memo} />
+                </VisualFrame>
+                <figcaption className="mt-3 text-fine text-fg-subtle">
+                  {c.deliverables.captions.memo}
+                </figcaption>
+              </figure>
             </div>
           </Container>
         </Section>
@@ -242,7 +289,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
         </Section>
 
         {/* Who it serves — banks, fintech and multifinance, insurers. */}
-        <Section surface="ember">
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.useCases.heading} />
             <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-8">
@@ -268,7 +315,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
 
         {/* What the deployment includes — the corpus and its standing, the
             documents, the record, the language. */}
-        <Section surface="ink">
+        <Section surface="coal">
           <Container>
             <SectionHeader heading={c.indonesia.heading} />
             <dl className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:mt-12 sm:grid-cols-2">
@@ -283,8 +330,9 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
           </Container>
         </Section>
 
-        {/* Contact — the one conversion path. */}
-        <Section surface="coal" id="contact">
+        {/* Contact — the one conversion path, and the only dark field on the
+            page: `#1c231f`, the ink of the mark, at full size. */}
+        <Section surface="ember" id="contact">
           <Container>
             <div className="grid grid-cols-[minmax(0,1fr)] gap-8 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:items-start md:gap-12 lg:gap-16">
               <div>

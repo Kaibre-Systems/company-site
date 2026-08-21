@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { MouseEvent } from "react";
-import { TuntasMark, TuntasWordmark } from "@/components/brand/tuntas";
+import { TuntasWordmark } from "@/components/brand/tuntas";
 import { IndonesiaFlag } from "@/components/visuals";
 import { PATH_BY_LOCALE } from "@/content/tuntas/locale";
 import type { TuntasContent } from "@/content/tuntas/types";
@@ -32,26 +32,26 @@ export function TuntasHeader({ content }: { content: TuntasContent }) {
       className="sticky top-0 z-50 border-b border-border bg-surface text-fg"
     >
       <div className="mx-auto flex h-16 max-w-shell items-center gap-4 px-5 sm:px-6 lg:px-8">
-        {/* The lockup, at the geometry the identity specifies: the mark at
-            1.4x cap height, half a cap height of gap, the wordmark centred on
-            it. Drawn as two paths rather than assembled by hand. */}
+        {/* The wordmark alone, exactly as the product's own header carries
+            it. The square mark exists for a browser tab and a home screen —
+            places a wordmark cannot go — and a nav bar is not one of them. */}
         <Link
           href={PATH_BY_LOCALE[locale]}
           aria-label={chrome.home}
-          className="inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-control"
+          className="inline-flex min-h-11 shrink-0 items-center rounded-control"
         >
-          <TuntasMark aria-hidden className="size-6 shrink-0 text-fg" />
           <TuntasWordmark aria-hidden className="h-[13px] w-auto text-fg" />
         </Link>
 
-        {/* The market designation, on the wordmark's own centreline. The flag
-            is drawn as CSS bands rather than the 🇮🇩 emoji, which Windows
-            renders as the letters "ID"; the visible word "Indonesia" is the
-            accessible name, so the mark itself stays decorative. Hidden on
-            the narrowest screens — the lockup and toggle already fill
-            320px. */}
+        {/* What the product's header puts beside the wordmark: what this is.
+            Then the market, with the flag drawn as CSS bands rather than the
+            🇮🇩 emoji, which Windows renders as the letters "ID" — the visible
+            word "Indonesia" is the accessible name, so the mark itself stays
+            decorative. Hidden on the narrowest screens, where the wordmark
+            and the toggle already fill 320px. */}
         <span className="hidden items-center gap-3 sm:flex">
-          <span aria-hidden className="h-6 w-px shrink-0 bg-border-strong" />
+          <span className="text-small text-fg-subtle">{chrome.tagline}</span>
+          <span aria-hidden className="h-4 w-px shrink-0 bg-border" />
           <span className="flex items-center gap-1.5 leading-none text-small text-fg-subtle">
             <IndonesiaFlag />
             {chrome.marketLabel}

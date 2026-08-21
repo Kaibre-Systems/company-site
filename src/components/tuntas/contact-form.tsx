@@ -238,15 +238,10 @@ export function TuntasContactForm({
         <input id="sp-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
+      {/* No halo. The glow was designed for Kaibre's ink surfaces, where it
+          reads as light coming off the action; Tuntas is a document, and the
+          product's own buttons do not glow. */}
       <div className="relative inline-flex w-full sm:w-auto">
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -inset-2 rounded-control bg-accent blur-lg motion-safe:animate-[glowButton_4.5s_ease-in-out_infinite]"
-        />
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-control motion-safe:animate-[auraRing_4.5s_cubic-bezier(0.16,1,0.3,1)_infinite]"
-        />
         <button
           type="submit"
           disabled={sending}

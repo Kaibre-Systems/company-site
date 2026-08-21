@@ -73,6 +73,18 @@ const INK_FNS = `
       if (n.nodeType !== 1) return;
       const cs = getComputedStyle(n);
       if (cs.display === "none" || cs.visibility === "hidden" || cs.opacity === "0") return;
+      // Ink that is clipped away is not painted, so it is not ink. An element
+      // with hidden overflow bounds everything inside it: its own border box
+      // is the furthest its subtree can reach, and descending past it reports
+      // geometry the visitor never sees. (A deliberately cut-off panel — a
+      // screenshot of a longer document — otherwise measured its full height
+      // and read as one section overlapping the next by 500px.)
+      const clipped = /hidden|clip/.test(cs.overflow + " " + cs.overflowY);
+      if (clipped) {
+        const box = n.getBoundingClientRect();
+        if (box.height > 0) take(which === "bottom" ? box.bottom + scrollY : box.top + scrollY);
+        return;
+      }
       if (n.tagName === "svg") {
         try {
           const bb = n.getBBox();

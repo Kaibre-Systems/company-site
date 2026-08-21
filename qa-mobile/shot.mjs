@@ -1,0 +1,10 @@
+import { chromium } from "@playwright/test";
+const [url, sel, out, w = "1440", h = "1000"] = process.argv.slice(2);
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: +w, height: +h }, reducedMotion: "reduce" });
+await p.goto(url, { waitUntil: "networkidle" });
+await p.waitForTimeout(300);
+if (sel === "-") await p.screenshot({ path: out });
+else await p.locator(sel).first().screenshot({ path: out });
+await b.close();
+console.log("ok", out);
