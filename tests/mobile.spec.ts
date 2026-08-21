@@ -231,12 +231,12 @@ test.describe("home: hero visualisation to the block beneath it", () => {
 
 test.describe("layout", () => {
   /**
-   * Both icon lists, not just the outputs one. The inputs list is the one
-   * that carries a note under some of its labels, and it was the one that
-   * drifted: its icon was centred on the label *and* the note together, so
-   * any row with a second line sat half a line low.
+   * Both icon lists, not just the outputs one — and the icon is measured
+   * against the whole text block beside it, label and note together, because
+   * that is the object the eye pairs it with. Centring on the label alone
+   * left the icon visibly high on any row that carried a note.
    */
-  test("icons stay centred on their label, wrapped or not", async ({ page }) => {
+  test("icons stay centred on the text beside them", async ({ page }) => {
     for (const route of ["/tuntas", "/id/tuntas"]) {
       for (const width of [404, 1440]) {
         await page.setViewportSize({ width, height: 900 });
@@ -256,16 +256,19 @@ test.describe("layout", () => {
 
           return [...rows].map((row) => {
             const icon = row.children[0]?.getBoundingClientRect();
-            const label = row.children[1]?.getBoundingClientRect();
-            if (!icon || !label) return Number.POSITIVE_INFINITY;
-            return Math.abs(icon.top + icon.height / 2 - (label.top + label.height / 2));
+            const text = [...row.children].slice(1).map((el) => el.getBoundingClientRect());
+            if (!icon || !text.length) return Number.POSITIVE_INFINITY;
+            // The union of the label and, where there is one, the note.
+            const top = Math.min(...text.map((r) => r.top));
+            const bottom = Math.max(...text.map((r) => r.bottom));
+            return Math.abs(icon.top + icon.height / 2 - (top + bottom) / 2);
           });
         });
 
-        expect(deltas, `${route} at ${width}px has no output rows`).not.toHaveLength(0);
+        expect(deltas, `${route} at ${width}px has no icon rows`).not.toHaveLength(0);
         expect(
           Math.max(...deltas),
-          `${route} output icon and label centres drift at ${width}px`,
+          `${route} icon and text centres drift at ${width}px`,
         ).toBeLessThanOrEqual(1);
       }
     }

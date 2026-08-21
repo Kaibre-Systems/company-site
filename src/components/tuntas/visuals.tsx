@@ -66,13 +66,17 @@ const ICONS: Record<TuntasIcon, ComponentType<{ className?: string }>> = {
    get" — so each item is an icon, a short label, and at most one line under
    it.
 
-   A grid rather than a flex row, because the two are not the same alignment
-   problem. A row with `items-center` centres the icon on the *whole* item, so
-   an item that carries a note pushed its icon half a line down; a row with
-   `items-start` and a hand-tuned top padding lines up only while the label
-   fits on one line. Here the icon and the label are two cells of the same
-   grid row and the note is a third cell under the label, so the icon is
-   centred on the label — one line or three — and never on the note.
+   The icon is centred on the *block* of text beside it, not on its first
+   line. What the eye pairs the icon with is one object: a label that may wrap
+   to two lines and may carry a note under it. Centring on the label alone
+   leaves the icon visibly high on any row that has a note, and a hand-tuned
+   top padding only lines up while the label happens to fit on one line.
+
+   A flex row with `items-center` and the text in its own column does exactly
+   that. The grid this replaces tried to span the icon across both rows, but
+   `grid-row: 1 / -1` resolves against the *explicit* grid — and the rows here
+   are implicit, so the span collapsed to the first row and the icon sat back
+   on the label. Nothing about the rendering said so; only measuring did.
    ========================================================================== */
 
 export function IconList({
@@ -90,10 +94,7 @@ export function IconList({
       {items.map((item) => {
         const Icon = ICONS[item.icon];
         return (
-          <li
-            key={item.label}
-            className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-center gap-x-3 gap-y-1 sm:gap-x-3.5"
-          >
+          <li key={item.label} className="flex items-center gap-3 sm:gap-3.5">
             <span
               aria-hidden
               className={cn(
@@ -105,19 +106,21 @@ export function IconList({
             >
               <Icon className="size-4" />
             </span>
-            <span
-              className={cn(
-                "min-w-0 text-body",
-                emphasis ? "text-fg" : "text-fg-muted",
-              )}
-            >
-              {item.label}
-            </span>
-            {item.note ? (
-              <span className="col-start-2 text-small text-fg-subtle">
-                {item.note}
+            <span className="min-w-0">
+              <span
+                className={cn(
+                  "block text-body",
+                  emphasis ? "text-fg" : "text-fg-muted",
+                )}
+              >
+                {item.label}
               </span>
-            ) : null}
+              {item.note ? (
+                <span className="mt-0.5 block text-small text-fg-subtle">
+                  {item.note}
+                </span>
+              ) : null}
+            </span>
           </li>
         );
       })}
