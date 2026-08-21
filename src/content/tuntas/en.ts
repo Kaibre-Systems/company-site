@@ -74,6 +74,14 @@ export const EN: TuntasContent = {
       ...SCREENS.obligation,
       alt: "One obligation opened in Tuntas, in Bahasa Indonesia: obligation 4 of POJK 40 of 2024 requires the company to ensure that members of its Board of Directors and Board of Commissioners hold a competency certificate from a professional certification institution registered with the Financial Services Authority. The old rule placed that duty on each officer individually. Tuntas concludes the obligation is not met, names the three company documents the conclusion rests on, states what the company has to do, and gives the deadline. The company is fictional; the regulation is real.",
     },
+    contradiction: {
+      ...SCREENS.contradiction,
+      alt: "A second obligation opened in Tuntas, in Bahasa Indonesia: obligation 45 requires an internal audit unit reporting directly to the Board. Two of the company's own documents disagree about whether that function is run in-house or by an external firm. Tuntas states the conflict, names both sides, declines to decide between them, and asks the company for a written explanation and three named documents before it will conclude.",
+    },
+    followUp: {
+      ...SCREENS.followUp,
+      alt: "The follow-up screen in Tuntas, in Bahasa Indonesia: 48 items still open for the company — 16 document requests not yet supplied and 32 document revisions not yet finished, 12 of them revised and waiting on the reviewer's decision. Under it, the deadlines the regulation carries, the ones already passed first: 27 June 2025, fourteen months late, and 4 July 2025, thirteen months late.",
+    },
     register: {
       ...SCREENS.register,
       alt: "The obligation register in Tuntas, in Bahasa Indonesia: three obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — two marked as needing action from you, one marked as not applicable.",
@@ -102,6 +110,10 @@ export const EN: TuntasContent = {
         title: "The deadline does not wait for capacity.",
         note: "The regulation sets the date. Business as usual takes the weeks in between, and the work surfaces when there is a month left.",
       },
+      {
+        title: "One person answers for what was missed.",
+        note: "The officer has to be sure that no deadline and no obligatory action is something the company learns about later — and that the Board heard it from them first, not from outside.",
+      },
     ],
   },
   inOut: {
@@ -127,6 +139,11 @@ export const EN: TuntasContent = {
       title: "Tuntas returns",
       items: [
         {
+          icon: "report",
+          label: "A memorandum for the Board, first",
+          note: "so they hear the new regulation from you, and hear it today",
+        },
+        {
           icon: "assessment",
           label: "Every obligation of the new regulation, beside the provision it replaces",
         },
@@ -151,8 +168,8 @@ export const EN: TuntasContent = {
           label: "The revision itself, drafted for your review — old text, new text, the article it rests on",
         },
         {
-          icon: "report",
-          label: "Deadlines, passed ones first — and a Board memo you can edit and send",
+          icon: "conclude",
+          label: "Deadlines, passed ones first, and one page of what is still open",
         },
       ],
     },
@@ -170,7 +187,7 @@ export const EN: TuntasContent = {
         n: "02",
         icon: "assess",
         title: "Tuntas analyses",
-        body: "The obligation register, the Board memo, the document requests, the actions, the deadlines.",
+        body: "The Board memo first, then the obligation register, the document requests, the actions and the deadlines.",
       },
       {
         n: "03",
@@ -221,10 +238,11 @@ export const EN: TuntasContent = {
   },
   deliverables: {
     heading: "What you receive.",
-    body: "The same two screens your team works in: the matter itself, and the memorandum to the Board that you can edit and send.",
+    body: "The memorandum that goes out the same day, the matter it came from, and one page of everything still open.",
     captions: {
+      memo: "The Board memo — editable, downloadable as Word, printable as PDF. What you tell the Board with, and what the units are briefed from.",
       regulation: "The screen a matter opens on.",
-      memo: "The Board memo — editable, downloadable as Word, printable as PDF.",
+      followUp: "Everything still open, in one place: what is unanswered, what is unrevised, and which deadlines have already passed.",
     },
   },
   packages: {
@@ -269,7 +287,7 @@ export const EN: TuntasContent = {
     review: {
       heading: "Tuntas concludes according to the documents. Your officer decides.",
       body: [
-        "The judgment stays with Compliance. Tuntas states a position and the evidence under it; your officer reviews each conclusion, edits it, and decides. Nothing closes by a click alone — statuses move on evidence.",
+        "The judgment stays with Compliance. Tuntas states a position and the evidence under it; your officer runs the sanity check that only experience can run, edits what needs editing, and decides. Nothing closes by a click alone — statuses move on evidence.",
         "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice. Every decision is logged with a name and a time, so the record shows who accepted what, and on what.",
       ],
     },
@@ -312,7 +330,11 @@ export const EN: TuntasContent = {
       },
       {
         title: "Your documents, and nothing else",
-        note: "Stored encrypted, visible to your organisation only, used for nothing else, deleted on request. No IT integration: a login for your compliance officer, the regulation, and your documents.",
+        note: "Tuntas reads your procedures, policies, agreements and terms — not your customers' personal data, which it never needs. What you upload is stored encrypted, visible to your organisation only, used for nothing else, and deleted on request. No IT integration: a login for your compliance officer, the regulation, and your documents.",
+      },
+      {
+        title: "Where it runs is a decision, not a default",
+        note: "Which jurisdiction a deployment sits in is scoped with you before anything is uploaded, against the residency rules that apply to your institution.",
       },
       {
         title: "A record that holds up",

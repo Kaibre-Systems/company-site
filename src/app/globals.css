@@ -137,6 +137,8 @@
   --color-st-partial-bg: oklch(0.972 0.031 82);
   --color-st-info: oklch(0.4611 0.1259 257);
   --color-st-info-bg: oklch(0.968 0.014 245);
+  --color-st-conflict: oklch(0.4106 0.1063 320);
+  --color-st-conflict-bg: oklch(0.972 0.014 320);
   --color-st-na: oklch(0.556 0 0);
   --color-st-na-bg: oklch(0.968 0 0);
 

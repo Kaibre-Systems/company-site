@@ -1,6 +1,16 @@
-import { CalendarClock, FileText, Landmark, TriangleAlert } from "lucide-react";
+import {
+  CalendarClock,
+  CircleHelp,
+  FileText,
+  Landmark,
+  TriangleAlert,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { TuntasContent } from "@/content/tuntas/types";
+import type {
+  TuntasContent,
+  TuntasObligationScreen,
+  TuntasTone,
+} from "@/content/tuntas/types";
 
 /* ==========================================================================
    The product's own screens
@@ -26,15 +36,14 @@ import type { TuntasContent } from "@/content/tuntas/types";
    ========================================================================== */
 
 /** Status tone → the product's own pair of colours. */
-const TONE = {
+const TONE: Record<TuntasTone, string> = {
   gap: "border-st-gap/35 bg-st-gap-bg text-st-gap",
   supported: "border-st-supported/35 bg-st-supported-bg text-st-supported",
   partial: "border-st-partial/35 bg-st-partial-bg text-st-partial",
   info: "border-st-info/35 bg-st-info-bg text-st-info",
+  conflict: "border-st-conflict/35 bg-st-conflict-bg text-st-conflict",
   na: "border-st-na/30 bg-st-na-bg text-st-na",
-} as const;
-
-export type Tone = keyof typeof TONE;
+};
 
 /**
  * The action chip. In the application this is the first thing on a row and
@@ -46,7 +55,7 @@ export function ActionChip({
   className,
 }: {
   label: string;
-  tone: Tone;
+  tone: TuntasTone;
   className?: string;
 }) {
   return (
@@ -131,7 +140,7 @@ export function ObligationPanel({
   clip,
   className,
 }: {
-  content: TuntasContent["screens"]["obligation"];
+  content: TuntasObligationScreen;
   /**
    * Cap the panel and fade its last inch out.
    *
@@ -145,6 +154,9 @@ export function ObligationPanel({
   className?: string;
 }) {
   const c = content;
+  /* The conclusion's own icon. A gap is a warning; a contradiction is a
+     question the company has to answer, and the product marks it as one. */
+  const Verdict = c.conclusion.tone === "conflict" ? CircleHelp : TriangleAlert;
   return (
     <div
       data-surface="ink"
@@ -192,7 +204,7 @@ export function ObligationPanel({
           )}
         >
           <p className="flex items-start gap-2 text-small font-medium">
-            <TriangleAlert aria-hidden className="mt-0.5 size-4 shrink-0" />
+            <Verdict aria-hidden className="mt-0.5 size-4 shrink-0" />
             {c.conclusion.title}
           </p>
 
@@ -232,16 +244,45 @@ export function ObligationPanel({
           <p className="mt-2 text-fine text-fg-subtle">{c.action.unit}</p>
         </Inset>
 
-        <Inset className="hidden sm:block">
-          <Label>{c.deadline.label}</Label>
-          <p className="mt-1.5 flex items-start gap-2 text-small leading-relaxed text-fg">
-            <CalendarClock
-              aria-hidden
-              className="mt-0.5 size-4 shrink-0 text-fg-subtle"
-            />
-            {c.deadline.text}
-          </p>
-        </Inset>
+        {c.deadline ? (
+          <Inset className="hidden sm:block">
+            <Label>{c.deadline.label}</Label>
+            <p className="mt-1.5 flex items-start gap-2 text-small leading-relaxed text-fg">
+              <CalendarClock
+                aria-hidden
+                className="mt-0.5 size-4 shrink-0 text-fg-subtle"
+              />
+              {c.deadline.text}
+            </p>
+          </Inset>
+        ) : null}
+
+        {/* Where Tuntas cannot conclude, it asks — in the product's own info
+            blue, and it says why each thing is needed. This block is the
+            whole of "it asks rather than guesses", so it is shown rather
+            than claimed. */}
+        {c.request ? (
+          <div className={cn("rounded-card border p-3.5 sm:p-4", TONE.info)}>
+            <Label className="text-current">{c.request.label}</Label>
+            <ul className="mt-2 space-y-1.5">
+              {c.request.items.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-2.5 text-fine leading-relaxed text-fg-muted"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-2 size-1 shrink-0 rounded-full bg-fg-subtle"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-fine leading-relaxed text-fg-muted">
+              {c.request.why}
+            </p>
+          </div>
+        ) : null}
       </div>
 
       <p className="mt-auto flex items-center justify-between gap-3 border-t border-border px-4 py-2.5 font-mono text-label text-fg-subtle">
@@ -377,6 +418,94 @@ export function RegisterStrip({
       </ul>
 
       <p className="px-4 py-2.5 text-fine text-fg-subtle">{note}</p>
+    </div>
+  );
+}
+
+/* ==========================================================================
+   FollowUpScreen — everything still open, on one page
+   --------------------------------------------------------------------------
+   The one screen the practitioner asked for twice in a single session: how
+   much is still open, split into what she is waiting on from other people and
+   what is waiting on her, and then every deadline the regulation carries with
+   the passed ones first.
+
+   It is deliberately not a table. The count is a sentence, the split is a
+   sentence, and the deadlines are grouped by date with the obligations that
+   fall under each — which is how the product presents them, and how the work
+   is actually held in someone's head.
+   ========================================================================== */
+
+export function FollowUpScreen({
+  content,
+  className,
+}: {
+  content: TuntasContent["screens"]["followUp"];
+  className?: string;
+}) {
+  const c = content;
+  return (
+    <div
+      data-surface="ink"
+      className={cn(
+        "overflow-hidden rounded-card border border-border bg-surface text-fg",
+        className,
+      )}
+    >
+      <div className="border-b border-border px-5 py-4 sm:px-6">
+        <p className="font-display text-heading-2 font-bold text-fg">
+          {c.heading}
+        </p>
+        <p className="mt-1.5 text-small leading-relaxed text-fg-muted">
+          {c.summary}
+        </p>
+      </div>
+
+      <div className="px-5 py-4 sm:px-6">
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="inline-flex items-center gap-2 text-body font-medium text-fg">
+            <CalendarClock aria-hidden className="size-4 shrink-0 text-fg-subtle" />
+            {c.sectionLabel}
+          </span>
+          <span className="font-mono text-label text-st-gap">{c.badge}</span>
+        </p>
+        <p className="mt-1.5 text-fine text-fg-subtle">{c.note}</p>
+
+        <ul className="mt-4 space-y-px overflow-hidden rounded-card border border-border bg-border">
+          {c.groups.map((group) => (
+            <li
+              key={group.date}
+              className="grid gap-x-6 gap-y-3 bg-surface p-4 sm:grid-cols-[9rem_minmax(0,1fr)]"
+            >
+              <div>
+                <p className="text-body font-medium text-st-gap">{group.date}</p>
+                <p className="mt-0.5 text-fine text-st-gap">{group.late}</p>
+              </div>
+
+              <div className="space-y-3">
+                {group.items.map((item) => (
+                  <div key={item.no}>
+                    <p className="text-small leading-relaxed text-fg">
+                      <span className="font-mono text-label text-fg-subtle">
+                        {item.no}
+                      </span>{" "}
+                      · {item.text}
+                    </p>
+                    <p className="mt-0.5 text-fine text-st-gap">· {item.status}</p>
+                  </div>
+                ))}
+                <ul className="flex flex-wrap gap-1.5">
+                  {group.cites.map((cite) => (
+                    <li key={cite}>
+                      <Cite>{cite}</Cite>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

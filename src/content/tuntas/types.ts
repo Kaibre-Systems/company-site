@@ -29,6 +29,53 @@ export type TuntasIcon =
   | "review"
   | "conclude";
 
+/**
+ * One obligation, opened.
+ *
+ * The same panel serves an evidenced gap and a contradiction between company
+ * documents; what differs is the tone, the conclusion, and which of the two
+ * optional blocks at the foot is present. A gap ends in a deadline. A
+ * contradiction ends in a request, because until the company answers it there
+ * is nothing to be on time for.
+ */
+export interface TuntasObligationScreen {
+  alt: string;
+  /** The illustrative marker, in the panel's own footer. */
+  tag: string;
+  mark: string;
+  no: string;
+  chip: string;
+  chipTone: TuntasTone;
+  label: string;
+  text: string;
+  cite: string;
+  oldLabel: string;
+  oldText: string;
+  oldCite: string;
+  conclusion: {
+    tone: TuntasTone;
+    title: string;
+    basisLabel: string;
+    basis: readonly string[];
+    docsLabel: string;
+    docs: readonly string[];
+  };
+  action: { label: string; text: string; unit: string };
+  /** Present where the regulation sets a date. */
+  deadline?: { label: string; text: string };
+  /** Present where Tuntas cannot conclude until the company answers. */
+  request?: { label: string; items: readonly string[]; why: string };
+}
+
+/** The product's own evidence semantics. Colour follows from these. */
+export type TuntasTone =
+  | "gap"
+  | "supported"
+  | "partial"
+  | "info"
+  | "conflict"
+  | "na";
+
 export interface TuntasContent {
   locale: TuntasLocale;
   meta: {
@@ -88,31 +135,14 @@ export interface TuntasContent {
       lines: readonly { text: string; tone?: "gap" }[];
     };
     /** One obligation, opened: the detail panel. */
-    obligation: {
-      alt: string;
-      /** The illustrative marker, in the panel's own footer. */
-      tag: string;
-      mark: string;
-      no: string;
-      chip: string;
-      chipTone: "gap" | "supported" | "partial" | "info" | "na";
-      label: string;
-      text: string;
-      cite: string;
-      oldLabel: string;
-      oldText: string;
-      oldCite: string;
-      conclusion: {
-        tone: "gap" | "supported" | "partial" | "info" | "na";
-        title: string;
-        basisLabel: string;
-        basis: readonly string[];
-        docsLabel: string;
-        docs: readonly string[];
-      };
-      action: { label: string; text: string; unit: string };
-      deadline: { label: string; text: string };
-    };
+    obligation: TuntasObligationScreen;
+    /**
+     * A second obligation, opened, where two of the company's own documents
+     * disagree. It is the behaviour the practitioner reacted to hardest —
+     * Tuntas states the conflict, names both sides, refuses to pick one, and
+     * asks the company which is right — so it is shown rather than described.
+     */
+    contradiction: TuntasObligationScreen;
     /** A few rows of the register, grouped by chapter as the product groups
      *  them. */
     register: {
@@ -124,9 +154,33 @@ export interface TuntasContent {
         obligation: string;
         article: string;
         action: string;
-        tone: "gap" | "supported" | "partial" | "info" | "na";
+        tone: TuntasTone;
       }[];
       note: string;
+    };
+    /**
+     * What is still open, on one page.
+     *
+     * The practitioner asked for this twice in one session — "show me the
+     * button which shows the entire follow-up actions that I need to do", and
+     * a summary of every document still needed — so the page shows the screen
+     * rather than promising it in a list.
+     */
+    followUp: {
+      alt: string;
+      heading: string;
+      /** The one line under it that splits the number into its parts. */
+      summary: string;
+      sectionLabel: string;
+      /** "4 already passed", in the product's own mono badge. */
+      badge: string;
+      note: string;
+      groups: readonly {
+        date: string;
+        late: string;
+        items: readonly { no: string; text: string; status: string }[];
+        cites: readonly string[];
+      }[];
     };
     /** The memorandum to the Board, as it is printed. */
     memo: {
@@ -153,7 +207,9 @@ export interface TuntasContent {
     };
     produces: {
       title: string;
-      items: readonly { icon: TuntasIcon; label: string }[];
+      /** The memo carries a note; it is the one output whose *purpose* the
+       *  reader has to be told, because it is the first thing they send. */
+      items: readonly { icon: TuntasIcon; label: string; note?: string }[];
     };
   };
   workflow: {
@@ -174,8 +230,8 @@ export interface TuntasContent {
   deliverables: {
     heading: string;
     body: string;
-    /** Caption under each of the two reproduced screens. */
-    captions: { regulation: string; memo: string };
+    /** Caption under each reproduced screen, in the page's own language. */
+    captions: { memo: string; regulation: string; followUp: string };
   };
 
   /** The two commercial packages, described by what they do rather than by

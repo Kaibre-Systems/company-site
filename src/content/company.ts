@@ -32,7 +32,7 @@ export const DATA = {
   id: "data",
   heading: "What happens to the documents you give us.",
   body: [
-    "Our customers hand us the material their business runs on — internal procedures, policies, evidence, customer records. How that material is held is a design decision we make before the first line of code, not a policy we write afterwards.",
+    "Our customers hand us the material their business runs on — internal procedures, policies, evidence, and in some systems customer records. How that material is held, and where, is a design decision we make before the first line of code rather than a policy we write afterwards.",
   ],
   items: [
     {
@@ -42,6 +42,10 @@ export const DATA = {
     {
       title: "Isolation by default",
       note: "Each deployment has its own database and administrator-created accounts. There is no public sign-up, and no shared tenancy between customers unless a customer asks for it.",
+    },
+    {
+      title: "Where it runs is a decision",
+      note: "Some of our customers work under rules about which jurisdiction their data may sit in. Which region a deployment runs in is scoped with you before anything is uploaded, rather than assumed.",
     },
     {
       title: "No integration required",

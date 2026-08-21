@@ -46,6 +46,8 @@ export const ID: TuntasContent = {
   screens: {
     regulation: { ...SCREENS.regulation, alt: "Layar pembuka satu perkara di Tuntas: POJK 40 Tahun 2024 diterima dari OJK pada 14 Agustus 2026, menggantikan POJK 10/POJK.05/2022, dianalisis terhadap 18 dokumen perusahaan fiktif. Tercatat 49 kewajiban yang belum ditinjau, 4 tenggat yang sudah lewat, dan tenggat berikutnya pada 10 September 2026." },
     obligation: { ...SCREENS.obligation, alt: "Panel rincian satu kewajiban di Tuntas: kewajiban nomor 4 dari POJK 40 Tahun 2024 mewajibkan Penyelenggara memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja. Tuntas menyimpulkan kewajiban ini belum dipenuhi, menyebut dokumen perusahaan yang menjadi dasarnya, menuliskan yang perlu dilakukan perusahaan, dan menyatakan tenggatnya. Perusahaannya fiktif; regulasinya asli." },
+    contradiction: { ...SCREENS.contradiction, alt: "Panel rincian kewajiban kedua di Tuntas: kewajiban nomor 45 mewajibkan adanya unit audit internal yang bertanggung jawab langsung kepada Direksi. Dua kelompok dokumen perusahaan sendiri saling bertentangan mengenai siapa yang menjalankan fungsi itu. Tuntas menyatakan pertentangannya, menyebut kedua sisinya, tidak memihak, dan meminta penjelasan tertulis beserta beberapa dokumen sebelum menyimpulkan." },
+    followUp: { ...SCREENS.followUp, alt: "Layar tindak lanjut di Tuntas: 48 butir masih terbuka untuk perusahaan — 16 permintaan dokumen belum diserahkan dan 32 perbaikan dokumen belum selesai, 12 di antaranya sudah direvisi dan menunggu keputusan penelaah. Di bawahnya, tenggat yang dibawa peraturan ini, yang sudah lewat lebih dahulu: 27 Juni 2025 yang lewat 14 bulan, dan 4 Juli 2025 yang lewat 13 bulan." },
     register: { ...SCREENS.register, alt: "Register kewajiban di Tuntas: tiga kewajiban dari BAB VI POJK 40 Tahun 2024, masing-masing dengan nomor, rumusan kewajibannya, pasalnya, dan satu keterangan tindakan — dua bertanda perlu tindakan dari Anda, satu bertanda tidak berlaku." },
     memo: { ...SCREENS.memo, alt: "Memorandum yang disusun Tuntas untuk Direksi dan Dewan Komisaris perusahaan fiktif, tertanggal 14 Agustus 2026, mengenai dampak POJK 40 Tahun 2024 yang mencabut POJK 10/POJK.05/2022." },
   },
@@ -67,6 +69,10 @@ export const ID: TuntasContent = {
       {
         title: "Tenggat tidak menunggu kapasitas.",
         note: "Regulasi yang menetapkan tanggalnya. Pekerjaan harian mengambil minggu-minggu di antaranya, dan pekerjaan ini muncul saat waktunya tinggal sebulan.",
+      },
+      {
+        title: "Satu orang yang menjawab atas apa yang terlewat.",
+        note: "Petugasnya harus yakin tidak ada tenggat dan tidak ada tindakan wajib yang baru diketahui perusahaan belakangan — dan bahwa Direksi mendengarnya dari dia lebih dahulu, bukan dari luar.",
       },
     ],
   },
@@ -93,6 +99,11 @@ export const ID: TuntasContent = {
       title: "Yang dikembalikan Tuntas",
       items: [
         {
+          icon: "report",
+          label: "Memo untuk Direksi, lebih dahulu",
+          note: "supaya mereka mendengar regulasi baru itu dari Anda, dan mendengarnya hari ini",
+        },
+        {
           icon: "assessment",
           label: "Setiap kewajiban regulasi baru, bersanding dengan ketentuan yang digantikannya",
         },
@@ -117,8 +128,8 @@ export const ID: TuntasContent = {
           label: "Draf revisinya sendiri untuk Anda telaah — teks lama, teks baru, dan pasal yang mendasarinya",
         },
         {
-          icon: "report",
-          label: "Tenggat, yang sudah lewat lebih dulu — dan Memo Direksi yang dapat Anda sunting dan kirim",
+          icon: "conclude",
+          label: "Tenggat, yang sudah lewat lebih dulu, dan satu halaman berisi apa saja yang masih terbuka",
         },
       ],
     },
@@ -136,7 +147,7 @@ export const ID: TuntasContent = {
         n: "02",
         icon: "assess",
         title: "Tuntas menganalisis",
-        body: "Register kewajiban, Memo Direksi, permintaan dokumen, tindakan, dan tenggatnya.",
+        body: "Memo Direksi lebih dahulu, lalu register kewajiban, permintaan dokumen, tindakan, dan tenggatnya.",
       },
       {
         n: "03",
@@ -187,10 +198,11 @@ export const ID: TuntasContent = {
   },
   deliverables: {
     heading: "Yang Anda terima.",
-    body: "Dua layar yang sama dengan yang dipakai tim Anda: perkaranya, dan memo untuk Direksi yang dapat disunting lalu dikirim.",
+    body: "Memo yang bisa dikirim hari itu juga, perkara yang menjadi asalnya, dan satu halaman berisi semua yang masih terbuka.",
     captions: {
+      memo: "Memo Direksi — dapat disunting, diunduh sebagai Word, dicetak sebagai PDF. Yang Anda pakai untuk melapor ke Direksi, dan untuk menyosialisasikannya ke unit-unit.",
       regulation: "Layar pembuka satu perkara.",
-      memo: "Memo Direksi, dapat disunting, diunduh sebagai Word atau dicetak sebagai PDF.",
+      followUp: "Semua yang masih terbuka di satu tempat: yang belum dijawab, yang belum direvisi, dan tenggat mana saja yang sudah lewat.",
     },
   },
   packages: {
@@ -235,7 +247,7 @@ export const ID: TuntasContent = {
     review: {
       heading: "Tuntas menyimpulkan menurut dokumen. Petugas Anda yang memutuskan.",
       body: [
-        "Penilaian tetap ada pada Kepatuhan. Tuntas menyatakan posisi beserta bukti yang mendasarinya; petugas Anda menelaah tiap kesimpulan, menyuntingnya, dan memutuskan. Tidak ada yang selesai hanya karena diklik — status bergerak mengikuti bukti.",
+        "Penilaian tetap ada pada Kepatuhan. Tuntas menyatakan posisi beserta bukti yang mendasarinya; petugas Anda melakukan sanity check yang hanya bisa dilakukan dengan pengalaman, menyunting yang perlu disunting, dan memutuskan. Tidak ada yang selesai hanya karena diklik — status bergerak mengikuti bukti.",
         "Tuntas adalah alat bantu analisis. Ia tidak menyatakan perusahaan patuh dan tidak memberikan nasihat hukum. Setiap keputusan dicatat dengan nama dan waktunya, sehingga catatan itu menunjukkan siapa menerima apa, dan atas dasar apa.",
       ],
     },
@@ -278,7 +290,11 @@ export const ID: TuntasContent = {
       },
       {
         title: "Dokumen Anda, dan tidak untuk hal lain",
-        note: "Disimpan terenkripsi, hanya terlihat oleh organisasi Anda, tidak dipakai untuk keperluan lain, dihapus atas permintaan. Tanpa integrasi TI: satu akun untuk petugas kepatuhan Anda, regulasinya, dan dokumen Anda.",
+        note: "Tuntas membaca prosedur, kebijakan, perjanjian, dan syarat Anda — bukan data pribadi nasabah Anda, yang memang tidak diperlukannya. Yang Anda unggah disimpan terenkripsi, hanya terlihat oleh organisasi Anda, tidak dipakai untuk keperluan lain, dan dihapus atas permintaan. Tanpa integrasi TI: satu akun untuk petugas kepatuhan Anda, regulasinya, dan dokumen Anda.",
+      },
+      {
+        title: "Tempat penyimpanannya ditentukan, bukan diasumsikan",
+        note: "Yurisdiksi tempat penerapannya berjalan ditetapkan bersama Anda sebelum ada dokumen yang diunggah, sesuai ketentuan tempat penyimpanan data yang berlaku bagi institusi Anda.",
       },
       {
         title: "Catatan yang dapat dipertanggungjawabkan",

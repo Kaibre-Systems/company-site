@@ -16,6 +16,7 @@ import { TuntasContactForm } from "@/components/tuntas/contact-form";
 import { LangSync } from "@/components/tuntas/lang-sync";
 import { FlowCompare, IconList, StageGrid } from "@/components/tuntas/visuals";
 import {
+  FollowUpScreen,
   MemoSheet,
   ObligationPanel,
   RegisterStrip,
@@ -207,20 +208,39 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
               <RegisterStrip content={c.screens.register} />
             </VisualFrame>
 
-            <div className="mt-12 sm:mt-16">
-              <Heading level={3} size="heading-1">
-                {c.trace.labelsHeading}
-              </Heading>
-              <dl className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
-                {c.trace.labels.map((label) => (
-                  <div key={label.code} className="bg-surface-raised p-5">
-                    <dt className="font-mono text-label uppercase tracking-[0.085em] text-fg">
-                      {label.code}
-                    </dt>
-                    <dd className="mt-2 text-small text-fg-muted">{label.note}</dd>
-                  </div>
-                ))}
-              </dl>
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 lg:grid-cols-2 lg:gap-12">
+              {/* "It does not pick a side between two of your own documents"
+                  is the hardest thing on this page to believe, and the only
+                  convincing form of it is the screen where the product
+                  declines to. */}
+              <VisualFrame
+                label={c.screens.contradiction.alt}
+                className="border-0 bg-transparent shadow-[var(--shadow-card)]"
+              >
+                <ObligationPanel content={c.screens.contradiction} />
+              </VisualFrame>
+
+              {/* The five conclusions travel with the panel rather than
+                  ending a third of the way down it: the panel is one long
+                  screen, and a reader scrolling it should still have the
+                  vocabulary it is written in beside them. */}
+              <div className="lg:sticky lg:top-24 lg:self-start">
+                <Heading level={3} size="heading-1">
+                  {c.trace.labelsHeading}
+                </Heading>
+                <dl className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-1">
+                  {c.trace.labels.map((label) => (
+                    <div key={label.code} className="bg-surface-raised p-5">
+                      <dt className="font-mono text-label uppercase tracking-[0.085em] text-fg">
+                        {label.code}
+                      </dt>
+                      <dd className="mt-2 text-small text-fg-muted">
+                        {label.note}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </Container>
         </Section>
@@ -234,18 +254,12 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
               heading={c.deliverables.heading}
               body={c.deliverables.body}
             />
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-2 lg:gap-12">
-              <figure>
-                <VisualFrame
-                  label={c.screens.regulation.alt}
-                  className="border-0 bg-transparent shadow-[var(--shadow-card)]"
-                >
-                  <RegulationCard content={c.screens.regulation} />
-                </VisualFrame>
-                <figcaption className="mt-3 text-fine text-fg-subtle">
-                  {c.deliverables.captions.regulation}
-                </figcaption>
-              </figure>
+            {/* The memo leads. It is the first thing the officer sends and
+                the first thing the product writes — "you don't want your
+                bosses to hear about the new regulation from somebody outside
+                the company". Listing it last, under the deadlines, had the
+                order of the working day backwards. */}
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-12">
               <figure>
                 <VisualFrame
                   label={c.screens.memo.alt}
@@ -257,7 +271,34 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                   {c.deliverables.captions.memo}
                 </figcaption>
               </figure>
+              <figure>
+                <VisualFrame
+                  label={c.screens.regulation.alt}
+                  className="border-0 bg-transparent shadow-[var(--shadow-card)]"
+                >
+                  <RegulationCard content={c.screens.regulation} />
+                </VisualFrame>
+                <figcaption className="mt-3 text-fine text-fg-subtle">
+                  {c.deliverables.captions.regulation}
+                </figcaption>
+              </figure>
             </div>
+
+            {/* And what is still open, on one page. Asked for twice in one
+                session — the follow-up actions, and a summary of every
+                document still outstanding — so it is a screen here rather
+                than a line in a list. */}
+            <figure className="mt-10 sm:mt-12">
+              <VisualFrame
+                label={c.screens.followUp.alt}
+                className="border-0 bg-transparent shadow-[var(--shadow-card)]"
+              >
+                <FollowUpScreen content={c.screens.followUp} />
+              </VisualFrame>
+              <figcaption className="mt-3 text-fine text-fg-subtle">
+                {c.deliverables.captions.followUp}
+              </figcaption>
+            </figure>
           </Container>
         </Section>
 

@@ -67,6 +67,58 @@ export const SCREENS = {
       text: "Segera; sertifikat Komisaris Utama dan Komisaris Independen tercatat berakhir 22 Agustus 2025 dan Direktur Teknologi 9 Maret 2026.",
     },
   },
+  /**
+   * Obligation 45: two of the company's own documents disagree about who runs
+   * internal audit. Tuntas states the conflict, names both sides, declines to
+   * pick one, and asks. The tone is the product's `conflict` purple, and the
+   * panel ends in a request rather than a deadline — until the company
+   * answers there is nothing to be on time for.
+   */
+  contradiction: {
+    tag: "Ilustrasi",
+    mark: "Tuntas",
+    no: "Kewajiban no. 45",
+    chip: "Mungkin ada dokumen yang bertentangan",
+    chipTone: "conflict",
+    label: "Kewajiban (peraturan baru)",
+    text: "Penyelenggara wajib memiliki unit audit internal yang dijalankan oleh paling sedikit 1 orang sumber daya manusia yang memiliki keahlian dan/atau latar belakang di bidang audit, yang bertanggung jawab secara langsung kepada anggota Direksi dan/atau anggota Dewan Komisaris.",
+    cite: "POJK 40/2024 · Ps. 200 (1), (2)",
+    oldLabel: "Aturan lama (POJK 10/2022, dicabut)",
+    oldText: "Berubah — kewajiban ini sudah ada, isinya berubah.",
+    oldCite: "POJK 10/2022 · Ps. 58 (1), (2)",
+    conclusion: {
+      tone: "conflict",
+      title: "Dokumen perusahaan saling bertentangan. Perlu penjelasan mana yang benar.",
+      basisLabel: "Dokumen yang saling bertentangan",
+      basis: [
+        "Piagam Audit Internal (2022) menyatakan fungsi audit internal dijalankan pihak eksternal sejak 2024, sedangkan Struktur Organisasi (2026) dan Pedoman Tata Kelola (2025) menyatakan fungsi itu dijalankan Unit Audit Internal di dalam Perseroan.",
+        "Register Kepatuhan (2025) baris R-07 mencatat laporan UAI 2023 sampai 2025 terarsip dan menyatakan status Terpenuhi.",
+        "Kedua kelompok dokumen tidak dapat benar sekaligus tanpa penjelasan, sehingga struktur pelaksanaan fungsi audit internal tidak dapat ditetapkan dari bukti yang ada.",
+      ],
+      docsLabel: "Dokumen perusahaan yang saling bertentangan:",
+      docs: [
+        "Struktur Organisasi (2026)",
+        "Piagam Audit Internal (2022)",
+        "Pedoman Tata Kelola (2025)",
+        "Register Kepatuhan (2025)",
+      ],
+    },
+    action: {
+      label: "Yang perlu dilakukan perusahaan",
+      text: "Menjelaskan secara tertulis siapa yang menjalankan fungsi audit internal sejak 2024, menegaskan model pelaksanaan yang dipilih Direksi, dan menyelaraskan keempat dokumen di atas dengan model tersebut.",
+      unit: "Usulan unit pelaksana: Direktur Utama bersama Dewan Komisaris, didukung Divisi Kepatuhan & Legal (perusahaan yang menentukan).",
+    },
+    request: {
+      label: "Tuntas memerlukan penjelasan dari Anda",
+      items: [
+        "Klarifikasi manusia mengenai siapa yang benar-benar melaksanakan fungsi audit internal sejak 2024",
+        "Perikatan jasa audit internal dengan kantor akuntan publik, bila ada",
+        "Laporan audit internal No. 009/UAI/2024 dan No. 012/UAI/2025 beserta identitas penyusunnya",
+        "Surat pengangkatan Kepala Unit Audit Internal",
+      ],
+      why: "Mengapa ini penting: pertentangan antar dokumen harus diselesaikan sebelum status kepatuhan dapat ditetapkan; jawabannya juga menentukan berlaku tidaknya Pasal 200 ayat (5).",
+    },
+  },
   register: {
     columns: {
       no: "No.",
@@ -102,6 +154,46 @@ export const SCREENS = {
       },
     ],
     note: "Tuntas adalah alat bantu analisis, bukan nasihat hukum.",
+  },
+  /** Everything still open, on one page — the screen she asked for twice. */
+  followUp: {
+    heading: "48 tindak lanjut untuk perusahaan masih terbuka",
+    summary:
+      "16 permintaan dokumen belum diserahkan · 32 perbaikan dokumen belum selesai (12 di antaranya sudah direvisi dan menunggu keputusan Anda).",
+    sectionLabel: "Tenggat menurut peraturan",
+    badge: "4 sudah lewat",
+    note: "Setiap tenggat yang dibawa peraturan ini, yang sudah lewat lebih dahulu.",
+    groups: [
+      {
+        date: "27 Juni 2025",
+        late: "lewat 14 bulan",
+        items: [
+          {
+            no: "no. 44",
+            text: "Penyelenggara wajib menyusun pedoman penyelenggaraan Rapat Umum Pemberi Dana yang paling sedikit memuat tata cara pelaksanaan, mekanisme…",
+            status: "Belum dipenuhi",
+          },
+          {
+            no: "no. 50",
+            text: "Bagi Penyelenggara yang telah memperoleh izin usaha pada saat POJK ini diundangkan, ketentuan mengenai pedoman penyelenggaraan Rapat Umum…",
+            status: "Belum dipenuhi",
+          },
+        ],
+        cites: ["POJK 40/2024 · Ps. 233", "POJK 40/2024 · Ps. 237"],
+      },
+      {
+        date: "4 Juli 2025",
+        late: "lewat 13 bulan",
+        items: [
+          {
+            no: "no. 29",
+            text: "Penyelenggara wajib setiap saat memiliki Ekuitas minimum paling sedikit Rp12.500.000.000,00; bagi Penyelenggara yang telah memperoleh izi…",
+            status: "Belum dipenuhi",
+          },
+        ],
+        cites: ["POJK 40/2024 · Ps. 169"],
+      },
+    ],
   },
   memo: {
     title: "MEMORANDUM",
