@@ -30,7 +30,21 @@ export const SITE = {
 } as const;
 
 export const NAV = {
+  /**
+   * Three products, and the order is the argument: Tuntas is the one in
+   * front of customers right now, so it leads the list here, on the homepage,
+   * and in the footer. It also carries its own mark in the bar — it is a
+   * separate product with a separate identity, not a Kaibre sub-brand, and
+   * the nav is the first place a visitor can be told that without a sentence.
+   */
   products: [
+    {
+      label: "Tuntas",
+      href: "/tuntas",
+      note: "Regulatory change, for Indonesian financial institutions",
+      /** Renders with the Tuntas mark rather than as a plain text link. */
+      mark: "tuntas",
+    },
     {
       label: "SecurePulse",
       href: "/securepulse",
@@ -40,7 +54,14 @@ export const NAV = {
   ],
   primary: [
     { label: "Work", href: "/work" },
-    { label: "Company", href: "/#company" },
+    /**
+     * A page, not a fragment. Every other first-class nav entry is a
+     * destination; "Company" pointed halfway down the homepage, which is
+     * where a visitor doing vendor diligence gave up. The homepage keeps a
+     * short block under the same `#company` id, so links already in the wild
+     * still land somewhere sensible.
+     */
+    { label: "Company", href: "/company" },
   ],
   cta: { label: "Start a conversation", href: "/contact" },
 } as const;
@@ -49,20 +70,21 @@ export const FOOTER_GROUPS = [
   {
     title: "Products",
     links: [
+      { label: "Tuntas", href: "/tuntas" },
+      { label: "Tuntas — Bahasa Indonesia", href: "/id/tuntas" },
       { label: "SecurePulse", href: "/securepulse" },
-      { label: "SecurePulse Indonesia", href: "/securepulse/indonesia" },
       { label: "kAI", href: "/kai" },
     ],
   },
   {
     title: "Company",
     links: [
+      { label: "About Kaibre", href: "/company" },
+      { label: "How we work", href: "/company#how-we-work" },
+      { label: "Handling your data", href: "/company#data" },
       { label: "Selected work", href: "/work" },
-      { label: "How we work", href: "/#how-we-work" },
       { label: "Contact", href: "/contact" },
     ],
   },
 ] as const;
 
-/** Kept for the kAI sales motion only. Not the parent-company CTA. */
-export const CALENDLY_URL = "https://calendly.com/systemskaibre/30min";

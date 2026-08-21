@@ -32,6 +32,8 @@ export const SP_HERO_PANEL = {
   cardAlt:
     "Illustrative excerpt of a SecurePulse assessment report for an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, awaiting reviewer sign-off.",
   tag: "Illustrative",
+  /** The mark in the sheet's own footer. */
+  mark: "SecurePulse",
   institution: "Energy-sector facility · Dubai",
   title: "Physical security assessment",
   docMeta: "Draft 1.0 · For management review",
@@ -237,20 +239,32 @@ export const SP_REPORT = {
  * two must not blur into one — but a buyer on this page should discover it
  * without already knowing the URL.
  */
+/**
+ * Where SecurePulse works, and where it does not.
+ *
+ * This block used to list two markets, the second of which was "SecurePulse
+ * Indonesia" — financial-institution compliance. That is now Tuntas: its own
+ * product, its own identity, its own buyer, and nothing to do with walking a
+ * site. Listing it here as a SecurePulse market would misdescribe both.
+ *
+ * What remains is one market, so the block states the scope instead of
+ * comparing two — and points a compliance reader who landed here by mistake
+ * at the product they actually want.
+ */
 export const SP_MARKETS = {
-  heading: "Two markets, one discipline.",
+  heading: "Where SecurePulse applies.",
   markets: [
     {
       name: "UAE & Gulf",
       domain: "Physical security assessment",
-      note: "Emirate- and sector-aware site assessments for energy and government facilities. This page.",
+      note: "Emirate- and sector-aware site assessments for energy and government facilities. The checklist, the evidence rules and the severity model are built for those sites; SecurePulse is not a general-purpose audit tool.",
     },
     {
-      name: "Indonesia",
-      domain: "Financial-institution compliance",
-      note: "AI-assisted regulatory compliance assessment for banks, fintechs and insurers — in English and Bahasa Indonesia.",
-      href: "/securepulse/indonesia",
-      cta: "SecurePulse Indonesia",
+      name: "Looking for regulatory compliance?",
+      domain: "That is a different Kaibre product",
+      note: "Tuntas reads a new Indonesian financial regulation against a company's own documents and returns the position obligation by obligation. Different work, different buyer, its own product.",
+      href: "/tuntas",
+      cta: "Tuntas",
       flag: true,
     },
   ],

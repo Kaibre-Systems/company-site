@@ -16,10 +16,11 @@ import { expect, test, type Page } from "@playwright/test";
 const ROUTES = [
   "/",
   "/securepulse",
-  "/securepulse/indonesia",
-  "/id/securepulse/indonesia",
+  "/tuntas",
+  "/id/tuntas",
   "/kai",
   "/work",
+  "/company",
   "/contact",
 ] as const;
 
@@ -73,6 +74,18 @@ const INK_FNS = `
       if (n.nodeType !== 1) return;
       const cs = getComputedStyle(n);
       if (cs.display === "none" || cs.visibility === "hidden" || cs.opacity === "0") return;
+      // Ink that is clipped away is not painted, so it is not ink. An element
+      // with hidden overflow bounds everything inside it: its own border box
+      // is the furthest its subtree can reach, and descending past it reports
+      // geometry the visitor never sees. (A deliberately cut-off panel — a
+      // screenshot of a longer document — otherwise measured its full height
+      // and read as one section overlapping the next by 500px.)
+      const clipped = /hidden|clip/.test(cs.overflow + " " + cs.overflowY);
+      if (clipped) {
+        const box = n.getBoundingClientRect();
+        if (box.height > 0) take(which === "bottom" ? box.bottom + scrollY : box.top + scrollY);
+        return;
+      }
       if (n.tagName === "svg") {
         try {
           const bb = n.getBBox();
@@ -217,8 +230,14 @@ test.describe("home: hero visualisation to the block beneath it", () => {
    ========================================================================== */
 
 test.describe("layout", () => {
-  test("SecurePulse output icons stay centred on wrapped and single-line labels", async ({ page }) => {
-    for (const route of ["/securepulse/indonesia", "/id/securepulse/indonesia"]) {
+  /**
+   * Both icon lists, not just the outputs one — and the icon is measured
+   * against the whole text block beside it, label and note together, because
+   * that is the object the eye pairs it with. Centring on the label alone
+   * left the icon visibly high on any row that carried a note.
+   */
+  test("icons stay centred on the text beside them", async ({ page }) => {
+    for (const route of ["/tuntas", "/id/tuntas"]) {
       for (const width of [404, 1440]) {
         await page.setViewportSize({ width, height: 900 });
         await page.goto(route);
@@ -226,23 +245,30 @@ test.describe("layout", () => {
 
         const deltas = await page.evaluate(() => {
           const headings = [...document.querySelectorAll("main h3")];
-          const heading = headings.find((el) =>
-            /(?:SecurePulse produces|Yang dihasilkan SecurePulse)/.test(el.textContent ?? ""),
+          const lists = headings.filter((el) =>
+            /(?:You give Tuntas|Tuntas returns|Yang Anda berikan|Yang dikembalikan)/.test(
+              el.textContent ?? "",
+            ),
           );
-          const rows = heading?.parentElement?.querySelectorAll("li") ?? [];
+          const rows = lists.flatMap((h) => [
+            ...(h.parentElement?.querySelectorAll("li") ?? []),
+          ]);
 
           return [...rows].map((row) => {
             const icon = row.children[0]?.getBoundingClientRect();
-            const label = row.children[1]?.getBoundingClientRect();
-            if (!icon || !label) return Number.POSITIVE_INFINITY;
-            return Math.abs(icon.top + icon.height / 2 - (label.top + label.height / 2));
+            const text = [...row.children].slice(1).map((el) => el.getBoundingClientRect());
+            if (!icon || !text.length) return Number.POSITIVE_INFINITY;
+            // The union of the label and, where there is one, the note.
+            const top = Math.min(...text.map((r) => r.top));
+            const bottom = Math.max(...text.map((r) => r.bottom));
+            return Math.abs(icon.top + icon.height / 2 - (top + bottom) / 2);
           });
         });
 
-        expect(deltas, `${route} at ${width}px has no output rows`).not.toHaveLength(0);
+        expect(deltas, `${route} at ${width}px has no icon rows`).not.toHaveLength(0);
         expect(
           Math.max(...deltas),
-          `${route} output icon and label centres drift at ${width}px`,
+          `${route} icon and text centres drift at ${width}px`,
         ).toBeLessThanOrEqual(1);
       }
     }
@@ -447,17 +473,34 @@ test.describe("navigation", () => {
 
   test("in-page anchors land clear of the fixed header", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 659 });
-    for (const hash of ["#products", "#commissioned", "#how-we-work", "#company"]) {
-      await page.goto("/" + hash);
+    // `#how-we-work` and `#data` moved to /company with the sections
+    // themselves; `#company` stayed on the homepage so links already in the
+    // wild still land on something.
+    for (const target of [
+      "/#products",
+      "/#commissioned",
+      "/#company",
+      "/company#how-we-work",
+      "/company#data",
+    ]) {
+      await page.goto(target);
       await page.waitForTimeout(400);
+      const hash = "#" + target.split("#")[1];
       const m = await page.evaluate((h) => {
-        const heading = document.querySelector(h)!.querySelector("h1,h2,h3")!;
+        const section = document.querySelector(h);
+        if (!section) return null;
+        const heading = section.querySelector("h1,h2,h3");
+        if (!heading) return null;
         return {
           headingTop: heading.getBoundingClientRect().top,
           headerBottom: document.querySelector("header")!.getBoundingClientRect().bottom,
         };
       }, hash);
-      expect(m.headingTop, `${hash} heading sits under the header`).toBeGreaterThan(m.headerBottom);
+      expect(m, `${target} has no such section`).not.toBeNull();
+      expect(
+        m!.headingTop,
+        `${target} heading sits under the header`,
+      ).toBeGreaterThan(m!.headerBottom);
     }
   });
 
@@ -483,8 +526,15 @@ test.describe("navigation", () => {
       ["/careers", "/contact"],
       // The product is spelled SecurePulse; the legacy slugs must not 404.
       ["/securepuls", "/securepulse"],
-      ["/securepuls/indonesia", "/securepulse/indonesia"],
-      ["/id/securepuls/indonesia", "/id/securepulse/indonesia"],
+      // Tuntas shipped as a SecurePulse deployment before it was its own
+      // product. Both published paths, and the misspelling of them, still
+      // have to land on the Tuntas pages.
+      ["/securepulse/indonesia", "/tuntas"],
+      ["/id/securepulse/indonesia", "/id/tuntas"],
+      // Two hops: the misspelling resolves to the old product path, which
+      // then redirects on to Tuntas. Only the destination is asserted.
+      ["/securepuls/indonesia", "/tuntas"],
+      ["/id/securepuls/indonesia", "/id/tuntas"],
     ]) {
       await page.goto(from);
       await expect(page).toHaveURL(new RegExp(`${to.replace("/", "\\/")}$`));

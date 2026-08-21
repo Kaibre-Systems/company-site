@@ -1,7 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 /* ==========================================================================
-   SecurePulse Indonesia — the bilingual pair
+   Tuntas — the bilingual pair
    --------------------------------------------------------------------------
    What only these tests hold:
      - the language toggle works both ways and preserves the visitor's place;
@@ -16,12 +16,12 @@ import { expect, test, type Page } from "@playwright/test";
    covered by the general suites, which include them in their route lists.
    ========================================================================== */
 
-const EN_PATH = "/securepulse/indonesia";
-const ID_PATH = "/id/securepulse/indonesia";
+const EN_PATH = "/tuntas";
+const ID_PATH = "/id/tuntas";
 
-const EN_H1 = "Compliance assessment drafts in about 30 minutes, not weeks.";
+const EN_H1 = "A new regulation arrives. Tuntas works out what it changes here.";
 const ID_H1 =
-  "Draf asesmen kepatuhan dalam sekitar 30 menit, bukan berminggu-minggu.";
+  "Regulasi baru terbit. Tuntas menghitung apa yang berubah di perusahaan Anda.";
 
 /**
  * English terms approved for use inside Indonesian copy: the product and
@@ -29,31 +29,18 @@ const ID_H1 =
  * Indonesian audience uses in English. Stripped before the leak scan.
  */
 const APPROVED_IN_ID = [
-  "SecurePulse",
+  "Tuntas",
   "Kaibre",
   "Bahasa Indonesia",
   "Read in English", // the language link is deliberately in its own language
   "English",
-  "VERIFIED",
-  "PARTIAL",
-  "INFERRED",
-  "GAP",
   "PDF",
   "Word",
-  "OpenAI",
   "AI",
   "fintech",
-  "deployment",
-  "Deployment",
-  "endpoint",
-  "Endpoint",
-  "spreadsheet",
-  "Spreadsheet",
+  "multifinance",
+  "Human Capital", // the unit's own name in an Indonesian institution
   "email",
-  "folder",
-  "gap analysis", // accepted alongside "analisis kesenjangan"
-  "gap",
-  "Gap",
   "status",
   "Website", // hidden honeypot label
 ];
@@ -66,16 +53,25 @@ const ENGLISH_MARKERS =
 const INDONESIAN_MARKERS = /\b(dan|yang|untuk|dengan|kami|adalah|setiap)\b/gi;
 
 /**
- * OJK, Bank Indonesia and insurance-sector requirements may be named as
- * target corpus categories configured per engagement — that framing is
- * founder-approved. What must never appear, in either language: approval or
- * endorsement by a regulator, certifications, guarantees, coverage claimed
- * as complete, specific instruments (POJK/SEOJK numbers, UU PDP), other
- * regulators the corpus does not target, percentages, or an unqualified
- * timing promise.
+ * What must never appear, in either language: approval or endorsement by a
+ * regulator, certification of the customer, guarantees, coverage claimed as
+ * complete, a claim that Tuntas makes anyone compliant, legal advice,
+ * percentages, or any promise about how long an analysis takes.
+ *
+ * Two rules changed when Tuntas became its own product, and both are
+ * deliberate:
+ *
+ *  - Instrument names (POJK/SEOJK numbers) were forbidden outright, because
+ *    the page then claimed a curated corpus and naming an instrument implied
+ *    coverage of it. Tuntas makes the opposite claim — the customer names the
+ *    regulation — and its own public demo runs on a named, real regulation.
+ *    An instrument may therefore be named *inside illustrative material*, and
+ *    `illustrated instruments only` below is the check that keeps it there.
+ *  - The 30-minute clause is gone with the claim it guarded. Timing claims of
+ *    any kind are now forbidden outright rather than merely qualified.
  */
 const FORBIDDEN = [
-  /\b(POJK|SEOJK|Kominfo)\b/,
+  /\b(Kominfo)\b/,
   /\b(UU\s?PDP|PDP Law)\b/i,
   /\b(?:OJK|Bank Indonesia|PPATK)[- ]approved\b/i,
   /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia|PPATK|the regulator)\b/i,
@@ -85,10 +81,29 @@ const FORBIDDEN = [
   /\b(certified|accredited|regulator[- ]approved|guaranteed)\b/i,
   /\b(tersertifikasi|terakreditasi|kepatuhan otomatis)\b/i,
   /\bmenjamin\s+kepatuhan\b/i,
-  /\b(?:guaranteed|always|every assessment)\s+(?:in|within)\s+30\b/i,
-  /\bselalu\s+30\s+menit\b/i,
+  /\b(?:makes|keeps)\s+you\s+compliant\b/i,
+  /\bsudah\s+patuh\b/i,
+  // The disclaimer says "does not give legal advice"; the affirmative is
+  // what is forbidden, so the lookbehind excludes the negated form.
+  /(?<!not\s)(?:gives?|provides?|offers?)\s+legal\s+advice/i,
+  /(?<!tidak\s)memberikan\s+nasihat\s+hukum/i,
+  /\bin\s+(?:about\s+)?\d+\s+minutes?\b/i,
+  /\bdalam\s+(?:sekitar\s+)?\d+\s+menit\b/i,
   /\b\d{1,3}\s?%/,
 ];
+
+/**
+ * The one illustrative panel on each page names a real regulation. It is
+ * allowed to, and only there: this asserts that every *numbered* instrument
+ * on the page sits inside something the page has marked as illustrative, so
+ * a later rewrite cannot promote an example into a claim.
+ *
+ * Numbered, deliberately. "Satu POJK baru" is a category — the Indonesian for
+ * "a new OJK regulation" — and the page is entitled to describe the kind of
+ * thing it reads. "POJK 40/2024" is an instrument, and naming one outside an
+ * illustration would read as coverage of it.
+ */
+const INSTRUMENT = /\b(?:POJK|SEOJK)\s*[\d.]/g;
 
 async function visibleText(page: Page) {
   return page.evaluate(() => (document.body.innerText || "").replace(/\s+/g, " "));
@@ -213,14 +228,52 @@ test.describe("no language leaks", () => {
     expect(leaks, `English function words on the Indonesian route`).toEqual([]);
   });
 
-  test("the English route carries no stray Indonesian", async ({ page }) => {
+  /**
+   * The English route's *copy* carries no stray Indonesian. Its reproduced
+   * screens are a different matter and are excluded: the product is Bahasa
+   * Indonesia end to end, the regulation and the company documents it quotes
+   * are Indonesian, and translating a screen for this page would be showing
+   * something that does not exist. They are marked `role="img"` and carry an
+   * English accessible description, which is what a reader who cannot read
+   * them gets instead.
+   */
+  test("the English route's own copy carries no stray Indonesian", async ({
+    page,
+  }) => {
     await page.goto(EN_PATH);
     await settle(page);
-    // The language link is deliberately in Indonesian; strip it first.
-    let text = await visibleText(page);
+    let text = await page.evaluate(() => {
+      const clone = document.body.cloneNode(true) as HTMLElement;
+      for (const el of clone.querySelectorAll('[role="img"], script, style, template')) {
+        el.remove();
+      }
+      return (clone.textContent || "").replace(/\s+/g, " ");
+    });
+    // The language link is deliberately in Indonesian; strip it too.
     text = text.split("Baca dalam Bahasa Indonesia").join(" ");
     const leaks = [...new Set(text.match(INDONESIAN_MARKERS) ?? [])];
-    expect(leaks, `Indonesian function words on the English route`).toEqual([]);
+    expect(leaks, `Indonesian function words in the English copy`).toEqual([]);
+  });
+
+  /**
+   * And the screens really are the Indonesian ones, on both routes. If a
+   * later edit "helpfully" translates a panel for the English page, this is
+   * what catches it.
+   */
+  test("the reproduced screens are in Bahasa on both routes", async ({ page }) => {
+    for (const path of [EN_PATH, ID_PATH]) {
+      await page.goto(path);
+      await settle(page);
+      const panels = await page.evaluate(() =>
+        [...document.querySelectorAll('[role="img"]')]
+          .map((el) => (el as HTMLElement).textContent ?? "")
+          .join(" ")
+          .replace(/\s+/g, " "),
+      );
+      expect(panels, `${path} renders no screens`).not.toHaveLength(0);
+      expect(panels, `${path} screens are not in Bahasa`).toMatch(/\bkewajiban\b/i);
+      expect(panels).toMatch(/\bPasal\b|\bPs\./);
+    }
   });
 
   test("one h1 per page, in the page's own language", async ({ page }) => {
@@ -248,14 +301,53 @@ test.describe("regulatory guardrails", () => {
         const hit = re.exec(text);
         expect(hit, `"${hit?.[0]}" appears on ${path}`).toBeNull();
       }
-      // Illustrative material must be labelled as illustrative.
-      const label = path.startsWith("/id/") ? /ilustratif/i : /illustrative/i;
+      // Illustrative material must be labelled as illustrative — and the
+      // company in it stated to be fictional. The screens carry the product's
+      // own Bahasa tag on both routes, so the English page says "fictional"
+      // in the caption beside them rather than inside them.
+      const label = path.startsWith("/id/")
+        ? /ilustra|fiktif/i
+        : /illustrative|ilustrasi/i;
       expect(text).toMatch(label);
-      // The timing claim must never travel without its qualification.
+      const fiction = path.startsWith("/id/") ? /fiktif/i : /fictional/i;
+      expect(text, `${path} does not say the company is fictional`).toMatch(
+        fiction,
+      );
+      // The scope claim must never travel without its qualification.
       const qualifier = path.startsWith("/id/")
-        ? /Durasi bervariasi/
-        : /Timing varies/;
+        ? /Cakupan dan beban kerjanya bergantung/
+        : /Scope and effort vary/;
       expect(text).toMatch(qualifier);
+      // The product's own standing, stated on the page rather than implied.
+      const standing = path.startsWith("/id/")
+        ? /alat bantu analisis/i
+        : /an analysis tool/i;
+      expect(text).toMatch(standing);
+    });
+
+    test(`${path} names an instrument only inside illustrative material`, async ({
+      page,
+    }) => {
+      await page.goto(path);
+      const outside = await page.evaluate(() => {
+        // Everything the page has marked illustrative — the register panel and
+        // the action centre — removed, leaving the page's own assertions.
+        const clone = document.body.cloneNode(true) as HTMLElement;
+        for (const el of clone.querySelectorAll(
+          '[role="img"], figure, [data-illustrative], script, style, template',
+        )) {
+          el.remove();
+        }
+        // A detached node has no layout, so `innerText` falls back to
+        // `textContent` — which is why the scripts have to go first: the RSC
+        // flight payload contains the whole dictionary, illustrations
+        // included, and every one of these scans would read it.
+        return (clone.textContent || "").replace(/\s+/g, " ");
+      });
+      const hits = [...new Set(outside.match(INSTRUMENT) ?? [])];
+      expect(hits, `${path} names an instrument outside an illustration`).toEqual(
+        [],
+      );
     });
   }
 
@@ -269,31 +361,27 @@ test.describe("regulatory guardrails", () => {
       [
         EN_PATH,
         [
-          /about 30 minutes/i,
-          /SecurePulse AI/,
-          /gap analysis/i,
-          /remediation plan/i,
-          /severity/i,
-          /reviewer/i,
-          /regulatory corpus/i,
+          /obligation/i,
+          /deadline/i,
+          /revok/i, // the revoked regulation is named as revoked
+          /partly met/i,
+          /cannot be assessed yet/i,
+          /Board of Commissioners/,
+          /analysis tool/i,
           /OJK/,
-          /Bank Indonesia/,
-          /PPATK/,
         ],
       ],
       [
         ID_PATH,
         [
-          /sekitar 30 menit/i,
-          /SecurePulse AI/,
-          /analisis kesenjangan/i,
-          /rencana remediasi/i,
-          /keparahan/i,
-          /penelaah/i,
-          /korpus regulasi/i,
+          /kewajiban/i,
+          /tenggat/i,
+          /dicabut/i,
+          /terpenuhi sebagian/i,
+          /belum dapat dinilai/i,
+          /Dewan Komisaris/,
+          /alat bantu analisis/i,
           /OJK/,
-          /Bank Indonesia/,
-          /PPATK/,
         ],
       ],
     ];
@@ -349,7 +437,7 @@ test.describe("contact form", () => {
 
     expect(posted).not.toBeNull();
     expect(posted!).toMatchObject({
-      topic: "securepulse-id",
+      topic: "tuntas",
       locale: "id",
       orgType: "bank",
       role: "Kepala Kepatuhan",
@@ -378,13 +466,16 @@ test.describe("contact form", () => {
 
     await expect(page.locator('[role="status"]')).toBeVisible();
     await expect(page.locator('[role="status"]')).toContainText("Thanks");
-    expect(posted!).toMatchObject({ topic: "securepulse-id", locale: "en", orgType: "insurer" });
+    expect(posted!).toMatchObject({ topic: "tuntas", locale: "en", orgType: "insurer" });
   });
 
   test("the header CTA lands on the form, clear of the sticky header", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto(EN_PATH);
-    await page.getByRole("banner").getByRole("link", { name: "Show us a workflow" }).click();
+    await page
+      .getByRole("banner")
+      .getByRole("link", { name: "Walk through an example" })
+      .click();
     await page.waitForTimeout(400);
     const m = await page.evaluate(() => {
       const heading = document.querySelector("#contact h2")!;

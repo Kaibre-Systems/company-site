@@ -12,6 +12,17 @@ interface SectionProps {
   children: ReactNode;
   /** Which surface tokens apply inside. Drives colour, borders and shadows. */
   surface?: Surface;
+  /**
+   * Whose palette the surface resolves against. Kaibre's by default; `tuntas`
+   * re-resolves the same tokens against the product's own identity.
+   *
+   * It is a prop rather than a wrapping `<div data-theme>` because the site's
+   * own layout invariants are written against `main > section` — a wrapper
+   * hides the section from them, and the rhythm check that measures the gap
+   * between consecutive sections silently skipped the one it was most worth
+   * measuring.
+   */
+  theme?: "tuntas";
   id?: string;
   /** Vertical rhythm. `tight` is for supporting sections, `flush` removes it. */
   space?: "default" | "tight" | "flush";
@@ -27,6 +38,7 @@ interface SectionProps {
 export function Section({
   children,
   surface = "ink",
+  theme,
   id,
   space = "default",
   className,
@@ -35,6 +47,7 @@ export function Section({
   return (
     <section
       id={id}
+      data-theme={theme}
       data-surface={surface}
       aria-label={label}
       className={cn(

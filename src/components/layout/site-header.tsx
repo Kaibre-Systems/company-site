@@ -10,6 +10,15 @@ import { cn } from "@/lib/utils";
 
 const ALL_LINKS = [...NAV.products, ...NAV.primary];
 
+/**
+ * A nav entry that asked to be drawn with its own mark. `NAV` is `as const`,
+ * so most members of the union have no `mark` at all — the `in` narrowing is
+ * what lets one optional field describe a heterogeneous list.
+ */
+function hasMark(item: { readonly label: string }): boolean {
+  return "mark" in item && item.mark === "tuntas";
+}
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -140,6 +149,38 @@ export function SiteHeader() {
                   item.href.startsWith("/") &&
                   !item.href.includes("#") &&
                   pathname.startsWith(item.href);
+
+                /**
+                 * Tuntas is set in its own letterforms inside a bordered
+                 * control: it is a separate product with a separate identity,
+                 * and in a row of four text links that is the only way to say
+                 * so before the click. No glyph beside it — the identity is
+                 * the wordmark, and the square mark is reserved for the
+                 * places a wordmark cannot go. The border is the site's own,
+                 * because this is still Kaibre's bar.
+                 */
+                if (hasMark(item)) {
+                  return (
+                    <li key={item.href} className="mr-1">
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "inline-flex items-center rounded-control border px-3.5 py-1.5 text-small",
+                          "transition-colors duration-150",
+                          active
+                            ? "border-border-strong text-fg"
+                            : "border-border text-fg-muted hover:border-border-strong hover:text-fg",
+                        )}
+                      >
+                        <span className="tuntas-mark whitespace-nowrap [overflow-wrap:normal]">
+                          {item.label}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                }
+
                 return (
                   <li key={item.href}>
                     <Link
@@ -215,7 +256,14 @@ export function SiteHeader() {
                     className="flex min-h-12 flex-col justify-center rounded-control py-2 text-fg"
                   >
                     <span className="text-heading-2">
-                      {item.label}
+                      <span
+                        className={cn(
+                          hasMark(item) &&
+                            "tuntas-mark whitespace-nowrap [overflow-wrap:normal]",
+                        )}
+                      >
+                        {item.label}
+                      </span>
                     </span>
                     <span className="text-small text-fg-subtle">{item.note}</span>
                   </Link>

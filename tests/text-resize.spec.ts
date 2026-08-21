@@ -19,10 +19,11 @@ import { expect, test, type Page } from "@playwright/test";
 const ROUTES = [
   "/",
   "/securepulse",
-  "/securepulse/indonesia",
-  "/id/securepulse/indonesia",
+  "/tuntas",
+  "/id/tuntas",
   "/kai",
   "/work",
+  "/company",
   "/contact",
 ] as const;
 
@@ -118,7 +119,10 @@ test.describe("text resizing", () => {
             rootFontSize: parseFloat(getComputedStyle(de).fontSize),
             toggle: toggleEl ? box(toggleEl) : null,
             langLink: langEl ? box(langEl) : null,
-            logo: box(document.querySelector("header svg")),
+            // The brand link, not its first <svg>: the Tuntas chrome leads
+            // with the square mark and the wordmark follows it, so measuring
+            // one child measured a 24px glyph and called it the wordmark.
+            logo: box(document.querySelector("header a")),
             h1: h1 ? { ...box(h1), fontSize: parseFloat(getComputedStyle(h1).fontSize) } : null,
             spilling: spilling.slice(0, 5), clippedText: clippedText.slice(0, 5), diagrams,
           };
@@ -139,8 +143,8 @@ test.describe("text resizing", () => {
 
         // Navigation stays visible and operable. The target does not need to
         // grow with the text — it does need to stay at least 44px. On the
-        // SecurePulse Indonesia pages the operable control is the language
-        // toggle rather than a hamburger.
+        // Tuntas pages the operable control is the language toggle rather
+        // than a hamburger.
         if (m.toggle) {
           expect(m.toggle.w, "hamburger width").toBeGreaterThanOrEqual(44);
           expect(m.toggle.h, "hamburger height").toBeGreaterThanOrEqual(44);
@@ -153,8 +157,8 @@ test.describe("text resizing", () => {
           expect(m.langLink!.right, "language toggle off screen").toBeLessThanOrEqual(m.vw + 1);
         }
 
-        // The wordmark stays whole and recognisable rather than shrinking away
-        // or growing until it crowds the bar out.
+        // The identity stays whole and recognisable rather than shrinking
+        // away or growing until it crowds the bar out.
         expect(m.logo.w, "wordmark too small to read").toBeGreaterThanOrEqual(80);
         expect(m.logo.right, "wordmark off screen").toBeLessThanOrEqual(m.vw + 1);
         expect(m.logo.w, "wordmark crowding the bar").toBeLessThanOrEqual(m.vw * 0.6);

@@ -84,8 +84,8 @@
   --color-signal-400: oklch(0.712 0.062 218);
   --color-signal-600: oklch(0.512 0.062 218);
 
-  /* --- Indonesian flag red. Used only by the market-designation mark in
-     the SecurePulse Indonesia chrome — drawn as CSS bands rather than the
+  /* --- Indonesian flag red. Used only by the market-designation mark on the
+     Tuntas chrome and the pointers to it — drawn as CSS bands rather than the
      🇮🇩 emoji, because Windows renders flag emoji as the letters "ID". --- */
   --color-merah: oklch(0.55 0.2 27);
 
@@ -94,6 +94,51 @@
 
   --color-danger-500: oklch(0.585 0.196 27);
   --color-danger-700: oklch(0.462 0.164 27);
+
+  /* --- Tuntas. The product's own palette, taken from the product. --------
+     Not a tint of Kaibre's, and not a second brand colour either: Tuntas is
+     ink on paper. Its own identity file allows exactly three values — ink
+     `#1c231f`, paper white, wash `#f4f4f2` — and its application adds only
+     the muted status tones the analysis marks a conclusion with. Everything
+     here is one of those.
+
+     `tink` is the ink ramp. Anchored on `tink-900` = `#1c231f`, the ink of
+     the mark; the rest of the ramp is the application's own neutral grey
+     scale, so a border on this site is the same border the product draws. */
+  --color-tink-950: oklch(0.170 0.008 160);
+  --color-tink-900: oklch(0.248 0.013 160);
+  --color-tink-800: oklch(0.330 0.006 160);
+  --color-tink-700: oklch(0.420 0 0);
+  --color-tink-600: oklch(0.556 0 0);
+  --color-tink-500: oklch(0.630 0 0);
+  --color-tink-400: oklch(0.708 0 0);
+  --color-tink-300: oklch(0.820 0 0);
+  --color-tink-200: oklch(0.898 0 0);
+  --color-tink-100: oklch(0.950 0 0);
+
+  /* Paper, as the product renders it. `paper-50` is the sheet; `paper-100`
+     is the wash the sheets sit on. The wash is load-bearing rather than
+     decorative: a full-bleed white section between two near-black ones is a
+     flash, and the product's own background is not that white. */
+  --color-paper-50: oklch(1 0 0);
+  --color-paper-100: oklch(0.9666 0.0026 106);
+  --color-paper-200: oklch(0.930 0.003 120);
+
+  /* --- The status tones, transcribed from the product's own `index.css`.
+     These are semantics, not brand: green means an obligation is satisfied,
+     red that it is not, amber that it is half-met, blue that Tuntas cannot
+     tell yet and is asking. They appear only inside reproductions of the
+     product's screens, never as decoration. -------------------------- */
+  --color-st-gap: oklch(0.4958 0.1697 26);
+  --color-st-gap-bg: oklch(0.973 0.017 26);
+  --color-st-supported: oklch(0.4587 0.078 161);
+  --color-st-supported-bg: oklch(0.970 0.019 161);
+  --color-st-partial: oklch(0.5453 0.1085 71);
+  --color-st-partial-bg: oklch(0.972 0.031 82);
+  --color-st-info: oklch(0.4611 0.1259 257);
+  --color-st-info-bg: oklch(0.968 0.014 245);
+  --color-st-na: oklch(0.556 0 0);
+  --color-st-na-bg: oklch(0.968 0 0);
 
   /* --- Typography ------------------------------------------------------- */
   /* next/font supplies the --font-* custom properties on <html>. */
@@ -323,6 +368,160 @@
   --field-placeholder: var(--color-ink-700);
   --field-border: var(--color-ink-500);
   --field-border-focus: var(--color-brand-600);
+}
+
+/* ==========================================================================
+   The Tuntas theme
+   --------------------------------------------------------------------------
+   Tuntas is a separate product, not a Kaibre sub-brand, and the site says so
+   in colour: anything inside `data-theme="tuntas"` re-resolves the same
+   semantic tokens against the product's palette, so every component written
+   for the company site renders unchanged and comes out in the product's own
+   identity. No component branches on theme, and nothing here invents a token
+   — the vocabulary is identical, the values are not.
+
+   The palette is the application's, not an interpretation of it. Tuntas is
+   ink on paper: near-black type, a white sheet, a warm wash under it, hairline
+   grey rules, and no brand colour at all. The accent is therefore the ink
+   itself — a filled action is a near-black button with white type, exactly as
+   the product draws one. Colour appears in one place only, inside the
+   reproductions of the product's screens, where it carries a status the
+   product itself assigns.
+
+   Two other things change, both deliberate:
+
+   - The display face becomes the serif. The product sets regulation titles,
+     memoranda and obligations in Source Serif 4, because the thing it makes
+     is a document.
+   - `ink`, the default surface, is a white sheet rather than a dark ground.
+     Kaibre's site is near-black; the product is paper, and a page that
+     describes it in the parent's ink would be describing something else. The
+     one dark field on the whole page is `ember`, kept for the close.
+
+   Each surface needs two selectors: the region wrapper itself may carry the
+   surface (a themed section on the company homepage), or a descendant may
+   (every section of the Tuntas page, under one themed root).
+   ========================================================================== */
+
+[data-theme="tuntas"] {
+  --font-display: var(--font-serif-family), Georgia, "Times New Roman", serif;
+}
+
+[data-theme="tuntas"],
+[data-theme="tuntas"][data-surface="ink"],
+[data-theme="tuntas"] [data-surface="ink"] {
+  /* The sheet. `#ffffff`, because that is the product's own background — the
+     wash below is what keeps a full page of it from reading as a flash. */
+  --surface: var(--color-paper-50);
+  --surface-raised: var(--color-paper-50);
+  --surface-inset: var(--color-paper-100);
+  --fg: var(--color-tink-900);
+  --fg-muted: var(--color-tink-700);
+  --fg-subtle: var(--color-tink-600);
+  --border: var(--color-tink-200);
+  --border-strong: var(--color-tink-300);
+  --accent: var(--color-tink-900);
+  --accent-hover: var(--color-tink-950);
+  --accent-solid: var(--color-tink-900);
+  --accent-solid-hover: var(--color-tink-950);
+  --accent-contrast: oklch(1 0 0);
+  --accent-quiet: var(--color-tink-700);
+  --focus: var(--color-tink-900);
+  --success: var(--color-st-supported);
+  --shadow-card: 0 1px 2px oklch(0.248 0.013 160 / 0.06), 0 8px 20px -14px oklch(0.248 0.013 160 / 0.18);
+  --field: var(--color-paper-50);
+  --field-fg: var(--color-tink-900);
+  --field-placeholder: var(--color-tink-600);
+  --field-border: var(--color-tink-300);
+  --field-border-focus: var(--color-tink-900);
+}
+
+/* The wash. Kaibre alternates two dark grounds; Tuntas alternates the sheet
+   and the desk it lies on — the same move, in the product's own two values. */
+[data-theme="tuntas"][data-surface="coal"],
+[data-theme="tuntas"] [data-surface="coal"] {
+  --surface: var(--color-paper-100);
+  --surface-raised: var(--color-paper-50);
+  --surface-inset: var(--color-paper-200);
+  --border: var(--color-tink-200);
+  --border-strong: var(--color-tink-300);
+}
+
+/* No gradient on the wash: the product's own surfaces are flat, and a tonal
+   ramp across a section would be the one invented thing on the page. */
+[data-theme="tuntas"] [data-surface="coal"]:where(section),
+[data-theme="tuntas"][data-surface="coal"]:where(section) {
+  background-image: none;
+}
+
+/* `paper` is the sheet *on* the wash: used where a document has to look like
+   an object lying on a desk rather than like the page itself. */
+[data-theme="tuntas"][data-surface="paper"],
+[data-theme="tuntas"] [data-surface="paper"] {
+  --surface: var(--color-paper-100);
+  --surface-raised: var(--color-paper-50);
+  --surface-inset: var(--color-paper-200);
+  --fg: var(--color-tink-900);
+  --fg-muted: var(--color-tink-700);
+  --fg-subtle: var(--color-tink-600);
+  --border: var(--color-tink-200);
+  --border-strong: var(--color-tink-300);
+  --accent: var(--color-tink-900);
+  --accent-hover: var(--color-tink-950);
+  --accent-solid: var(--color-tink-900);
+  --accent-solid-hover: var(--color-tink-950);
+  --accent-contrast: oklch(1 0 0);
+  --accent-quiet: var(--color-tink-700);
+  --focus: var(--color-tink-900);
+  --success: var(--color-st-supported);
+  --shadow-card: 0 1px 2px oklch(0.248 0.013 160 / 0.06), 0 8px 20px -14px oklch(0.248 0.013 160 / 0.18);
+}
+
+/* The one dark field, and it is the identity's own: `#1c231f`, the ink of the
+   mark, at full size — the ground the product's link preview is printed on.
+   Reserved for the close of the page. */
+[data-theme="tuntas"][data-surface="ember"],
+[data-theme="tuntas"] [data-surface="ember"] {
+  --surface: var(--color-tink-900);
+  --surface-raised: var(--color-tink-800);
+  --surface-inset: var(--color-tink-950);
+  --fg: var(--color-paper-50);
+  --fg-muted: var(--color-tink-300);
+  --fg-subtle: var(--color-tink-400);
+  --border: var(--color-tink-800);
+  --border-strong: var(--color-tink-700);
+  --accent: var(--color-paper-50);
+  --accent-hover: var(--color-tink-200);
+  --accent-solid: oklch(1 0 0);
+  --accent-solid-hover: var(--color-paper-100);
+  --accent-contrast: var(--color-tink-900);
+  --accent-quiet: var(--color-tink-200);
+  --focus: var(--color-paper-50);
+  --success: var(--color-paper-50);
+  --shadow-card: none;
+  --field: var(--color-paper-50);
+  --field-fg: var(--color-tink-900);
+  --field-placeholder: var(--color-tink-600);
+  --field-border: var(--color-tink-700);
+  --field-border-focus: var(--color-paper-50);
+}
+
+[data-theme="tuntas"] ::selection {
+  background-color: var(--color-tink-900);
+  color: oklch(1 0 0);
+}
+
+/* The wordmark, as the product sets it: uppercase, 0.14em tracked, light, with
+   the trailing letter-spacing phantom corrected. The company site does not
+   load Montserrat, so the mark itself is drawn from outlined paths
+   (`TuntasWordmark`); this class is for the places the name has to be live
+   text beside other live text. */
+.tuntas-mark {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-right: -0.14em;
 }
 
 @theme inline {

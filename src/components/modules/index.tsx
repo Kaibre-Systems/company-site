@@ -96,7 +96,24 @@ export function ProductCard({
               under it is the first descriptive level — one hierarchy step,
               not two. */}
           <h3 className="text-heading-1 font-medium text-fg">
-            {name === "SecurePulse" ? <SecurePulseName animate /> : name}
+            {name === "SecurePulse" ? (
+              <SecurePulseName animate />
+            ) : name === "Tuntas" ? (
+              /* Tuntas sets its own name: the tracking is the whole identity,
+                 and a product introduced in the parent's display face would
+                 read as a Kaibre line item.
+
+                 `overflow-wrap: anywhere` is set on every heading on this
+                 site, which is correct for a long word in a display face and
+                 catastrophic for a six-letter wordmark: at 1/3 of the shell
+                 the tracked mark broke as "TUNTA / S". A mark either fits or
+                 is set smaller — it never hyphenates. */
+              <span className="tuntas-mark whitespace-nowrap [overflow-wrap:normal]">
+                {name}
+              </span>
+            ) : (
+              name
+            )}
           </h3>
           <ArrowUpRight
             aria-hidden
