@@ -1,17 +1,21 @@
 import Link from "next/link";
-import { KaibreWordmark } from "@/components/brand/wordmark";
-import { withBrand } from "@/components/visuals";
+import { TuntasWordmark } from "@/components/brand/tuntas";
 import { SITE } from "@/content/site";
-import type { IndoContent } from "@/content/indonesia/types";
+import type { TuntasContent } from "@/content/tuntas/types";
 
 /**
- * Compact, fully localised footer for the SecurePulse Indonesia experience.
+ * Compact, fully localised footer for the Tuntas experience.
+ *
  * One block rather than the company site's column groups: this is a single
  * page, and the footer's jobs are attribution, a route back to Kaibre, the
  * plain-text address (the contact fallback of last resort), and the
  * counterpart page in its own language.
+ *
+ * This is where the parent company is named — in a sentence, not in the mark.
+ * The line is the only "by Kaibre" on the page, and it is written out in both
+ * languages rather than drawn as an endorsement lockup.
  */
-export function IndoFooter({ content }: { content: IndoContent }) {
+export function TuntasFooter({ content }: { content: TuntasContent }) {
   const { footer } = content;
 
   return (
@@ -22,9 +26,9 @@ export function IndoFooter({ content }: { content: IndoContent }) {
       <div className="mx-auto max-w-shell px-5 pt-12 pb-[calc(3rem+env(safe-area-inset-bottom))] sm:px-6 lg:px-8">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <KaibreWordmark className="h-8 w-auto text-fg" />
-            <p className="mt-4 max-w-[38ch] text-fine text-fg-muted">
-              {withBrand(footer.tagline)}
+            <TuntasWordmark className="h-4 w-auto text-fg" />
+            <p className="mt-5 max-w-[38ch] text-fine text-fg-muted">
+              {footer.tagline}
             </p>
             <address className="mt-5 not-italic text-fine text-fg-subtle">
               {SITE.address.line}
@@ -41,10 +45,7 @@ export function IndoFooter({ content }: { content: IndoContent }) {
                     href={link.href}
                     className="inline-flex min-h-11 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
                   >
-                    {/* One span, deliberately: the link is a flex container,
-                        and `withBrand` returns several children — as separate
-                        flex items the space after the brand name collapses. */}
-                    <span>{withBrand(link.label)}</span>
+                    <span>{link.label}</span>
                   </Link>
                 </li>
               ))}

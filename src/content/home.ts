@@ -18,6 +18,44 @@ export const HERO = {
   ],
 } as const;
 
+/**
+ * The featured product, second on the page — above the operating thesis,
+ * above the commercial proof, directly under the hero.
+ *
+ * The rest of this page argues that Kaibre builds software for work that has
+ * to be right. Tuntas is that argument with a name on it, in front of real
+ * buyers now, so it stops being an item in a product list and becomes the
+ * page's second screen. It is rendered on the product's own surface — a white
+ * sheet in a near-black page — so the register changes with the subject: the
+ * visitor meets Tuntas before they read a word about it.
+ *
+ * Claim discipline is Tuntas's own, not the parent company's marketing
+ * licence: no "compliant", no legal advice, no time or price claims, and the
+ * disclaimer travels with the description rather than sitting under it.
+ */
+export const FEATURED = {
+  eyebrow: "In market now",
+  headline: "A new regulation arrives. Tuntas works out what it changes.",
+  body: "Tuntas reads a new Indonesian financial regulation against a company's own SOPs, policies, agreements and terms, and returns the position obligation by obligation — what changed, what it means here, what is missing, what has to be revised, who owns it, and by when. Every conclusion points to the article and the document it rests on.",
+  points: [
+    {
+      label: "Obligation by obligation",
+      note: "Each obligation of the new regulation beside the provision it replaces, with a conclusion and its reason.",
+    },
+    {
+      label: "It asks rather than guesses",
+      note: "Where the evidence is not in the documents, it names the document it needs and says why.",
+    },
+    {
+      label: "The judgment stays with Compliance",
+      note: "The officer reviews every conclusion and decides. Nothing closes on a click.",
+    },
+  ],
+  disclaimer: "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice.",
+  cta: { label: "See Tuntas", href: "/tuntas" },
+  secondary: { label: "Baca dalam Bahasa Indonesia", href: "/id/tuntas" },
+} as const;
+
 export const THESIS = {
   heading: "Expert judgment, spent on volume.",
   body: [
@@ -70,8 +108,14 @@ export const PROOF = {
 
 export const PRODUCTS = {
   heading: "Software we own and operate.",
-  body: "Two products in market, built on the same discipline. Both keep a person in the decision.",
+  body: "Three products in market, built on the same discipline. Each one keeps a person in the decision.",
   items: [
+    {
+      name: "Tuntas",
+      headline: "Regulatory change, obligation by obligation.",
+      body: "Tuntas reads a new Indonesian financial regulation against a company's own documents and returns the position on every obligation — what changed, what is missing, what has to be revised, and by when.",
+      href: "/tuntas",
+    },
     {
       name: "SecurePulse",
       headline: "Site assessments that show their working.",
@@ -85,12 +129,14 @@ export const PRODUCTS = {
       href: "/kai",
     },
   ],
-  /** The Indonesian deployment, discoverable without a detour: one line
-   *  under the SecurePulse panel, marked with the market flag. */
-  securepulseMarket: {
-    note: "Also deployed for Indonesian financial institutions",
-    label: "SecurePulse Indonesia",
-    href: "/securepulse/indonesia",
+  /** The Bahasa Indonesia page, one line under the Tuntas panel: it is the
+   *  language the buyer actually reads, and the flag marks the market rather
+   *  than decorating the card. Outside the card link, so the two
+   *  destinations stay two targets. */
+  tuntasMarket: {
+    note: "Written for Indonesian financial institutions",
+    label: "Baca dalam Bahasa Indonesia",
+    href: "/id/tuntas",
   },
 } as const;
 

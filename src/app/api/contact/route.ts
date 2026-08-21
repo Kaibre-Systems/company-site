@@ -20,7 +20,11 @@ export const dynamic = "force-dynamic";
 
 const TOPICS: Record<string, string> = {
   securepulse: "SecurePulse",
-  "securepulse-id": "SecurePulse Indonesia",
+  tuntas: "Tuntas",
+  /** The topic Tuntas posted under while it was a SecurePulse deployment.
+   *  Kept so an enquiry from a cached page still routes rather than falling
+   *  through to "other". */
+  "securepulse-id": "Tuntas (legacy form)",
   kai: "kAI",
   partnership: "A partnership",
   commissioned: "A commissioned system",

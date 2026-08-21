@@ -30,7 +30,21 @@ export const SITE = {
 } as const;
 
 export const NAV = {
+  /**
+   * Three products, and the order is the argument: Tuntas is the one in
+   * front of customers right now, so it leads the list here, on the homepage,
+   * and in the footer. It also carries its own mark in the bar — it is a
+   * separate product with a separate identity, not a Kaibre sub-brand, and
+   * the nav is the first place a visitor can be told that without a sentence.
+   */
   products: [
+    {
+      label: "Tuntas",
+      href: "/tuntas",
+      note: "Regulatory change, for Indonesian financial institutions",
+      /** Renders with the Tuntas mark rather than as a plain text link. */
+      mark: "tuntas",
+    },
     {
       label: "SecurePulse",
       href: "/securepulse",
@@ -49,8 +63,9 @@ export const FOOTER_GROUPS = [
   {
     title: "Products",
     links: [
+      { label: "Tuntas", href: "/tuntas" },
+      { label: "Tuntas — Bahasa Indonesia", href: "/id/tuntas" },
       { label: "SecurePulse", href: "/securepulse" },
-      { label: "SecurePulse Indonesia", href: "/securepulse/indonesia" },
       { label: "kAI", href: "/kai" },
     ],
   },

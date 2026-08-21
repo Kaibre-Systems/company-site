@@ -16,8 +16,8 @@ import { expect, test, type Page } from "@playwright/test";
 const ROUTES = [
   "/",
   "/securepulse",
-  "/securepulse/indonesia",
-  "/id/securepulse/indonesia",
+  "/tuntas",
+  "/id/tuntas",
   "/kai",
   "/work",
   "/contact",
@@ -217,8 +217,8 @@ test.describe("home: hero visualisation to the block beneath it", () => {
    ========================================================================== */
 
 test.describe("layout", () => {
-  test("SecurePulse output icons stay centred on wrapped and single-line labels", async ({ page }) => {
-    for (const route of ["/securepulse/indonesia", "/id/securepulse/indonesia"]) {
+  test("output icons stay centred on wrapped and single-line labels", async ({ page }) => {
+    for (const route of ["/tuntas", "/id/tuntas"]) {
       for (const width of [404, 1440]) {
         await page.setViewportSize({ width, height: 900 });
         await page.goto(route);
@@ -227,7 +227,7 @@ test.describe("layout", () => {
         const deltas = await page.evaluate(() => {
           const headings = [...document.querySelectorAll("main h3")];
           const heading = headings.find((el) =>
-            /(?:SecurePulse produces|Yang dihasilkan SecurePulse)/.test(el.textContent ?? ""),
+            /(?:Tuntas returns|Yang dikembalikan Tuntas)/.test(el.textContent ?? ""),
           );
           const rows = heading?.parentElement?.querySelectorAll("li") ?? [];
 
@@ -483,8 +483,15 @@ test.describe("navigation", () => {
       ["/careers", "/contact"],
       // The product is spelled SecurePulse; the legacy slugs must not 404.
       ["/securepuls", "/securepulse"],
-      ["/securepuls/indonesia", "/securepulse/indonesia"],
-      ["/id/securepuls/indonesia", "/id/securepulse/indonesia"],
+      // Tuntas shipped as a SecurePulse deployment before it was its own
+      // product. Both published paths, and the misspelling of them, still
+      // have to land on the Tuntas pages.
+      ["/securepulse/indonesia", "/tuntas"],
+      ["/id/securepulse/indonesia", "/id/tuntas"],
+      // Two hops: the misspelling resolves to the old product path, which
+      // then redirects on to Tuntas. Only the destination is asserted.
+      ["/securepuls/indonesia", "/tuntas"],
+      ["/id/securepuls/indonesia", "/id/tuntas"],
     ]) {
       await page.goto(from);
       await expect(page).toHaveURL(new RegExp(`${to.replace("/", "\\/")}$`));

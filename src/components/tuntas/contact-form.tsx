@@ -3,20 +3,20 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { SITE } from "@/content/site";
-import type { IndoContent } from "@/content/indonesia/types";
+import type { TuntasContent } from "@/content/tuntas/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Contact form for the SecurePulse Indonesia experience.
+ * Contact form for the Tuntas experience.
  *
  * Same three-layer delivery as the company-site form — API send, mail-app
  * handoff, plain-text address — with the copy fully driven by the locale
  * dictionary, plus the two fields an enterprise evaluation needs: role and
- * organisation type. Posts the `securepulse-id` topic so the enquiry arrives
+ * organisation type. Posts the `tuntas` topic so the enquiry arrives
  * labelled.
  */
 
-type FormContent = IndoContent["contact"]["form"];
+type FormContent = TuntasContent["contact"]["form"];
 type Errors = Partial<Record<"name" | "email" | "company" | "work", string>>;
 type Status = "idle" | "sending" | "sent" | "fallback";
 
@@ -46,18 +46,18 @@ function buildMailto(f: Fields, orgTypeLabel: string) {
     `Company: ${f.company}`,
     f.role ? `Role: ${f.role}` : null,
     `Organisation type: ${orgTypeLabel}`,
-    `About: SecurePulse Indonesia`,
+    `About: Tuntas`,
     "",
     f.work,
   ]
     .filter((line): line is string => line !== null)
     .join("\n");
   return `mailto:${SITE.email}?subject=${encodeURIComponent(
-    `SecurePulse Indonesia — ${f.company}`,
+    `Tuntas — ${f.company}`,
   )}&body=${encodeURIComponent(body)}`;
 }
 
-export function IndoContactForm({
+export function TuntasContactForm({
   form,
   locale,
 }: {
@@ -109,7 +109,7 @@ export function IndoContactForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...fields,
-          topic: "securepulse-id",
+          topic: "tuntas",
           locale,
           website,
         }),

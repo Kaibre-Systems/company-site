@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { IndonesiaExperience } from "@/components/indonesia/experience";
-import { ID } from "@/content/indonesia/id";
-import { EN_PATH, ID_PATH } from "@/content/indonesia/locale";
+import { TuntasExperience } from "@/components/tuntas/experience";
+import { ID } from "@/content/tuntas/id";
+import { EN_PATH, ID_PATH } from "@/content/tuntas/locale";
 
 export const metadata: Metadata = {
   title: ID.meta.title,
@@ -23,5 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function SecurePulseIndonesiaIdPage() {
-  return <IndonesiaExperience content={ID} />;
+  return <TuntasExperience content={ID} />;
 }

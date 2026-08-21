@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import {
+  Inter,
+  JetBrains_Mono,
+  Source_Serif_4,
+  Space_Grotesk,
+} from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -16,6 +21,10 @@ import { RAW } from "@/lib/raw-colors";
  *                  it never competes with the display face.
  *  JetBrains Mono— data. Eyebrows, references, and the commercial figures,
  *                  where a monospaced register signals "measured", not "code".
+ *  Source Serif 4— documents. Loaded for the Tuntas theme only, where it
+ *                  replaces the display face: the product sets regulation
+ *                  titles and memoranda in it, and the page describing that
+ *                  product should read in the same voice.
  *
  * All three are variable, so weight is a real design axis rather than the two
  * static cuts the previous local fonts allowed.
@@ -34,6 +43,15 @@ const sans = Inter({
   display: "swap",
   weight: ["400", "500", "600"],
   preload: true,
+  adjustFontFallback: true,
+});
+
+/** The Tuntas display face. Same family the product ships. */
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif-family",
+  display: "swap",
+  weight: ["400", "600", "700"],
   adjustFontFallback: true,
 });
 
@@ -99,7 +117,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}
     >
       <head>
         {/* Flags scripting so `.reveal` can hide content. Without JS nothing

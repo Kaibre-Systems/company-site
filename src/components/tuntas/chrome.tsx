@@ -2,21 +2,28 @@
 
 import Link from "next/link";
 import type { MouseEvent } from "react";
-import { KaibreWordmark } from "@/components/brand/wordmark";
-import { IndonesiaFlag, SecurePulseName } from "@/components/visuals";
-import { PATH_BY_LOCALE } from "@/content/indonesia/locale";
-import type { IndoContent } from "@/content/indonesia/types";
+import { TuntasMark, TuntasWordmark } from "@/components/brand/tuntas";
+import { IndonesiaFlag } from "@/components/visuals";
+import { PATH_BY_LOCALE } from "@/content/tuntas/locale";
+import type { TuntasContent } from "@/content/tuntas/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Microsite header for the SecurePulse Indonesia experience.
+ * Microsite header for the Tuntas experience.
+ *
+ * The mark that leads is Tuntas's, not Kaibre's. That is the split stated in
+ * chrome: Tuntas is its own product with its own identity, and customer-facing
+ * Tuntas material carries no parent-company endorsement lockup (product
+ * direction, 17 August 2026). The route back to Kaibre is a plain link at the
+ * end of the bar and an attribution line in the footer — present, named, and
+ * not part of the identity.
  *
  * Deliberately simpler than the company-site header: one page, so there is no
- * menu to manage — the chrome carries the wordmark, the product identity, the
+ * menu to manage — the chrome carries the mark, the market designation, the
  * language toggle and the one action. Sticky rather than fixed, so it needs no
  * padding compensation and the toggle stays reachable on a long sales page.
  */
-export function IndoHeader({ content }: { content: IndoContent }) {
+export function TuntasHeader({ content }: { content: TuntasContent }) {
   const { chrome, locale } = content;
 
   return (
@@ -25,26 +32,26 @@ export function IndoHeader({ content }: { content: IndoContent }) {
       className="sticky top-0 z-50 border-b border-border bg-surface text-fg"
     >
       <div className="mx-auto flex h-16 max-w-shell items-center gap-4 px-5 sm:px-6 lg:px-8">
+        {/* The lockup, at the geometry the identity specifies: the mark at
+            1.4x cap height, half a cap height of gap, the wordmark centred on
+            it. Drawn as two paths rather than assembled by hand. */}
         <Link
-          href="/"
-          aria-label={chrome.kaibreHome}
-          className="inline-flex min-h-11 shrink-0 items-center rounded-control"
+          href={PATH_BY_LOCALE[locale]}
+          aria-label={chrome.home}
+          className="inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-control"
         >
-          <KaibreWordmark className="h-7 w-auto text-fg" />
+          <TuntasMark aria-hidden className="size-6 shrink-0 text-fg" />
+          <TuntasWordmark aria-hidden className="h-[13px] w-auto text-fg" />
         </Link>
 
-        {/* The product and its market, on the wordmark's own centreline: a
-            hairline divider, the product name, and the market designation.
-            The flag is drawn as CSS bands rather than the 🇮🇩 emoji, which
-            Windows renders as the letters "ID"; the visible word "Indonesia"
-            is the accessible name, so the mark itself stays decorative.
-            Hidden on the narrowest screens — the wordmark and toggle already
-            fill 320px. */}
+        {/* The market designation, on the wordmark's own centreline. The flag
+            is drawn as CSS bands rather than the 🇮🇩 emoji, which Windows
+            renders as the letters "ID"; the visible word "Indonesia" is the
+            accessible name, so the mark itself stays decorative. Hidden on
+            the narrowest screens — the lockup and toggle already fill
+            320px. */}
         <span className="hidden items-center gap-3 sm:flex">
           <span aria-hidden className="h-6 w-px shrink-0 bg-border-strong" />
-          <span className="text-body font-medium leading-none text-fg">
-            <SecurePulseName animate={false} />
-          </span>
           <span className="flex items-center gap-1.5 leading-none text-small text-fg-subtle">
             <IndonesiaFlag />
             {chrome.marketLabel}
@@ -52,6 +59,15 @@ export function IndoHeader({ content }: { content: IndoContent }) {
         </span>
 
         <div className="ml-auto flex items-center gap-3 sm:gap-4">
+          {/* The route back to the parent company. Quiet, and last — a
+              visitor who wants it finds it, and nobody is sold to twice. */}
+          <Link
+            href="/"
+            className="hidden min-h-11 shrink-0 items-center text-small text-fg-subtle transition-colors duration-150 hover:text-fg sm:inline-flex"
+          >
+            {chrome.kaibreHome}
+          </Link>
+
           <LocaleToggle
             navLabel={chrome.toggle.navLabel}
             enLabel={chrome.toggle.en}

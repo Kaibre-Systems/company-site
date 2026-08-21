@@ -1,34 +1,35 @@
-import type { ComponentType } from "react";
+import type { ComponentType, CSSProperties } from "react";
 import {
   ClipboardCheck,
   FileCheck2,
   FileOutput,
   FileText,
   FolderOpen,
+  GitCompareArrows,
   History,
   Layers,
-  Library,
   Link2,
   ListChecks,
+  Scale,
   ScanSearch,
   SearchX,
-  TriangleAlert,
+  Stamp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type {
   ChainNodeContent,
-  IndoContent,
-  IndoIcon,
-} from "@/content/indonesia/types";
+  TuntasContent,
+  TuntasIcon,
+} from "@/content/tuntas/types";
 import { PulseDot } from "@/components/visuals";
 import { FindingDocument, ReportContents } from "@/components/visuals/document";
 
 /* ==========================================================================
-   Compliance-specific visual vocabulary
+   Regulatory-change visual vocabulary
    --------------------------------------------------------------------------
-   Everything here draws a compliance concept — an assessment overview, a
-   gap-analysis chain, a remediation extract, a report structure — rather
-   than a generic interface rectangle. Same grammar as the rest of the site:
+   Everything here draws a piece of the work itself — one obligation from the
+   register, the chain from a provision to a conclusion, the action centre,
+   the memo to the Board — rather than a generic interface rectangle. Same grammar as the rest of the site:
    thin rules, small nodes, one accent, tokens only. Content always comes
    from the locale dictionaries, so every illustration localises with the
    page, and anything with figures carries the dictionary's "Illustrative"
@@ -37,38 +38,44 @@ import { FindingDocument, ReportContents } from "@/components/visuals/document";
 
 /** Dictionary icon keys → lucide marks, kept in one place so the content
  *  files stay plain data. */
-const ICONS: Record<IndoIcon, ComponentType<{ className?: string }>> = {
-  corpus: Library,
+const ICONS: Record<TuntasIcon, ComponentType<{ className?: string }>> = {
+  corpus: Scale,
   policy: FileText,
   evidence: FolderOpen,
   history: History,
-  assessment: ClipboardCheck,
+  /** The register's first move: the new provision beside the one it
+   *  replaces. */
+  assessment: GitCompareArrows,
   map: Link2,
   gap: SearchX,
-  severity: TriangleAlert,
+  /** Two of the company's own documents disagreeing. A balance rather than a
+   *  warning triangle: the product declines to pick a side, it does not
+   *  raise an alarm. */
+  severity: ClipboardCheck,
   remediation: ListChecks,
   report: FileOutput,
   ground: Layers,
   assess: ScanSearch,
   review: FileCheck2,
+  conclude: Stamp,
 };
 
 /* ==========================================================================
    DocumentPanel — one page of the actual work product
    --------------------------------------------------------------------------
-   The hero visual is a page from a compliance assessment for an obviously
-   fictional Indonesian bank: paper, a document header, and the requirement →
-   evidence → assessment → severity → remediation → reviewer record. It shows
-   what SecurePulse produces rather than a dashboard about it. The corner tag
-   is the only illustrative marker; the accessible label states the fiction
-   outright. Secondary rows drop out below the sm breakpoint so a phone reads
-   five short rows, not seven.
+   The hero visual is one obligation from the register, for an obviously
+   fictional Indonesian company: paper, a document header, and the
+   requirement → what the documents show → what is still needed → reviewer
+   record. It shows what Tuntas produces rather than a dashboard about it.
+   The corner tag is the only illustrative marker; the accessible label
+   states the fiction outright. Secondary rows drop out below the sm
+   breakpoint so a phone reads three short rows, not four.
    ========================================================================== */
 
 export function DocumentPanel({
   panel,
 }: {
-  panel: IndoContent["hero"]["panel"];
+  panel: TuntasContent["hero"]["panel"];
 }) {
   return <FindingDocument doc={panel} />;
 }
@@ -85,7 +92,7 @@ export function IconList({
   emphasis = false,
   className,
 }: {
-  items: readonly { icon: IndoIcon; label: string; note?: string }[];
+  items: readonly { icon: TuntasIcon; label: string; note?: string }[];
   /** Outputs carry the accent; inputs stay quiet. */
   emphasis?: boolean;
   className?: string;
@@ -131,18 +138,23 @@ export function IconList({
 }
 
 /* ==========================================================================
-   StageGrid — the four-stage workflow
+   StageGrid — the workflow, stage by stage
    --------------------------------------------------------------------------
    Icon, name, one sentence. It must read correctly from those three alone.
+   The track count follows the content rather than a constant: the workflow
+   is five stages today and was four before it, and a hardcoded `grid-cols-4`
+   silently orphaned the fifth onto a row of its own.
    ========================================================================== */
 
 export function StageGrid({
   stages,
 }: {
-  stages: IndoContent["workflow"]["stages"];
+  stages: TuntasContent["workflow"]["stages"];
 }) {
   return (
-    <ol className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-x-8 gap-y-8 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+    <ol
+      style={{ "--stages": stages.length } as CSSProperties}
+      className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-x-7 gap-y-8 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-[repeat(var(--stages),minmax(0,1fr))]">
       {stages.map((stage) => {
         const Icon = ICONS[stage.icon];
         return (
@@ -225,17 +237,18 @@ export function TraceChain({
 }
 
 /* ==========================================================================
-   RemediationTable — what a remediation plan actually looks like
+   ActionTable — the action centre, as the officer reads it
    --------------------------------------------------------------------------
-   Finding | severity | action | target, three illustrative rows. A real
-   table from `sm` up; stacked cards below it, because four columns do not
-   survive 320px.
+   Deadline | what has to change and where | owner | state. Three
+   illustrative rows, the passed deadline first, because that is the order
+   the product itself puts them in. A real table from `sm` up; stacked cards
+   below it, because four columns do not survive 320px.
    ========================================================================== */
 
-export function RoadmapTable({
+export function ActionTable({
   content,
 }: {
-  content: IndoContent["deliverables"]["roadmap"];
+  content: TuntasContent["deliverables"]["actions"];
 }) {
   const { columns, rows, title, tag } = content;
 
@@ -250,11 +263,11 @@ export function RoadmapTable({
         </span>
       </h3>
       <div className="mt-4 overflow-hidden rounded-card border border-border bg-surface-raised shadow-[var(--shadow-card)]">
-        {/* Table layout from `sm` up — the roadmap's own columns: phase,
-            recommendation, owner, expected risk reduction. */}
+        {/* Table layout from `sm` up — the action centre's own columns:
+            deadline, what has to change and where, owner, state. */}
         <div className="hidden sm:block">
           <div className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)_minmax(0,0.8fr)_auto] gap-x-5 border-b border-border px-5 py-3">
-            {[columns.phase, columns.action, columns.owner, columns.reduction].map(
+            {[columns.when, columns.action, columns.owner, columns.state].map(
               (col) => (
                 <span
                   key={col}
@@ -267,28 +280,29 @@ export function RoadmapTable({
           </div>
           {rows.map((row) => (
             <div
-              key={row.phase}
+              key={row.when}
               className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)_minmax(0,0.8fr)_auto] items-baseline gap-x-5 border-b border-border px-5 py-3.5 last:border-b-0"
             >
-              <span className="font-mono text-label text-fg">{row.phase}</span>
+              <span className="font-mono text-label text-fg">{row.when}</span>
               <span className="text-small text-fg-muted">{row.action}</span>
               <span className="text-small text-fg-muted">{row.owner}</span>
-              <span className="text-small text-fg">{row.reduction}</span>
+              <span className="text-small text-fg">{row.state}</span>
             </div>
           ))}
         </div>
 
-        {/* Stacked below `sm`: phase leads, owner and reduction share a line. */}
+        {/* Stacked below `sm`: the deadline leads, owner and state share a
+            line. */}
         <ul className="sm:hidden">
           {rows.map((row) => (
             <li
-              key={row.phase}
+              key={row.when}
               className="space-y-1.5 border-b border-border p-4 last:border-b-0"
             >
-              <p className="font-mono text-label text-fg">{row.phase}</p>
+              <p className="font-mono text-label text-fg">{row.when}</p>
               <p className="text-small text-fg-muted">{row.action}</p>
               <p className="text-fine text-fg-subtle">
-                {row.owner} {"·"} {row.reduction}
+                {row.owner} {"·"} {row.state}
               </p>
             </li>
           ))}
@@ -301,18 +315,18 @@ export function RoadmapTable({
 /* ==========================================================================
    ReportPreview — the deliverable, as a document
    --------------------------------------------------------------------------
-   A table of contents rather than a fake page: the sections a SecurePulse
-   report carries, in order, ending at the reviewer's sign-off.
+   A table of contents rather than a fake page: the sections the memo to the
+   Board carries, in order, ending where the decision sits.
    ========================================================================== */
 
 export function ReportPreview({
   content,
 }: {
-  content: IndoContent["deliverables"]["report"];
+  content: TuntasContent["deliverables"]["report"];
 }) {
   /* The document explains itself: its own title, its contents, and — because
-     this report's last page is an attestation — the sign-off rows that put
-     "your team decides" inside the deliverable rather than beside it. */
+     the memo's standing is the whole question — the rows that put "your
+     officer decides" inside the deliverable rather than beside it. */
   return (
     <ReportContents
       title={content.title}
@@ -387,7 +401,7 @@ function FlowColumn({
 export function FlowCompare({
   comparison,
 }: {
-  comparison: IndoContent["comparison"];
+  comparison: TuntasContent["comparison"];
 }) {
   return (
     <div className="grid grid-cols-[minmax(0,1fr)] gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-8">

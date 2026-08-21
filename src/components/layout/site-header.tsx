@@ -6,9 +6,19 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/content/site";
 import { KaibreWordmark } from "@/components/brand/wordmark";
+import { TuntasMark } from "@/components/brand/tuntas";
 import { cn } from "@/lib/utils";
 
 const ALL_LINKS = [...NAV.products, ...NAV.primary];
+
+/**
+ * A nav entry that asked to be drawn with its own mark. `NAV` is `as const`,
+ * so most members of the union have no `mark` at all — the `in` narrowing is
+ * what lets one optional field describe a heterogeneous list.
+ */
+function hasMark(item: { readonly label: string }): boolean {
+  return "mark" in item && item.mark === "tuntas";
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -140,6 +150,38 @@ export function SiteHeader() {
                   item.href.startsWith("/") &&
                   !item.href.includes("#") &&
                   pathname.startsWith(item.href);
+
+                /**
+                 * Tuntas is drawn rather than listed: its own mark, its own
+                 * letterspaced setting, inside a bordered control. It is a
+                 * separate product with a separate identity, and in a row of
+                 * four text links the only way to say so before the click is
+                 * to make it an object instead of a word. The border is the
+                 * site's own, not the product's green — this is still
+                 * Kaibre's bar, and one imported colour in it would read as
+                 * a bug rather than as a brand.
+                 */
+                if (hasMark(item)) {
+                  return (
+                    <li key={item.href} className="mr-1">
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "inline-flex items-center gap-2 rounded-control border px-3 py-1.5 text-small",
+                          "transition-colors duration-150",
+                          active
+                            ? "border-border-strong text-fg"
+                            : "border-border text-fg-muted hover:border-border-strong hover:text-fg",
+                        )}
+                      >
+                        <TuntasMark aria-hidden className="size-4 shrink-0" />
+                        <span className="tuntas-mark">{item.label}</span>
+                      </Link>
+                    </li>
+                  );
+                }
+
                 return (
                   <li key={item.href}>
                     <Link
@@ -214,8 +256,13 @@ export function SiteHeader() {
                     onClick={dismiss}
                     className="flex min-h-12 flex-col justify-center rounded-control py-2 text-fg"
                   >
-                    <span className="text-heading-2">
-                      {item.label}
+                    <span className="flex items-center gap-2.5 text-heading-2">
+                      {hasMark(item) ? (
+                        <TuntasMark aria-hidden className="size-5 shrink-0" />
+                      ) : null}
+                      <span className={cn(hasMark(item) && "tuntas-mark")}>
+                        {item.label}
+                      </span>
                     </span>
                     <span className="text-small text-fg-subtle">{item.note}</span>
                   </Link>

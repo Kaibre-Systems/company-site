@@ -1,21 +1,28 @@
 import { cn } from "@/lib/utils";
 
 /* ==========================================================================
-   Document artifacts — the SecurePulse work product, on paper
+   Document artifacts — a work product, on paper
    --------------------------------------------------------------------------
-   Everything here is an excerpt of the report the product actually produces,
-   structured after the real deliverable: a severity-headed detailed finding,
-   a table of contents, a severity scorecard, a sign-off block. They are the
-   product's own grammar, so they carry the argument a generic interface
-   panel cannot: this is what your team receives.
+   Everything here is an excerpt of what a product actually produces,
+   structured after the real deliverable: a headed finding or obligation, a
+   table of contents, a scorecard, a sign-off block. They are the product's
+   own grammar, so they carry the argument a generic interface panel cannot:
+   this is what your team receives.
 
-   All content arrives as props — the components never invent copy, and any
-   panel carrying figures is tagged "Illustrative" by its content.
+   All content arrives as props — the components never invent copy, never
+   name a product (the sheet's own footer mark is content), and any panel
+   carrying figures is tagged "Illustrative" by its content. The sheet
+   declares `data-surface="paper"`, so it is drawn from the light surface's
+   tokens: on the company site that is Kaibre's cream, inside a Tuntas
+   region it is the white-on-wash the product itself renders.
    ========================================================================== */
 
 export interface FindingDocumentContent {
   /** The one illustrative marker, set where a classification would sit. */
   tag: string;
+  /** The product mark in the sheet's footer. Content, not a constant — the
+   *  same component draws a SecurePulse finding and a Tuntas obligation. */
+  mark: string;
   institution: string;
   title: string;
   /** Version and standing line, in the report's voice. */
@@ -23,6 +30,19 @@ export interface FindingDocumentContent {
   finding: {
     id: string;
     severity: string;
+    /**
+     * How the classification is drawn.
+     *
+     * `accent` is a severity — SecurePulse's "High" — where the colour *is*
+     * the meaning and the accent carries it. `neutral` is a conclusion whose
+     * meaning is not the accent's: Tuntas grades an obligation met, not met,
+     * partly met, unassessable or inapplicable, and its own interface colours
+     * those green, red, amber and blue. Setting "Partly met" in the marketing
+     * accent would put a green flag on a finding the product itself marks
+     * amber, so it is drawn as an outlined chip in ink instead — a label,
+     * not a verdict.
+     */
+    tone?: "accent" | "neutral";
     title: string;
     /** Category · points line, in the report's own scoring vocabulary. */
     meta: string;
@@ -54,37 +74,45 @@ export function FindingDocument({
 }) {
   const rows = compact ? doc.body.slice(-1) : doc.body;
   return (
-    <div className="bg-cream-50 p-5 text-ink-950 sm:p-6">
-      <div className="flex items-start justify-between gap-4 border-b-2 border-ink-950/80 pb-3">
+    <div data-surface="paper" className="bg-surface-raised p-5 text-fg sm:p-6">
+      <div className="flex items-start justify-between gap-4 border-b-2 border-fg/80 pb-3">
         <div className="min-w-0">
-          <p className="font-mono text-label uppercase tracking-[0.085em] text-ink-600">
+          <p className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
             {doc.institution}
           </p>
           {!compact ? (
             <>
               <p className="mt-1 font-display text-body font-bold">{doc.title}</p>
-              <p className="mt-0.5 hidden font-mono text-label text-ink-500 sm:block">
+              <p className="mt-0.5 hidden font-mono text-label text-fg-subtle sm:block">
                 {doc.docMeta}
               </p>
             </>
           ) : null}
         </div>
-        <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-ink-500">
+        <p className="shrink-0 font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
           {doc.tag}
         </p>
       </div>
 
-      <div className="border-b border-ink-200 py-3">
+      <div className="border-b border-border py-3">
         <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-          <span className="font-mono text-label tracking-[0.085em] text-ink-600">
+          <span className="font-mono text-label tracking-[0.085em] text-fg-subtle">
             {doc.finding.id}
           </span>
-          <span aria-hidden className="size-1.5 rounded-full bg-brand-700" />
-          <span className="font-mono text-label uppercase tracking-[0.085em] text-brand-700">
-            {doc.finding.severity}
-          </span>
+          {doc.finding.tone === "neutral" ? (
+            <span className="rounded-pill border border-border-strong px-2 py-0.5 font-mono text-label uppercase tracking-[0.085em] text-fg-muted">
+              {doc.finding.severity}
+            </span>
+          ) : (
+            <>
+              <span aria-hidden className="size-1.5 rounded-full bg-accent" />
+              <span className="font-mono text-label uppercase tracking-[0.085em] text-accent">
+                {doc.finding.severity}
+              </span>
+            </>
+          )}
           {!compact ? (
-            <span className="hidden font-mono text-label text-ink-500 sm:inline">
+            <span className="hidden font-mono text-label text-fg-subtle sm:inline">
               {doc.finding.meta}
             </span>
           ) : null}
@@ -99,18 +127,18 @@ export function FindingDocument({
           <p
             key={item.label}
             className={cn(
-              "text-fine leading-relaxed text-ink-700",
+              "text-fine leading-relaxed text-fg-muted",
               item.secondary && "hidden sm:block",
             )}
           >
-            <strong className="font-medium text-ink-950">{item.label}: </strong>
+            <strong className="font-medium text-fg">{item.label}: </strong>
             {item.text}
           </p>
         ))}
       </div>
 
-      <p className="mt-4 flex items-center justify-between border-t border-ink-200 pt-2.5 font-mono text-label text-ink-500">
-        <span className="hidden sm:inline">SecurePulse</span>
+      <p className="mt-4 flex items-center justify-between border-t border-border pt-2.5 font-mono text-label text-fg-subtle">
+        <span className="hidden sm:inline">{doc.mark}</span>
         <span>{doc.pageLine}</span>
       </p>
     </div>
@@ -119,9 +147,9 @@ export function FindingDocument({
 
 /**
  * The deliverable as a document: its own title, then its contents in order,
- * ending wherever the content ends — for SecurePulse that is always the
- * sign-off. Optional attestation rows put the review posture *inside* the
- * document instead of beside it.
+ * ending wherever the content ends — which, for both products, is where the
+ * customer's own sign-off sits. Optional standing rows put the review
+ * posture *inside* the document instead of beside it.
  */
 export function ReportContents({
   title,

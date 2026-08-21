@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { IndonesiaExperience } from "@/components/indonesia/experience";
-import { EN } from "@/content/indonesia/en";
-import { EN_PATH, ID_PATH } from "@/content/indonesia/locale";
+import { TuntasExperience } from "@/components/tuntas/experience";
+import { EN } from "@/content/tuntas/en";
+import { EN_PATH, ID_PATH } from "@/content/tuntas/locale";
 
 export const metadata: Metadata = {
   title: EN.meta.title,
@@ -23,5 +23,5 @@ export const metadata: Metadata = {
 };
 
 export default function SecurePulseIndonesiaPage() {
-  return <IndonesiaExperience content={EN} />;
+  return <TuntasExperience content={EN} />;
 }
