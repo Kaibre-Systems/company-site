@@ -53,9 +53,9 @@ export const EN: TuntasContent = {
   },
   hero: {
     headline: "A new regulation arrives. Tuntas works out what it changes here.",
-    body: "For Compliance and Legal at Indonesian financial institutions. You name the regulation and upload the documents you have. Tuntas returns the complete picture — obligation by obligation, with every conclusion pointing to the article and the company document it rests on.",
+    body: "For Compliance and Legal at Indonesian financial institutions. Name the regulation, upload the documents you have, and Tuntas returns the gap analysis obligation by obligation — every conclusion pointing to the article and the document it rests on.",
     cta: { label: "Walk through an example", href: "#contact" },
-    secondary: { label: "How the work moves", href: "#workflow" },
+    secondary: { label: "How it works", href: "#workflow" },
     note: "Tuntas is an analysis tool, not legal advice.",
   },
   screens: {
@@ -196,14 +196,14 @@ export const EN: TuntasContent = {
     ],
   },
   inOut: {
-    heading: "What goes in. What comes back.",
+    heading: "Now hand it to Tuntas.",
     reads: {
       title: "You give Tuntas",
       items: [
         {
           icon: "corpus",
           label: "The regulation you name",
-          note: "with the one it replaces, and the official source record for both",
+          note: "that is all — Tuntas finds the regulation it replaces, and the official source record for both, itself",
         },
         { icon: "policy", label: "Your SOPs, policies and internal procedures" },
         { icon: "evidence", label: "Agreements, terms, product documents, evidence" },
@@ -223,11 +223,11 @@ export const EN: TuntasContent = {
         },
         {
           icon: "map",
-          label: "A conclusion for each one, according to your documents, with its reason",
+          label: "A gap analysis: met, not met, partly met, or not assessable yet — each with its reason",
         },
         {
           icon: "gap",
-          label: "Named requests where the evidence is not in the documents",
+          label: "Named requests where the evidence is not in your documents",
         },
         {
           icon: "severity",
@@ -238,6 +238,10 @@ export const EN: TuntasContent = {
           label: "The specific change, in the specific document, with an owner",
         },
         {
+          icon: "draft",
+          label: "The revision itself, drafted for your review — old text, new text, the article it rests on",
+        },
+        {
           icon: "report",
           label: "Deadlines, passed ones first — and a Board memo you can edit and send",
         },
@@ -245,7 +249,7 @@ export const EN: TuntasContent = {
     },
   },
   workflow: {
-    heading: "How the work moves.",
+    heading: "One regulation, from arrival to close.",
     stages: [
       {
         n: "01",
@@ -269,7 +273,7 @@ export const EN: TuntasContent = {
         n: "04",
         icon: "remediation",
         title: "Fix the documents",
-        body: "Your units revise; Tuntas checks each revision point by point against the article it was meant to satisfy.",
+        body: "Your units revise, or Tuntas drafts the revision for them. Either way it is checked point by point against the article it was meant to satisfy.",
       },
       {
         n: "05",
@@ -348,7 +352,7 @@ export const EN: TuntasContent = {
         "Every obligation, with its conclusion and its source",
         "Missing documents requested by name",
         "The specific change, in the specific document",
-        "Each revision checked point by point",
+        "The revision drafted, then checked point by point",
       ],
       outcome: "Every obligation has a position, an owner and a date",
     },
@@ -414,7 +418,7 @@ export const EN: TuntasContent = {
   },
   contact: {
     heading: "Walk through a completed example.",
-    body: "A real regulation, analysed end to end against a fictional company's documents — the register, the requests, the contradiction, the memo. About twenty minutes, and you will know whether it resembles the work your team does.",
+    body: "A real regulation, analysed end to end against a fictional company's documents: the gap analysis obligation by obligation, the documents Tuntas asked for, the contradiction it refused to settle on its own, the revisions drafted for review, and the memorandum to the Board. About twenty minutes, and you will know whether it resembles the work your team does.",
     form: {
       name: { label: "Name", error: "Please add your name." },
       email: {

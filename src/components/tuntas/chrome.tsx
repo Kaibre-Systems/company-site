@@ -49,10 +49,19 @@ export function TuntasHeader({ content }: { content: TuntasContent }) {
             word "Indonesia" is the accessible name, so the mark itself stays
             decorative. Hidden on the narrowest screens, where the wordmark
             and the toggle already fill 320px. */}
+        {/* `leading-none` on both labels, deliberately. The wordmark is
+            outlined artwork cropped to its cap height: it has no ascender,
+            descender or line box, so `items-center` centres its capitals
+            while centring the *line* of any text beside it — and a line box
+            is taller than the letters in it. Stripping the leading makes each
+            label's box its letters, and the row centres what is actually
+            visible. */}
         <span className="hidden items-center gap-3 sm:flex">
-          <span className="text-small text-fg-subtle">{chrome.tagline}</span>
+          <span className="text-small leading-none text-fg-subtle">
+            {chrome.tagline}
+          </span>
           <span aria-hidden className="h-4 w-px shrink-0 bg-border" />
-          <span className="flex items-center gap-1.5 leading-none text-small text-fg-subtle">
+          <span className="flex items-center gap-1.5 text-small leading-none text-fg-subtle">
             <IndonesiaFlag />
             {chrome.marketLabel}
           </span>
@@ -132,7 +141,13 @@ function LocaleToggle({
                 <span
                   aria-current="true"
                   aria-label={segment.label}
-                  className={cn(base, "bg-surface-raised text-fg")}
+                  /* The active segment carries a ground, which is the whole
+                     point of a segmented control. `surface-raised` was the
+                     sheet colour — on a white header that is the header
+                     itself, so the toggle read as two plain labels with no
+                     state at all. `surface-inset` is the one token that is
+                     always a step away from the surface it sits on. */
+                  className={cn(base, "bg-surface-inset font-medium text-fg")}
                 >
                   {segment.short}
                 </span>

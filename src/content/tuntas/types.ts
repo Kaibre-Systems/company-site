@@ -22,6 +22,7 @@ export type TuntasIcon =
   | "gap"
   | "severity"
   | "remediation"
+  | "draft"
   | "report"
   | "ground"
   | "assess"

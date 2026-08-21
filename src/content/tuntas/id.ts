@@ -36,9 +36,9 @@ export const ID: TuntasContent = {
   },
   hero: {
     headline: "Regulasi baru terbit. Tuntas menghitung apa yang berubah di perusahaan Anda.",
-    body: "Untuk Kepatuhan dan Hukum di lembaga jasa keuangan Indonesia. Anda menyebutkan regulasinya dan mengunggah dokumen yang ada. Tuntas mengembalikan gambaran utuhnya — kewajiban demi kewajiban, dengan setiap kesimpulan menunjuk pasal dan dokumen perusahaan yang mendasarinya.",
+    body: "Untuk Kepatuhan dan Hukum di lembaga jasa keuangan Indonesia. Sebutkan regulasinya, unggah dokumen yang ada, dan Tuntas mengembalikan analisis kesenjangannya kewajiban demi kewajiban — setiap kesimpulan menunjuk pasal dan dokumen yang mendasarinya.",
     cta: { label: "Lihat contoh lengkapnya", href: "#contact" },
-    secondary: { label: "Bagaimana pekerjaannya berjalan", href: "#workflow" },
+    secondary: { label: "Bagaimana cara kerjanya", href: "#workflow" },
     note: "Tuntas adalah alat bantu analisis, bukan nasihat hukum.",
   },
   screens: {
@@ -179,14 +179,14 @@ export const ID: TuntasContent = {
     ],
   },
   inOut: {
-    heading: "Apa yang masuk. Apa yang kembali.",
+    heading: "Sekarang serahkan kepada Tuntas.",
     reads: {
       title: "Yang Anda berikan kepada Tuntas",
       items: [
         {
           icon: "corpus",
           label: "Regulasi yang Anda sebutkan",
-          note: "beserta regulasi yang digantikannya, dan catatan sumber resmi keduanya",
+          note: "hanya itu — Tuntas sendiri yang mencari peraturan yang digantikannya beserta catatan sumber resmi keduanya",
         },
         { icon: "policy", label: "SOP, kebijakan, dan prosedur internal Anda" },
         { icon: "evidence", label: "Perjanjian, syarat dan ketentuan, dokumen produk, bukti" },
@@ -206,7 +206,7 @@ export const ID: TuntasContent = {
         },
         {
           icon: "map",
-          label: "Satu kesimpulan untuk tiap kewajiban menurut dokumen Anda, beserta alasannya",
+          label: "Analisis kesenjangan: sudah dipenuhi, belum dipenuhi, terpenuhi sebagian, atau belum dapat dinilai — masing-masing beserta alasannya",
         },
         {
           icon: "gap",
@@ -221,6 +221,10 @@ export const ID: TuntasContent = {
           label: "Perubahan spesifik, pada dokumen spesifik, dengan penanggung jawabnya",
         },
         {
+          icon: "draft",
+          label: "Draf revisinya sendiri untuk Anda telaah — teks lama, teks baru, dan pasal yang mendasarinya",
+        },
+        {
           icon: "report",
           label: "Tenggat, yang sudah lewat lebih dulu — dan Memo Direksi yang dapat Anda sunting dan kirim",
         },
@@ -228,7 +232,7 @@ export const ID: TuntasContent = {
     },
   },
   workflow: {
-    heading: "Bagaimana pekerjaannya berjalan.",
+    heading: "Satu regulasi, dari terbit sampai tuntas.",
     stages: [
       {
         n: "01",
@@ -252,7 +256,7 @@ export const ID: TuntasContent = {
         n: "04",
         icon: "remediation",
         title: "Perbaiki dokumennya",
-        body: "Unit Anda merevisi; Tuntas memeriksa setiap revisi butir demi butir terhadap pasal yang seharusnya dipenuhinya.",
+        body: "Unit Anda merevisi, atau Tuntas yang menyusun drafnya. Keduanya tetap diperiksa butir demi butir terhadap pasal yang seharusnya dipenuhinya.",
       },
       {
         n: "05",
@@ -331,7 +335,7 @@ export const ID: TuntasContent = {
         "Setiap kewajiban, dengan kesimpulan dan sumbernya",
         "Dokumen yang kurang diminta dengan menyebut namanya",
         "Perubahan spesifik, pada dokumen spesifik",
-        "Setiap revisi diperiksa butir demi butir",
+        "Draf revisinya disusun, lalu diperiksa butir demi butir",
       ],
       outcome: "Setiap kewajiban punya posisi, penanggung jawab, dan tanggal",
     },
@@ -397,7 +401,7 @@ export const ID: TuntasContent = {
   },
   contact: {
     heading: "Telusuri satu contoh yang sudah selesai.",
-    body: "Regulasi nyata, dianalisis dari awal sampai akhir terhadap dokumen sebuah perusahaan fiktif — registernya, permintaan dokumennya, pertentangan dokumennya, memonya. Sekitar dua puluh menit, dan Anda akan tahu apakah ini menyerupai pekerjaan tim Anda.",
+    body: "Regulasi nyata, dianalisis dari awal sampai akhir terhadap dokumen sebuah perusahaan fiktif: analisis kesenjangannya kewajiban demi kewajiban, dokumen yang diminta Tuntas, pertentangan dokumen yang tidak diputuskannya sendiri, draf revisi untuk ditelaah, dan memorandum untuk Direksi. Sekitar dua puluh menit, dan Anda akan tahu apakah ini menyerupai pekerjaan tim Anda.",
     form: {
       name: { label: "Nama", error: "Mohon isi nama Anda." },
       email: {

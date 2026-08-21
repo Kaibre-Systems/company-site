@@ -229,7 +229,13 @@ test.describe("home: hero visualisation to the block beneath it", () => {
    ========================================================================== */
 
 test.describe("layout", () => {
-  test("output icons stay centred on wrapped and single-line labels", async ({ page }) => {
+  /**
+   * Both icon lists, not just the outputs one. The inputs list is the one
+   * that carries a note under some of its labels, and it was the one that
+   * drifted: its icon was centred on the label *and* the note together, so
+   * any row with a second line sat half a line low.
+   */
+  test("icons stay centred on their label, wrapped or not", async ({ page }) => {
     for (const route of ["/tuntas", "/id/tuntas"]) {
       for (const width of [404, 1440]) {
         await page.setViewportSize({ width, height: 900 });
@@ -238,10 +244,14 @@ test.describe("layout", () => {
 
         const deltas = await page.evaluate(() => {
           const headings = [...document.querySelectorAll("main h3")];
-          const heading = headings.find((el) =>
-            /(?:Tuntas returns|Yang dikembalikan Tuntas)/.test(el.textContent ?? ""),
+          const lists = headings.filter((el) =>
+            /(?:You give Tuntas|Tuntas returns|Yang Anda berikan|Yang dikembalikan)/.test(
+              el.textContent ?? "",
+            ),
           );
-          const rows = heading?.parentElement?.querySelectorAll("li") ?? [];
+          const rows = lists.flatMap((h) => [
+            ...(h.parentElement?.querySelectorAll("li") ?? []),
+          ]);
 
           return [...rows].map((row) => {
             const icon = row.children[0]?.getBoundingClientRect();

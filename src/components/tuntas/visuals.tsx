@@ -10,6 +10,7 @@ import {
   Layers,
   Link2,
   ListChecks,
+  PenLine,
   Scale,
   ScanSearch,
   SearchX,
@@ -49,6 +50,8 @@ const ICONS: Record<TuntasIcon, ComponentType<{ className?: string }>> = {
    *  raise an alarm. */
   severity: ClipboardCheck,
   remediation: ListChecks,
+  /** Tuntas writing the revision itself, rather than checking one. */
+  draft: PenLine,
   report: FileOutput,
   ground: Layers,
   assess: ScanSearch,
@@ -57,10 +60,19 @@ const ICONS: Record<TuntasIcon, ComponentType<{ className?: string }>> = {
 };
 
 /* ==========================================================================
-   IconList — reads / produces
+   IconList — what you give it, what comes back
    --------------------------------------------------------------------------
-   The executive question this answers is "what goes in, what do I get" — so
-   each item is an icon, a short label, and nothing else.
+   The executive question this answers is "what do I hand over, and what do I
+   get" — so each item is an icon, a short label, and at most one line under
+   it.
+
+   A grid rather than a flex row, because the two are not the same alignment
+   problem. A row with `items-center` centres the icon on the *whole* item, so
+   an item that carries a note pushed its icon half a line down; a row with
+   `items-start` and a hand-tuned top padding lines up only while the label
+   fits on one line. Here the icon and the label are two cells of the same
+   grid row and the note is a third cell under the label, so the icon is
+   centred on the label — one line or three — and never on the note.
    ========================================================================== */
 
 export function IconList({
@@ -80,10 +92,7 @@ export function IconList({
         return (
           <li
             key={item.label}
-            className={cn(
-              "flex gap-3 sm:gap-3.5",
-              emphasis ? "items-center" : "items-start",
-            )}
+            className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-center gap-x-3 gap-y-1 sm:gap-x-3.5"
           >
             <span
               aria-hidden
@@ -96,16 +105,19 @@ export function IconList({
             >
               <Icon className="size-4" />
             </span>
-            <span className={cn("min-w-0", !emphasis && "pt-1.5")}>
-              <span className={cn("block text-body", emphasis ? "text-fg" : "text-fg-muted")}>
-                {item.label}
-              </span>
-              {item.note ? (
-                <span className="mt-0.5 block text-small text-fg-subtle">
-                  {item.note}
-                </span>
-              ) : null}
+            <span
+              className={cn(
+                "min-w-0 text-body",
+                emphasis ? "text-fg" : "text-fg-muted",
+              )}
+            >
+              {item.label}
             </span>
+            {item.note ? (
+              <span className="col-start-2 text-small text-fg-subtle">
+                {item.note}
+              </span>
+            ) : null}
           </li>
         );
       })}

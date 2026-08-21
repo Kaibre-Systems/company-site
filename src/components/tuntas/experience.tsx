@@ -26,13 +26,14 @@ import type { TuntasContent } from "@/content/tuntas/types";
 /**
  * The Tuntas experience — one component, two dictionaries.
  *
- * Ordered for a two-to-three-minute executive read: the event and the outcome
- * in the headline; the work as it is done today, so the reader recognises
- * their own desk before any mechanism; the concrete inputs and deliverables;
- * the five stages; then the depth — the evidence chain and the five
- * conclusions, what actually arrives, the two packages, the before/after, who
- * decides, who it serves, and what a deployment includes. One conversion path
- * at the end.
+ * Ordered so a reader who stops early still has the whole argument: the event
+ * and the outcome in the headline; the work as it is done today, so they
+ * recognise their own desk before any mechanism; what they hand over and what
+ * comes back; the five stages of one regulation; the register and the five
+ * conclusions it can reach; the two screens they receive; then the before and
+ * after, which summarises all of it in two columns. Everything past that is
+ * depth — pricing, who it serves, what a deployment includes — and one
+ * conversion path at the end.
  *
  * The page renders its own chrome: the company-site header is English and
  * Kaibre-branded, and neither an Indonesian-language page nor a separate
@@ -152,7 +153,10 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
           </Container>
         </Section>
 
-        {/* In / out — the concrete inputs and deliverables. */}
+        {/* The pivot: that was the work, this is what Tuntas takes on. The
+            heading has to carry the turn — a reader who has just recognised
+            their own desk needs the next line to be about the way out of it,
+            not about a data flow. */}
         <Section surface="ink">
           <Container>
             <SectionHeader heading={c.inOut.heading} />
@@ -250,10 +254,25 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
           </Container>
         </Section>
 
+        {/* Before / after, and who decides. */}
+        <Section surface="ink">
+          <Container>
+            <SectionHeader heading={c.comparison.heading} />
+            <div className="mt-8 sm:mt-12">
+              <FlowCompare comparison={c.comparison} />
+            </div>
+            <Callout heading={c.comparison.review.heading} className="mt-8 p-5 sm:mt-12 sm:p-9">
+              {c.comparison.review.body.map((p) => (
+                <Text key={p}>{p}</Text>
+              ))}
+            </Callout>
+          </Container>
+        </Section>
+
         {/* The two packages. What each one does, never what it costs — the
             price is a conversation, and the founder's rule keeps numbers off
             the page. */}
-        <Section surface="ink">
+        <Section surface="coal">
           <Container>
             <SectionHeader heading={c.packages.heading} />
             <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6">
@@ -270,21 +289,6 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
               ))}
             </div>
             <Note className="mt-8">{c.packages.note}</Note>
-          </Container>
-        </Section>
-
-        {/* Before / after, and who decides. */}
-        <Section surface="coal">
-          <Container>
-            <SectionHeader heading={c.comparison.heading} />
-            <div className="mt-8 sm:mt-12">
-              <FlowCompare comparison={c.comparison} />
-            </div>
-            <Callout heading={c.comparison.review.heading} className="mt-8 p-5 sm:mt-12 sm:p-9">
-              {c.comparison.review.body.map((p) => (
-                <Text key={p}>{p}</Text>
-              ))}
-            </Callout>
           </Container>
         </Section>
 
