@@ -137,6 +137,8 @@
   --color-st-partial-bg: oklch(0.972 0.031 82);
   --color-st-info: oklch(0.4611 0.1259 257);
   --color-st-info-bg: oklch(0.968 0.014 245);
+  --color-st-conflict: oklch(0.4106 0.1063 320);
+  --color-st-conflict-bg: oklch(0.972 0.014 320);
   --color-st-na: oklch(0.556 0 0);
   --color-st-na-bg: oklch(0.968 0 0);
 
@@ -405,6 +407,20 @@
 
 [data-theme="tuntas"] {
   --font-display: var(--font-serif-family), Georgia, "Times New Roman", serif;
+
+  /**
+   * Tighter vertical rhythm than the parent site's.
+   *
+   * Kaibre's sections are mostly type, and they need the air to read as
+   * separate rooms. Most of this page is reproduced product screens, which
+   * already carry their own frame, their own border and their own internal
+   * padding — so the section gap is doing a job that has been done twice
+   * over, and on a phone eight sections of it was more than a screen and a
+   * half of nothing. The floor drops; the ceiling is unchanged, so nothing
+   * changes on a desktop.
+   */
+  --section-space: clamp(3.25rem, 7lvh, 8rem);
+  --section-space-tight: clamp(2.5rem, 5lvh, 4.5rem);
 }
 
 [data-theme="tuntas"],
