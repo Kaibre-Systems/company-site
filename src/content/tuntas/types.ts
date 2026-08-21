@@ -201,10 +201,8 @@ export interface TuntasContent {
   };
   inOut: {
     heading: string;
-    reads: {
-      title: string;
-      items: readonly { icon: TuntasIcon; label: string; note?: string }[];
-    };
+    /** What you hand over, in one sentence rather than four icon rows. */
+    reads: string;
     produces: {
       title: string;
       /** The memo carries a note; it is the one output whose *purpose* the
@@ -241,18 +239,11 @@ export interface TuntasContent {
     items: readonly { name: string; body: string }[];
     note: string;
   };
-  comparison: {
-    heading: string;
-    before: { title: string; steps: readonly string[]; outcome: string };
-    after: { title: string; steps: readonly string[]; outcome: string };
-    /** The scope qualification, set once, beside the boldest claim. */
-    note: string;
-    review: { heading: string; body: readonly string[] };
-  };
-  useCases: {
-    heading: string;
-    groups: readonly { title: string; items: readonly string[] }[];
-  };
+  /**
+   * Who decides. It qualifies the five conclusions, so it sits with them
+   * rather than in a section of its own.
+   */
+  review: { heading: string; body: readonly string[] };
   /** What a deployment includes — corpus standing, document handling, the
    *  record, and the language the work comes back in. */
   indonesia: {

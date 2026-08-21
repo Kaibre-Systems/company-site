@@ -61,7 +61,11 @@ export function ActionChip({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center rounded-control border px-2 py-0.5 text-fine leading-snug",
+        /* Not `shrink-0`: the longest chip the product has — "Mungkin ada
+           dokumen yang bertentangan" — is wider than the panel header on a
+           390px screen, and a chip that cannot shrink sits flush against the
+           frame. Wrapping is the product's own behaviour. */
+        "inline-flex min-w-0 items-center rounded-control border px-2 py-0.5 text-fine leading-snug",
         TONE[tone],
         className,
       )}
@@ -438,9 +442,17 @@ export function RegisterStrip({
 
 export function FollowUpScreen({
   content,
+  clip,
   className,
 }: {
   content: TuntasContent["screens"]["followUp"];
+  /**
+   * Cut short, with the last inch faded. On this screen the cut carries
+   * meaning rather than merely saving room: the heading says forty-eight
+   * items are open, and a list that visibly runs past the frame is the
+   * honest picture of forty-eight.
+   */
+  clip?: string;
   className?: string;
 }) {
   const c = content;
@@ -448,7 +460,8 @@ export function FollowUpScreen({
     <div
       data-surface="ink"
       className={cn(
-        "overflow-hidden rounded-card border border-border bg-surface text-fg",
+        "relative overflow-hidden rounded-card border border-border bg-surface text-fg",
+        clip,
         className,
       )}
     >
@@ -506,6 +519,13 @@ export function FollowUpScreen({
           ))}
         </ul>
       </div>
+
+      {clip ? (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-surface"
+        />
+      ) : null}
     </div>
   );
 }

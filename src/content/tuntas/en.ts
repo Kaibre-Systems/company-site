@@ -84,7 +84,7 @@ export const EN: TuntasContent = {
     },
     register: {
       ...SCREENS.register,
-      alt: "The obligation register in Tuntas, in Bahasa Indonesia: three obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — two marked as needing action from you, one marked as not applicable.",
+      alt: "The obligation register in Tuntas, in Bahasa Indonesia: two obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — one marked as needing action from you, one marked as not applicable.",
     },
     memo: {
       ...SCREENS.memo,
@@ -94,47 +94,31 @@ export const EN: TuntasContent = {
   problem: {
     heading: "The work you already know.",
     body: [
-      "A new OJK regulation can run to two hundred articles or more. Someone has to work out what changed, what it means for this company, which SOPs, policies, agreements and terms have to be updated, who has to update them, and by when.",
-      "It is done by hand, in between everything else, by the person who is answerable if something is missed. Then it is done again: the units revise their documents, and every revision has to be read back against the article it was meant to satisfy.",
+      "A new OJK regulation can run to two hundred articles or more. Someone has to work out what changed, what it means for this company, which SOPs, policies, agreements and terms have to be updated, who updates them, and by when — by hand, in between everything else, and then again when the units send their revisions back.",
     ],
     facts: [
       {
         title: "The examiner reads the documents.",
-        note: "The SOPs against the regulation, then the practice against the SOPs. Each gap between them is written up as a finding.",
+        note: "The SOPs against the regulation, then the practice against the SOPs. Each gap between them is a finding.",
       },
       {
         title: "Findings carry consequences.",
-        note: "Administrative sanctions, reputational cost, suspension of business activities — and a supervisory record the Board of Commissioners answers for.",
+        note: "Administrative sanctions, reputational cost, suspension of business activities, and a supervisory record the Board of Commissioners answers for.",
       },
       {
         title: "The deadline does not wait for capacity.",
-        note: "The regulation sets the date. Business as usual takes the weeks in between, and the work surfaces when there is a month left.",
+        note: "The regulation sets it. Business as usual takes the weeks in between, and the work surfaces with a month to go.",
       },
       {
         title: "One person answers for what was missed.",
-        note: "The officer has to be sure that no deadline and no obligatory action is something the company learns about later — and that the Board heard it from them first, not from outside.",
+        note: "No deadline and no obligatory action can be something the company learns about later — and the Board has to hear it from them first.",
       },
     ],
   },
   inOut: {
     heading: "Now hand it to Tuntas.",
-    reads: {
-      title: "You give Tuntas",
-      items: [
-        {
-          icon: "corpus",
-          label: "The regulation you name",
-          note: "that is all — Tuntas finds the regulation it replaces, and the official source record for both, itself",
-        },
-        { icon: "policy", label: "Your SOPs, policies and internal procedures" },
-        { icon: "evidence", label: "Agreements, terms, product documents, evidence" },
-        {
-          icon: "history",
-          label: "Whatever exists today",
-          note: "what is missing becomes a request, not a blocker",
-        },
-      ],
-    },
+    reads:
+      "You give it the regulation you name — that is all, Tuntas finds the one it replaces and the official sources itself — and whatever company documents exist today: SOPs, policies, procedures, agreements, terms, evidence. What is missing becomes a request, not a blocker.",
     produces: {
       title: "Tuntas returns",
       items: [
@@ -149,11 +133,7 @@ export const EN: TuntasContent = {
         },
         {
           icon: "map",
-          label: "A gap analysis: met, not met, partly met, or not assessable yet — each with its reason",
-        },
-        {
-          icon: "gap",
-          label: "Named requests where the evidence is not in your documents",
+          label: "A gap analysis: met, not met, partly met, or not assessable yet — each with its reason, and a named request where the evidence is missing",
         },
         {
           icon: "severity",
@@ -211,7 +191,7 @@ export const EN: TuntasContent = {
   },
   trace: {
     heading: "No conclusion without its article and its document.",
-    body: "Every conclusion stays linked to the provision it rests on, the company document it was read from, and the reviewer who accepted it. Where the documents do not answer, Tuntas says so and asks — it does not guess, and it does not pick a side between two of your own documents.",
+    body: "Where the documents do not answer, Tuntas says so and asks. It does not guess, and it does not pick a side between two of your own documents.",
     labelsHeading: "Five conclusions, and no sixth.",
     labels: [
       {
@@ -257,99 +237,40 @@ export const EN: TuntasContent = {
         body: "Tuntas also drafts each revision — old text, new text, the article it rests on. Review it, edit it, download it as Word. If the analysis or the document changes, the draft is flagged and redone.",
       },
     ],
-    note: "One regulation is one matter, from the day it arrives to the day the position is recorded.",
+    note: "One regulation is one matter, from the day it arrives to the day the position is recorded. Scope and effort vary with the regulation, the number of documents, and the package.",
   },
-  comparison: {
-    heading: "What changes.",
-    before: {
-      title: "By hand, today",
-      steps: [
-        "Read two hundred articles",
-        "Build the comparison table",
-        "Chase the documents",
-        "Distribute to the units",
-        "Read every revision back",
-      ],
-      outcome: "The deadline arrives before the work does",
-    },
-    after: {
-      title: "With Tuntas",
-      steps: [
-        "Name the regulation, upload what exists",
-        "Every obligation, with its conclusion and its source",
-        "Missing documents requested by name",
-        "The specific change, in the specific document",
-        "The revision drafted, then checked point by point",
-      ],
-      outcome: "Every obligation has a position, an owner and a date",
-    },
-    note: "Scope and effort vary with the regulation, the number of documents, and the package.",
-    review: {
-      heading: "Tuntas concludes according to the documents. Your officer decides.",
-      body: [
-        "The judgment stays with Compliance. Tuntas states a position and the evidence under it; your officer runs the sanity check that only experience can run, edits what needs editing, and decides. Nothing closes by a click alone — statuses move on evidence.",
-        "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice. Every decision is logged with a name and a time, so the record shows who accepted what, and on what.",
-      ],
-    },
-  },
-  useCases: {
-    heading: "Built for the institutions the rules land on.",
-    groups: [
-      {
-        title: "Banks",
-        items: [
-          "A new regulation arriving most months",
-          "SOPs, product terms and agreements to keep in step",
-          "A supervisory record the Board of Commissioners answers for",
-        ],
-      },
-      {
-        title: "Fintech and multifinance",
-        items: [
-          "Regimes replaced wholesale rather than amended",
-          "Rapid product change against fixed statutory dates",
-          "A compliance function of one or two people",
-        ],
-      },
-      {
-        title: "Insurers",
-        items: [
-          "Obligations spread across policies, agreements and terms",
-          "Recurring and event-triggered reporting duties",
-          "Revisions to re-check across several units",
-        ],
-      },
+  review: {
+    heading: "Tuntas concludes according to the documents. Your officer decides.",
+    body: [
+      "The judgment stays with Compliance. Tuntas states a position and the evidence under it; your officer runs the sanity check that only experience can run, edits what needs editing, and decides. Nothing closes by a click alone.",
+      "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice. Every decision is logged with a name and a time, so the record shows who accepted what, and on what.",
     ],
   },
   indonesia: {
-    heading: "What the deployment includes.",
+    heading: "What a deployment includes.",
     items: [
       {
         title: "The regulation, and the one it revokes",
-        note: "Tuntas holds both, with the official source record for each, and states which is in force. No conclusion is drawn on a revoked provision — the old regulation appears only as the thing the new one is compared against.",
+        note: "Both held with their official source record, and Tuntas states which is in force. No conclusion is ever drawn on a revoked provision.",
       },
       {
         title: "Your documents, and nothing else",
-        note: "Tuntas reads your procedures, policies, agreements and terms — not your customers' personal data, which it never needs. What you upload is stored encrypted, visible to your organisation only, used for nothing else, and deleted on request. No IT integration: a login for your compliance officer, the regulation, and your documents.",
+        note: "Procedures, policies, agreements and terms — never your customers' personal data. Encrypted, visible to your organisation only, deleted on request.",
       },
       {
-        title: "Where it runs is a decision, not a default",
-        note: "Which jurisdiction a deployment sits in is scoped with you before anything is uploaded, against the residency rules that apply to your institution.",
-      },
-      {
-        title: "A record that holds up",
-        note: "Every decision logged with a name and a time. The conclusion records the position with its open items included, rather than closing over them.",
+        title: "Where it runs is a decision",
+        note: "The jurisdiction a deployment sits in is scoped with you before anything is uploaded.",
       },
       {
         title: "Bahasa Indonesia, end to end",
-        note: "The register, the memo and the document requests are written in Bahasa Indonesia — the language the work is reviewed and filed in.",
+        note: "The register, the memo and the requests are written in the language the work is reviewed and filed in.",
       },
     ],
     note: "Tuntas claims no regulator approval, and coverage is scoped per regulation. It is an analysis tool: it does not certify compliance and it does not give legal advice.",
   },
   contact: {
     heading: "Walk through a completed example.",
-    body: "A real regulation, analysed end to end against a fictional company's documents: the gap analysis obligation by obligation, the documents Tuntas asked for, the contradiction it refused to settle on its own, the revisions drafted for review, and the memorandum to the Board. About twenty minutes, and you will know whether it resembles the work your team does.",
+    body: "A real regulation, analysed end to end against a fictional company's documents — the register, the requests, the contradiction, the drafted revisions, the memo. About twenty minutes, and you will know whether it resembles the work your team does.",
     form: {
       name: { label: "Name", error: "Please add your name." },
       email: {

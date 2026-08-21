@@ -127,19 +127,14 @@ export const SCREENS = {
       action: "Tindakan",
     },
     chapter: { title: "BAB VI — SUMBER DAYA MANUSIA", count: "3 kewajiban" },
+    /* Two of the chapter's three rows: the same chip twice said nothing the
+       first one had not, and the third is the one that shows Tuntas ruling an
+       obligation out. The count stays honest — the chapter does have three. */
     rows: [
       {
         no: "4",
         obligation:
           "Penyelenggara wajib memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi di bidang teknologi finansial yang terdaftar di Otoritas Jasa Keuangan.",
-        article: "Ps. 51 (1)",
-        action: "Perlu tindakan dari Anda",
-        tone: "gap",
-      },
-      {
-        no: "5",
-        obligation:
-          "Penyelenggara wajib memastikan pejabat 1 (satu) tingkat di bawah Direksi memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi di bidang teknologi finansial yang terdaftar di Otoritas Jasa Keuangan.",
         article: "Ps. 51 (1)",
         action: "Perlu tindakan dari Anda",
         tone: "gap",

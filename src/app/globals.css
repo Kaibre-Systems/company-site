@@ -407,6 +407,20 @@
 
 [data-theme="tuntas"] {
   --font-display: var(--font-serif-family), Georgia, "Times New Roman", serif;
+
+  /**
+   * Tighter vertical rhythm than the parent site's.
+   *
+   * Kaibre's sections are mostly type, and they need the air to read as
+   * separate rooms. Most of this page is reproduced product screens, which
+   * already carry their own frame, their own border and their own internal
+   * padding — so the section gap is doing a job that has been done twice
+   * over, and on a phone eight sections of it was more than a screen and a
+   * half of nothing. The floor drops; the ceiling is unchanged, so nothing
+   * changes on a desktop.
+   */
+  --section-space: clamp(3.25rem, 7lvh, 8rem);
+  --section-space-tight: clamp(2.5rem, 5lvh, 4.5rem);
 }
 
 [data-theme="tuntas"],

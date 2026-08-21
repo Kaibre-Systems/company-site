@@ -14,13 +14,12 @@ import { TuntasHeader } from "@/components/tuntas/chrome";
 import { TuntasFooter } from "@/components/tuntas/footer";
 import { TuntasContactForm } from "@/components/tuntas/contact-form";
 import { LangSync } from "@/components/tuntas/lang-sync";
-import { FlowCompare, IconList, StageGrid } from "@/components/tuntas/visuals";
+import { IconList, StageGrid } from "@/components/tuntas/visuals";
 import {
   FollowUpScreen,
   MemoSheet,
   ObligationPanel,
   RegisterStrip,
-  RegulationCard,
 } from "@/components/tuntas/screens";
 import type { TuntasContent } from "@/content/tuntas/types";
 
@@ -127,7 +126,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                 >
                   <ObligationPanel
                     content={c.screens.obligation}
-                    clip="max-h-[38rem] lg:max-h-[46rem]"
+                    clip="max-h-[38rem] sm:max-h-[42rem] lg:max-h-[46rem]"
                   />
                 </VisualFrame>
                 {/* The demo's own standing line, in the demo's own words. It
@@ -167,17 +166,11 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
             not about a data flow. */}
         <Section surface="ink">
           <Container>
-            <SectionHeader heading={c.inOut.heading} />
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
-              <div>
-                <h3 className="text-heading-2 text-fg">{c.inOut.reads.title}</h3>
-                <IconList items={c.inOut.reads.items} className="mt-6" />
-              </div>
-              <Card className="p-7 sm:p-8">
-                <h3 className="text-heading-2 text-fg">{c.inOut.produces.title}</h3>
-                <IconList items={c.inOut.produces.items} emphasis className="mt-6" />
-              </Card>
-            </div>
+            <SectionHeader heading={c.inOut.heading} body={c.inOut.reads} />
+            <Card className="mt-8 p-6 sm:mt-12 sm:p-8">
+              <h3 className="text-heading-2 text-fg">{c.inOut.produces.title}</h3>
+              <IconList items={c.inOut.produces.items} emphasis className="mt-6" />
+            </Card>
           </Container>
         </Section>
 
@@ -217,7 +210,14 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                 label={c.screens.contradiction.alt}
                 className="border-0 bg-transparent shadow-[var(--shadow-card)]"
               >
-                <ObligationPanel content={c.screens.contradiction} />
+                {/* Cut short on a phone. The whole panel is the argument on
+                    a desktop; on a 390px screen it is 1,400px of one
+                    obligation, and the conclusion plus the documents it names
+                    is where the point lands. */}
+                <ObligationPanel
+                  content={c.screens.contradiction}
+                  clip="max-h-[44rem] lg:max-h-none"
+                />
               </VisualFrame>
 
               {/* The five conclusions travel with the panel rather than
@@ -230,7 +230,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                 </Heading>
                 <dl className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-1">
                   {c.trace.labels.map((label) => (
-                    <div key={label.code} className="bg-surface-raised p-5">
+                    <div key={label.code} className="bg-surface-raised px-5 py-3.5">
                       <dt className="font-mono text-label uppercase tracking-[0.085em] text-fg">
                         {label.code}
                       </dt>
@@ -240,6 +240,17 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                     </div>
                   ))}
                 </dl>
+
+                <Callout className="mt-6 p-5 sm:p-7">
+                  <Heading level={3} size="heading-2">
+                    {c.review.heading}
+                  </Heading>
+                  {c.review.body.map((para) => (
+                    <Text key={para} size="small">
+                      {para}
+                    </Text>
+                  ))}
+                </Callout>
               </div>
             </div>
           </Container>
@@ -259,7 +270,7 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                 bosses to hear about the new regulation from somebody outside
                 the company". Listing it last, under the deadlines, had the
                 order of the working day backwards. */}
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-12">
+            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 sm:mt-12 sm:gap-10">
               <figure>
                 <VisualFrame
                   label={c.screens.memo.alt}
@@ -271,108 +282,56 @@ export function TuntasExperience({ content }: { content: TuntasContent }) {
                   {c.deliverables.captions.memo}
                 </figcaption>
               </figure>
-              <figure>
-                <VisualFrame
-                  label={c.screens.regulation.alt}
-                  className="border-0 bg-transparent shadow-[var(--shadow-card)]"
-                >
-                  <RegulationCard content={c.screens.regulation} />
-                </VisualFrame>
-                <figcaption className="mt-3 text-fine text-fg-subtle">
-                  {c.deliverables.captions.regulation}
-                </figcaption>
-              </figure>
             </div>
 
             {/* And what is still open, on one page. Asked for twice in one
                 session — the follow-up actions, and a summary of every
                 document still outstanding — so it is a screen here rather
                 than a line in a list. */}
-            <figure className="mt-10 sm:mt-12">
+            <figure className="mt-8 sm:mt-10">
               <VisualFrame
                 label={c.screens.followUp.alt}
                 className="border-0 bg-transparent shadow-[var(--shadow-card)]"
               >
-                <FollowUpScreen content={c.screens.followUp} />
+                <FollowUpScreen
+                  content={c.screens.followUp}
+                  clip="max-h-[24rem] sm:max-h-none"
+                />
               </VisualFrame>
               <figcaption className="mt-3 text-fine text-fg-subtle">
                 {c.deliverables.captions.followUp}
               </figcaption>
             </figure>
-          </Container>
-        </Section>
 
-        {/* Before / after, and who decides. */}
-        <Section surface="ink">
-          <Container>
-            <SectionHeader heading={c.comparison.heading} />
-            <div className="mt-8 sm:mt-12">
-              <FlowCompare comparison={c.comparison} />
-            </div>
-            <Callout heading={c.comparison.review.heading} className="mt-8 p-5 sm:mt-12 sm:p-9">
-              {c.comparison.review.body.map((p) => (
-                <Text key={p}>{p}</Text>
-              ))}
-            </Callout>
-          </Container>
-        </Section>
-
-        {/* The two packages. What each one does, never what it costs — the
-            price is a conversation, and the founder's rule keeps numbers off
-            the page. */}
-        <Section surface="coal">
-          <Container>
-            <SectionHeader heading={c.packages.heading} />
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-5 sm:mt-12 sm:grid-cols-2 sm:gap-6">
-              {c.packages.items.map((item, i) => (
-                <Card key={item.name} className="p-6 sm:p-8">
-                  <p className="font-mono text-label uppercase tracking-[0.085em] text-fg-subtle">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-3 text-heading-1 text-fg">{item.name}</h3>
-                  <Text size="small" className="mt-3">
-                    {item.body}
-                  </Text>
-                </Card>
-              ))}
-            </div>
-            <Note className="mt-8">{c.packages.note}</Note>
-          </Container>
-        </Section>
-
-        {/* Who it serves — banks, fintech and multifinance, insurers. */}
-        <Section surface="ink">
-          <Container>
-            <SectionHeader heading={c.useCases.heading} />
-            <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-8">
-              {c.useCases.groups.map((group) => (
-                <div key={group.title}>
-                  <h3 className="text-heading-2 text-fg">{group.title}</h3>
-                  <ul className="mt-4 space-y-2.5">
-                    {group.items.map((item) => (
-                      <li key={item} className="flex gap-3 text-body text-fg-muted">
-                        <span
-                          aria-hidden
-                          className="mt-2.5 size-1 shrink-0 rounded-full bg-border-strong"
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            {/* The two packages, in the section about what arrives —
+                because that is the only question they answer: how much of
+                this arrives done. A section of their own cost a screen and
+                said no more. */}
+            <div className="mt-10 border-t border-border pt-8 sm:mt-12">
+              <Heading level={3} size="heading-1">
+                {c.packages.heading}
+              </Heading>
+              <dl className="mt-5 grid grid-cols-[minmax(0,1fr)] gap-x-10 gap-y-5 sm:grid-cols-2">
+                {c.packages.items.map((item) => (
+                  <div key={item.name}>
+                    <dt className="text-body font-medium text-fg">{item.name}</dt>
+                    <dd className="mt-1.5 text-small text-fg-muted">{item.body}</dd>
+                  </div>
+                ))}
+              </dl>
+              <Note className="mt-6">{c.packages.note}</Note>
             </div>
           </Container>
         </Section>
 
         {/* What the deployment includes — the corpus and its standing, the
             documents, the record, the language. */}
-        <Section surface="coal">
+        <Section surface="ink">
           <Container>
             <SectionHeader heading={c.indonesia.heading} />
             <dl className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-px overflow-hidden rounded-card border border-border bg-border sm:mt-12 sm:grid-cols-2">
               {c.indonesia.items.map((item) => (
-                <div key={item.title} className="bg-surface-raised p-6">
+                <div key={item.title} className="bg-surface-raised px-6 py-4">
                   <dt className="text-body font-medium text-fg">{item.title}</dt>
                   <dd className="mt-2 text-small text-fg-muted">{item.note}</dd>
                 </div>

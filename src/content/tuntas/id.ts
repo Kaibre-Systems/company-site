@@ -48,53 +48,37 @@ export const ID: TuntasContent = {
     obligation: { ...SCREENS.obligation, alt: "Panel rincian satu kewajiban di Tuntas: kewajiban nomor 4 dari POJK 40 Tahun 2024 mewajibkan Penyelenggara memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja. Tuntas menyimpulkan kewajiban ini belum dipenuhi, menyebut dokumen perusahaan yang menjadi dasarnya, menuliskan yang perlu dilakukan perusahaan, dan menyatakan tenggatnya. Perusahaannya fiktif; regulasinya asli." },
     contradiction: { ...SCREENS.contradiction, alt: "Panel rincian kewajiban kedua di Tuntas: kewajiban nomor 45 mewajibkan adanya unit audit internal yang bertanggung jawab langsung kepada Direksi. Dua kelompok dokumen perusahaan sendiri saling bertentangan mengenai siapa yang menjalankan fungsi itu. Tuntas menyatakan pertentangannya, menyebut kedua sisinya, tidak memihak, dan meminta penjelasan tertulis beserta beberapa dokumen sebelum menyimpulkan." },
     followUp: { ...SCREENS.followUp, alt: "Layar tindak lanjut di Tuntas: 48 butir masih terbuka untuk perusahaan — 16 permintaan dokumen belum diserahkan dan 32 perbaikan dokumen belum selesai, 12 di antaranya sudah direvisi dan menunggu keputusan penelaah. Di bawahnya, tenggat yang dibawa peraturan ini, yang sudah lewat lebih dahulu: 27 Juni 2025 yang lewat 14 bulan, dan 4 Juli 2025 yang lewat 13 bulan." },
-    register: { ...SCREENS.register, alt: "Register kewajiban di Tuntas: tiga kewajiban dari BAB VI POJK 40 Tahun 2024, masing-masing dengan nomor, rumusan kewajibannya, pasalnya, dan satu keterangan tindakan — dua bertanda perlu tindakan dari Anda, satu bertanda tidak berlaku." },
+    register: { ...SCREENS.register, alt: "Register kewajiban di Tuntas: dua kewajiban dari BAB VI POJK 40 Tahun 2024, masing-masing dengan nomor, rumusan kewajibannya, pasalnya, dan satu keterangan tindakan — satu bertanda perlu tindakan dari Anda, satu bertanda tidak berlaku." },
     memo: { ...SCREENS.memo, alt: "Memorandum yang disusun Tuntas untuk Direksi dan Dewan Komisaris perusahaan fiktif, tertanggal 14 Agustus 2026, mengenai dampak POJK 40 Tahun 2024 yang mencabut POJK 10/POJK.05/2022." },
   },
   problem: {
     heading: "Pekerjaan yang sudah Anda kenal.",
     body: [
-      "Satu POJK baru bisa memuat dua ratus pasal atau lebih. Seseorang harus menetapkan apa yang berubah, apa artinya bagi perusahaan ini, SOP, kebijakan, perjanjian, dan syarat mana yang harus diperbarui, siapa yang memperbaruinya, dan kapan tenggatnya.",
-      "Semua dikerjakan manual, di sela pekerjaan harian, oleh orang yang akan ditanya jika ada yang terlewat. Lalu dikerjakan sekali lagi: unit merevisi dokumennya, dan setiap revisi harus dibaca ulang terhadap pasal yang seharusnya dipenuhinya.",
+      "Satu POJK baru bisa memuat dua ratus pasal atau lebih. Seseorang harus menetapkan apa yang berubah, apa artinya bagi perusahaan ini, SOP, kebijakan, perjanjian, dan syarat mana yang harus diperbarui, siapa yang memperbaruinya, dan kapan tenggatnya — manual, di sela pekerjaan harian, lalu sekali lagi ketika unit-unit mengembalikan revisinya.",
     ],
     facts: [
       {
         title: "Pemeriksa membaca dokumennya.",
-        note: "SOP dibandingkan dengan regulasi, lalu praktik dibandingkan dengan SOP. Setiap selisih di antaranya dicatat sebagai temuan.",
+        note: "SOP dibandingkan dengan regulasi, lalu praktik dengan SOP. Setiap selisih di antaranya menjadi temuan.",
       },
       {
         title: "Temuan membawa konsekuensi.",
-        note: "Sanksi administratif, biaya reputasi, pembatasan kegiatan usaha — dan catatan pengawasan yang harus dijawab Dewan Komisaris.",
+        note: "Sanksi administratif, biaya reputasi, pembatasan kegiatan usaha, dan catatan pengawasan yang harus dijawab Dewan Komisaris.",
       },
       {
         title: "Tenggat tidak menunggu kapasitas.",
-        note: "Regulasi yang menetapkan tanggalnya. Pekerjaan harian mengambil minggu-minggu di antaranya, dan pekerjaan ini muncul saat waktunya tinggal sebulan.",
+        note: "Regulasi yang menetapkannya. Pekerjaan harian mengambil minggu-minggu di antaranya, dan pekerjaan ini muncul saat waktunya tinggal sebulan.",
       },
       {
         title: "Satu orang yang menjawab atas apa yang terlewat.",
-        note: "Petugasnya harus yakin tidak ada tenggat dan tidak ada tindakan wajib yang baru diketahui perusahaan belakangan — dan bahwa Direksi mendengarnya dari dia lebih dahulu, bukan dari luar.",
+        note: "Tidak boleh ada tenggat dan tindakan wajib yang baru diketahui perusahaan belakangan — dan Direksi harus mendengarnya dari dia lebih dahulu.",
       },
     ],
   },
   inOut: {
     heading: "Sekarang serahkan kepada Tuntas.",
-    reads: {
-      title: "Yang Anda berikan kepada Tuntas",
-      items: [
-        {
-          icon: "corpus",
-          label: "Regulasi yang Anda sebutkan",
-          note: "hanya itu — Tuntas sendiri yang mencari peraturan yang digantikannya beserta catatan sumber resmi keduanya",
-        },
-        { icon: "policy", label: "SOP, kebijakan, dan prosedur internal Anda" },
-        { icon: "evidence", label: "Perjanjian, syarat dan ketentuan, dokumen produk, bukti" },
-        {
-          icon: "history",
-          label: "Apa pun yang sudah ada hari ini",
-          note: "yang belum ada menjadi permintaan dokumen, bukan penghalang",
-        },
-      ],
-    },
+    reads:
+      "Anda memberikan regulasi yang Anda sebutkan — hanya itu, Tuntas sendiri yang mencari peraturan yang digantikannya beserta sumber resminya — dan dokumen perusahaan apa pun yang sudah ada: SOP, kebijakan, prosedur, perjanjian, syarat, bukti. Yang belum ada menjadi permintaan dokumen, bukan penghalang.",
     produces: {
       title: "Yang dikembalikan Tuntas",
       items: [
@@ -109,11 +93,7 @@ export const ID: TuntasContent = {
         },
         {
           icon: "map",
-          label: "Analisis kesenjangan: sudah dipenuhi, belum dipenuhi, terpenuhi sebagian, atau belum dapat dinilai — masing-masing beserta alasannya",
-        },
-        {
-          icon: "gap",
-          label: "Permintaan dokumen yang menyebut namanya bila buktinya tidak ada",
+          label: "Analisis kesenjangan: sudah dipenuhi, belum dipenuhi, terpenuhi sebagian, atau belum dapat dinilai — masing-masing beserta alasannya, dan permintaan dokumen bila buktinya tidak ada",
         },
         {
           icon: "severity",
@@ -171,7 +151,7 @@ export const ID: TuntasContent = {
   },
   trace: {
     heading: "Tidak ada kesimpulan tanpa pasal dan dokumennya.",
-    body: "Setiap kesimpulan tetap terhubung pada ketentuan yang mendasarinya, dokumen perusahaan tempat ia dibaca, dan penelaah yang menerimanya. Bila dokumen tidak menjawab, Tuntas mengatakannya dan meminta — ia tidak menebak, dan ia tidak memihak di antara dua dokumen Anda sendiri.",
+    body: "Bila dokumen tidak menjawab, Tuntas mengatakannya dan meminta. Ia tidak menebak, dan ia tidak memihak di antara dua dokumen Anda sendiri.",
     labelsHeading: "Lima kesimpulan, tidak ada yang keenam.",
     labels: [
       {
@@ -217,68 +197,13 @@ export const ID: TuntasContent = {
         body: "Tuntas juga menyusun draf tiap revisinya — teks lama, teks baru, dan pasal yang mendasarinya. Telaah, sunting, unduh sebagai Word. Bila analisis atau dokumennya berubah, drafnya ditandai dan disusun ulang.",
       },
     ],
-    note: "Satu regulasi adalah satu perkara, sejak hari ia terbit sampai hari posisinya dicatat.",
+    note: "Satu regulasi adalah satu perkara, sejak hari ia terbit sampai hari posisinya dicatat. Cakupan dan beban kerjanya bergantung pada regulasinya, jumlah dokumennya, dan paket yang dipilih.",
   },
-  comparison: {
-    heading: "Apa yang berubah.",
-    before: {
-      title: "Manual, hari ini",
-      steps: [
-        "Membaca dua ratus pasal",
-        "Menyusun tabel perbandingan",
-        "Mengejar dokumennya",
-        "Membagikan ke unit-unit",
-        "Membaca ulang setiap revisi",
-      ],
-      outcome: "Tenggatnya tiba sebelum pekerjaannya selesai",
-    },
-    after: {
-      title: "Dengan Tuntas",
-      steps: [
-        "Sebutkan regulasinya, unggah yang ada",
-        "Setiap kewajiban, dengan kesimpulan dan sumbernya",
-        "Dokumen yang kurang diminta dengan menyebut namanya",
-        "Perubahan spesifik, pada dokumen spesifik",
-        "Draf revisinya disusun, lalu diperiksa butir demi butir",
-      ],
-      outcome: "Setiap kewajiban punya posisi, penanggung jawab, dan tanggal",
-    },
-    note: "Cakupan dan beban kerjanya bergantung pada regulasinya, jumlah dokumennya, dan paket yang dipilih.",
-    review: {
-      heading: "Tuntas menyimpulkan menurut dokumen. Petugas Anda yang memutuskan.",
-      body: [
-        "Penilaian tetap ada pada Kepatuhan. Tuntas menyatakan posisi beserta bukti yang mendasarinya; petugas Anda melakukan sanity check yang hanya bisa dilakukan dengan pengalaman, menyunting yang perlu disunting, dan memutuskan. Tidak ada yang selesai hanya karena diklik — status bergerak mengikuti bukti.",
-        "Tuntas adalah alat bantu analisis. Ia tidak menyatakan perusahaan patuh dan tidak memberikan nasihat hukum. Setiap keputusan dicatat dengan nama dan waktunya, sehingga catatan itu menunjukkan siapa menerima apa, dan atas dasar apa.",
-      ],
-    },
-  },
-  useCases: {
-    heading: "Dibangun untuk lembaga yang terkena aturannya.",
-    groups: [
-      {
-        title: "Bank",
-        items: [
-          "Regulasi baru yang terbit hampir tiap bulan",
-          "SOP, syarat produk, dan perjanjian yang harus ikut menyesuaikan",
-          "Catatan pengawasan yang harus dijawab Dewan Komisaris",
-        ],
-      },
-      {
-        title: "Fintech dan multifinance",
-        items: [
-          "Rezim yang diganti menyeluruh, bukan diubah sebagian",
-          "Perubahan produk yang cepat berhadapan dengan tanggal yang ditetapkan",
-          "Fungsi kepatuhan yang hanya berisi satu atau dua orang",
-        ],
-      },
-      {
-        title: "Asuransi",
-        items: [
-          "Kewajiban yang tersebar di polis, perjanjian, dan syarat",
-          "Kewajiban pelaporan berkala dan yang dipicu peristiwa",
-          "Revisi yang harus diperiksa ulang di beberapa unit",
-        ],
-      },
+  review: {
+    heading: "Tuntas menyimpulkan menurut dokumen. Petugas Anda yang memutuskan.",
+    body: [
+      "Penilaian tetap ada pada Kepatuhan. Tuntas menyatakan posisi beserta bukti yang mendasarinya; petugas Anda melakukan sanity check yang hanya bisa dilakukan dengan pengalaman, menyunting yang perlu disunting, dan memutuskan. Tidak ada yang selesai hanya karena diklik.",
+      "Tuntas adalah alat bantu analisis. Ia tidak menyatakan perusahaan patuh dan tidak memberikan nasihat hukum. Setiap keputusan dicatat dengan nama dan waktunya, sehingga catatan itu menunjukkan siapa menerima apa, dan atas dasar apa.",
     ],
   },
   indonesia: {
@@ -286,30 +211,26 @@ export const ID: TuntasContent = {
     items: [
       {
         title: "Regulasinya, dan regulasi yang dicabutnya",
-        note: "Tuntas memegang keduanya beserta catatan sumber resmi masing-masing, dan menyatakan mana yang berlaku. Tidak ada kesimpulan yang diambil di atas ketentuan yang sudah dicabut — regulasi lama hanya muncul sebagai pembanding.",
+        note: "Keduanya dipegang beserta catatan sumber resminya, dan Tuntas menyatakan mana yang berlaku. Tidak pernah ada kesimpulan yang diambil di atas ketentuan yang sudah dicabut.",
       },
       {
         title: "Dokumen Anda, dan tidak untuk hal lain",
-        note: "Tuntas membaca prosedur, kebijakan, perjanjian, dan syarat Anda — bukan data pribadi nasabah Anda, yang memang tidak diperlukannya. Yang Anda unggah disimpan terenkripsi, hanya terlihat oleh organisasi Anda, tidak dipakai untuk keperluan lain, dan dihapus atas permintaan. Tanpa integrasi TI: satu akun untuk petugas kepatuhan Anda, regulasinya, dan dokumen Anda.",
+        note: "Prosedur, kebijakan, perjanjian, dan syarat — bukan data pribadi nasabah Anda. Terenkripsi, hanya terlihat oleh organisasi Anda, dihapus atas permintaan.",
       },
       {
-        title: "Tempat penyimpanannya ditentukan, bukan diasumsikan",
-        note: "Yurisdiksi tempat penerapannya berjalan ditetapkan bersama Anda sebelum ada dokumen yang diunggah, sesuai ketentuan tempat penyimpanan data yang berlaku bagi institusi Anda.",
-      },
-      {
-        title: "Catatan yang dapat dipertanggungjawabkan",
-        note: "Setiap keputusan dicatat dengan nama dan waktunya. Penyelesaian mencatat posisinya berikut butir yang masih terbuka, bukan menutupinya.",
+        title: "Tempat penyimpanannya ditentukan",
+        note: "Yurisdiksi tempat penerapannya berjalan ditetapkan bersama Anda sebelum ada dokumen yang diunggah.",
       },
       {
         title: "Bahasa Indonesia, dari awal sampai akhir",
-        note: "Register, memo, dan permintaan dokumennya ditulis dalam Bahasa Indonesia — bahasa yang dipakai untuk menelaah dan mengarsipkan pekerjaan ini.",
+        note: "Register, memo, dan permintaan dokumennya ditulis dalam bahasa yang dipakai untuk menelaah dan mengarsipkan pekerjaan ini.",
       },
     ],
     note: "Tuntas tidak mengklaim persetujuan regulator, dan cakupannya ditetapkan per regulasi. Tuntas adalah alat bantu analisis: ia tidak menyatakan perusahaan patuh dan tidak memberikan nasihat hukum.",
   },
   contact: {
     heading: "Telusuri satu contoh yang sudah selesai.",
-    body: "Regulasi nyata, dianalisis dari awal sampai akhir terhadap dokumen sebuah perusahaan fiktif: analisis kesenjangannya kewajiban demi kewajiban, dokumen yang diminta Tuntas, pertentangan dokumen yang tidak diputuskannya sendiri, draf revisi untuk ditelaah, dan memorandum untuk Direksi. Sekitar dua puluh menit, dan Anda akan tahu apakah ini menyerupai pekerjaan tim Anda.",
+    body: "Regulasi nyata, dianalisis dari awal sampai akhir terhadap dokumen perusahaan fiktif — registernya, permintaan dokumennya, pertentangan dokumennya, draf revisinya, memonya. Sekitar dua puluh menit, dan Anda akan tahu apakah ini menyerupai pekerjaan tim Anda.",
     form: {
       name: { label: "Nama", error: "Mohon isi nama Anda." },
       email: {
