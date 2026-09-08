@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     languages?: Record<string, string>;
   }[] = [
     { path: "", priority: 1 },
+    { path: "/commissioned-systems", priority: 0.9 },
     { path: EN_PATH, priority: 0.9, languages: tuntasLanguages },
     { path: ID_PATH, priority: 0.9, languages: tuntasLanguages },
     { path: "/securepulse", priority: 0.8 },

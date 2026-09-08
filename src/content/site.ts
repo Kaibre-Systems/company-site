@@ -18,6 +18,7 @@ export const SITE = {
    */
   domain: "https://www.kaibresystems.com",
   positioning: "Kaibre builds and operates software for work that has to be right.",
+  signature: "Great code makes great companies.",
   shortDescription:
     "Kaibre is a software company. We build and operate our own products, build products with partners, and take on a small number of commissioned production systems.",
   email: "systemskaibre@gmail.com",
@@ -30,13 +31,10 @@ export const SITE = {
 } as const;
 
 export const NAV = {
-  /**
-   * Three products, and the order is the argument: Tuntas is the one in
-   * front of customers right now, so it leads the list here, on the homepage,
-   * and in the footer. It also carries its own mark in the bar — it is a
-   * separate product with a separate identity, not a Kaibre sub-brand, and
-   * the nav is the first place a visitor can be told that without a sentence.
-   */
+  commissioned: {
+    label: "Commissioned systems",
+    href: "/commissioned-systems",
+  },
   products: [
     {
       label: "Tuntas",
@@ -54,16 +52,9 @@ export const NAV = {
   ],
   primary: [
     { label: "Work", href: "/work" },
-    /**
-     * A page, not a fragment. Every other first-class nav entry is a
-     * destination; "Company" pointed halfway down the homepage, which is
-     * where a visitor doing vendor diligence gave up. The homepage keeps a
-     * short block under the same `#company` id, so links already in the wild
-     * still land somewhere sensible.
-     */
     { label: "Company", href: "/company" },
   ],
-  cta: { label: "Start a conversation", href: "/contact" },
+  cta: { label: "Describe your workflow", href: "/contact" },
 } as const;
 
 export const FOOTER_GROUPS = [
@@ -79,6 +70,7 @@ export const FOOTER_GROUPS = [
   {
     title: "Company",
     links: [
+      { label: "Commissioned systems", href: "/commissioned-systems" },
       { label: "About Kaibre", href: "/company" },
       { label: "How we work", href: "/company#how-we-work" },
       { label: "Handling your data", href: "/company#data" },
