@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import {
+  Card,
   Container,
   Heading,
-  Prose,
-  Note,
   Section,
   SectionHeader,
   Text,
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
 import { FitList } from "@/components/modules";
-import { Flow, PulseDot } from "@/components/visuals";
-import { SystemTopology } from "@/components/visuals/topology";
-import { WORK_COMMISSIONED, WORK_HERO, WORK_LUXURY } from "@/content/work";
+import { PulseDot } from "@/components/visuals";
+import { WORK_CASE_CARD, WORK_COMMISSIONED, WORK_HERO } from "@/content/work";
 
 export const metadata: Metadata = {
   title: "Selected work",
@@ -42,68 +42,44 @@ export default function WorkPage() {
         </Container>
       </Section>
 
-      {/* Luxury commerce — the anonymised snapshot (ember surface) */}
-      <Section surface="ember">
+      {/* The index — one card per anonymised system, each on its own URL. */}
+      <Section surface="coal" space="tight">
         <Container>
-          <SectionHeader
-            heading={WORK_LUXURY.heading}
-            body={WORK_LUXURY.intro}
-          />
-
-          <dl className="mt-14 grid gap-x-10 gap-y-8 border-t border-border-strong pt-10 sm:grid-cols-3">
-            {WORK_LUXURY.figures.map((f) => (
-              <div key={f.label}>
-                <dt className="text-small text-fg-subtle">{f.label}</dt>
-                <dd className="mt-2 flex items-center gap-2.5 font-mono text-heading-1 text-fg">
-                  {f.value === "Live" ? <PulseDot tone="live" size="md" halo /> : null}
-                  {f.value}
-                </dd>
+          <Link href={WORK_CASE_CARD.href} className="group block">
+            <Card interactive className="p-7 sm:p-9">
+              <div className="flex items-start justify-between gap-6">
+                <div>
+                  <p className="font-mono text-label uppercase tracking-[0.16em] text-accent">
+                    {WORK_CASE_CARD.eyebrow}
+                  </p>
+                  <Heading level={2} size="heading-1" className="mt-4 max-w-[26ch]">
+                    {WORK_CASE_CARD.headline}
+                  </Heading>
+                  <Text className="mt-4 max-w-[58ch]">{WORK_CASE_CARD.body}</Text>
+                </div>
+                <ArrowUpRight
+                  aria-hidden
+                  className="mt-1 size-6 shrink-0 text-fg-subtle transition-[color,transform] duration-150 group-hover:text-accent motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5"
+                />
               </div>
-            ))}
-          </dl>
-        </Container>
-      </Section>
 
-      {/* Scope (coal) — the system's shape, then how a trade moves through
-          it. The topology carries the "production system" argument the
-          figures above cannot: several coordinated subsystems, a gate in
-          front of trading, and an operator seat under all of it. */}
-      <Section surface="coal">
-        <Container>
-          <>
-            <Heading level={2} size="display-2" className="max-w-[20ch]">
-              {WORK_LUXURY.scopeTitle}
-            </Heading>
-            <Text size="lead" className="mt-6 max-w-prose">
-              {WORK_LUXURY.scopeIntro}
-            </Text>
-          </>
+              <dl className="mt-8 grid gap-x-10 gap-y-6 border-t border-border pt-7 sm:grid-cols-3">
+                {WORK_CASE_CARD.figures.map((f) => (
+                  <div key={f.label}>
+                    <dt className="text-small text-fg-subtle">{f.label}</dt>
+                    <dd className="mt-2 flex items-center gap-2.5 font-mono text-heading-1 text-fg">
+                      {f.value === "Live" ? <PulseDot tone="live" size="md" halo /> : null}
+                      {f.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
 
-          <SystemTopology content={WORK_LUXURY.topology} className="mt-12" />
-
-          <div className="mt-14 border-t border-border pt-10">
-            <h3 className="text-heading-2 font-medium text-fg">
-              {WORK_LUXURY.lifecycleTitle}
-            </h3>
-            <Flow className="mt-7" stages={WORK_LUXURY.lifecycle} />
-          </div>
-        </Container>
-      </Section>
-
-      {/* Why it mattered */}
-      <Section surface="ink">
-        <Container size="prose">
-          <>
-            <Heading level={2} size="heading-1">
-              {WORK_LUXURY.responsibilityTitle}
-            </Heading>
-            <Prose
-              paragraphs={WORK_LUXURY.responsibility}
-              size="body"
-              className="mt-5"
-            />
-            <Note className="mt-10">{WORK_LUXURY.confidentiality}</Note>
-          </>
+              <p className="mt-7 text-body font-medium text-accent">
+                {WORK_CASE_CARD.cta}
+              </p>
+            </Card>
+          </Link>
         </Container>
       </Section>
 
