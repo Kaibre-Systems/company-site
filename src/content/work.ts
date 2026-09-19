@@ -71,6 +71,20 @@ export const WORK_LUXURY = {
     "Client and implementation details are withheld under confidentiality. No customer data, credentials, infrastructure detail, or commercial terms are described here.",
 } as const;
 
+/**
+ * The index card for /work. The full snapshot now lives at its own URL —
+ * one anonymised story per page ranks and gets sent as a link; a combined
+ * page does neither. This card is the teaser that points at it.
+ */
+export const WORK_CASE_CARD = {
+  eyebrow: "Luxury commerce · live in commercial use",
+  headline: WORK_LUXURY.heading,
+  body: "Individual products valued from $10,000 to $500,000, a catalogue worth tens of millions, run on production software we built and still operate.",
+  href: "/work/luxury-commerce",
+  cta: "Read the snapshot",
+  figures: WORK_LUXURY.figures,
+} as const;
+
 export const WORK_COMMISSIONED = {
   heading: "What we take on.",
   body: [
