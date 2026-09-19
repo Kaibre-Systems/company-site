@@ -111,6 +111,28 @@ export const KAI_VALUE = {
   ],
 } as const;
 
+/**
+ * Who it is for — the named reader. kAI's buyer is the team whose list is
+ * longer than the hours they have to work it.
+ */
+export const KAI_AUDIENCE = {
+  eyebrow: "Who it is for",
+  heading: "Teams whose list outruns their callers.",
+  body: "When the first forty leads get a call the same day and the rest go cold before anyone reaches them, kAI is the caller that reaches all of them.",
+  items: [
+    "Outbound teams working more leads than they can dial.",
+    "Operations that need every lead qualified the same way.",
+    "Businesses that want the warm conversations separated from the queue.",
+  ],
+} as const;
+
+/** The ask, on the page. */
+export const KAI_CONTACT = {
+  id: "start",
+  heading: "See it on your script.",
+  body: "Bring your list, your script, and your qualification rules. We will show you kAI running the calls your team makes today.",
+} as const;
+
 export const KAI_FAQ = {
   heading: "Common questions.",
   items: [
