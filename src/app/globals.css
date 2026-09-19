@@ -763,23 +763,3 @@
     opacity: 0;
   }
 }
-
-/* "Puls" in SecurePulse, breathing. The glow is a suggestion rather than a
-   sign: the triple 40px bloom of the first pass read as neon on an
-   enterprise page, so the peak is now one tight halo. */
-@keyframes textBreathe {
-  0%,
-  100% {
-    /* The trough has to stay legible — below ~0.45 the name reads as
-       disappearing rather than breathing. */
-    opacity: 0.55;
-    text-shadow: 0 0 0 transparent;
-  }
-  50% {
-    opacity: 1;
-    text-shadow:
-      0 0 4px var(--accent),
-      0 0 14px var(--accent);
-  }
-}
-

@@ -65,6 +65,33 @@ export const SP_HERO_PANEL = {
   pageLine: "Detailed findings · 6 / 14",
 } as const;
 
+/**
+ * Four one-word properties, directly under the hero — the product in four
+ * words before the reader commits to a section. The same beat appears on every
+ * product page, so the second one reads faster than the first.
+ */
+export const SP_PROPERTIES = [
+  { title: "Traceable", note: "Finding to clause to evidence, every time." },
+  { title: "Repeatable", note: "Same site, same method, quarter on quarter." },
+  { title: "Portfolio-wide", note: "Compare every site on one scale." },
+  { title: "Board-ready", note: "One page out, the full record behind it." },
+] as const;
+
+/**
+ * Who it is for — the named reader, not "some organisations". The buyer is a
+ * security director who is asked to defend a number.
+ */
+export const SP_AUDIENCE = {
+  eyebrow: "Who it is for",
+  heading: "Security directors who have to defend a number.",
+  body: "If you hold several sites and get asked why one scores worse than another, or what last year's budget bought, this is the record that answers it.",
+  items: [
+    "Multi-site operators comparing posture across a portfolio.",
+    "Facilities under a regulator or insurer that asks for evidence.",
+    "Organisations replacing a once-a-year PDF with a tracked baseline.",
+  ],
+} as const;
+
 export const SP_JURISDICTION = {
   heading: "In the UAE, location decides the rulebook.",
   body: [
@@ -274,4 +301,12 @@ export const SP_STATUS = {
   heading: "Where SecurePulse is today",
   body: "SecurePulse is in active development and demonstration with organisations in the UAE and the wider Gulf. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
+} as const;
+
+/** The ask, on the page — one form, the same beat that closes every page. */
+export const SP_CONTACT = {
+  id: "start",
+  heading: "Start with one site.",
+  body: "One assessment on one site, with the full report and the baseline. If it is useful, roll it across the portfolio.",
+  note: "Currently assessing sites in the UAE.",
 } as const;

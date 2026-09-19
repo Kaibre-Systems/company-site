@@ -97,7 +97,7 @@ export function ProductCard({
               not two. */}
           <h3 className="text-heading-1 font-medium text-fg">
             {name === "SecurePulse" ? (
-              <SecurePulseName animate />
+              <SecurePulseName />
             ) : name === "Tuntas" ? (
               /* Tuntas sets its own name: the tracking is the whole identity,
                  and a product introduced in the parent's display face would

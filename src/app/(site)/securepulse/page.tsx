@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   Container,
   Heading,
@@ -10,6 +11,7 @@ import {
 } from "@/components/primitives";
 import { ArrowLink, Button } from "@/components/primitives/button";
 import { Callout, WorkflowSteps } from "@/components/modules";
+import { ContactForm } from "@/components/forms/contact-form";
 import {
   IndonesiaFlag,
   SecurePulseName,
@@ -22,6 +24,8 @@ import {
   RiskScorecard,
 } from "@/components/visuals/document";
 import {
+  SP_AUDIENCE,
+  SP_CONTACT,
   SP_DOMAINS,
   SP_EVIDENCE,
   SP_HERO,
@@ -30,6 +34,7 @@ import {
   SP_JURISDICTION,
   SP_MAPPING,
   SP_MARKETS,
+  SP_PROPERTIES,
   SP_REPORT,
   SP_STATUS,
   SP_WORKFLOW,
@@ -58,7 +63,7 @@ export default function SecurePulsePage() {
           <div className="grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
             <div>
               <p className="text-heading-1 font-medium text-fg">
-                <SecurePulseName animate />
+                <SecurePulseName />
                 <span className="ml-3 text-body font-normal text-fg-subtle">
                   {SP_HERO.category}
                 </span>
@@ -70,7 +75,7 @@ export default function SecurePulsePage() {
                 {SP_HERO.body}
               </Text>
               <div className="mt-9">
-                <Button href={SP_HERO.cta.href}>{SP_HERO.cta.label}</Button>
+                <Button href={`#${SP_CONTACT.id}`}>{SP_HERO.cta.label}</Button>
               </div>
             </div>
 
@@ -86,6 +91,20 @@ export default function SecurePulsePage() {
               </VisualFrame>
             </div>
           </div>
+        </Container>
+      </Section>
+
+      {/* Four one-word properties — the product in four words, under the hero. */}
+      <Section surface="coal" space="tight" className="border-t border-border">
+        <Container>
+          <dl className="grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+            {SP_PROPERTIES.map((p) => (
+              <div key={p.title} className="bg-surface-raised p-6">
+                <dt className="text-heading-2 font-medium text-fg">{p.title}</dt>
+                <dd className="mt-2 font-mono text-fine text-fg-subtle">{p.note}</dd>
+              </div>
+            ))}
+          </dl>
         </Container>
       </Section>
 
@@ -206,7 +225,36 @@ export default function SecurePulsePage() {
         </Container>
       </Section>
 
-      {/* Markets + status + CTA */}
+      {/* Who it is for (ember) — the named reader, before the ask. */}
+      <Section surface="ember">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start">
+            <div>
+              <p className="font-mono text-label uppercase tracking-[0.16em] text-accent">
+                {SP_AUDIENCE.eyebrow}
+              </p>
+              <Heading level={2} size="display-2" className="mt-5 max-w-[22ch]">
+                {SP_AUDIENCE.heading}
+              </Heading>
+              <Text size="lead" className="mt-6 max-w-[48ch]">
+                {SP_AUDIENCE.body}
+              </Text>
+            </div>
+            <ul className="grid gap-3 self-center">
+              {SP_AUDIENCE.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-card border border-border bg-surface-raised px-5 py-4 text-body text-fg-muted"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Markets */}
       <Section surface="ink" className="border-t border-border">
         <Container>
           <Heading level={2} size="display-2">
@@ -235,8 +283,29 @@ export default function SecurePulsePage() {
               {SP_STATUS.heading}
             </Heading>
             <Prose paragraphs={[SP_STATUS.body]} size="body" className="mt-5" />
-            <div className="mt-8">
-              <Button href={SP_STATUS.cta.href}>{SP_STATUS.cta.label}</Button>
+          </div>
+        </Container>
+      </Section>
+
+      {/* The ask, on the page — the form, seeded to SecurePulse. */}
+      <Section surface="coal" id={SP_CONTACT.id}>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
+            <div>
+              <Heading level={2} size="display-2" className="max-w-[16ch]">
+                {SP_CONTACT.heading}
+              </Heading>
+              <Text size="lead" className="mt-5 max-w-[46ch]">
+                {SP_CONTACT.body}
+              </Text>
+              <p className="mt-6 font-mono text-fine text-fg-subtle">
+                {SP_CONTACT.note}
+              </p>
+            </div>
+            <div className="max-w-xl">
+              <Suspense fallback={<div className="min-h-[41rem]" aria-hidden />}>
+                <ContactForm defaultTopic="securepulse" />
+              </Suspense>
             </div>
           </div>
         </Container>
