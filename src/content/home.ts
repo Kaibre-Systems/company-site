@@ -6,175 +6,123 @@
  * The two dollar figures in `proof` are founder-approved for publication.
  */
 
+/**
+ * The hero, restructured against the September 2026 site review.
+ *
+ * The signature belief ("Great code makes great companies") stays, but the
+ * second half now points at the buyer rather than at Kaibre — a headline has
+ * to be about the reader. The eyebrow names the reader outright: a senior-only
+ * team, in Abu Dhabi, with no juniors on any build. The two doors below carry
+ * the actual choice, so the hero itself needs no button.
+ */
 export const HERO = {
-  headline: "Software for work that has to be right.",
-  body: "Kaibre is a software company. We build our own products, we build products with partners, and we take on a small number of commissioned systems — all of it in production, all of it still ours to run.",
-  primary: { label: "Start a conversation", href: "/contact" },
-  secondary: { label: "See what we've built", href: "/work" },
-  modes: [
-    { label: "Products", note: "Software we own and operate" },
-    { label: "Partnerships", note: "Products built with domain partners" },
-    { label: "Commissioned", note: "Production systems built by request" },
-  ],
+  eyebrow: "Abu Dhabi · Senior engineers only · No juniors",
+  headline: "Great code makes great companies. We write the code yours runs on.",
+  body: "We build the software that high-consequence work depends on, put it into production, and keep operating it. The people who design your system are the ones running it in year three.",
 } as const;
 
 /**
- * The featured product, second on the page — above the operating thesis,
- * above the commercial proof, directly under the hero.
+ * The two doors, equal weight, both above the fold.
  *
- * The rest of this page argues that Kaibre builds software for work that has
- * to be right. Tuntas is that argument with a name on it, in front of real
- * buyers now, so it stops being an item in a product list and becomes the
- * page's second screen. It is rendered on the product's own surface — a white
- * sheet in a near-black page — so the register changes with the subject: the
- * visitor meets Tuntas before they read a word about it.
- *
- * Claim discipline is Tuntas's own, not the parent company's marketing
- * licence: no "compliant", no legal advice, no time or price claims, and the
- * disclaimer travels with the description rather than sitting under it.
+ * Commissioned work is listed first: it is the revenue, and the old page
+ * buried it two-thirds of the way down framed as something reluctantly
+ * accepted. The custom door's primary action is the on-page form (`#start`);
+ * the products door is a plain index into the three product pages.
  */
-export const FEATURED = {
-  headline: "A new regulation arrives. Tuntas works out what it changes.",
-  body: "Tuntas reads a new Indonesian financial regulation against a company's own SOPs, policies, agreements and terms, and returns the position obligation by obligation — what changed, what it means here, what is missing, what has to be revised, who owns it, and by when. Every conclusion points to the article and the document it rests on.",
-  points: [
-    {
-      label: "Obligation by obligation",
-      note: "Each obligation of the new regulation beside the provision it replaces, with a conclusion and its reason.",
-    },
-    {
-      label: "It asks rather than guesses",
-      note: "Where the evidence is not in the documents, it names the document it needs and says why.",
-    },
-    {
-      label: "The judgment stays with Compliance",
-      note: "The officer reviews every conclusion and decides. Nothing closes on a click.",
-    },
-  ],
-  disclaimer: "Tuntas is an analysis tool. It does not certify compliance and it does not give legal advice.",
-  /** The demo's own standing line, in the demo's own four words. */
-  panelNote: "Fictional company, real regulation.",
-  cta: { label: "See Tuntas", href: "/tuntas" },
-  secondary: { label: "Baca dalam Bahasa Indonesia", href: "/id/tuntas" },
+export const DOORS = {
+  commissioned: {
+    eyebrow: "Commissioned systems",
+    headline: "We build the one system your business runs on.",
+    body: "One workflow carries the money, depends on people who are hard to replace, and nothing on the market fits it. That is the work we take, and then keep running.",
+    cta: { label: "Describe your workflow", href: "#start" },
+    secondary: { label: "How we engage", href: "/commissioned-systems" },
+  },
+  products: {
+    eyebrow: "Products",
+    headline: "Or start with one we already run.",
+    items: [
+      {
+        name: "Tuntas",
+        note: "Regulatory change, obligation by obligation",
+        href: "/tuntas",
+        /** Set in its own letterforms — a separate product, not a sub-brand. */
+        mark: true,
+      },
+      {
+        name: "SecurePulse",
+        note: "Site assessments that show their working",
+        href: "/securepulse",
+      },
+      {
+        name: "kAI",
+        note: "Calls the list, flags what is worth your time",
+        href: "/kai",
+      },
+    ],
+  },
 } as const;
 
-export const THESIS = {
-  heading: "Expert judgment, spent on volume.",
-  body: [
-    "Something valuable depends on a person's judgment — an assessor's, an operator's, a closer's — and most of their day goes to the volume around it. We build the system that carries the volume.",
-  ],
-  flow: [
-    {
-      label: "Volume arrives",
-      note: "Hundreds of documents, calls, or records — all of it needing attention.",
-    },
-    {
-      label: "The system carries it",
-      note: "Reads, checks, classifies, and prepares, consistently and at pace.",
-    },
-    {
-      label: "A person decides",
-      note: "The judgment that carries consequence stays with the person.",
-      accent: true,
-    },
-  ],
-  examples: [
-    {
-      label: "Inspecting",
-      note: "Walking a site against a regulatory standard, then writing it up.",
-    },
-    {
-      label: "Calling",
-      note: "Working a list to find the few conversations worth having.",
-    },
-    {
-      label: "Record-keeping",
-      note: "Holding thousands of records accurate when each one carries money.",
-    },
-  ],
-} as const;
+/**
+ * The stat strip under the doors.
+ *
+ * The two dollar figures are the founder-approved ones already published in
+ * PROOF and on /work. "10 yrs+" states the same senior-only claim the eyebrow
+ * makes and the seniority section expands on; it asserts a floor, not a
+ * headcount. "4 markets" is COMPANY.facts, restated as a number. Any change to
+ * the experience floor should be confirmed with the founders before shipping.
+ */
+export const STATS = [
+  { value: "$10k – $500k", label: "Individual unit value handled" },
+  { value: "Tens of millions", label: "Catalogue value in production" },
+  { value: "10 yrs+", label: "Minimum engineer experience" },
+  { value: "4 markets", label: "UAE, Indonesia, Canada, US" },
+] as const;
 
 export const PROOF = {
   /**
-   * The heading leads with the transferable claim rather than the category.
-   *
-   * This is the site's one piece of hard proof, and the category it comes
-   * from — luxury commerce — is not the world of the buyer most likely to be
-   * reading. What transfers is the standard the system is held to: a record
-   * that is wrong is an event, not a ticket. That is the same sentence a
-   * compliance director would use about a register of obligations, so it
-   * leads, and the figures follow to substantiate it.
+   * The case study becomes the proof for custom work, not a late aside, and it
+   * carries the page's one rust band. The heading leads with the transferable
+   * standard rather than the category: a compliance director would use the
+   * same sentence about a register of obligations.
    */
-  heading: "Where a wrong record is an event, not a support ticket.",
-  body: [
-    "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
-    "At those values accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event. The system is live in commercial use, and Kaibre continues to support and operate it — the same people who designed it.",
+  eyebrow: "Case study · Luxury commerce",
+  heading: "A wrong record here is a commercial event, not a support ticket.",
+  body: "Individual products from $10,000 to $500,000, a catalogue worth tens of millions, and a business that cannot absorb a mispriced line. We built the production system it runs on, and we still operate it.",
+  /** Approved figures only. No invented counts. */
+  panel: [
+    { label: "individual product value", value: "$10k – $500k" },
+    { label: "catalogue value", value: "Tens of millions" },
+    { label: "status", value: "Live, in commercial use" },
+    { label: "operated by", value: "the team that built it" },
   ],
-  figures: [
-    { value: "$10k – $500k", label: "Individual product value" },
-    { value: "Tens of millions", label: "Catalogue value" },
-  ],
-  confidentiality: "Client and implementation details are withheld under confidentiality.",
-  link: { label: "Read the full snapshot", href: "/work" },
+  confidentiality: "Client withheld under confidentiality. Figures published with sign-off.",
+  link: { label: "Read the snapshot", href: "/work/luxury-commerce" },
 } as const;
 
-export const PRODUCTS = {
-  heading: "Software we own and operate.",
-  body: "Three products in market, built on the same discipline. Each one keeps a person in the decision.",
-  items: [
+/**
+ * The seniority section — the single strongest addition the review identified.
+ *
+ * Names and faces would be stronger still and are worth revisiting; until
+ * then the claim is carried by specifics with a concrete consequence attached,
+ * not by adjectives. One assertion per line.
+ */
+export const SENIORITY = {
+  heading: "No juniors. No handoff.",
+  body: "The person you speak to first is responsible for the build, and is still on it a year later. No account manager sits between you and the engineer.",
+  cards: [
     {
-      name: "Tuntas",
-      headline: "Regulatory change, obligation by obligation.",
-      body: "Tuntas reads a new Indonesian financial regulation against a company's own documents and returns the position on every obligation — what changed, what is missing, what has to be revised, and by when.",
-      href: "/tuntas",
+      title: "Senior only",
+      body: "Every engineer has run production systems for over a decade. Nobody learns on your build.",
     },
     {
-      name: "SecurePulse",
-      headline: "Site assessments that show their working.",
-      body: "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings graded by severity. A named assessor signs the report off.",
-      href: "/securepulse",
+      title: "We stay on it",
+      body: "We operate what we build. A system we shipped years ago is still ours to keep running.",
     },
     {
-      name: "kAI",
-      headline: "Calls the list. Flags the ones worth your time.",
-      body: "kAI runs outbound qualification calls on your own number, follows the script your team agreed, and classifies each conversation so your people spend their hours on the leads that justify them.",
-      href: "/kai",
+      title: "Small on purpose",
+      body: "A handful of commissioned systems at a time. It is why the first answer comes from an engineer.",
     },
   ],
-  /** The Bahasa Indonesia page, one line under the Tuntas panel: it is the
-   *  language the buyer actually reads, and the flag marks the market rather
-   *  than decorating the card. Outside the card link, so the two
-   *  destinations stay two targets. */
-  tuntasMarket: {
-    note: "Written for Indonesian financial institutions",
-    label: "Baca dalam Bahasa Indonesia",
-    href: "/id/tuntas",
-  },
-} as const;
-
-export const COMMISSIONED = {
-  id: "commissioned",
-  heading: "Some organisations have one workflow that carries the business.",
-  body: [
-    "When it matters more than the rest of the business combined and nothing on the market fits it, that is the kind of system we take on and then keep running.",
-    "We build the system, put it into production, and keep operating it. The people who designed it are the ones running it a year later.",
-  ],
-  fit: {
-    title: "A good fit",
-    items: [
-      "The workflow is central to how the business makes money.",
-      "It is expensive because it depends on people who are hard to replace.",
-      "Being wrong has a real financial, regulatory, or reputational cost.",
-    ],
-  },
-  notFit: {
-    title: "Not a fit",
-    items: [
-      "Topping up an existing team with engineers.",
-      "Executing a specification someone else has already written.",
-      "Building the cheapest possible version of something.",
-    ],
-  },
-  cta: { label: "Tell us about the workflow", href: "/contact?topic=commissioned" },
 } as const;
 
 export const PARTNERSHIPS = {
@@ -258,8 +206,8 @@ export const COMPANY = {
   cta: { label: "About Kaibre", href: "/company" },
 } as const;
 
-export const FINAL_CTA = {
+export const CONTACT = {
+  id: "start",
   heading: "Tell us about the work.",
-  body: "If something in your operation is expensive, slow, and important, describe it in a paragraph. It reaches the person who would be responsible for building it.",
-  cta: { label: "Start a conversation", href: "/contact" },
+  body: "If something in your operation is expensive, slow, and important, describe it in a paragraph. It reaches the engineer who would be responsible for building it, usually the same day.",
 } as const;
