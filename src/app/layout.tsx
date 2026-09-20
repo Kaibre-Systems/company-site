@@ -90,8 +90,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: RAW.ink950,
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: RAW.cream50 },
+    { media: "(prefers-color-scheme: dark)", color: RAW.ink950 },
+  ],
+  colorScheme: "light dark",
 };
 
 const ORGANISATION_LD = {
@@ -120,11 +123,15 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}
     >
       <head>
-        {/* Flags scripting so `.reveal` can hide content. Without JS nothing
-            is ever hidden, so content can never be lost to a failed hydrate. */}
+        {/* Flags scripting so `.reveal` can hide content (without JS nothing is
+            ever hidden), and applies the remembered light/dark choice before
+            first paint so the theme never flashes. No stored choice leaves the
+            attribute off, and the site follows the operating system. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `document.documentElement.dataset.js="true"`,
+            __html:
+              `document.documentElement.dataset.js="true";` +
+              `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}`,
           }}
         />
         <script
@@ -136,7 +143,7 @@ export default function RootLayout({
           renders the English shell via `(site)/layout.tsx`, and the SecurePulse
           Indonesia experience renders its own localised shell. The root
           `not-found` and `error` pages compose `SiteChrome` themselves. */}
-      <body className="min-h-dvh bg-ink-950 antialiased">
+      <body className="min-h-dvh bg-surface antialiased">
         {children}
 
         <Analytics />

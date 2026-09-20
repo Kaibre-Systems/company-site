@@ -8,6 +8,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/content/site";
 import { EN_PATH, ID_PATH, PATH_BY_LOCALE } from "@/content/tuntas/locale";
 import { KaibreWordmark } from "@/components/brand/wordmark";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 
 /**
@@ -301,18 +302,13 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          {onTuntas ? (
-            <div className="ml-auto hidden lg:ml-0 lg:block">
-              <LocaleToggle current={tuntasLocale} />
-            </div>
-          ) : null}
+          <ThemeToggle className="hidden lg:ml-1 lg:inline-flex" />
+
+          {onTuntas ? <LocaleToggle current={tuntasLocale} /> : null}
 
           <Link
             href={NAV.cta.href}
-            className={cn(
-              "hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:inline-flex",
-              onTuntas ? "lg:ml-2" : "ml-auto lg:ml-0",
-            )}
+            className="hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:ml-2 lg:inline-flex"
           >
             {NAV.cta.label}
           </Link>
@@ -407,8 +403,13 @@ export function SiteHeader() {
               ))}
             </ul>
 
+            <div className="mt-6 flex items-center gap-3">
+              <span className="text-small text-fg-subtle">Theme</span>
+              <ThemeToggle className="border border-border" />
+            </div>
+
             {onTuntas ? (
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-4 flex items-center gap-3">
                 <span className="text-small text-fg-subtle">Language</span>
                 <LocaleToggle current={tuntasLocale} />
               </div>

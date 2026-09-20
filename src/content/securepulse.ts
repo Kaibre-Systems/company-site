@@ -14,7 +14,7 @@
 
 export const SP_HERO = {
   category: "Physical security assessment",
-  headline: "Site assessments that show their working.",
+  headline: "Site assessments that show their work.",
   body: "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment. It builds the checklist for the site's emirate and sector, captures photo evidence on the walk, grades findings by severity, and produces a consulting-standard report that a named assessor signs off.",
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
 } as const;
