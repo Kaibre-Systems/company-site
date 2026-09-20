@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/content/site";
+import { EN_PATH, ID_PATH, PATH_BY_LOCALE } from "@/content/tuntas/locale";
 import { KaibreWordmark } from "@/components/brand/wordmark";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +37,15 @@ export function SiteHeader() {
   const productsBtnRef = useRef<HTMLButtonElement>(null);
 
   const productActive = NAV.products.some((p) => isActive(pathname, p.href));
+
+  /**
+   * Tuntas is bilingual, and it now opens under this shared header rather than
+   * its own. The EN | ID toggle is the one Tuntas-specific control in the bar,
+   * shown only on the two Tuntas routes; everywhere else the header is
+   * identical to every other page.
+   */
+  const onTuntas = pathname === EN_PATH || pathname === ID_PATH;
+  const tuntasLocale: "en" | "id" = pathname === ID_PATH ? "id" : "en";
 
   /**
    * Scroll state via a sentinel rather than a per-frame scroll listener, and
@@ -290,9 +301,18 @@ export function SiteHeader() {
             </ul>
           </nav>
 
+          {onTuntas ? (
+            <div className="ml-auto hidden lg:ml-0 lg:block">
+              <LocaleToggle current={tuntasLocale} />
+            </div>
+          ) : null}
+
           <Link
             href={NAV.cta.href}
-            className="ml-auto hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:ml-0 lg:inline-flex"
+            className={cn(
+              "hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:inline-flex",
+              onTuntas ? "lg:ml-2" : "ml-auto lg:ml-0",
+            )}
           >
             {NAV.cta.label}
           </Link>
@@ -387,6 +407,13 @@ export function SiteHeader() {
               ))}
             </ul>
 
+            {onTuntas ? (
+              <div className="mt-6 flex items-center gap-3">
+                <span className="text-small text-fg-subtle">Language</span>
+                <LocaleToggle current={tuntasLocale} />
+              </div>
+            ) : null}
+
             <Link
               href={NAV.cta.href}
               onClick={dismiss}
@@ -398,5 +425,62 @@ export function SiteHeader() {
         </div>
       </header>
     </>
+  );
+}
+
+/**
+ * EN | ID segmented toggle for the Tuntas routes. The active locale is text,
+ * not a link — a link to the page you are on is a dead control. When the
+ * visitor is deep in a section, the inactive segment preserves the hash so the
+ * same section opens in the other language.
+ */
+function LocaleToggle({ current }: { current: "en" | "id" }) {
+  function follow(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    const hash = window.location.hash;
+    if (!hash) return; // let the plain Link navigation run
+    event.preventDefault();
+    window.location.assign(href + hash);
+  }
+
+  const segments = [
+    { code: "en" as const, short: "EN", label: "English" },
+    { code: "id" as const, short: "ID", label: "Bahasa Indonesia" },
+  ];
+
+  return (
+    <nav aria-label="Language" className="shrink-0">
+      <ul className="flex items-center overflow-hidden rounded-control border border-border-strong">
+        {segments.map((segment) => {
+          const active = segment.code === current;
+          const base =
+            "inline-flex min-h-10 min-w-10 items-center justify-center px-3 font-mono text-label tracking-[0.085em]";
+          return (
+            <li key={segment.code} className="flex">
+              {active ? (
+                <span
+                  aria-current="true"
+                  aria-label={segment.label}
+                  className={cn(base, "bg-surface-inset font-medium text-fg")}
+                >
+                  {segment.short}
+                </span>
+              ) : (
+                <Link
+                  href={PATH_BY_LOCALE[segment.code]}
+                  aria-label={segment.label}
+                  onClick={(e) => follow(e, PATH_BY_LOCALE[segment.code])}
+                  className={cn(
+                    base,
+                    "text-fg-muted transition-colors duration-150 hover:text-fg",
+                  )}
+                >
+                  {segment.short}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }

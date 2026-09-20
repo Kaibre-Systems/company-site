@@ -54,7 +54,7 @@ export default function HomePage() {
 
           {/* Two doors, equal weight. Custom is first — it is the revenue. */}
           <div className="mt-12 grid gap-5 lg:grid-cols-2">
-            {/* Door one — commissioned systems */}
+            {/* Door one:commissioned systems */}
             <Card className="flex h-full flex-col gap-4 p-7 sm:p-8">
               <Eyebrow>{DOORS.commissioned.eyebrow}</Eyebrow>
               <Heading level={2} size="heading-1" className="max-w-[20ch]">
@@ -76,7 +76,7 @@ export default function HomePage() {
               </div>
             </Card>
 
-            {/* Door two — products */}
+            {/* Door two: products */}
             <Card className="flex h-full flex-col gap-4 p-7 sm:p-8">
               <Eyebrow>{DOORS.products.eyebrow}</Eyebrow>
               <Heading level={2} size="heading-1" className="max-w-[20ch]">
@@ -126,7 +126,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 2 — Case study, the page's one rust band ------------------------- */}
       <Section surface="ember">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16 lg:items-start">
@@ -162,8 +161,7 @@ export default function HomePage() {
           </div>
         </Container>
       </Section>
-
-      {/* 3 — Seniority, the strongest addition the review named ----------- */}
+   
       <Section surface="coal">
         <Container>
           <Heading level={2} size="display-2">
@@ -185,7 +183,6 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 4 — The ask, on the page ---------------------------------------- */}
       <Section surface="ink" id={CONTACT.id}>
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
