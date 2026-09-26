@@ -61,8 +61,7 @@ export default function OpengraphImage() {
             lineHeight: 1.4,
           }}
         >
-          Products, partnerships, and a small number of commissioned production
-          systems.
+          Products, partnerships, and commissioned production systems.
         </div>
       </div>
     ),

@@ -19,7 +19,6 @@ import {
   DOORS,
   HERO,
   PROOF,
-  SENIORITY,
   STATS,
 } from "@/content/home";
 
@@ -115,7 +114,9 @@ export default function HomePage() {
           </div>
 
           {/* Proof strip — approved figures, stated flat under the doors. */}
-          <dl className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-4">
+          {/* Three columns, not four: a fourth cell would sit empty, and the
+              gap-px border trick renders an empty cell as a dark square. */}
+          <dl className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-3">
             {STATS.map((s) => (
               <div key={s.label} className="bg-surface p-5 sm:p-6">
                 <dt className="text-heading-1 font-medium text-fg">{s.value}</dt>
@@ -161,28 +162,6 @@ export default function HomePage() {
           </div>
         </Container>
       </Section>
-   
-    {/* Seniority  Section, will probably remove */}  
-      {/* <Section surface="coal">
-        <Container>
-          <Heading level={2} size="display-2">
-            {SENIORITY.heading}
-          </Heading>
-          <Text size="lead" className="mt-5 max-w-[58ch]">
-            {SENIORITY.body}
-          </Text>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SENIORITY.cards.map((card) => (
-              <Card key={card.title} className="p-6 sm:p-7">
-                <h3 className="text-heading-1 font-medium text-fg">{card.title}</h3>
-                <Text size="small" className="mt-3">
-                  {card.body}
-                </Text>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section> */}
 
       <Section surface="ink" id={CONTACT.id}>
         <Container>

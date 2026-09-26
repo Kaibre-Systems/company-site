@@ -1,26 +1,11 @@
-/**
- * Single source of truth for site-wide identity, navigation and contact.
- *
- * Copy lives in `src/content/*` so it can be reviewed without reading JSX.
- * Every public claim here is either verifiable from Kaibre's own systems or
- * deliberately unfalsifiable (descriptions of intent, not of outcomes).
- */
-
 export const SITE = {
   name: "Kaibre",
   legalName: "Kaibre Systems Ltd.",
-  /**
-   * The host that actually serves. The apex redirects to `www`, so naming the
-   * apex here pointed every canonical, `og:url`, sitemap entry and the
-   * structured-data URL at a URL that answers 307 rather than 200. Search
-   * engines follow it, but a canonical should name the page it is the
-   * canonical of. Everything absolute on the site derives from this one value.
-   */
   domain: "https://www.kaibresystems.com",
   positioning: "Kaibre builds and operates software for work that has to be right.",
   signature: "Great code makes great companies.",
   shortDescription:
-    "Kaibre is a software company. We build and operate our own products, build products with partners, and take on a small number of commissioned production systems.",
+    "Kaibre is a software company. We build and operate our own products, build products with partners, and take on commissioned production systems.",
   email: "systemskaibre@gmail.com",
   linkedin: "https://www.linkedin.com/company/kaibre-systems-limited/",
   address: {
@@ -40,7 +25,6 @@ export const NAV = {
       label: "Tuntas",
       href: "/tuntas",
       note: "Regulatory change, for Indonesian financial institutions",
-      /** Renders with the Tuntas mark rather than as a plain text link. */
       mark: "tuntas",
     },
     {
