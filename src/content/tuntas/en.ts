@@ -5,14 +5,14 @@ import { SCREENS } from "./screens";
 export const EN: TuntasContent = {
   locale: "en",
   meta: {
-    title: "Tuntas — regulatory change, obligation by obligation",
+    title: "Tuntas: regulatory change, obligation by obligation",
     description:
-      "A new regulation arrives. Tuntas maps what changed against your company's documents and tells you what to do — obligation by obligation, with every conclusion pointing to the article and the document it rests on.",
+      "A new regulation arrives. Tuntas maps what changed against your company's documents and tells you what to do, obligation by obligation, with every conclusion pointing to the article and the document it rests on.",
     ogLocale: "en_GB",
   },
   chrome: {
     skip: "Skip to content",
-    home: "Tuntas — home",
+    home: "Tuntas home",
     kaibreHome: "Kaibre",
     tagline: "Regulatory change",
     marketLabel: "Indonesia",
@@ -21,7 +21,7 @@ export const EN: TuntasContent = {
   },
   hero: {
     headline: "A new regulation arrives. Tuntas works out what it changes here.",
-    body: "For Compliance and Legal at Indonesian financial institutions. Name the regulation, upload the documents you have, and Tuntas returns the gap analysis obligation by obligation — every conclusion pointing to the article and the document it rests on.",
+    body: "For Compliance and Legal at Indonesian financial institutions. Name the regulation, upload the documents you have, and Tuntas returns the gap analysis obligation by obligation, with every conclusion pointing to the article and the document it rests on.",
     cta: { label: "Walk through an example", href: "#contact" },
     secondary: { label: "How it works", href: "#workflow" },
     note: "Tuntas is an analysis tool, not legal advice.",
@@ -42,11 +42,11 @@ export const EN: TuntasContent = {
     },
     followUp: {
       ...SCREENS.followUp,
-      alt: "The follow-up screen in Tuntas, in Bahasa Indonesia: 48 items still open for the company — 16 document requests not yet supplied and 32 document revisions not yet finished, 12 of them revised and waiting on the reviewer's decision. Under it, the deadlines the regulation carries, the ones already passed first: 27 June 2025, fourteen months late, and 4 July 2025, thirteen months late.",
+      alt: "The follow-up screen in Tuntas, in Bahasa Indonesia: 48 items still open for the company: 16 document requests not yet supplied and 32 document revisions not yet finished, 12 of them revised and waiting on the reviewer's decision. Under it, the deadlines the regulation carries, the ones already passed first: 27 June 2025, fourteen months late, and 4 July 2025, thirteen months late.",
     },
     register: {
       ...SCREENS.register,
-      alt: "The obligation register in Tuntas, in Bahasa Indonesia: two obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label — one marked as needing action from you, one marked as not applicable.",
+      alt: "The obligation register in Tuntas, in Bahasa Indonesia: two obligations from Chapter VI of POJK 40 of 2024, each with its number, the obligation itself, its article, and one action label: one marked as needing action from you, one marked as not applicable.",
     },
     memo: {
       ...SCREENS.memo,
@@ -56,7 +56,7 @@ export const EN: TuntasContent = {
   problem: {
     heading: "The work you already know.",
     body: [
-      "A new OJK regulation can run to two hundred articles or more. Someone has to work out what changed, what it means for this company, which SOPs, policies, agreements and terms have to be updated, who updates them, and by when — by hand, in between everything else, and then again when the units send their revisions back.",
+      "A new OJK regulation can run to two hundred articles or more. Someone has to work out what changed, what it means for this company, which SOPs, policies, agreements and terms have to be updated, who updates them, and by when, by hand, in between everything else, and then again when the units send their revisions back.",
     ],
     facts: [
       {
@@ -73,14 +73,14 @@ export const EN: TuntasContent = {
       },
       {
         title: "One person answers for what was missed.",
-        note: "No deadline and no obligatory action can be something the company learns about later — and the Board has to hear it from them first.",
+        note: "No deadline and no obligatory action can be something the company learns about later, and the Board has to hear it from them first.",
       },
     ],
   },
   inOut: {
     heading: "Now hand it to Tuntas.",
     reads:
-      "You give it the regulation you name — that is all, Tuntas finds the one it replaces and the official sources itself — and whatever company documents exist today: SOPs, policies, procedures, agreements, terms, evidence. What is missing becomes a request, not a blocker.",
+      "You give it the regulation you name (that is all, Tuntas finds the one it replaces and the official sources itself) and whatever company documents exist today: SOPs, policies, procedures, agreements, terms, evidence. What is missing becomes a request, not a blocker.",
     produces: {
       title: "Tuntas returns",
       items: [
@@ -95,7 +95,7 @@ export const EN: TuntasContent = {
         },
         {
           icon: "map",
-          label: "A gap analysis: met, not met, partly met, or not assessable yet — each with its reason, and a named request where the evidence is missing",
+          label: "A gap analysis: met, not met, partly met, or not assessable yet, each with its reason, and a named request where the evidence is missing",
         },
         {
           icon: "severity",
@@ -107,7 +107,7 @@ export const EN: TuntasContent = {
         },
         {
           icon: "draft",
-          label: "The revision itself, drafted for your review — old text, new text, the article it rests on",
+          label: "The revision itself, drafted for your review: old text, new text, the article it rests on",
         },
         {
           icon: "conclude",
@@ -182,7 +182,7 @@ export const EN: TuntasContent = {
     heading: "What you receive.",
     body: "The memorandum that goes out the same day, the matter it came from, and one page of everything still open.",
     captions: {
-      memo: "The Board memo — editable, downloadable as Word, printable as PDF. What you tell the Board with, and what the units are briefed from.",
+      memo: "The Board memo: editable, downloadable as Word, printable as PDF. What you tell the Board with, and what the units are briefed from.",
       regulation: "The screen a matter opens on.",
       followUp: "Everything still open, in one place: what is unanswered, what is unrevised, and which deadlines have already passed.",
     },
@@ -196,7 +196,7 @@ export const EN: TuntasContent = {
       },
       {
         name: "Analysis + Drafting",
-        body: "Tuntas also drafts each revision — old text, new text, the article it rests on. Review it, edit it, download it as Word. If the analysis or the document changes, the draft is flagged and redone.",
+        body: "Tuntas also drafts each revision: old text, new text, the article it rests on. Review it, edit it, download it as Word. If the analysis or the document changes, the draft is flagged and redone.",
       },
     ],
     note: "One regulation is one matter, from the day it arrives to the day the position is recorded. Scope and effort vary with the regulation, the number of documents, and the package.",
@@ -217,7 +217,7 @@ export const EN: TuntasContent = {
       },
       {
         title: "Your documents, and nothing else",
-        note: "Procedures, policies, agreements and terms — never your customers' personal data. Encrypted, visible to your organisation only, deleted on request.",
+        note: "Procedures, policies, agreements and terms, never your customers' personal data. Encrypted, visible to your organisation only, deleted on request.",
       },
       {
         title: "Where it runs is a decision",
@@ -232,7 +232,7 @@ export const EN: TuntasContent = {
   },
   contact: {
     heading: "Walk through a completed example.",
-    body: "A real regulation, analysed end to end against a fictional company's documents — the register, the requests, the contradiction, the drafted revisions, the memo. About twenty minutes, and you will know whether it resembles the work your team does.",
+    body: "A real regulation, analysed end to end against a fictional company's documents: the register, the requests, the contradiction, the drafted revisions, the memo. About twenty minutes, and you will know whether it resembles the work your team does.",
     form: {
       name: { label: "Name", error: "Please add your name." },
       email: {
@@ -262,14 +262,14 @@ export const EN: TuntasContent = {
       submit: "Send it",
       sending: "Sending…",
       sent: {
-        heading: "Thanks — that reached us.",
+        heading: "Thanks, that reached us.",
         body: "Your message is in our inbox. The people building Tuntas will come back to you to arrange the walkthrough.",
       },
       fallback: {
         heading: "One more step.",
         body: "We tried to send that for you and could not, so we have handed a pre-filled message to your email app. Press send there and it reaches us.",
         noMail:
-          "If nothing opened, your browser may not have an email app registered. Write to us directly — the same details are all we need.",
+          "If nothing opened, your browser may not have an email app registered. Write to us directly, the same details are all we need.",
         back: "Back to the form",
       },
     },
@@ -278,7 +278,7 @@ export const EN: TuntasContent = {
     tagline: "Tuntas is built and operated by Kaibre.",
     links: [
       { label: "Kaibre", href: "/" },
-      { label: "Kaibre — other products", href: "/#products" },
+      { label: "Other Kaibre products", href: "/#products" },
       { label: "Contact", href: "#contact" },
     ],
     languageLink: { label: "Baca dalam Bahasa Indonesia", href: ID_PATH },

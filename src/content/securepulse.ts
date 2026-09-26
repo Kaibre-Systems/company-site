@@ -27,12 +27,12 @@ export const SP_HERO_PANEL = {
     },
     {
       label: "Risk",
-      text: "Unevidenced surveillance cannot support management reliance — or an incident investigation.",
+      text: "Unevidenced surveillance cannot support management reliance, or an incident investigation.",
       secondary: true,
     },
     {
       label: "Remediation",
-      text: "Immediate — attach retention settings and the latest alarm-test report; re-verify within 30 days.",
+      text: "Immediate: attach retention settings and the latest alarm-test report; re-verify within 30 days.",
     },
     {
       label: "Reviewer",
@@ -138,7 +138,7 @@ export const SP_EVIDENCE = {
     },
     {
       code: "GAP",
-      note: "Unresolved. Stated as unresolved and escalated — never presented as a likely requirement.",
+      note: "Unresolved. Stated as unresolved and escalated, never presented as a likely requirement.",
     },
   ],
 } as const;
@@ -156,19 +156,19 @@ export const SP_MAPPING = {
     {
       requirement: "Continuous perimeter lighting at the site boundary",
       evidence: "VERIFIED",
-      status: "Applies to the site — confirmed from the authority's enacted framework",
+      status: "Applies to the site, confirmed from the authority's enacted framework",
       priority: "High",
     },
     {
       requirement: "CCTV retention minimums for restricted areas",
       evidence: "PARTIAL",
-      status: "Applies — technical minimums to be confirmed against the current manual",
+      status: "Applies, technical minimums to be confirmed against the current manual",
       priority: "Medium",
     },
     {
       requirement: "Operator-specific design standards",
       evidence: "GAP",
-      status: "Unresolved — escalated to the competent authority, not assumed",
+      status: "Unresolved, escalated to the competent authority, not assumed",
       priority: "High",
     },
   ],
@@ -184,7 +184,7 @@ export const SP_HUMAN = {
 
 export const SP_REPORT = {
   heading: "A report a consultant would recognise.",
-  body: "After the walk, the checklist, and the review, leadership receives a document — the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
+  body: "After the walk, the checklist, and the review, leadership receives a document: the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
   contents: {
     title: "Physical security assessment report",
     sections: [
@@ -201,7 +201,7 @@ export const SP_REPORT = {
     signoff: {
       heading: "Sign-off",
       rows: [
-        { role: "Prepared by", state: "SecurePulse — draft" },
+        { role: "Prepared by", state: "SecurePulse (draft)" },
         { role: "Lead assessor", state: "Named sign-off" },
         { role: "Reviewer", state: "Approved for issue" },
       ],

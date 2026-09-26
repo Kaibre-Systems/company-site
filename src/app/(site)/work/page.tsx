@@ -17,7 +17,7 @@ import { WORK_CASE_CARD, WORK_COMMISSIONED, WORK_HERO } from "@/content/work";
 export const metadata: Metadata = {
   title: "Selected work",
   description:
-    "Production systems Kaibre designed, built, and continues to operate — including software running a luxury-commerce catalogue worth tens of millions of dollars.",
+    "Production systems Kaibre designed, built, and continues to operate, including software running a luxury-commerce catalogue worth tens of millions of dollars.",
   alternates: { canonical: "/work" },
   openGraph: {
     title: "Selected work | Kaibre",

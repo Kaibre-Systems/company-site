@@ -7,7 +7,7 @@ export const DATA = {
   id: "data",
   heading: "What happens to the documents you give us.",
   body: [
-    "Our customers hand us the material their business runs on — internal procedures, policies, evidence, and in some systems customer records. How that material is held, and where, is a design decision we make before the first line of code rather than a policy we write afterwards.",
+    "Our customers hand us the material their business runs on: internal procedures, policies, evidence, and in some systems customer records. How that material is held, and where, is a design decision we make before the first line of code rather than a policy we write afterwards.",
   ],
   items: [
     {

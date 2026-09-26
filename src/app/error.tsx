@@ -25,7 +25,7 @@ export default function Error({
           Something went wrong on our side.
         </Heading>
         <Text size="lead" className="mt-5">
-          Try again — and if it keeps happening, tell us at{" "}
+          Try again, and if it keeps happening, tell us at{" "}
           <a
             href={`mailto:${SITE.email}`}
             className="text-accent underline underline-offset-4"

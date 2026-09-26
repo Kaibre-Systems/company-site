@@ -75,7 +75,7 @@ export const HOW_WE_WORK = {
     },
     {
       title: "Build for production from the first week.",
-      body: "Isolation, data handling, failure behaviour, and review steps are design decisions — not a hardening phase bolted on at the end.",
+      body: "Isolation, data handling, failure behaviour, and review steps are design decisions, not a hardening phase bolted on at the end.",
     },
     {
       title: "Keep the person in the decision.",

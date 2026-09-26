@@ -22,7 +22,7 @@ const TOPICS = [
         value: "securepulse",
         label: "SecurePulse",
         placeholder:
-            "e.g. We assess physical security across a dozen sites in Abu Dhabi and Dubai. Two senior assessors spend about three weeks per site walking it, writing findings, and producing the report — so each site gets covered once a year at best.",
+            "e.g. We assess physical security across a dozen sites in Abu Dhabi and Dubai. Two senior assessors spend about three weeks per site walking it, writing findings, and producing the report, so each site gets covered once a year at best.",
     },
     {
         value: "kai",
@@ -46,7 +46,7 @@ const TOPICS = [
         value: "other",
         label: "Something else",
         placeholder:
-            "e.g. Describe the work — what it does, who does it today, and what it costs when it goes wrong. Whatever detail you have is enough to start.",
+            "e.g. Describe the work: what it does, who does it today, and what it costs when it goes wrong. Whatever detail you have is enough to start.",
     },
 ] as const;
 
@@ -87,7 +87,7 @@ function buildMailto(f: Fields) {
         f.work,
     ].join("\n");
     return `mailto:${SITE.email}?subject=${encodeURIComponent(
-        `${topic} — ${f.company}`,
+        `${topic}: ${f.company}`,
     )}&body=${encodeURIComponent(body)}`;
 }
 
@@ -160,7 +160,7 @@ export function ContactForm({
 
     if (status === "sent") {
         return (
-            <Result heading="Thanks — that reached us.">
+            <Result heading="Thanks, that reached us.">
                 <p className="text-body text-fg-muted">
                     Your message is in our inbox. You will hear back from the person who
                     would be responsible for the work.
@@ -186,7 +186,7 @@ export function ContactForm({
                     >
                         {SITE.email}
                     </a>{" "}
-                    — the same details are all we need.
+                    and the same details are all we need.
                 </p>
                 <button
                     type="button"

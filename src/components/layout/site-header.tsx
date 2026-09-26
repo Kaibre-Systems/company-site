@@ -189,7 +189,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="shrink-0 rounded-control py-2"
-            aria-label={`${SITE.name} — home`}
+            aria-label={`${SITE.name} home`}
           >
             <KaibreWordmark className="h-8 w-auto text-fg sm:h-9" />
           </Link>

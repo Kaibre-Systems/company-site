@@ -7,7 +7,7 @@ export const KAI_HERO = {
 } as const;
 
 export const KAI_CALL_PANEL = {
-  alt: "Illustrative outbound qualification call in progress: kAI asks scripted questions, the lead answers, the answers become structured fields — budget confirmed, timeline this quarter, decision-maker on the call — and the conversation is classified as qualified and routed to the team.",
+  alt: "Illustrative outbound qualification call in progress: kAI asks scripted questions, the lead answers, the answers become structured fields (budget confirmed, timeline this quarter, decision-maker on the call), and the conversation is classified as qualified and routed to the team.",
   cardAlt:
     "Illustrative live qualification call: kAI asks about budget, the lead confirms, the answers become structured fields, and the call is classified as qualified and routed to the team.",
   context: "Outbound call · your number",
@@ -20,7 +20,7 @@ export const KAI_CALL_PANEL = {
     },
     {
       speaker: "Lead",
-      text: "Yes — sign-off came through this quarter.",
+      text: "Yes, sign-off came through this quarter.",
     },
     {
       speaker: "kAI",
@@ -40,7 +40,7 @@ export const KAI_CALL_PANEL = {
     { field: "Timeline", value: "This quarter" },
     { field: "Decision-maker", value: "On the call" },
   ],
-  outcome: "Qualified — routed to your team",
+  outcome: "Qualified, routed to your team",
 } as const;
 
 export const KAI_WORKFLOW = {
@@ -136,7 +136,7 @@ export const KAI_FAQ = {
     },
     {
       q: "Does Kaibre build things other than kAI?",
-      a: "Yes. Kaibre is a software company — kAI is one of its products. We also build SecurePulse, and take on commissioned production systems.",
+      a: "Yes. Kaibre is a software company. kAI is one of its products. We also build SecurePulse, and take on commissioned production systems.",
     },
   ],
 } as const;

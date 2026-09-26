@@ -23,12 +23,12 @@ import {
 } from "@/content/kai";
 
 export const metadata: Metadata = {
-  title: "kAI — Outbound voice agent for lead qualification",
+  title: "kAI: Outbound voice agent for lead qualification",
   description:
     "kAI places outbound qualification calls on your own number, follows your script, and classifies each conversation so your team spends its hours on the leads that justify them.",
   alternates: { canonical: "/kai" },
   openGraph: {
-    title: "kAI — Outbound voice agent | Kaibre",
+    title: "kAI: Outbound voice agent | Kaibre",
     description:
       "kAI runs outbound qualification calls on your own number and classifies each conversation, so your team focuses on the leads worth their time.",
     url: "/kai",

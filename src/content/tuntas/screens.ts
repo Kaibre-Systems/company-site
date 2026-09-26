@@ -20,7 +20,7 @@ export const SCREENS = {
     text: "Penyelenggara wajib memastikan anggota Direksi dan anggota Dewan Komisaris memiliki sertifikat kompetensi kerja dari lembaga sertifikasi profesi di bidang teknologi finansial yang terdaftar di Otoritas Jasa Keuangan.",
     cite: "POJK 40/2024 · Ps. 51 (1)",
     oldLabel: "Aturan lama (POJK 10/2022, dicabut)",
-    oldText: "Berubah — kewajiban ini sudah ada, isinya berubah. Rumusan lama membebankan kewajiban langsung kepada tiap pengurus; rumusan baru menempatkan Penyelenggara sebagai pihak yang wajib memastikan.",
+    oldText: "Berubah: kewajiban ini sudah ada, isinya berubah. Rumusan lama membebankan kewajiban langsung kepada tiap pengurus; rumusan baru menempatkan Penyelenggara sebagai pihak yang wajib memastikan.",
     oldCite: "POJK 10/2022 · Ps. 16 (1)",
     conclusion: {
       tone: "gap",
@@ -41,7 +41,7 @@ export const SCREENS = {
     action: {
       label: "Yang perlu dilakukan perusahaan",
       text: "Memutakhirkan memo status sertifikasi, menyelesaikan perpanjangan yang tertunda, dan menetapkan pemantauan masa berlaku dalam kalender kepatuhan dengan pengingat sebelum jatuh tempo.",
-      unit: "Usulan unit pelaksana: Divisi SDM & Umum dengan pemantauan Divisi Kepatuhan & Legal (perusahaan yang menentukan — usulan ini terbuka didiskusikan).",
+      unit: "Usulan unit pelaksana: Divisi SDM & Umum dengan pemantauan Divisi Kepatuhan & Legal (perusahaan yang menentukan, usulan ini terbuka didiskusikan).",
     },
     deadline: {
       label: "Tenggat",
@@ -58,7 +58,7 @@ export const SCREENS = {
     text: "Penyelenggara wajib memiliki unit audit internal yang dijalankan oleh paling sedikit 1 orang sumber daya manusia yang memiliki keahlian dan/atau latar belakang di bidang audit, yang bertanggung jawab secara langsung kepada anggota Direksi dan/atau anggota Dewan Komisaris.",
     cite: "POJK 40/2024 · Ps. 200 (1), (2)",
     oldLabel: "Aturan lama (POJK 10/2022, dicabut)",
-    oldText: "Berubah — kewajiban ini sudah ada, isinya berubah.",
+    oldText: "Berubah: kewajiban ini sudah ada, isinya berubah.",
     oldCite: "POJK 10/2022 · Ps. 58 (1), (2)",
     conclusion: {
       tone: "conflict",
@@ -100,7 +100,7 @@ export const SCREENS = {
       article: "Pasal",
       action: "Tindakan",
     },
-    chapter: { title: "BAB VI — SUMBER DAYA MANUSIA", count: "3 kewajiban" },
+    chapter: { title: "BAB VI: SUMBER DAYA MANUSIA", count: "3 kewajiban" },
     rows: [
       {
         no: "4",
@@ -183,6 +183,6 @@ export const SCREENS = {
       },
     ],
     footnote:
-      "Disusun oleh Tuntas untuk Direksi dan Dewan Komisaris. Draf — ditelaah, disunting, dan diputuskan oleh fungsi kepatuhan Anda.",
+      "Disusun oleh Tuntas untuk Direksi dan Dewan Komisaris. Draf: ditelaah, disunting, dan diputuskan oleh fungsi kepatuhan Anda.",
   },
 } as const;

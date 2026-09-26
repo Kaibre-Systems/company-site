@@ -41,12 +41,12 @@ import {
 } from "@/content/securepulse";
 
 export const metadata: Metadata = {
-  title: "SecurePulse — Physical security assessment",
+  title: "SecurePulse: Physical security assessment",
   description:
     "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment: a checklist built for the site's emirate and sector, photo evidence captured on the walk, and findings a named assessor signs off.",
   alternates: { canonical: "/securepulse" },
   openGraph: {
-    title: "SecurePulse — Physical security assessment | Kaibre",
+    title: "SecurePulse: Physical security assessment | Kaibre",
     description:
       "Structured, evidence-backed physical security assessments for UAE and Gulf sites. SecurePulse drafts; qualified people decide.",
     url: "/securepulse",

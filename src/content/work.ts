@@ -7,7 +7,7 @@ export const WORK_LUXURY = {
   heading: "A catalogue where a single record is worth five or six figures.",
   intro: [
     "Kaibre built the production software a luxury-commerce business runs on: individual products valued from approximately US$10,000 to US$500,000, across a catalogue worth tens of millions of dollars.",
-    "At those values, accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event — not a support ticket. The system is live in commercial use, and Kaibre continues to support and operate it.",
+    "At those values, accuracy is not a quality-of-life feature. A record that is wrong, stale, or mispriced is a commercial event, not a support ticket. The system is live in commercial use, and Kaibre continues to support and operate it.",
   ],
   figures: [
     { value: "$10k – $500k", label: "Individual product value" },
@@ -24,9 +24,9 @@ export const WORK_LUXURY = {
   ],
   scopeTitle: "What the system does",
   scopeIntro:
-    "Described at the level of structure rather than implementation — nothing here identifies the client, and everything here runs in production.",
+    "Described at the level of structure rather than implementation. Nothing here identifies the client, and everything here runs in production.",
   topology: {
-    alt: "System structure: a verification gate admits participants into a trade path running from catalogue through auctions and offers to orders, ledger and fulfilment — with the operator console connected beneath every stage.",
+    alt: "System structure: a verification gate admits participants into a trade path running from catalogue through auctions and offers to orders, ledger and fulfilment, with the operator console connected beneath every stage.",
     gate: {
       label: "Verified participants",
       note: "Identity and trade licence checked before a trade opens.",
@@ -39,13 +39,13 @@ export const WORK_LUXURY = {
     ],
     console: {
       label: "Operator console",
-      note: "The administrative seat where accuracy is maintained day to day — connected to every stage above.",
+      note: "The administrative seat where accuracy is maintained day to day, connected to every stage above.",
     },
   },
   responsibilityTitle: "Why it mattered",
   responsibility: [
     "A platform like this has more than one way to be expensive. A pricing or availability error is visible to a buyer immediately. A failed payment path strands a transaction worth more than most annual salaries. A weak verification step lets the wrong counterparty into a trade.",
-    "Those constraints shaped the build from the start rather than being hardened in afterwards — and they are the reason the engagement did not end at launch.",
+    "Those constraints shaped the build from the start rather than being hardened in afterwards, and they are the reason the engagement did not end at launch.",
   ],
   confidentiality:
     "Client and implementation details are withheld under confidentiality. No customer data, credentials, infrastructure detail, or commercial terms are described here.",
@@ -71,7 +71,7 @@ export const WORK_COMMISSIONED = {
     items: [
       "A workflow central to how the business makes money.",
       "Cost driven by people who are hard to replace.",
-      "Real consequence — financial, regulatory, or reputational — when it goes wrong.",
+      "Real consequence when it goes wrong: financial, regulatory, or reputational.",
       "An owner who can describe the process as it actually runs today.",
     ],
   },

@@ -46,7 +46,7 @@ export const FOOTER_GROUPS = [
     title: "Products",
     links: [
       { label: "Tuntas", href: "/tuntas" },
-      { label: "Tuntas — Bahasa Indonesia", href: "/id/tuntas" },
+      { label: "Tuntas (Bahasa Indonesia)", href: "/id/tuntas" },
       { label: "SecurePulse", href: "/securepulse" },
       { label: "kAI", href: "/kai" },
     ],

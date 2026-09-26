@@ -14,12 +14,12 @@ import { SystemTopology } from "@/components/visuals/topology";
 import { WORK_LUXURY } from "@/content/work";
 
 export const metadata: Metadata = {
-  title: "Luxury commerce — a catalogue worth tens of millions",
+  title: "Luxury commerce: a catalogue worth tens of millions",
   description:
     "An anonymised snapshot of production software Kaibre built and still operates for a luxury-commerce business: individual products from $10,000 to $500,000, where a wrong record is a commercial event, not a support ticket.",
   alternates: { canonical: "/work/luxury-commerce" },
   openGraph: {
-    title: "Luxury commerce — production software Kaibre operates | Kaibre",
+    title: "Luxury commerce: production software Kaibre operates | Kaibre",
     description:
       "Where a wrong record is a commercial event, not a support ticket. Client details withheld under confidentiality.",
     url: "/work/luxury-commerce",
