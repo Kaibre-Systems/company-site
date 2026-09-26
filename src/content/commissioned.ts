@@ -19,29 +19,6 @@ export const CM_HERO = {
   note: "Reply from an engineer, usually the same day.",
 } as const;
 
-export const CM_FIT = {
-  take: {
-    title: "Take it on when",
-    items: [
-      "The workflow is tied directly to revenue or to a legal obligation.",
-      "Being wrong is expensive, and someone would notice within a day.",
-      "Off-the-shelf software exists but fits badly enough that people work around it.",
-      "The knowledge lives with two or three people who are hard to replace.",
-      "You want the same team operating it in three years.",
-    ],
-  },
-  notFit: {
-    title: "Not a fit when",
-    items: [
-      "A configured off-the-shelf tool would do the job. We will tell you if it would.",
-      "The requirement is a headcount top-up on someone else's roadmap.",
-      "Nobody internally owns the outcome or can decide.",
-      "The deadline is fixed before the problem is understood.",
-      "It needs to be cheap more than it needs to be right.",
-    ],
-  },
-} as const;
-
 export const CM_ENGAGEMENT = {
   heading: "How an engagement runs.",
   body: "Four stages. You can stop after the first and keep everything it produced.",

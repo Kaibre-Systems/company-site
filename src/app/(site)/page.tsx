@@ -54,7 +54,7 @@ export default function HomePage() {
 
           {/* Two doors, equal weight. Custom is first — it is the revenue. */}
           <div className="mt-12 grid gap-5 lg:grid-cols-2">
-            {/* Door one:commissioned systems */}
+            {/* Door one: commissioned systems */}
             <Card className="flex h-full flex-col gap-4 p-7 sm:p-8">
               <Eyebrow>{DOORS.commissioned.eyebrow}</Eyebrow>
               <Heading level={2} size="heading-1" className="max-w-[20ch]">
@@ -162,7 +162,8 @@ export default function HomePage() {
         </Container>
       </Section>
    
-      <Section surface="coal">
+    {/* Seniority  Section, will probably remove */}  
+      {/* <Section surface="coal">
         <Container>
           <Heading level={2} size="display-2">
             {SENIORITY.heading}
@@ -181,7 +182,7 @@ export default function HomePage() {
             ))}
           </div>
         </Container>
-      </Section>
+      </Section> */}
 
       <Section surface="ink" id={CONTACT.id}>
         <Container>

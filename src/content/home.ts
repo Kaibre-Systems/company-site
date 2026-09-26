@@ -16,7 +16,7 @@
  * the actual choice, so the hero itself needs no button.
  */
 export const HERO = {
-  eyebrow: "Abu Dhabi · Senior engineers only · No juniors",
+  eyebrow: "Abu Dhabi · Experienced engineers only",
   headline: "Great code makes great companies. We write the code yours runs on.",
   body: "We build the software that high-consequence work depends on, put it into production, and keep operating it. The people who design your system are the ones running it in year three.",
 } as const;
@@ -99,32 +99,6 @@ export const PROOF = {
   link: { label: "Read the snapshot", href: "/work/luxury-commerce" },
 } as const;
 
-/**
- * The seniority section — the single strongest addition the review identified.
- *
- * Names and faces would be stronger still and are worth revisiting; until
- * then the claim is carried by specifics with a concrete consequence attached,
- * not by adjectives. One assertion per line.
- */
-export const SENIORITY = {
-  heading: "No juniors. No handoff.",
-  body: "The person you speak to first is responsible for the build, and is still on it a year later. No account manager sits between you and the engineer.",
-  cards: [
-    {
-      title: "Senior only",
-      body: "Every engineer has run production systems for over a decade. Nobody learns on your build.",
-    },
-    {
-      title: "We stay on it",
-      body: "We operate what we build. A system we shipped years ago is still ours to keep running.",
-    },
-    {
-      title: "Small on purpose",
-      body: "A handful of commissioned systems at a time. It is why the first answer comes from an engineer.",
-    },
-  ],
-} as const;
-
 export const PARTNERSHIPS = {
   heading: "Some products need a partner who knows the room.",
   body: [
@@ -159,25 +133,9 @@ export const HOW_WE_WORK = {
 
 export const COMPANY = {
   id: "company",
-  /**
-   * Founder-led, without the scarcity reading.
-   *
-   * The previous version of this section counted: "deliberately small", "a
-   * limited number of builds", "a few a year". To one reader that is
-   * selectivity; to a regulated institution deciding who will hold its
-   * internal procedures, it answers a question they did not ask and raises
-   * the one they did — will this vendor still be operating in two years. The
-   * "a few a year" fact was scoped to commissioned builds and read as the
-   * company's whole output, which also understated it: Tuntas is a product,
-   * not a commissioned build.
-   *
-   * What survives is the part that is both true and reassuring: the person
-   * you talk to is the person responsible, and Kaibre operates what it
-   * builds rather than handing it over.
-   */
   heading: "Founder-led, and still running what we built.",
   body: [
-    "The person you talk to first is the person responsible for the work, and the people who designed a system are the ones operating it a year later. That is the arrangement, not an upsell.",
+    "The person you talk to first is the person responsible for the work, and the people who designed a system are the ones operating it a year later.",
   ],
   /** Scannable facts rather than a third paragraph. */
   facts: [
@@ -195,7 +153,7 @@ export const COMPANY = {
    */
   credibility: {
     label: "Where this comes from",
-    body: "Our founders have built and run systems where being wrong is expensive — designing the data schemas behind them, and running the migrations that moved live patient and claims data.",
+    body: "Our founders have built and run systems where being wrong is expensive. They have experience in designing the data schemas behind them, and running the migrations that moved live patient and claims data.",
     domains: [
       "Fortune 500 companies",
       "Government environments",
@@ -209,5 +167,5 @@ export const COMPANY = {
 export const CONTACT = {
   id: "start",
   heading: "Tell us about the work.",
-  body: "If something in your operation is expensive, slow, and important, describe it in a paragraph. It reaches the engineer who would be responsible for building it, usually the same day.",
+  body: "If something in your operation is expensive, slow, and important, describe it in a paragraph. It reaches the engineer who would be responsible for building it.",
 } as const;

@@ -32,41 +32,6 @@ export function WorkflowSteps({ steps }: { steps: readonly Step[] }) {
 }
 
 /* ==========================================================================
-   Fit / not-fit definition lists
-   ========================================================================== */
-
-export function FitList({
-  title,
-  items,
-  tone,
-}: {
-  title: string;
-  items: readonly string[];
-  tone: "yes" | "no";
-}) {
-  const Icon = tone === "yes" ? Check : Minus;
-  return (
-    <div>
-      <h3 className="text-small font-medium text-fg-subtle">{withBrand(title)}</h3>
-      <ul className="mt-4 space-y-3">
-        {items.map((item) => (
-          <li key={item} className="flex gap-3">
-            <Icon
-              aria-hidden
-              className={cn(
-                "mt-1 size-4 shrink-0",
-                tone === "yes" ? "text-success" : "text-fg-subtle",
-              )}
-            />
-            <span className="text-body text-fg-muted">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-/* ==========================================================================
    Product card
    ========================================================================== */
 

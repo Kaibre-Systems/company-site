@@ -9,14 +9,12 @@ import {
   Text,
 } from "@/components/primitives";
 import { ArrowLink, Button } from "@/components/primitives/button";
-import { FitList } from "@/components/modules";
 import { ContactForm } from "@/components/forms/contact-form";
 import { cn } from "@/lib/utils";
 import {
   CM_CASE,
   CM_CONTACT,
   CM_ENGAGEMENT,
-  CM_FIT,
   CM_HERO,
   CM_PRICING,
 } from "@/content/commissioned";
@@ -58,24 +56,6 @@ export default function CommissionedSystemsPage() {
           <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Button href={CM_HERO.cta.href}>{CM_HERO.cta.label}</Button>
             <span className="font-mono text-fine text-fg-subtle">{CM_HERO.note}</span>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Take it on / Not a fit */}
-      <Section surface="coal">
-        <Container>
-          <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:gap-16">
-            <FitList
-              title={CM_FIT.take.title}
-              items={CM_FIT.take.items}
-              tone="yes"
-            />
-            <FitList
-              title={CM_FIT.notFit.title}
-              items={CM_FIT.notFit.items}
-              tone="no"
-            />
           </div>
         </Container>
       </Section>
@@ -197,7 +177,7 @@ export default function CommissionedSystemsPage() {
         </Container>
       </Section>
 
-      {/* The ask, on the page */}
+      {/* The ask on the page */}
       <Section surface="ink" id={CM_CONTACT.id}>
         <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
