@@ -1,30 +1,13 @@
-/**
- * kAI page copy.
- *
- * kAI is one product within Kaibre — not the company. No operating metrics,
- * no lead volumes, no call counts, no minute balances, no cost comparisons.
- * Capability descriptions only.
- */
-
 export const KAI_HERO = {
   category: "Outbound voice agent",
   headline: "Calls the list. Flags the ones worth your time.",
   body: "kAI places outbound qualification calls on your own number, holds a natural conversation from the script your team agreed, collects the answers that decide whether a lead is real, and classifies each call so your people spend their hours on the opportunities that justify them.",
-  /** Both actions reach the same form; the primary one says what to ask for.
-   *  `href` is set at the call site, which is where the topic is known. */
   primary: { label: "Ask for a kAI demo", href: "/contact?topic=kai" },
   secondary: { label: "See what we've built", href: "/work" },
 } as const;
 
-/**
- * The hero visual: one call, mid-conversation. The transcript, the
- * structured answers extracted from it, and the classification it ends in —
- * kAI's whole workflow in the product's own material. Illustrative dialogue;
- * no real lead, no real campaign.
- */
 export const KAI_CALL_PANEL = {
   alt: "Illustrative outbound qualification call in progress: kAI asks scripted questions, the lead answers, the answers become structured fields — budget confirmed, timeline this quarter, decision-maker on the call — and the conversation is classified as qualified and routed to the team.",
-  /** The homepage teaser: one exchange, the extracted fields, the outcome. */
   cardAlt:
     "Illustrative live qualification call: kAI asks about budget, the lead confirms, the answers become structured fields, and the call is classified as qualified and routed to the team.",
   context: "Outbound call · your number",
@@ -111,10 +94,6 @@ export const KAI_VALUE = {
   ],
 } as const;
 
-/**
- * Who it is for — the named reader. kAI's buyer is the team whose list is
- * longer than the hours they have to work it.
- */
 export const KAI_AUDIENCE = {
   eyebrow: "Who it is for",
   heading: "Teams whose list outruns their callers.",
@@ -126,7 +105,6 @@ export const KAI_AUDIENCE = {
   ],
 } as const;
 
-/** The ask, on the page. */
 export const KAI_CONTACT = {
   id: "start",
   heading: "See it on your script.",
@@ -158,7 +136,7 @@ export const KAI_FAQ = {
     },
     {
       q: "Does Kaibre build things other than kAI?",
-      a: "Yes. Kaibre is a software company — kAI is one of its products. We also build SecurePulse, and take on a small number of commissioned production systems each year.",
+      a: "Yes. Kaibre is a software company — kAI is one of its products. We also build SecurePulse, and take on commissioned production systems.",
     },
   ],
 } as const;

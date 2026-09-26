@@ -1,22 +1,3 @@
-/**
- * The product's screens, in the product's language.
- *
- * One source for both locales, and it is Bahasa Indonesia in both. The
- * regulation is Indonesian, the company's documents are Indonesian, and the
- * officer who reviews the analysis reads it in Indonesian — so the screens
- * this site reproduces are the screens that exist, not translations of them.
- * An English-speaking reader gets the argument from the copy around them and
- * the accessible description on each one; what they are looking at is the
- * real thing rather than a mock-up made legible to the wrong audience.
- *
- * Every string is transcribed from `apps/regulatory-web` and its analysis
- * snapshot: obligation no. 4 of POJK 40/2024 read against the demo's openly
- * fictional company. Nothing here is written for the website.
- *
- * The one thing that does localise is `alt`: an accessible description is
- * read *instead of* the screen, so it belongs to the reader, not to the
- * product. Each dictionary supplies its own.
- */
 export const SCREENS = {
   regulation: {
     meta: "OJK · Diterima 14 Agustus 2026",
@@ -67,13 +48,6 @@ export const SCREENS = {
       text: "Segera; sertifikat Komisaris Utama dan Komisaris Independen tercatat berakhir 22 Agustus 2025 dan Direktur Teknologi 9 Maret 2026.",
     },
   },
-  /**
-   * Obligation 45: two of the company's own documents disagree about who runs
-   * internal audit. Tuntas states the conflict, names both sides, declines to
-   * pick one, and asks. The tone is the product's `conflict` purple, and the
-   * panel ends in a request rather than a deadline — until the company
-   * answers there is nothing to be on time for.
-   */
   contradiction: {
     tag: "Ilustrasi",
     mark: "Tuntas",
@@ -127,9 +101,6 @@ export const SCREENS = {
       action: "Tindakan",
     },
     chapter: { title: "BAB VI — SUMBER DAYA MANUSIA", count: "3 kewajiban" },
-    /* Two of the chapter's three rows: the same chip twice said nothing the
-       first one had not, and the third is the one that shows Tuntas ruling an
-       obligation out. The count stays honest — the chapter does have three. */
     rows: [
       {
         no: "4",
@@ -150,7 +121,6 @@ export const SCREENS = {
     ],
     note: "Tuntas adalah alat bantu analisis, bukan nasihat hukum.",
   },
-  /** Everything still open, on one page — the screen she asked for twice. */
   followUp: {
     heading: "48 tindak lanjut untuk perusahaan masih terbuka",
     summary:

@@ -1,17 +1,3 @@
-/**
- * SecurePulse page copy.
- *
- * Grounded in the SecurePulse product repositories (read-only inspection).
- * Every capability below is implemented today. Roadmap items are excluded.
- *
- * Hard constraints:
- *  - SecurePulse assesses PHYSICAL security in the UAE/GCC. Not infosec, not cyber.
- *  - No certification, accreditation, regulatory approval, or endorsement is claimed.
- *  - No named customers, institutions, or sectors-as-customers.
- *  - No metrics, percentages, or time savings.
- *  - The product does not claim per-customer tenancy — that is not built yet.
- */
-
 export const SP_HERO = {
   category: "Physical security assessment",
   headline: "Site assessments that show their work.",
@@ -19,20 +5,11 @@ export const SP_HERO = {
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
 } as const;
 
-/**
- * The hero visual: one page of the report SecurePulse actually produces,
- * structured after the real deliverable's detailed-finding anatomy. The
- * facility is anonymised the way a published excerpt would be — no client,
- * no authority named inside the mockup — and the corner tag marks it
- * illustrative.
- */
 export const SP_HERO_PANEL = {
   alt: "Illustrative detailed-finding page from a SecurePulse physical security assessment of an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, with what was observed, the risk, the immediate remediation, and the reviewer state.",
-  /** The homepage teaser shows the excerpt without the prose. */
   cardAlt:
     "Illustrative excerpt of a SecurePulse assessment report for an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, awaiting reviewer sign-off.",
   tag: "Illustrative",
-  /** The mark in the sheet's own footer. */
   mark: "SecurePulse",
   institution: "Energy-sector facility · Dubai",
   title: "Physical security assessment",
@@ -65,11 +42,6 @@ export const SP_HERO_PANEL = {
   pageLine: "Detailed findings · 6 / 14",
 } as const;
 
-/**
- * Four one-word properties, directly under the hero — the product in four
- * words before the reader commits to a section. The same beat appears on every
- * product page, so the second one reads faster than the first.
- */
 export const SP_PROPERTIES = [
   { title: "Traceable", note: "Finding to clause to evidence, every time." },
   { title: "Repeatable", note: "Same site, same method, quarter on quarter." },
@@ -77,10 +49,6 @@ export const SP_PROPERTIES = [
   { title: "Board-ready", note: "One page out, the full record behind it." },
 ] as const;
 
-/**
- * Who it is for — the named reader, not "some organisations". The buyer is a
- * security director who is asked to defend a number.
- */
 export const SP_AUDIENCE = {
   eyebrow: "Who it is for",
   heading: "Security directors who have to defend a number.",
@@ -175,12 +143,6 @@ export const SP_EVIDENCE = {
   ],
 } as const;
 
-/**
- * The compliance-mapping grammar from the report itself: requirement,
- * evidence label, where it stands, and its priority. Three rows show the
- * discipline — one confirmed, one partial, one honest gap. Anonymised:
- * authorities are described, never named, inside a mockup.
- */
 export const SP_MAPPING = {
   title: "Requirement mapping",
   tag: "Illustrative",
@@ -260,24 +222,6 @@ export const SP_REPORT = {
   },
 } as const;
 
-/**
- * Where SecurePulse runs. The UAE positioning stays this page's claim; the
- * Indonesian financial-sector deployment is a separate experience and the
- * two must not blur into one — but a buyer on this page should discover it
- * without already knowing the URL.
- */
-/**
- * Where SecurePulse works, and where it does not.
- *
- * This block used to list two markets, the second of which was "SecurePulse
- * Indonesia" — financial-institution compliance. That is now Tuntas: its own
- * product, its own identity, its own buyer, and nothing to do with walking a
- * site. Listing it here as a SecurePulse market would misdescribe both.
- *
- * What remains is one market, so the block states the scope instead of
- * comparing two — and points a compliance reader who landed here by mistake
- * at the product they actually want.
- */
 export const SP_MARKETS = {
   heading: "Where SecurePulse applies.",
   markets: [
@@ -303,7 +247,6 @@ export const SP_STATUS = {
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
 } as const;
 
-/** The ask, on the page — one form, the same beat that closes every page. */
 export const SP_CONTACT = {
   id: "start",
   heading: "Start with one site.",

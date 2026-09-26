@@ -1,33 +1,8 @@
-/**
- * The company page.
- *
- * This page exists because of who reads it. A regulated institution decides
- * whether to hand over its internal procedures by doing vendor diligence, and
- * "Company" was a link to a fragment halfway down the homepage — a first-class
- * question answered in a footnote. The four things that reader is looking for
- * are here in the order they ask them: who you are, how you work, what happens
- * to their documents, and who is accountable.
- *
- * Claim discipline is the site's: no customer names, no logos, no
- * testimonials, no headcount, no certifications, no metrics, no percentages,
- * no unsigned partnerships. The data-handling section describes how the
- * products are built and operated today; it is not a security certification
- * and must never be written as one.
- */
-
 export const COMPANY_HERO = {
   headline: "Software for work that has to be right.",
-  body: "Kaibre builds and operates its own products, builds products with domain partners, and takes on a small number of commissioned systems. All of it is in production, and all of it is still ours to run.",
+  body: "Kaibre builds and operates its own products, builds products with domain partners, and takes on commissioned systems. All of it is in production, and all of it is still ours to run.",
 } as const;
 
-/**
- * How we handle what you give us.
- *
- * Every claim here is a description of how the products are built and
- * operated — the same statements the Tuntas deployment section makes, said
- * once at company level so a buyer does not have to find them on a product
- * page. Nothing here asserts a standard, a certification, or an audit.
- */
 export const DATA = {
   id: "data",
   heading: "What happens to the documents you give us.",

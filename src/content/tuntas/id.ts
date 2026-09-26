@@ -2,22 +2,6 @@ import type { TuntasContent } from "./types";
 import { EN_PATH } from "./locale";
 import { SCREENS } from "./screens";
 
-/**
- * Tuntas — Bahasa Indonesia.
- *
- * Not a translation of `en.ts`: Bahasa is the buyer's language, and this page
- * is the one the compliance officer actually reads. The vocabulary is the
- * product's own, taken from `apps/regulatory-web/src/lib/terminology.ts` in
- * the product repository so a visitor meets the same words here and on the
- * screen — kewajiban, tenggat, "Sudah dipenuhi", "Belum dipenuhi",
- * "Terpenuhi sebagian", "Belum dapat dinilai", "Tidak berlaku", "Perlu
- * tindakan dari Anda", "Perlu dokumen dari Anda", "Memo Direksi".
- *
- * The same claim discipline as the English dictionary applies, with one
- * addition that only exists in this language: never "patuh" or "sudah patuh"
- * as an outcome Tuntas confers. Tuntas menyimpulkan menurut dokumen; petugas
- * kepatuhan yang memutuskan.
- */
 export const ID: TuntasContent = {
   locale: "id",
   meta: {

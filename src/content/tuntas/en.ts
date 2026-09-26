@@ -2,39 +2,6 @@ import type { TuntasContent } from "./types";
 import { ID_PATH } from "./locale";
 import { SCREENS } from "./screens";
 
-/**
- * Tuntas — English.
- *
- * Written to the executive standard: a compliance director, GC or head of
- * legal at an Indonesian financial institution gives this page two to three
- * minutes. The headline carries the event (a regulation arrives) and the
- * outcome (what it changes here); the first sections carry the concrete
- * inputs and deliverables; everything after that is depth.
- *
- * Source of copy: `docs/indonesia/commercial/TUNTAS_PRODUCT_INFORMATION.html`
- * in the product repository — the founder-approved prospect document — and
- * the practitioner interviews behind it. Where this page describes the work
- * itself (what the officer does today, what the regulator examines, what a
- * finding costs), the vocabulary is the practitioner's, not marketing's.
- *
- * Claim discipline, carried over from the product's own rules:
- *  - Never "compliant", "audit-ready", or any formulation implying Tuntas
- *    certifies a position. Tuntas concludes according to the documents; the
- *    officer decides.
- *  - Never legal advice. The disclaimer travels with the product rather than
- *    sitting in a footnote — it appears twice in the page body, in the
- *    product's own words.
- *  - No time claims, no hour counts, no prices. The founder's rule is to
- *    lead with the pain, never with AI or minutes. The one duration on the
- *    page is how long a walkthrough takes, which is a meeting, not a result.
- *  - Regulator names appear only as the source of a regulation a customer
- *    names — never as approvers, certifiers or partners.
- *  - Illustrative figures appear only inside mockups tagged "Illustrative",
- *    on a company that is stated to be fictional.
- *  - No customer names, no testimonials, no quotes attributed to a
- *    practitioner. The interviews inform the writing; they are not evidence
- *    to publish.
- */
 export const EN: TuntasContent = {
   locale: "en",
   meta: {
@@ -60,11 +27,6 @@ export const EN: TuntasContent = {
     note: "Tuntas is an analysis tool, not legal advice.",
     panelNote: "Fictional company, real regulation.",
   },
-  /**
-   * The screens are Bahasa Indonesia on this page too, deliberately — see
-   * `screens.ts`. Only the accessible description is English: it is read
-   * instead of the screen, so it belongs to whoever is reading this page.
-   */
   screens: {
     regulation: {
       ...SCREENS.regulation,
