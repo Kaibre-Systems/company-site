@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: "Commissioned systems",
   description:
-    "We build the one system your business runs on, put it into production, and keep operating it. Senior engineers only, no juniors, no handoff.",
+    "We build the one system your business runs on, put it into production, and keep operating it. A compact team of dedicated experts, from the specification through to support.",
   alternates: { canonical: "/commissioned-systems" },
   openGraph: {
     title: "Commissioned systems | Kaibre",
@@ -61,7 +61,7 @@ export default function CommissionedSystemsPage() {
       </Section>
 
       {/* How an engagement runs */}
-      <Section surface="ink">
+      <Section surface="coal">
         <Container>
           <Heading level={2} size="display-2">
             {CM_ENGAGEMENT.heading}
@@ -77,7 +77,7 @@ export default function CommissionedSystemsPage() {
                 <li
                   key={stage.n}
                   className={cn(
-                    "grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-5 gap-y-2 rounded-card border p-6 sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:gap-x-6 sm:p-7",
+                    "grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-5 gap-y-2 rounded-card border p-6 sm:gap-x-6 sm:p-7",
                     accent
                       ? "border-accent/50 bg-accent/[0.07]"
                       : "border-border bg-surface-raised",
@@ -90,14 +90,6 @@ export default function CommissionedSystemsPage() {
                       {stage.body}
                     </Text>
                   </div>
-                  <span
-                    className={cn(
-                      "col-start-2 font-mono text-fine sm:col-start-3 sm:text-right",
-                      accent ? "text-accent" : "text-fg-subtle",
-                    )}
-                  >
-                    {stage.duration}
-                  </span>
                 </li>
               );
             })}
@@ -105,7 +97,7 @@ export default function CommissionedSystemsPage() {
         </Container>
       </Section>
 
-      {/* What it costs to start (rust band) */}
+      {/* How we arrive at a number (rust band) */}
       <Section surface="ember">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start">

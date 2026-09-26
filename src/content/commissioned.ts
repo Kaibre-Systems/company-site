@@ -1,16 +1,3 @@
-/**
- * /commissioned-systems copy.
- *
- * The custom offer, given a page of its own. Its job is to convert a stranger
- * into a described workflow in the inbox: what we take, what we refuse, how an
- * engagement runs, what the first two weeks produce, and what it costs to
- * start. One case card at the bottom, no more.
- *
- * Voice: one assertion per sentence, subject first, no em dashes. Pricing
- * specifics are deliberately withheld until the founders set them — the shape
- * of the commercial arrangement is stated, the numbers are not invented.
- */
-
 export const CM_HERO = {
   eyebrow: "Commissioned systems",
   headline: "One workflow carries your business. We build the software it runs on.",
@@ -21,45 +8,45 @@ export const CM_HERO = {
 
 export const CM_ENGAGEMENT = {
   heading: "How an engagement runs.",
-  body: "Four stages. You can stop after the first and keep everything it produced.",
+  body: "Five stages. You can stop after the specification and keep everything it produced.",
   stages: [
     {
       n: "01",
-      title: "Two weeks, fixed price, no commitment",
-      body: "We sit with the people doing the work and map what actually happens, including the parts nobody documented. You get a written specification, a build estimate, and an honest answer about whether software is the right fix. It is yours whether or not you continue with us.",
-      duration: "2 weeks",
+      title: "Consult",
+      body: "We sit with the people doing the work and map what actually happens, including the parts nobody documented. You get an honest answer about whether software is the right fix, and we will say so when it is not.",
     },
     {
       n: "02",
-      title: "Build the narrow version first",
-      body: "We build the smallest system that carries real work, and put it in front of the people who will use it in weeks rather than quarters. You see working software every fortnight, not status reports.",
-      duration: "6 to 14 weeks",
+      title: "Design",
+      body: "We write the specification: what the system does, where it sits in the work, and what it must never get wrong. It is yours whether or not you continue with us, and it is the document the build is quoted against.",
     },
     {
       n: "03",
-      title: "Into production, with the old process still standing",
-      body: "We migrate deliberately and run both in parallel until the numbers agree. Nothing goes live on a Friday, and nothing goes live because a date said so.",
-      duration: "2 to 4 weeks",
+      title: "Build",
+      body: "We build the smallest system that carries real work and put it in front of the people who will use it. You see working software, not status reports.",
     },
     {
       n: "04",
-      title: "We keep running it",
+      title: "Validate",
+      body: "The old process stays standing. We migrate deliberately and run both in parallel until the numbers agree. Nothing goes live on a Friday, and nothing goes live because a date said so.",
+    },
+    {
+      n: "05",
+      title: "Maintain",
       body: "The engineers who built it stay responsible for it: monitoring, changes, and the call at eleven at night. This is the part most studios do not offer, and it is the reason the systems we ship are still in production years later.",
-      duration: "ongoing",
-      /** The one stage drawn on the rust tint — the differentiator. */
       accent: true,
     },
   ],
 } as const;
 
 export const CM_PRICING = {
-  eyebrow: "What it costs to start",
-  heading: "The specification is fixed price. The build is quoted against it.",
-  body: "We do not quote a build before we understand the work, and we do not bill by the hour for discovery. If the specification says do not build this, that is a result, and it cost you two weeks.",
+  eyebrow: "How we arrive at a number",
+  heading: "We gather the specification first, and quote against it.",
+  body: "We do not quote a build before we understand the work. The specification is what makes a number mean anything: it is written with the people doing the work, it says what the system must do, and the build is priced against that document rather than against a conversation. If the specification says do not build this, that is a result, and you keep it.",
   rows: [
-    { label: "Specification, 2 weeks", value: "fixed fee" },
-    { label: "Build", value: "quoted, staged" },
-    { label: "Operate and support", value: "monthly" },
+    { label: "Specification", value: "gathered with the people doing the work" },
+    { label: "Build", value: "quoted against the specification" },
+    { label: "Operate and support", value: "agreed once the scope is fixed" },
   ],
 } as const;
 
