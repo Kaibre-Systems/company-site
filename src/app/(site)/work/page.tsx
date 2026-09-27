@@ -99,18 +99,11 @@ export default function WorkPage() {
               </div>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
-              <FitList
-                title={WORK_COMMISSIONED.fit.title}
-                items={WORK_COMMISSIONED.fit.items}
-                tone="yes"
-              />
-              <FitList
-                title={WORK_COMMISSIONED.notFit.title}
-                items={WORK_COMMISSIONED.notFit.items}
-                tone="no"
-              />
-            </div>
+            <FitList
+              title={WORK_COMMISSIONED.fit.title}
+              items={WORK_COMMISSIONED.fit.items}
+              tone="yes"
+            />
           </div>
         </Container>
       </Section>

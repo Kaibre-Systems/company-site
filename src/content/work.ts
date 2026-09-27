@@ -75,14 +75,5 @@ export const WORK_COMMISSIONED = {
       "An owner who can describe the process as it actually runs today.",
     ],
   },
-  notFit: {
-    title: "Not a fit",
-    items: [
-      "Topping up an existing team with engineers.",
-      "Executing a specification someone else has already written.",
-      "Fixed-price brochure sites and generic app builds.",
-      "Building the cheapest possible version of something.",
-    ],
-  },
   cta: { label: "Tell us about the workflow", href: "/contact?topic=commissioned" },
 } as const;
