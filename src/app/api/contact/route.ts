@@ -107,7 +107,7 @@ export async function POST(request: Request) {
       from,
       to,
       replyTo: email,
-      subject: `${topic} — ${company}`,
+      subject: `${topic}: ${company}`,
       text: [
         `Name:    ${name}`,
         `Email:   ${email}`,
@@ -119,7 +119,7 @@ export async function POST(request: Request) {
         "",
         work,
         "",
-        "— sent from the contact form on kaibresystems.com",
+        "Sent from the contact form on kaibresystems.com",
       ]
         .filter((line): line is string => line !== null)
         .join("\n"),

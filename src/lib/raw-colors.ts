@@ -13,6 +13,8 @@
 export const RAW = {
   /** --color-ink-950 */
   ink950: "#0B0A08",
+  /** --color-cream-50, the light-mode page ground */
+  cream50: "#FAF7F1",
   /** --color-ink-100 */
   ink100: "#F0EEEB",
   /** --color-ink-400, muted text on ink */

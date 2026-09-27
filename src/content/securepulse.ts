@@ -1,38 +1,15 @@
-/**
- * SecurePulse page copy.
- *
- * Grounded in the SecurePulse product repositories (read-only inspection).
- * Every capability below is implemented today. Roadmap items are excluded.
- *
- * Hard constraints:
- *  - SecurePulse assesses PHYSICAL security in the UAE/GCC. Not infosec, not cyber.
- *  - No certification, accreditation, regulatory approval, or endorsement is claimed.
- *  - No named customers, institutions, or sectors-as-customers.
- *  - No metrics, percentages, or time savings.
- *  - The product does not claim per-customer tenancy — that is not built yet.
- */
-
 export const SP_HERO = {
   category: "Physical security assessment",
-  headline: "Site assessments that show their working.",
+  headline: "Site assessments that show their work.",
   body: "SecurePulse turns a physical security inspection into a structured, evidence-backed assessment. It builds the checklist for the site's emirate and sector, captures photo evidence on the walk, grades findings by severity, and produces a consulting-standard report that a named assessor signs off.",
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
 } as const;
 
-/**
- * The hero visual: one page of the report SecurePulse actually produces,
- * structured after the real deliverable's detailed-finding anatomy. The
- * facility is anonymised the way a published excerpt would be — no client,
- * no authority named inside the mockup — and the corner tag marks it
- * illustrative.
- */
 export const SP_HERO_PANEL = {
   alt: "Illustrative detailed-finding page from a SecurePulse physical security assessment of an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, with what was observed, the risk, the immediate remediation, and the reviewer state.",
-  /** The homepage teaser shows the excerpt without the prose. */
   cardAlt:
     "Illustrative excerpt of a SecurePulse assessment report for an anonymised Dubai energy-sector facility: a high-severity finding that perimeter CCTV was asserted as operational without retention or test evidence, awaiting reviewer sign-off.",
   tag: "Illustrative",
-  /** The mark in the sheet's own footer. */
   mark: "SecurePulse",
   institution: "Energy-sector facility · Dubai",
   title: "Physical security assessment",
@@ -50,12 +27,12 @@ export const SP_HERO_PANEL = {
     },
     {
       label: "Risk",
-      text: "Unevidenced surveillance cannot support management reliance — or an incident investigation.",
+      text: "Unevidenced surveillance cannot support management reliance, or an incident investigation.",
       secondary: true,
     },
     {
       label: "Remediation",
-      text: "Immediate — attach retention settings and the latest alarm-test report; re-verify within 30 days.",
+      text: "Immediate: attach retention settings and the latest alarm-test report; re-verify within 30 days.",
     },
     {
       label: "Reviewer",
@@ -63,6 +40,24 @@ export const SP_HERO_PANEL = {
     },
   ],
   pageLine: "Detailed findings · 6 / 14",
+} as const;
+
+export const SP_PROPERTIES = [
+  { title: "Traceable", note: "Finding to clause to evidence, every time." },
+  { title: "Repeatable", note: "Same site, same method, quarter on quarter." },
+  { title: "Portfolio-wide", note: "Compare every site on one scale." },
+  { title: "Board-ready", note: "One page out, the full record behind it." },
+] as const;
+
+export const SP_AUDIENCE = {
+  eyebrow: "Who it is for",
+  heading: "Security directors who have to defend a number.",
+  body: "If you hold several sites and get asked why one scores worse than another, or what last year's budget bought, this is the record that answers it.",
+  items: [
+    "Multi-site operators comparing posture across a portfolio.",
+    "Facilities under a regulator or insurer that asks for evidence.",
+    "Organisations replacing a once-a-year PDF with a tracked baseline.",
+  ],
 } as const;
 
 export const SP_JURISDICTION = {
@@ -143,17 +138,11 @@ export const SP_EVIDENCE = {
     },
     {
       code: "GAP",
-      note: "Unresolved. Stated as unresolved and escalated — never presented as a likely requirement.",
+      note: "Unresolved. Stated as unresolved and escalated, never presented as a likely requirement.",
     },
   ],
 } as const;
 
-/**
- * The compliance-mapping grammar from the report itself: requirement,
- * evidence label, where it stands, and its priority. Three rows show the
- * discipline — one confirmed, one partial, one honest gap. Anonymised:
- * authorities are described, never named, inside a mockup.
- */
 export const SP_MAPPING = {
   title: "Requirement mapping",
   tag: "Illustrative",
@@ -167,19 +156,19 @@ export const SP_MAPPING = {
     {
       requirement: "Continuous perimeter lighting at the site boundary",
       evidence: "VERIFIED",
-      status: "Applies to the site — confirmed from the authority's enacted framework",
+      status: "Applies to the site, confirmed from the authority's enacted framework",
       priority: "High",
     },
     {
       requirement: "CCTV retention minimums for restricted areas",
       evidence: "PARTIAL",
-      status: "Applies — technical minimums to be confirmed against the current manual",
+      status: "Applies, technical minimums to be confirmed against the current manual",
       priority: "Medium",
     },
     {
       requirement: "Operator-specific design standards",
       evidence: "GAP",
-      status: "Unresolved — escalated to the competent authority, not assumed",
+      status: "Unresolved, escalated to the competent authority, not assumed",
       priority: "High",
     },
   ],
@@ -195,7 +184,7 @@ export const SP_HUMAN = {
 
 export const SP_REPORT = {
   heading: "A report a consultant would recognise.",
-  body: "After the walk, the checklist, and the review, leadership receives a document — the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
+  body: "After the walk, the checklist, and the review, leadership receives a document: the sections an assessment report is expected to contain, in a consistent structure, exportable to PDF or Word.",
   contents: {
     title: "Physical security assessment report",
     sections: [
@@ -212,7 +201,7 @@ export const SP_REPORT = {
     signoff: {
       heading: "Sign-off",
       rows: [
-        { role: "Prepared by", state: "SecurePulse — draft" },
+        { role: "Prepared by", state: "SecurePulse (draft)" },
         { role: "Lead assessor", state: "Named sign-off" },
         { role: "Reviewer", state: "Approved for issue" },
       ],
@@ -233,24 +222,6 @@ export const SP_REPORT = {
   },
 } as const;
 
-/**
- * Where SecurePulse runs. The UAE positioning stays this page's claim; the
- * Indonesian financial-sector deployment is a separate experience and the
- * two must not blur into one — but a buyer on this page should discover it
- * without already knowing the URL.
- */
-/**
- * Where SecurePulse works, and where it does not.
- *
- * This block used to list two markets, the second of which was "SecurePulse
- * Indonesia" — financial-institution compliance. That is now Tuntas: its own
- * product, its own identity, its own buyer, and nothing to do with walking a
- * site. Listing it here as a SecurePulse market would misdescribe both.
- *
- * What remains is one market, so the block states the scope instead of
- * comparing two — and points a compliance reader who landed here by mistake
- * at the product they actually want.
- */
 export const SP_MARKETS = {
   heading: "Where SecurePulse applies.",
   markets: [
@@ -274,4 +245,11 @@ export const SP_STATUS = {
   heading: "Where SecurePulse is today",
   body: "SecurePulse is in active development and demonstration with organisations in the UAE and the wider Gulf. If you assess physical security for regulated or high-consequence sites, we would like to show you the current build and hear where it breaks.",
   cta: { label: "Talk to us about SecurePulse", href: "/contact?topic=securepulse" },
+} as const;
+
+export const SP_CONTACT = {
+  id: "start",
+  heading: "Start with one site.",
+  body: "One assessment on one site, with the full report and the baseline. If it is useful, roll it across the portfolio.",
+  note: "Currently assessing sites in the UAE.",
 } as const;

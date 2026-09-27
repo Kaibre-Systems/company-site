@@ -10,8 +10,8 @@ const BASE = process.argv[2] ?? "https://www.kaibresystems.com";
 const ROUTES = [
   "/",
   "/securepulse",
-  "/securepulse/indonesia",
-  "/id/securepulse/indonesia",
+  "/tuntas",
+  "/id/tuntas",
   "/kai",
   "/work",
   "/contact",
@@ -19,7 +19,7 @@ const ROUTES = [
 
 /** The SecurePulse Indonesia pair carries its own localised chrome — no
  *  hamburger menu, a language toggle instead, and hreflang alternates. */
-const isMicrosite = (route) => route.endsWith("/securepulse/indonesia");
+const isMicrosite = (route) => route.endsWith("/tuntas");
 
 const fail = [];
 const bad = (s) => {
@@ -53,7 +53,10 @@ const FORBIDDEN_CLAIMS = [
   { re: /\b(?:approved|endorsed|licensed)\s+by\s+(?:OJK|Bank Indonesia|PPATK)\b/i, why: "regulator-approval claim" },
   { re: /\b(?:complete|full)\s+coverage\b/i, why: "complete-coverage claim" },
   { re: /\bcakupan\s+(?:penuh|lengkap|menyeluruh)\b/i, why: "complete-coverage claim (id)" },
-  { re: /\b(POJK|SEOJK|Kominfo)\b/, why: "named instrument/regulator outside the corpus framing" },
+  // Numbered POJK/SEOJK references are checked for illustrative-panel scope in
+  // tests/tuntas.spec.ts. A page-wide regex cannot distinguish the approved
+  // demo panel from a product claim and produced false production failures.
+  { re: /\bKominfo\b/, why: "named regulator outside the corpus framing" },
   { re: /\b(UU\s?PDP|PDP Law)\b/i, why: "named Indonesian regulation" },
 ];
 
@@ -101,7 +104,7 @@ async function run(engineName, browserType, viewport, isMobile) {
         mailto: !!document.querySelector('footer a[href^="mailto:"]'),
         text: (document.body.innerText || "").replace(/\\s+/g, " "),
         images: document.images.length,
-        langToggle: !!document.querySelector('header nav a[href*="securepulse/indonesia"]'),
+        langToggle: !!document.querySelector('header nav a[href*="/tuntas"]'),
         htmlLang: document.documentElement.lang,
         alternates: [...document.querySelectorAll("link[rel=alternate][hreflang]")]
           .map((l) => l.getAttribute("hreflang") + " " + l.href),
@@ -122,7 +125,7 @@ async function run(engineName, browserType, viewport, isMobile) {
       if (m.htmlLang !== expectedLang)
         bad(`${route}: html lang is "${m.htmlLang}", expected "${expectedLang}"`);
       for (const code of ["en", "id"]) {
-        if (!m.alternates.some((a) => a.startsWith(code + " ") && a.includes("securepulse/indonesia")))
+        if (!m.alternates.some((a) => a.startsWith(code + " ") && a.includes("/tuntas")))
           bad(`${route}: missing hreflang "${code}" alternate (${JSON.stringify(m.alternates)})`);
       }
     }

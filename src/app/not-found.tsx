@@ -12,7 +12,7 @@ export default function NotFound() {
         </Heading>
         <Text size="lead" className="mt-5">
           The link may be out of date. Everything Kaibre publishes lives on five
-          pages — the products, the work, and a way to get in touch.
+          pages: the products, the work, and a way to get in touch.
         </Text>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <Button href="/">Go to the homepage</Button>
