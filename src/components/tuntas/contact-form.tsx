@@ -53,7 +53,7 @@ function buildMailto(f: Fields, orgTypeLabel: string) {
     .filter((line): line is string => line !== null)
     .join("\n");
   return `mailto:${SITE.email}?subject=${encodeURIComponent(
-    `Tuntas — ${f.company}`,
+    `Tuntas: ${f.company}`,
   )}&body=${encodeURIComponent(body)}`;
 }
 

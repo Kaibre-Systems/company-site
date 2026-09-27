@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   Container,
   Heading,
@@ -8,10 +9,13 @@ import {
 } from "@/components/primitives";
 import { Button } from "@/components/primitives/button";
 import { WorkflowSteps } from "@/components/modules";
+import { ContactForm } from "@/components/forms/contact-form";
 import { Flow, VisualFrame } from "@/components/visuals";
 import { CallPanel } from "@/components/visuals/call";
 import {
+  KAI_AUDIENCE,
   KAI_CALL_PANEL,
+  KAI_CONTACT,
   KAI_FAQ,
   KAI_HERO,
   KAI_VALUE,
@@ -19,28 +23,17 @@ import {
 } from "@/content/kai";
 
 export const metadata: Metadata = {
-  title: "kAI — Outbound voice agent for lead qualification",
+  title: "kAI: Outbound voice agent for lead qualification",
   description:
     "kAI places outbound qualification calls on your own number, follows your script, and classifies each conversation so your team spends its hours on the leads that justify them.",
   alternates: { canonical: "/kai" },
   openGraph: {
-    title: "kAI — Outbound voice agent | Kaibre",
+    title: "kAI: Outbound voice agent | Kaibre",
     description:
       "kAI runs outbound qualification calls on your own number and classifies each conversation, so your team focuses on the leads worth their time.",
     url: "/kai",
   },
 };
-
-/**
- * Every action on this site now lands on the same form.
- *
- * kAI used to send people to a Calendly page — the one product where a
- * self-service booking link matched how it is sold. It no longer earns the
- * exception: the form reaches the same inbox through Resend, it arrives
- * tagged with the product, and it does not hand a visitor off to a third
- * party mid-decision. One conversion path is also one thing to maintain.
- */
-const DEMO_URL = "/contact?topic=kai";
 
 export default function KaiPage() {
   return (
@@ -68,7 +61,7 @@ export default function KaiPage() {
                 {KAI_HERO.body}
               </Text>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button href={DEMO_URL}>{KAI_HERO.primary.label}</Button>
+                <Button href={`#${KAI_CONTACT.id}`}>{KAI_HERO.primary.label}</Button>
                 <Button href={KAI_HERO.secondary.href} variant="secondary">
                   {KAI_HERO.secondary.label}
                 </Button>
@@ -103,6 +96,17 @@ export default function KaiPage() {
             outcomes={KAI_VALUE.outcomes}
           />
 
+          {/* The three properties, spelled out under the flow. */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {KAI_VALUE.columns.map((col) => (
+              <div key={col.title}>
+                <h3 className="text-heading-2 font-medium text-fg">{col.title}</h3>
+                <Text size="small" className="mt-2">
+                  {col.body}
+                </Text>
+              </div>
+            ))}
+          </div>
         </Container>
       </Section>
 
@@ -149,11 +153,55 @@ export default function KaiPage() {
             ))}
           </ul>
 
-          <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button href={DEMO_URL}>{KAI_HERO.primary.label}</Button>
-            <Button href="/contact?topic=kai" variant="secondary">
-              Start a conversation
-            </Button>
+        </Container>
+      </Section>
+
+      {/* Who it is for (ember) — the named reader, before the ask. */}
+      <Section surface="ember">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start">
+            <div>
+              <p className="font-mono text-label uppercase tracking-[0.16em] text-accent">
+                {KAI_AUDIENCE.eyebrow}
+              </p>
+              <Heading level={2} size="display-2" className="mt-5 max-w-[22ch]">
+                {KAI_AUDIENCE.heading}
+              </Heading>
+              <Text size="lead" className="mt-6 max-w-[48ch]">
+                {KAI_AUDIENCE.body}
+              </Text>
+            </div>
+            <ul className="grid gap-3 self-center">
+              {KAI_AUDIENCE.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-card border border-border bg-surface-raised px-5 py-4 text-body text-fg-muted"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </Section>
+
+      {/* The ask, on the page — the form, seeded to kAI. */}
+      <Section surface="coal" id={KAI_CONTACT.id}>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
+            <div>
+              <Heading level={2} size="display-2" className="max-w-[16ch]">
+                {KAI_CONTACT.heading}
+              </Heading>
+              <Text size="lead" className="mt-5 max-w-[46ch]">
+                {KAI_CONTACT.body}
+              </Text>
+            </div>
+            <div className="max-w-xl">
+              <Suspense fallback={<div className="min-h-[41rem]" aria-hidden />}>
+                <ContactForm defaultTopic="kai" />
+              </Suspense>
+            </div>
           </div>
         </Container>
       </Section>

@@ -4,7 +4,7 @@ import { RAW } from "@/lib/raw-colors";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = `${SITE.name} — ${SITE.positioning}`;
+export const alt = `${SITE.name}: ${SITE.positioning}`;
 
 /**
  * Shared social card. Typographic, generated at build time — no raster asset
@@ -61,8 +61,7 @@ export default function OpengraphImage() {
             lineHeight: 1.4,
           }}
         >
-          Products, partnerships, and a small number of commissioned production
-          systems.
+          Products, partnerships, and commissioned production systems.
         </div>
       </div>
     ),

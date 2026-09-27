@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/content/site";
+import { EN_PATH, ID_PATH, PATH_BY_LOCALE } from "@/content/tuntas/locale";
 import { KaibreWordmark } from "@/components/brand/wordmark";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
-
-const ALL_LINKS = [...NAV.products, ...NAV.primary];
 
 /**
  * A nav entry that asked to be drawn with its own mark. `NAV` is `as const`,
@@ -19,14 +20,33 @@ function hasMark(item: { readonly label: string }): boolean {
   return "mark" in item && item.mark === "tuntas";
 }
 
+function isActive(pathname: string, href: string): boolean {
+  return href.startsWith("/") && !href.includes("#") && pathname.startsWith(href);
+}
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const pathname = usePathname();
   const menuId = useId();
+  const productsId = useId();
   const sentinelRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const productsRef = useRef<HTMLLIElement>(null);
+  const productsBtnRef = useRef<HTMLButtonElement>(null);
+
+  const productActive = NAV.products.some((p) => isActive(pathname, p.href));
+
+  /**
+   * Tuntas is bilingual, and it now opens under this shared header rather than
+   * its own. The EN | ID toggle is the one Tuntas-specific control in the bar,
+   * shown only on the two Tuntas routes; everywhere else the header is
+   * identical to every other page.
+   */
+  const onTuntas = pathname === EN_PATH || pathname === ID_PATH;
+  const tuntasLocale: "en" | "id" = pathname === ID_PATH ? "id" : "en";
 
   /**
    * Scroll state via a sentinel rather than a per-frame scroll listener, and
@@ -60,6 +80,39 @@ export function SiteHeader() {
     setOpen(false);
     toggleRef.current?.focus();
   }, []);
+
+  /**
+   * The desktop Products dropdown is a click panel, not a hover menu: hover
+   * menus are unusable on touch and hostile to keyboards. It closes on escape
+   * (focus returning to the button), on an outside pointer, and whenever the
+   * route changes.
+   */
+  const closeProducts = useCallback((returnFocus = false) => {
+    setProductsOpen(false);
+    if (returnFocus) productsBtnRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!productsOpen) return;
+
+    function onPointerDown(event: PointerEvent) {
+      if (!productsRef.current?.contains(event.target as Node)) {
+        setProductsOpen(false);
+      }
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeProducts(true);
+      }
+    }
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [productsOpen, closeProducts]);
 
   useEffect(() => {
     if (!open) return;
@@ -136,7 +189,7 @@ export function SiteHeader() {
           <Link
             href="/"
             className="shrink-0 rounded-control py-2"
-            aria-label={`${SITE.name} — home`}
+            aria-label={`${SITE.name} home`}
           >
             <KaibreWordmark className="h-8 w-auto text-fg sm:h-9" />
           </Link>
@@ -144,66 +197,118 @@ export function SiteHeader() {
           {/* Desktop navigation */}
           <nav aria-label="Main" className="ml-auto hidden lg:block">
             <ul className="flex items-center gap-1">
-              {ALL_LINKS.map((item) => {
-                const active =
-                  item.href.startsWith("/") &&
-                  !item.href.includes("#") &&
-                  pathname.startsWith(item.href);
+              {/* The custom offer, first and plain. */}
+              <li>
+                <Link
+                  href={NAV.commissioned.href}
+                  aria-current={
+                    isActive(pathname, NAV.commissioned.href) ? "page" : undefined
+                  }
+                  className={cn(
+                    "rounded-control px-3 py-2 text-small transition-colors duration-150",
+                    isActive(pathname, NAV.commissioned.href)
+                      ? "text-fg"
+                      : "text-fg-muted hover:text-fg",
+                  )}
+                >
+                  {NAV.commissioned.label}
+                </Link>
+              </li>
 
-                /**
-                 * Tuntas is set in its own letterforms inside a bordered
-                 * control: it is a separate product with a separate identity,
-                 * and in a row of four text links that is the only way to say
-                 * so before the click. No glyph beside it — the identity is
-                 * the wordmark, and the square mark is reserved for the
-                 * places a wordmark cannot go. The border is the site's own,
-                 * because this is still Kaibre's bar.
-                 */
-                if (hasMark(item)) {
-                  return (
-                    <li key={item.href} className="mr-1">
-                      <Link
-                        href={item.href}
-                        aria-current={active ? "page" : undefined}
-                        className={cn(
-                          "inline-flex items-center rounded-control border px-3.5 py-1.5 text-small",
-                          "transition-colors duration-150",
-                          active
-                            ? "border-border-strong text-fg"
-                            : "border-border text-fg-muted hover:border-border-strong hover:text-fg",
-                        )}
-                      >
-                        <span className="tuntas-mark whitespace-nowrap [overflow-wrap:normal]">
-                          {item.label}
-                        </span>
-                      </Link>
-                    </li>
-                  );
-                }
+              {/* Products — a click panel with a line per product. Closing on
+                  navigation is handled by the links themselves (below) rather
+                  than by reacting to `pathname`; `onBlur` closes it when focus
+                  tabs out of the panel entirely. */}
+              <li
+                ref={productsRef}
+                className="relative"
+                onBlur={(e) => {
+                  if (!productsRef.current?.contains(e.relatedTarget as Node)) {
+                    setProductsOpen(false);
+                  }
+                }}
+              >
+                <button
+                  ref={productsBtnRef}
+                  type="button"
+                  onClick={() => setProductsOpen((v) => !v)}
+                  aria-expanded={productsOpen}
+                  aria-controls={productsId}
+                  className={cn(
+                    "inline-flex cursor-pointer items-center gap-1.5 rounded-control px-3 py-2 text-small transition-colors duration-150",
+                    productActive || productsOpen
+                      ? "text-fg"
+                      : "text-fg-muted hover:text-fg",
+                  )}
+                >
+                  Products
+                  <ChevronDown
+                    aria-hidden
+                    className={cn(
+                      "size-3.5 transition-transform duration-150",
+                      productsOpen && "rotate-180",
+                    )}
+                  />
+                </button>
 
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "rounded-control px-3 py-2 text-small transition-colors duration-150",
-                        active
-                          ? "text-fg"
-                          : "text-fg-muted hover:text-fg",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
+                <div
+                  id={productsId}
+                  hidden={!productsOpen}
+                  className="absolute left-0 top-[calc(100%+0.5rem)] z-10 w-[22rem] rounded-card border border-border bg-surface p-2 shadow-[var(--shadow-card)]"
+                >
+                  <ul>
+                    {NAV.products.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          onClick={() => setProductsOpen(false)}
+                          aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                          className="grid grid-cols-[7rem_minmax(0,1fr)] items-baseline gap-x-3 rounded-control px-3 py-3 transition-colors duration-150 hover:bg-surface-raised"
+                        >
+                          <span className="text-body font-medium text-fg">
+                            <span
+                              className={cn(
+                                hasMark(item) &&
+                                  "tuntas-mark whitespace-nowrap [overflow-wrap:normal]",
+                              )}
+                            >
+                              {item.label}
+                            </span>
+                          </span>
+                          <span className="text-small text-fg-subtle">{item.note}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+
+              {NAV.primary.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                    className={cn(
+                      "rounded-control px-3 py-2 text-small transition-colors duration-150",
+                      isActive(pathname, item.href)
+                        ? "text-fg"
+                        : "text-fg-muted hover:text-fg",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
+          <ThemeToggle className="hidden lg:ml-1 lg:inline-flex" />
+
+          {onTuntas ? <LocaleToggle current={tuntasLocale} /> : null}
+
           <Link
             href={NAV.cta.href}
-            className="ml-auto hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:ml-0 lg:inline-flex"
+            className="hidden min-h-10 shrink-0 items-center rounded-control bg-accent-solid px-4 text-small font-medium text-accent-contrast transition-colors duration-150 hover:bg-accent-solid-hover lg:ml-2 lg:inline-flex"
           >
             {NAV.cta.label}
           </Link>
@@ -244,6 +349,17 @@ export function SiteHeader() {
             aria-label="Main"
             className="mx-auto max-w-shell px-5 pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:px-6"
           >
+            {/* The custom offer leads on mobile too. */}
+            <Link
+              href={NAV.commissioned.href}
+              onClick={dismiss}
+              className="flex min-h-12 items-center rounded-control text-heading-2 text-fg"
+            >
+              {NAV.commissioned.label}
+            </Link>
+
+            <hr className="my-5 h-px border-0 bg-border" />
+
             <p className="text-small font-medium text-fg-subtle">
               Products
             </p>
@@ -287,6 +403,18 @@ export function SiteHeader() {
               ))}
             </ul>
 
+            <div className="mt-6 flex items-center gap-3">
+              <span className="text-small text-fg-subtle">Theme</span>
+              <ThemeToggle className="border border-border" />
+            </div>
+
+            {onTuntas ? (
+              <div className="mt-4 flex items-center gap-3">
+                <span className="text-small text-fg-subtle">Language</span>
+                <LocaleToggle current={tuntasLocale} />
+              </div>
+            ) : null}
+
             <Link
               href={NAV.cta.href}
               onClick={dismiss}
@@ -298,5 +426,62 @@ export function SiteHeader() {
         </div>
       </header>
     </>
+  );
+}
+
+/**
+ * EN | ID segmented toggle for the Tuntas routes. The active locale is text,
+ * not a link — a link to the page you are on is a dead control. When the
+ * visitor is deep in a section, the inactive segment preserves the hash so the
+ * same section opens in the other language.
+ */
+function LocaleToggle({ current }: { current: "en" | "id" }) {
+  function follow(event: MouseEvent<HTMLAnchorElement>, href: string) {
+    const hash = window.location.hash;
+    if (!hash) return; // let the plain Link navigation run
+    event.preventDefault();
+    window.location.assign(href + hash);
+  }
+
+  const segments = [
+    { code: "en" as const, short: "EN", label: "English" },
+    { code: "id" as const, short: "ID", label: "Bahasa Indonesia" },
+  ];
+
+  return (
+    <nav aria-label="Language" className="shrink-0">
+      <ul className="flex items-center overflow-hidden rounded-control border border-border-strong">
+        {segments.map((segment) => {
+          const active = segment.code === current;
+          const base =
+            "inline-flex min-h-10 min-w-10 items-center justify-center px-3 font-mono text-label tracking-[0.085em]";
+          return (
+            <li key={segment.code} className="flex">
+              {active ? (
+                <span
+                  aria-current="true"
+                  aria-label={segment.label}
+                  className={cn(base, "bg-surface-inset font-medium text-fg")}
+                >
+                  {segment.short}
+                </span>
+              ) : (
+                <Link
+                  href={PATH_BY_LOCALE[segment.code]}
+                  aria-label={segment.label}
+                  onClick={(e) => follow(e, PATH_BY_LOCALE[segment.code])}
+                  className={cn(
+                    base,
+                    "text-fg-muted transition-colors duration-150 hover:text-fg",
+                  )}
+                >
+                  {segment.short}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }

@@ -204,53 +204,29 @@ export function PulseDot({
 }
 
 /* ==========================================================================
-   SecurePulseName — the product name, with its pulse
+   SecurePulseName — the product name
    --------------------------------------------------------------------------
-   "Pulse" carries the accent and breathes. Only the large instances animate;
-   in nav and footer the colour alone does the work, so the chrome stays
-   still. The text remains one continuous string for screen readers.
+   Plain text, in the surrounding colour: no accent, no glow, no pulse. The
+   name renders as one continuous string for screen readers.
    ========================================================================== */
 
 export function SecurePulseName({
-  animate = true,
-  delay = 0,
   className,
 }: {
-  animate?: boolean;
-  /** Offsets the cycle, so several on one page do not beat in lockstep. */
-  delay?: number;
   className?: string;
 }) {
-  return (
-    <span className={className}>
-      Secure
-      <span
-        style={animate && delay ? { animationDelay: `${delay}ms` } : undefined}
-        className={cn(
-          "text-accent",
-          animate && "motion-safe:animate-[textBreathe_3.6s_ease-in-out_infinite]",
-        )}
-      >
-        Pulse
-      </span>
-    </span>
-  );
+  return <span className={className}>SecurePulse</span>;
 }
 
 /**
- * Renders any copy with "SecurePulse" carrying its accent.
+ * Renders any copy containing "SecurePulse".
  *
- * Body mentions take the colour but stay still — a page of breathing words
- * would be unreadable. Only the display instances animate.
- *
- * Deliberately not applied inside filled buttons: accent-on-accent is
- * invisible, so CTA labels keep the plain name.
+ * The name no longer carries an accent, so this is now only a passthrough that
+ * keeps the string intact; it is retained because call sites across the site
+ * route brand mentions through it.
  */
 export function withBrand(text: string) {
-  if (!text.includes("SecurePulse")) return text;
-  return text.split("SecurePulse").flatMap((part, i) =>
-    i === 0 ? [part] : [<SecurePulseName key={i} delay={i * 420} />, part],
-  );
+  return text;
 }
 
 /* ==========================================================================

@@ -16,10 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     languages?: Record<string, string>;
   }[] = [
     { path: "", priority: 1 },
+    { path: "/commissioned-systems", priority: 0.9 },
     { path: EN_PATH, priority: 0.9, languages: tuntasLanguages },
     { path: ID_PATH, priority: 0.9, languages: tuntasLanguages },
     { path: "/securepulse", priority: 0.8 },
     { path: "/work", priority: 0.8 },
+    { path: "/work/luxury-commerce", priority: 0.7 },
     { path: "/company", priority: 0.8 },
     { path: "/kai", priority: 0.7 },
     { path: "/contact", priority: 0.6 },

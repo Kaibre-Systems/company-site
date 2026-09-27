@@ -56,7 +56,7 @@ export default function ContactPage() {
             <Suspense
               fallback={
                 <p className="min-h-[41rem] text-body text-fg-muted">
-                  Loading the form — or write to{" "}
+                  Loading the form, or write to{" "}
                   <a
                     href={`mailto:${SITE.email}`}
                     className="text-accent underline underline-offset-4"

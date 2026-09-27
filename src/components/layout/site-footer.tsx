@@ -18,7 +18,10 @@ export function SiteFooter() {
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)_minmax(0,1fr)]">
           <div>
             <KaibreWordmark className="h-9 w-auto text-fg" />
-            <p className="mt-5 max-w-[34ch] text-fine text-fg-muted">
+            <p className="mt-5 font-display text-heading-2 text-fg-muted">
+              {SITE.signature}
+            </p>
+            <p className="mt-3 max-w-[34ch] text-fine text-fg-muted">
               {SITE.positioning}
             </p>
             <address className="mt-6 not-italic text-fine text-fg-subtle">

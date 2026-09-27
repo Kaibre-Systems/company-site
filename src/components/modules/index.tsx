@@ -32,9 +32,14 @@ export function WorkflowSteps({ steps }: { steps: readonly Step[] }) {
 }
 
 /* ==========================================================================
-   Fit / not-fit definition lists
+   Fit / not-fit list
    ========================================================================== */
 
+/**
+ * Still used by /work, which states what we take on and what we refuse.
+ * The commissioned-systems page dropped its copy of this pair; the /work
+ * version is the one that survives.
+ */
 export function FitList({
   title,
   items,
@@ -97,7 +102,7 @@ export function ProductCard({
               not two. */}
           <h3 className="text-heading-1 font-medium text-fg">
             {name === "SecurePulse" ? (
-              <SecurePulseName animate />
+              <SecurePulseName />
             ) : name === "Tuntas" ? (
               /* Tuntas sets its own name: the tracking is the whole identity,
                  and a product introduced in the parent's display face would
