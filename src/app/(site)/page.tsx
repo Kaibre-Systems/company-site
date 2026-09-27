@@ -44,28 +44,54 @@ export default function HomePage() {
       {/* 1 — Hero + two doors + proof strip ------------------------------- */}
       <Section surface="ink" space="flush" className="pb-16 pt-24 sm:pb-24 sm:pt-32">
         <Container>
-          <Eyebrow>{HERO.eyebrow}</Eyebrow>
+          {/* One grid, two arrangements. Small: the mark sits beside the
+              headline in its own narrow column, with the eyebrow above and
+              the body below running the full width. Large: the mark moves to
+              a column of its own and fills the space the copy leaves.
 
-          {/* The mark sits beside the headline, and is decorative: the header
-              already announces the company, and the h1 carries the message. */}
-          {/* Stacked on a phone: side by side, the mark takes width the
-              headline needs and pushes it to four lines at 320px. */}
-          <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
+              Placement is explicit at both sizes rather than left to
+              auto-flow, because the desktop arrangement puts three children
+              in column one and auto-flow would drop the headline into column
+              two. The mark is decorative: the header already announces the
+              company, and the h1 carries the message. */}
+          <div
+            className={cn(
+              "grid grid-cols-[minmax(0,1fr)_minmax(0,7rem)] items-center gap-x-5 gap-y-6",
+              "sm:grid-cols-[minmax(0,1fr)_minmax(0,10rem)]",
+              "lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-x-16",
+            )}
+          >
+            <div className="col-start-1 col-end-3 row-start-1 lg:col-end-2">
+              <Eyebrow>{HERO.eyebrow}</Eyebrow>
+            </div>
+
+            <Heading
+              level={1}
+              size="display-1"
+              className="col-start-1 row-start-2 max-w-[24ch]"
+            >
+              {HERO.headline}
+            </Heading>
+
             <Image
               src="/transparent_logo.png"
               alt=""
               width={496}
               height={428}
               priority
-              className="h-14 w-auto shrink-0 sm:h-20 lg:h-24"
+              className={cn(
+                "col-start-2 row-start-2 h-auto w-full",
+                "lg:row-start-1 lg:row-end-4 lg:self-center",
+              )}
             />
-            <Heading level={1} size="display-1" className="max-w-[24ch]">
-              {HERO.headline}
-            </Heading>
+
+            <Text
+              size="lead"
+              className="col-start-1 col-end-3 row-start-3 max-w-[56ch] lg:col-end-2"
+            >
+              {HERO.body}
+            </Text>
           </div>
-          <Text size="lead" className="mt-6 max-w-[56ch]">
-            {HERO.body}
-          </Text>
 
           {/* Two doors, equal weight. Custom is first — it is the revenue. */}
           <div className="mt-12 grid gap-5 lg:grid-cols-2">
