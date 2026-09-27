@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import {
@@ -44,9 +45,24 @@ export default function HomePage() {
       <Section surface="ink" space="flush" className="pb-16 pt-24 sm:pb-24 sm:pt-32">
         <Container>
           <Eyebrow>{HERO.eyebrow}</Eyebrow>
-          <Heading level={1} size="display-1" className="mt-6 max-w-[24ch]">
-            {HERO.headline}
-          </Heading>
+
+          {/* The mark sits beside the headline, and is decorative: the header
+              already announces the company, and the h1 carries the message. */}
+          {/* Stacked on a phone: side by side, the mark takes width the
+              headline needs and pushes it to four lines at 320px. */}
+          <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-7">
+            <Image
+              src="/transparent_logo.png"
+              alt=""
+              width={496}
+              height={428}
+              priority
+              className="h-14 w-auto shrink-0 sm:h-20 lg:h-24"
+            />
+            <Heading level={1} size="display-1" className="max-w-[24ch]">
+              {HERO.headline}
+            </Heading>
+          </div>
           <Text size="lead" className="mt-6 max-w-[56ch]">
             {HERO.body}
           </Text>
