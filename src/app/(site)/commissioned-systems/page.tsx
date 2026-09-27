@@ -20,12 +20,12 @@ import {
 } from "@/content/commissioned";
 
 export const metadata: Metadata = {
-  title: "Commissioned systems",
+  title: "Commissioned Systems",
   description:
     "We build the one system your business runs on, put it into production, and keep operating it. A compact team of dedicated experts, from the specification through to support.",
   alternates: { canonical: "/commissioned-systems" },
   openGraph: {
-    title: "Commissioned systems | Kaibre",
+    title: "Commissioned Systems | Kaibre",
     description:
       "We build the one system your business runs on, put it into production, and keep operating it.",
     url: "/commissioned-systems",

@@ -6,7 +6,7 @@ export const HERO = {
 
 export const DOORS = {
   commissioned: {
-    eyebrow: "Commissioned systems",
+    eyebrow: "Commissioned Systems",
     headline: "We build the one system your business runs on.",
     body: "One workflow carries the money, depends on people who are hard to replace, and nothing on the market fits it. That is the work we take, and then keep running.",
     cta: { label: "Describe your workflow", href: "#start" },

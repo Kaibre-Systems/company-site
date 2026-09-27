@@ -1,5 +1,5 @@
 export const CM_HERO = {
-  eyebrow: "Commissioned systems",
+  eyebrow: "Commissioned Systems",
   headline: "One workflow carries your business. We build the software it runs on.",
   body: "Then we put it into production and keep operating it. Most of what we build replaces a spreadsheet that three people understand and nobody can afford to lose.",
   cta: { label: "Describe your workflow", href: "#start" },
