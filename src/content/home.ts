@@ -1,6 +1,6 @@
 export const HERO = {
   eyebrow: "Abu Dhabi · A compact team of dedicated experts",
-  headline: "Great code makes great companies. We write the code yours runs on.",
+  headline: "Great code makes great companies.",
   body: "We build the software that high-consequence work depends on, put it into production, and keep operating it. The people who design your system are the ones running it in year three.",
 } as const;
 
