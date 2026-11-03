@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Linkedin } from "lucide-react";
+import { Linkedin, MessageCircle } from "lucide-react";
 import { FOOTER_GROUPS, SITE } from "@/content/site";
 import { KaibreWordmark } from "@/components/brand/wordmark";
 import { withBrand } from "@/components/visuals";
@@ -67,7 +67,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {SITE.legalName}
           </p>
 
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center gap-x-5">
             {/* The address is a single 23-character run with no break
                 opportunity, and a flex item's automatic minimum size is its
                 min-content width — so at a raised default font size this one
@@ -81,6 +81,21 @@ export function SiteFooter() {
               className="inline-flex min-h-11 min-w-0 items-center text-small text-fg-muted transition-colors duration-150 hover:text-fg"
             >
               <span className="min-w-0">{SITE.email}</span>
+            </a>
+            <a
+              href={`tel:${SITE.phone.href}`}
+              className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap text-small text-fg-muted transition-colors duration-150 hover:text-fg"
+            >
+              {SITE.phone.display}
+            </a>
+            <a
+              href={SITE.whatsapp}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-control text-fg-muted transition-colors duration-150 hover:text-fg"
+            >
+              <span className="sr-only">Message Kaibre on WhatsApp (opens in a new tab)</span>
+              <MessageCircle aria-hidden className="size-5" />
             </a>
             <a
               href={SITE.linkedin}
