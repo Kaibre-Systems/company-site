@@ -42,8 +42,26 @@ export default function ContactPage() {
               start.
             </Text>
             {/* The address and email are in the footer of every page, and the
-                email is repeated in the form's fallback state. Repeating them
-                here only pushed the form off the screen. */}
+                email is repeated in the form's fallback state, so they stay
+                out of here. Phone and WhatsApp share one wrapping row to keep
+                the form from being pushed off the screen on a phone. */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 text-body">
+              <a
+                href={`tel:${SITE.phone.href}`}
+                className="inline-flex min-h-11 items-center whitespace-nowrap text-accent underline underline-offset-4"
+              >
+                {SITE.phone.display}
+              </a>
+              <a
+                href={SITE.whatsapp}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex min-h-11 items-center whitespace-nowrap text-accent underline underline-offset-4"
+              >
+                Message us on WhatsApp
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            </div>
           </div>
 
           {/* The form is a client island behind Suspense (it reads ?topic).

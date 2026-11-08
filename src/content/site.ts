@@ -13,7 +13,7 @@ export const SITE = {
   // leading zeros, spaces or dashes. The pre-filled text says where the
   // conversation came from.
   whatsapp: `https://wa.me/971501390870?text=${encodeURIComponent(
-    "company_site_contact",
+    "Hi, I'd like to get in touch with Kaibre Systems after visiting kaibresystems.com",
   )}`,
   linkedin: "https://www.linkedin.com/company/kaibre-systems-limited/",
   address: {
