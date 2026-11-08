@@ -37,31 +37,34 @@ export default function ContactPage() {
               Tell us about the work.
             </Heading>
             <Text className="mt-5 max-w-[42ch]">
-              Kaibre is small enough that this reaches the person who would be
-              responsible for building it. Whatever detail you have is enough to
-              start.
+              Your message goes directly to a dedicated member of our team who
+              would be responsible for building it. Whatever detail you have is
+              enough to start.
             </Text>
             {/* The address and email are in the footer of every page, and the
                 email is repeated in the form's fallback state, so they stay
-                out of here. Phone and WhatsApp share one wrapping row to keep
-                the form from being pushed off the screen on a phone. */}
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 text-body">
+                out of here. Phone and WhatsApp sit in one sentence so they
+                read as an alternative to the form rather than floating links. */}
+            <Text className="mt-4 max-w-[42ch]">
+              You can also give us a call on{" "}
               <a
                 href={`tel:${SITE.phone.href}`}
-                className="inline-flex min-h-11 items-center whitespace-nowrap text-accent underline underline-offset-4"
+                className="whitespace-nowrap text-accent underline underline-offset-4"
               >
                 {SITE.phone.display}
-              </a>
+              </a>{" "}
+              or{" "}
               <a
                 href={SITE.whatsapp}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex min-h-11 items-center whitespace-nowrap text-accent underline underline-offset-4"
+                className="text-accent underline underline-offset-4"
               >
-                Message us on WhatsApp
+                message us on WhatsApp
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
-            </div>
+              .
+            </Text>
           </div>
 
           {/* The form is a client island behind Suspense (it reads ?topic).
