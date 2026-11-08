@@ -38,7 +38,7 @@ export default function ContactPage() {
             </Heading>
             <Text className="mt-5 max-w-[42ch]">
               Your message goes directly to a dedicated member of our team who
-              would be responsible for building it. Whatever detail you have is
+              would be responsible for building your solution. Whatever detail you have is
               enough to start.
             </Text>
             {/* The address and email are in the footer of every page, and the
