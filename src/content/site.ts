@@ -2,11 +2,19 @@ export const SITE = {
   name: "Kaibre",
   legalName: "Kaibre Systems Ltd.",
   domain: "https://www.kaibresystems.com",
-  positioning: "Kaibre builds and operates software for work that has to be right.",
+  positioning:
+    "Kaibre builds and operates software for work that has to be right.",
   signature: "Great code makes great companies.",
   shortDescription:
     "Kaibre is a software company. We build and operate our own products, build products with partners, and take on commissioned production systems.",
   email: "operations@kaibresystems.com",
+  phone: { href: "+971501390870", display: "+971 50 139 0870" },
+  // wa.me takes the number with its country code and nothing else: no "+",
+  // leading zeros, spaces or dashes. The pre-filled text says where the
+  // conversation came from.
+  whatsapp: `https://wa.me/971501390870?text=${encodeURIComponent(
+    "company_site_contact",
+  )}`,
   linkedin: "https://www.linkedin.com/company/kaibre-systems-limited/",
   address: {
     line: "SE45 05 Masdar City Incubator Building, Smart Station, First Floor",
@@ -63,4 +71,3 @@ export const FOOTER_GROUPS = [
     ],
   },
 ] as const;
-
