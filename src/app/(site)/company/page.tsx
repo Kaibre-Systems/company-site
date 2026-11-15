@@ -17,7 +17,7 @@ import { COMPANY, HOW_WE_WORK, PARTNERSHIPS } from "@/content/home";
 export const metadata: Metadata = {
   title: "Company: who builds and operates Kaibre's systems",
   description:
-    "Kaibre is founder-led, registered in Abu Dhabi, and working across the UAE, Indonesia, Canada and the United States. How we work, how we handle the documents customers give us, and who is responsible for the result.",
+    "Kaibre is founder-led, registered in Abu Dhabi, and working with clients worldwide, including the UAE, Indonesia, Canada and the United States. How we work, how we handle the documents customers give us, and who is responsible for the result.",
   alternates: { canonical: "/company" },
   openGraph: {
     title: "Company | Kaibre",

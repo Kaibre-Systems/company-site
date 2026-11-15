@@ -9,8 +9,9 @@ export const DOORS = {
     eyebrow: "Commissioned Systems",
     headline: "We build the one system your business runs on.",
     body: "One workflow carries the money, depends on people who are hard to replace, and nothing on the market fits it. That is the work we take, and then keep running.",
-    cta: { label: "Describe your workflow", href: "#start" },
+    cta: { label: "Contact us about your system", href: "#start" },
     secondary: { label: "How we engage", href: "/commissioned-systems" },
+    ctaNote: "Form, phone or WhatsApp · Straight to the team who would build it",
   },
   products: {
     eyebrow: "Products",
@@ -39,7 +40,7 @@ export const DOORS = {
 export const STATS = [
   { value: "$10k – $500k", label: "Individual unit value handled" },
   { value: "Tens of millions", label: "Catalogue value in production" },
-  { value: "4 markets", label: "UAE, Indonesia, Canada, US" },
+  { value: "Global delivery", label: "UAE, Indonesia, Canada, US and beyond" },
 ] as const;
 
 export const PROOF = {
@@ -98,7 +99,7 @@ export const COMPANY = {
     { label: "Registered", value: "Abu Dhabi, UAE" },
     {
       label: "Working across",
-      value: "UAE, Indonesia, Canada, United States",
+      value: "UAE, Indonesia, Canada, United States, and beyond",
     },
     { label: "Systems in production", value: "Built, operated, and supported by us" },
   ],
@@ -116,6 +117,4 @@ export const COMPANY = {
 
 export const CONTACT = {
   id: "start",
-  heading: "Tell us about the work.",
-  body: "If something in your operation is expensive, slow, and important, describe it in a paragraph. It reaches the engineer who would be responsible for building it.",
 } as const;
