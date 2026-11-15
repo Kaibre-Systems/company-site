@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Heading, Text } from "@/components/primitives";
-import { ContactForm } from "@/components/forms/contact-form";
+import { ContactForm, type Topic } from "@/components/forms/contact-form";
 import { SITE } from "@/content/site";
 
 export const CONTACT_COPY = {
@@ -18,8 +18,12 @@ export const CONTACT_COPY = {
  */
 export function ContactPanel({
   headingLevel = 2,
+  defaultTopic,
 }: {
   headingLevel?: 1 | 2;
+  /** Preset the form's topic when the page's CTA implies one. A ?topic= in
+      the URL still wins. */
+  defaultTopic?: Topic;
 }) {
   return (
     /* Two columns from `md`, not `lg`: a half-width tab on a 1080p monitor is
@@ -84,7 +88,7 @@ export function ContactPanel({
             </p>
           }
         >
-          <ContactForm />
+          <ContactForm defaultTopic={defaultTopic} />
         </Suspense>
       </div>
     </div>

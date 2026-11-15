@@ -2,7 +2,7 @@ export const CM_HERO = {
   eyebrow: "Commissioned Systems",
   headline: "One workflow carries your business. We build the software it runs on.",
   body: "Then we put it into production and keep operating it. Most of what we build replaces a spreadsheet that three people understand and nobody can afford to lose.",
-  cta: { label: "Describe your workflow", href: "#start" },
+  cta: { label: "Contact us", href: "#start" },
   note: "Reply from an engineer, usually the same day.",
 } as const;
 
@@ -67,6 +67,4 @@ export const CM_CASE = {
 
 export const CM_CONTACT = {
   id: "start",
-  heading: "Describe the workflow.",
-  body: "A paragraph is enough: what happens today, who does it, and what it costs when it goes wrong. It reaches the engineer who would be responsible for building it.",
 } as const;

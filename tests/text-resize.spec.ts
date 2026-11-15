@@ -263,7 +263,7 @@ test.describe("text resizing", () => {
     await page.setViewportSize({ width: 320, height: 568 });
     await page.goto("/");
     await setZoom(page, 200);
-    const cta = page.getByRole("link", { name: "Start a conversation" }).first();
+    const cta = page.getByRole("link", { name: "Contact us about your system" }).first();
     await cta.focus();
     const m = await page.evaluate(() => {
       const el = document.activeElement!;

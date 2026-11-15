@@ -92,8 +92,13 @@ export default function HomePage() {
             </Text>
           </div>
 
-          {/* Two doors, equal weight. Custom is first — it is the revenue. */}
-          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+          {/* Two doors, equal weight. Custom is first — it is the revenue.
+
+              The single mobile track is pinned to a zero floor: an implicit
+              `auto` track sizes to min-content, so at a raised font size the
+              door's CTA set the card's width instead of wrapping, and pushed
+              the page sideways. */}
+          <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-2">
             {/* Door one: commissioned systems */}
             <Card className="flex h-full flex-col gap-4 p-7 sm:p-8">
               <Eyebrow>{DOORS.commissioned.eyebrow}</Eyebrow>
@@ -211,7 +216,8 @@ export default function HomePage() {
 
       <Section surface="ink" id={CONTACT.id}>
         <Container>
-          <ContactPanel />
+          {/* The commissioned door is the page's main CTA and lands here. */}
+          <ContactPanel defaultTopic="commissioned" />
         </Container>
       </Section>
     </>

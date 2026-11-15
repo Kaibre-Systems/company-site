@@ -46,7 +46,7 @@ export const NAV = {
     { label: "Work", href: "/work" },
     { label: "Company", href: "/company" },
   ],
-  cta: { label: "Describe your workflow", href: "/contact" },
+  cta: { label: "Contact us", href: "/contact" },
 } as const;
 
 export const FOOTER_GROUPS = [
