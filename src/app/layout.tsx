@@ -114,6 +114,9 @@ const ORGANISATION_LD = {
   sameAs: [SITE.linkedin],
 };
 
+/** Google Tag Manager container ID (e.g. GTM-XXXXXXX). Inlined at build time. */
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -135,12 +138,23 @@ export default function RootLayout({
               `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}`,
           }}
         />
-        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NFCWMQVS"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        </script>
+        {/* Make sure you have the env set up to have the GTM ID you silly goose*/}
+        {GTM_ID && (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_ID)}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html:
+                  `window.dataLayer=window.dataLayer||[];` +
+                  `function gtag(){dataLayer.push(arguments);}` +
+                  `gtag('js',new Date());`,
+              }}
+            />
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANISATION_LD) }}

@@ -232,3 +232,5 @@ an in-memory per-IP rate limit (5/hour). No CAPTCHA.
 ## Deployment
 
 Vercel. Analytics and Speed Insights are mounted in the root layout; their scripts 404 in local development because Vercel injects them at the edge — that is expected and not a bug.
+
+Google Tag Manager loads only when `NEXT_PUBLIC_GTM_ID` is set (Vercel → Project → Settings → Environment Variables). It is inlined at build time, so changing it needs a redeploy.
