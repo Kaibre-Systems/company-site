@@ -135,6 +135,12 @@ export default function RootLayout({
               `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;}catch(e){}`,
           }}
         />
+        <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-NFCWMQVS"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        </script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANISATION_LD) }}
