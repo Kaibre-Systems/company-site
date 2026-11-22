@@ -62,10 +62,9 @@ test("a deep page opens the next one at its top", async ({ page }) => {
 
 test("an in-page hash does not follow you to the next page", async ({ page }) => {
   await page.goto("/commissioned-systems");
-  await page
-    .getByRole("link", { name: /describe your workflow/i })
-    .first()
-    .click();
+  // The in-page hero action, not the header's "Contact us", which opens
+  // /contact and would never set the #start hash this test is about.
+  await page.locator('main a[href="#start"]').first().click();
   await page.waitForTimeout(SETTLE);
 
   await page.locator("footer").getByRole("link", { name: /^kAI$/ }).first().click();

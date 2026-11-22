@@ -368,14 +368,14 @@ test.describe("layout", () => {
   test("key headings and CTAs are laid out, not collapsed or detached", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
-    for (const name of ["Software for work that has to be right.", "Software we own and operate."]) {
+    for (const name of ["Great code makes great companies.", "We build the one system your business runs on."]) {
       await expect(page.getByRole("heading", { name })).toBeVisible();
       const box = (await cssBox(page, "h1, h2", name))!;
       expect(box, `heading "${name}" is not laid out`).not.toBeNull();
       expect(box.h).toBeGreaterThan(0);
       expect(box.top + (await page.evaluate(() => scrollY))).toBeGreaterThanOrEqual(0);
     }
-    for (const label of ["Start a conversation", "See what we've built"]) {
+    for (const label of ["Contact us about your system", "How we engage"]) {
       await expect(page.getByRole("link", { name: label }).first()).toBeVisible();
       const box = (await cssBox(page, "main a", label))!;
       expect(box, `CTA "${label}" is not laid out`).not.toBeNull();
@@ -631,9 +631,11 @@ test.describe("runtime", () => {
 test.describe("calls to action", () => {
   test("the stacked pair matches, and the glow stays on the button", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
+    // /kai's hero is the stacked pair of two full buttons; the homepage pairs
+    // a button with an arrow link, which is meant to be narrower.
+    await page.goto("/kai");
 
-    const primary = (await cssBox(page, "main a", "Start a conversation"))!;
+    const primary = (await cssBox(page, "main a", "Ask for a kAI demo"))!;
     const secondary = (await cssBox(page, "main a", "See what we've built"))!;
     expect(Math.abs(primary.w - secondary.w), "stacked CTAs are different widths").toBeLessThanOrEqual(2);
 
@@ -645,7 +647,7 @@ test.describe("calls to action", () => {
      */
     const aura = await page.evaluate(() => {
       const a = [...document.querySelectorAll("main a")].find(
-        (el) => el.textContent?.trim() === "Start a conversation",
+        (el) => el.textContent?.trim() === "Ask for a kAI demo",
       )!;
       const wrap = a.parentElement!;
       const glow = wrap.querySelector("span[aria-hidden]")!;
@@ -665,7 +667,7 @@ test.describe("calls to action", () => {
     await page.goto("/");
     const c = await page.evaluate(() => {
       const a = [...document.querySelectorAll("main a")].find(
-        (el) => el.textContent?.trim() === "Start a conversation",
+        (el) => el.textContent?.trim() === "Contact us about your system",
       )!;
       const cs = getComputedStyle(a);
       return { colour: cs.color, bg: cs.backgroundColor };

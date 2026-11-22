@@ -36,6 +36,6 @@ export const DATA = {
 
 export const COMPANY_CTA = {
   heading: "Tell us about the work.",
-  body: "If something in your operation is expensive, slow, and important, describe it in a paragraph. It reaches the person who would be responsible for building it.",
+  body: "Tell us about the part of your operation you want to improve. A paragraph is enough, and it goes straight to the team who would build it.",
   cta: { label: "Start a conversation", href: "/contact" },
 } as const;

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import {
   Card,
   Container,
@@ -9,7 +8,7 @@ import {
   Text,
 } from "@/components/primitives";
 import { ArrowLink, Button } from "@/components/primitives/button";
-import { ContactForm } from "@/components/forms/contact-form";
+import { ContactPanel } from "@/components/forms/contact-panel";
 import { cn } from "@/lib/utils";
 import {
   CM_CASE,
@@ -172,21 +171,7 @@ export default function CommissionedSystemsPage() {
       {/* The ask on the page */}
       <Section surface="ink" id={CM_CONTACT.id}>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
-            <div>
-              <Heading level={2} size="display-2" className="max-w-[16ch]">
-                {CM_CONTACT.heading}
-              </Heading>
-              <Text size="lead" className="mt-5 max-w-[46ch]">
-                {CM_CONTACT.body}
-              </Text>
-            </div>
-            <div className="max-w-xl">
-              <Suspense fallback={<div className="min-h-[41rem]" aria-hidden />}>
-                <ContactForm defaultTopic="commissioned" />
-              </Suspense>
-            </div>
-          </div>
+          <ContactPanel defaultTopic="commissioned" />
         </Container>
       </Section>
     </>

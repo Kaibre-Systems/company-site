@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -12,7 +11,7 @@ import {
   Text,
 } from "@/components/primitives";
 import { ArrowLink, Button } from "@/components/primitives/button";
-import { ContactForm } from "@/components/forms/contact-form";
+import { ContactPanel } from "@/components/forms/contact-panel";
 import { HomeAnalytics } from "@/components/analytics/home-analytics";
 import { cn } from "@/lib/utils";
 import {
@@ -93,8 +92,13 @@ export default function HomePage() {
             </Text>
           </div>
 
-          {/* Two doors, equal weight. Custom is first — it is the revenue. */}
-          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+          {/* Two doors, equal weight. Custom is first — it is the revenue.
+
+              The single mobile track is pinned to a zero floor: an implicit
+              `auto` track sizes to min-content, so at a raised font size the
+              door's CTA set the card's width instead of wrapping, and pushed
+              the page sideways. */}
+          <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-5 lg:grid-cols-2">
             {/* Door one: commissioned systems */}
             <Card className="flex h-full flex-col gap-4 p-7 sm:p-8">
               <Eyebrow>{DOORS.commissioned.eyebrow}</Eyebrow>
@@ -108,13 +112,18 @@ export default function HomePage() {
                 data-analytics="home_door_commissioned"
                 className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-4"
               >
-                <Button href={DOORS.commissioned.cta.href} halo={false}>
+                {/* The page's main call to action: it opens the contact
+                    form at the bottom of the page, and says so. */}
+                <Button href={DOORS.commissioned.cta.href}>
                   {DOORS.commissioned.cta.label}
                 </Button>
                 <ArrowLink href={DOORS.commissioned.secondary.href}>
                   {DOORS.commissioned.secondary.label}
                 </ArrowLink>
               </div>
+              <p className="font-mono text-fine text-fg-subtle">
+                {DOORS.commissioned.ctaNote}
+              </p>
             </Card>
 
             {/* Door two: products */}
@@ -207,23 +216,8 @@ export default function HomePage() {
 
       <Section surface="ink" id={CONTACT.id}>
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16">
-            <div>
-              <Heading level={2} size="display-2" className="max-w-[16ch]">
-                {CONTACT.heading}
-              </Heading>
-              <Text size="lead" className="mt-5 max-w-[46ch]">
-                {CONTACT.body}
-              </Text>
-            </div>
-            <div className="max-w-xl">
-              <Suspense
-                fallback={<div className="min-h-[41rem]" aria-hidden />}
-              >
-                <ContactForm />
-              </Suspense>
-            </div>
-          </div>
+          {/* The commissioned door is the page's main CTA and lands here. */}
+          <ContactPanel defaultTopic="commissioned" />
         </Container>
       </Section>
     </>

@@ -50,7 +50,7 @@ const TOPICS = [
     },
 ] as const;
 
-type Topic = (typeof TOPICS)[number]["value"];
+export type Topic = (typeof TOPICS)[number]["value"];
 type Errors = Partial<Record<"name" | "email" | "company" | "work", string>>;
 type Status = "idle" | "sending" | "sent" | "fallback";
 
