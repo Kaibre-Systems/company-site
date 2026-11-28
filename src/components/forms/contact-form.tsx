@@ -76,6 +76,16 @@ function isEmail(value: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
 }
 
+/**
+ * Hands an event to Google Tag Manager. A no-op when GTM is not loaded
+ * (local development without NEXT_PUBLIC_GTM_ID, or an ad blocker), so the
+ * form never depends on it.
+ */
+function pushDataLayer(entry: Record<string, unknown>) {
+    const w = window as Window & { dataLayer?: unknown[] };
+    w.dataLayer?.push(entry);
+}
+
 function buildMailto(f: Fields) {
     const topic = TOPICS.find((t) => t.value === f.topic)?.label ?? "Enquiry";
     const body = [
@@ -148,6 +158,11 @@ export function ContactForm({
             });
             if (res.ok) {
                 setStatus("sent");
+                /* The Google Ads "Submit lead form" conversion. GTM fires the
+                   conversion tag on a Custom Event trigger named
+                   `lead_form_submit`. Only a confirmed send counts: the
+                   mail-app fallback and validation errors never reach here. */
+                pushDataLayer({ event: "lead_form_submit", lead_topic: topic });
                 return;
             }
         } catch {
